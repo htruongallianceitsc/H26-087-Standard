@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "code": "STD-CRUD",
+  "name": "CRUD, List, Search & Pagination",
+  "category": "feature",
+  "description": "Consistent list and editing operations",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "title": "Define search, filtering, sorting, pagination and empty-state behaviour",
+      "detail": "Define search, filtering, sorting, pagination and empty-state behaviour. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: define search, filtering, sorting, pagination and empty-state behaviour.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Authorize each create/read/update/delete operation server-side",
+      "detail": "Authorize each create/read/update/delete operation server-side. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: authorize each create/read/update/delete operation server-side.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Handle concurrent updates, duplicate submits and optimistic change rollback",
+      "detail": "Handle concurrent updates, duplicate submits and optimistic change rollback. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: handle concurrent updates, duplicate submits and optimistic change rollback.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Specify accessible feedback for validation and operation result",
+      "detail": "Specify accessible feedback for validation and operation result. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: specify accessible feedback for validation and operation result.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Assess applicability",
+      "description": "Check project platform, requirements, architecture and applicable conditions for CRUD, List, Search & Pagination; record exclusions and approved overrides."
+    },
+    {
+      "step": 2,
+      "title": "Apply rules",
+      "description": "Include applicable CRUD, List, Search & Pagination rules in design, implementation and review checklist; link relevant requirement and code."
+    },
+    {
+      "step": 3,
+      "title": "Verify compliance",
+      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Inconsistent adoption of CRUD, List, Search & Pagination",
+      "cause": "Project profile does not explicitly reference the standard or its owner.",
+      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+    },
+    {
+      "issue": "Written standard is not enforceable automatically",
+      "cause": "Some behaviour depends on design decisions and runtime context.",
+      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+    }
+  ],
+  "features": [
+    {
+      "name": "CRUD, List, Search & Pagination",
+      "description": "Consistent list and editing operations"
+    }
+  ],
+  "user_stories": [
+    {
+      "title": "Use CRUD, List, Search & Pagination",
+      "as_a": "authorized application user",
+      "i_want": "consistent list and editing operations",
+      "so_that": "I can complete the intended task safely and predictably",
+      "acceptance_criteria": [
+        {
+          "given": "the user is eligible to access CRUD, List, Search & Pagination",
+          "when": "the user performs the main supported action",
+          "then": "the system returns an authorized, validated outcome and communicates its state"
+        },
+        {
+          "given": "an input, permission or dependency is invalid",
+          "when": "the user attempts the action",
+          "then": "the system blocks unsafe completion and shows a recoverable, non-sensitive error"
+        }
+      ],
+      "related_rules": [
+        "Define search, filtering, sorting, pagination and empty-state behaviour"
+      ]
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-REQ",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-TEST",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-FEAT",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-BIZ",
+      "dependency_type": "requires"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "code": "STD-PROFILE",
+  "name": "User Profile Feature",
+  "category": "feature",
+  "description": "Profile editing and ownership",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "title": "Restrict updates to authorized subject and permitted fields",
+      "detail": "Restrict updates to authorized subject and permitted fields. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: restrict updates to authorized subject and permitted fields.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Validate changed fields and preserve existing unchanged values",
+      "detail": "Validate changed fields and preserve existing unchanged values. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: validate changed fields and preserve existing unchanged values.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Handle avatar/media errors and conflict responses",
+      "detail": "Handle avatar/media errors and conflict responses. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: handle avatar/media errors and conflict responses.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Audit sensitive profile changes without exposing private data",
+      "detail": "Audit sensitive profile changes without exposing private data. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: audit sensitive profile changes without exposing private data.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Assess applicability",
+      "description": "Check project platform, requirements, architecture and applicable conditions for User Profile Feature; record exclusions and approved overrides."
+    },
+    {
+      "step": 2,
+      "title": "Apply rules",
+      "description": "Include applicable User Profile Feature rules in design, implementation and review checklist; link relevant requirement and code."
+    },
+    {
+      "step": 3,
+      "title": "Verify compliance",
+      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Inconsistent adoption of User Profile Feature",
+      "cause": "Project profile does not explicitly reference the standard or its owner.",
+      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+    },
+    {
+      "issue": "Written standard is not enforceable automatically",
+      "cause": "Some behaviour depends on design decisions and runtime context.",
+      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+    }
+  ],
+  "features": [
+    {
+      "name": "User Profile Feature",
+      "description": "Profile editing and ownership"
+    }
+  ],
+  "user_stories": [
+    {
+      "title": "Use User Profile Feature",
+      "as_a": "authorized application user",
+      "i_want": "profile editing and ownership",
+      "so_that": "I can complete the intended task safely and predictably",
+      "acceptance_criteria": [
+        {
+          "given": "the user is eligible to access User Profile Feature",
+          "when": "the user performs the main supported action",
+          "then": "the system returns an authorized, validated outcome and communicates its state"
+        },
+        {
+          "given": "an input, permission or dependency is invalid",
+          "when": "the user attempts the action",
+          "then": "the system blocks unsafe completion and shows a recoverable, non-sensitive error"
+        }
+      ],
+      "related_rules": [
+        "Restrict updates to authorized subject and permitted fields"
+      ]
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-REQ",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-TEST",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-FEAT",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-BIZ",
+      "dependency_type": "requires"
+    }
+  ]
+}

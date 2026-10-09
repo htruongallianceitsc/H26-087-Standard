@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "code": "STD-NOTIFY",
+  "name": "Notification Feature",
+  "category": "feature",
+  "description": "In-app and external message behaviours",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "title": "Separate message events, delivery preferences and presentation",
+      "detail": "Separate message events, delivery preferences and presentation. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: separate message events, delivery preferences and presentation.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Avoid sending private data to unauthorized recipients",
+      "detail": "Avoid sending private data to unauthorized recipients. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: avoid sending private data to unauthorized recipients.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Make notification actions idempotent and validate destinations",
+      "detail": "Make notification actions idempotent and validate destinations. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: make notification actions idempotent and validate destinations.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Test duplicate delivery, unread counters and dismissal state",
+      "detail": "Test duplicate delivery, unread counters and dismissal state. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: test duplicate delivery, unread counters and dismissal state.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Assess applicability",
+      "description": "Check project platform, requirements, architecture and applicable conditions for Notification Feature; record exclusions and approved overrides."
+    },
+    {
+      "step": 2,
+      "title": "Apply rules",
+      "description": "Include applicable Notification Feature rules in design, implementation and review checklist; link relevant requirement and code."
+    },
+    {
+      "step": 3,
+      "title": "Verify compliance",
+      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Inconsistent adoption of Notification Feature",
+      "cause": "Project profile does not explicitly reference the standard or its owner.",
+      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+    },
+    {
+      "issue": "Written standard is not enforceable automatically",
+      "cause": "Some behaviour depends on design decisions and runtime context.",
+      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+    }
+  ],
+  "features": [
+    {
+      "name": "Notification Feature",
+      "description": "In-app and external message behaviours"
+    }
+  ],
+  "user_stories": [
+    {
+      "title": "Use Notification Feature",
+      "as_a": "authorized application user",
+      "i_want": "in-app and external message behaviours",
+      "so_that": "I can complete the intended task safely and predictably",
+      "acceptance_criteria": [
+        {
+          "given": "the user is eligible to access Notification Feature",
+          "when": "the user performs the main supported action",
+          "then": "the system returns an authorized, validated outcome and communicates its state"
+        },
+        {
+          "given": "an input, permission or dependency is invalid",
+          "when": "the user attempts the action",
+          "then": "the system blocks unsafe completion and shows a recoverable, non-sensitive error"
+        }
+      ],
+      "related_rules": [
+        "Separate message events, delivery preferences and presentation"
+      ]
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-REQ",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-TEST",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-FEAT",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-BIZ",
+      "dependency_type": "requires"
+    }
+  ]
+}

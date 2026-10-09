@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "code": "STD-NEXT-CACHE",
+  "name": "Next.js Cache & Revalidation",
+  "category": "nextjs",
+  "description": "Explicit server caching policy",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "title": "Choose cache/static/dynamic behaviour per route and data sensitivity",
+      "detail": "Choose cache/static/dynamic behaviour per route and data sensitivity. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: choose cache/static/dynamic behaviour per route and data sensitivity.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Invalidate affected cache entries after writes",
+      "detail": "Invalidate affected cache entries after writes. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: invalidate affected cache entries after writes.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Avoid caching user-specific content in shared scopes",
+      "detail": "Avoid caching user-specific content in shared scopes. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: avoid caching user-specific content in shared scopes.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Test stale data and deployment revalidation behaviour",
+      "detail": "Test stale data and deployment revalidation behaviour. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: test stale data and deployment revalidation behaviour.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Assess applicability",
+      "description": "Check project platform, requirements, architecture and applicable conditions for Next.js Cache & Revalidation; record exclusions and approved overrides."
+    },
+    {
+      "step": 2,
+      "title": "Apply rules",
+      "description": "Include applicable Next.js Cache & Revalidation rules in design, implementation and review checklist; link relevant requirement and code."
+    },
+    {
+      "step": 3,
+      "title": "Verify compliance",
+      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Inconsistent adoption of Next.js Cache & Revalidation",
+      "cause": "Project profile does not explicitly reference the standard or its owner.",
+      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+    },
+    {
+      "issue": "Written standard is not enforceable automatically",
+      "cause": "Some behaviour depends on design decisions and runtime context.",
+      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-REQ",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-TEST",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-WEB-ARCH",
+      "dependency_type": "requires"
+    }
+  ]
+}

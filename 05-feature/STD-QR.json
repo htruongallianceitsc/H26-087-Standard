@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "code": "STD-QR",
+  "name": "QR Scanning Feature",
+  "category": "feature",
+  "description": "QR capture and parsing",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "title": "Validate QR payload format and trust boundaries before action",
+      "detail": "Validate QR payload format and trust boundaries before action. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: validate qr payload format and trust boundaries before action.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Request camera permissions contextually and support denial",
+      "detail": "Request camera permissions contextually and support denial. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: request camera permissions contextually and support denial.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Prevent duplicate scans and accidental repeated submission",
+      "detail": "Prevent duplicate scans and accidental repeated submission. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: prevent duplicate scans and accidental repeated submission.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Provide safe manual entry or fallback when camera is unavailable",
+      "detail": "Provide safe manual entry or fallback when camera is unavailable. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: provide safe manual entry or fallback when camera is unavailable.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Assess applicability",
+      "description": "Check project platform, requirements, architecture and applicable conditions for QR Scanning Feature; record exclusions and approved overrides."
+    },
+    {
+      "step": 2,
+      "title": "Apply rules",
+      "description": "Include applicable QR Scanning Feature rules in design, implementation and review checklist; link relevant requirement and code."
+    },
+    {
+      "step": 3,
+      "title": "Verify compliance",
+      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Inconsistent adoption of QR Scanning Feature",
+      "cause": "Project profile does not explicitly reference the standard or its owner.",
+      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+    },
+    {
+      "issue": "Written standard is not enforceable automatically",
+      "cause": "Some behaviour depends on design decisions and runtime context.",
+      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+    }
+  ],
+  "features": [
+    {
+      "name": "QR Scanning Feature",
+      "description": "QR capture and parsing"
+    }
+  ],
+  "user_stories": [
+    {
+      "title": "Use QR Scanning Feature",
+      "as_a": "authorized application user",
+      "i_want": "qr capture and parsing",
+      "so_that": "I can complete the intended task safely and predictably",
+      "acceptance_criteria": [
+        {
+          "given": "the user is eligible to access QR Scanning Feature",
+          "when": "the user performs the main supported action",
+          "then": "the system returns an authorized, validated outcome and communicates its state"
+        },
+        {
+          "given": "an input, permission or dependency is invalid",
+          "when": "the user attempts the action",
+          "then": "the system blocks unsafe completion and shows a recoverable, non-sensitive error"
+        }
+      ],
+      "related_rules": [
+        "Validate QR payload format and trust boundaries before action"
+      ]
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-REQ",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-TEST",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-FEAT",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-BIZ",
+      "dependency_type": "requires"
+    }
+  ]
+}

@@ -1,0 +1,231 @@
+STANDARD CATALOG
+│
+├── 01. GOVERNANCE & DELIVERY
+│   │
+│   ├── STD-REQ ............ Requirements & Acceptance Criteria
+│   ├── STD-BIZ ............ Business Rules & Business Processes
+│   ├── STD-FEAT ........... Feature Specification & Decomposition
+│   ├── STD-ARCH ........... Architecture Principles & ADRs
+│   ├── STD-DOC ............ Documentation & Traceability
+│   ├── STD-NAME ........... Naming & Code Organization
+│   ├── STD-GIT ............ Git Workflow & Branching Strategy
+│   ├── STD-TEST ........... Testing Strategy & Quality Gates
+│   │
+│   ├── STD-PERF-TEST ...... Performance, Load & Stress Testing         [NEW]
+│   │                         ↳ Extends STD-TEST
+│   │                         ↳ Uses STD-PERF, STD-SLO
+│   │
+│   ├── STD-CODE-REVIEW .... Code Review & Pull Request Governance     [NEW]
+│   │                         ↳ Uses STD-GIT, STD-TEST, STD-SEC
+│   │
+│   ├── STD-VERSIONING ..... Versioning, Compatibility & Deprecation   [NEW]
+│   │                         ↳ Used by STD-API, STD-CI, STD-DEPLOY
+│   │
+│   ├── STD-COMPLIANCE ..... Regulatory Compliance & Evidence          [NEW]
+│   │                         ↳ Uses STD-SEC, STD-PRIV, STD-DOC
+│   │
+│   ├── STD-MONOREPO ...... Monorepo & Workspace Management            [NEW/OPTIONAL]
+│   │                         ↳ Uses STD-GIT, STD-DEP, STD-CI
+│   │
+│   ├── STD-CI ............. Continuous Integration & Build Pipeline
+│   └── STD-AI-DEV ......... AI-Assisted Development & Agent Workflow
+│
+├── 02. ENGINEERING FOUNDATION
+│   │
+│   ├── STD-ERR ............ Error Handling & Classification
+│   ├── STD-LOG ............ Logging & Observability
+│   ├── STD-SEC ............ Application Security Principles
+│   ├── STD-PRIV ........... Privacy, PII & Data Retention
+│   ├── STD-ENV ............ Environment, Configuration & Secrets
+│   ├── STD-I18N ........... Internationalization & Localization
+│   ├── STD-ANALYTICS ...... Product Analytics & Event Tracking
+│   ├── STD-PERF ........... Performance Engineering Principles
+│   ├── STD-RES ............ Reliability, Resilience & Fault Tolerance
+│   │                         ↳ Includes chaos testing principles
+│   │
+│   ├── STD-DEP ............ Dependency & Package Management
+│   └── STD-FLAG ........... Feature Flags & Progressive Rollout
+│
+├── 03. API, INTEGRATION & DATA
+│   │
+│   ├── STD-API ............ API Contracts & Versioning
+│   │                         ↳ Uses STD-VERSIONING
+│   │
+│   ├── STD-API-REST ....... RESTful API Design
+│   ├── STD-API-RT ......... Realtime API & WebSocket/SSE
+│   ├── STD-INTEGRATION .... Third-Party Integration
+│   ├── STD-WEBHOOK ........ Webhook & Event Contracts
+│   ├── STD-DATA ........... Data Modeling & Schema Design
+│   ├── STD-DATA-TX ........ Transactions, Concurrency & Consistency
+│   ├── STD-DATA-MIG ....... Schema Evolution & Database Migrations
+│   │                         ↳ Uses STD-VERSIONING
+│   │
+│   └── STD-CACHE .......... Caching & Cache Invalidation
+│
+├── 04. EXPERIENCE — UI / UX
+│   │
+│   ├── STD-UX ............. UX & Interaction Principles
+│   ├── STD-UI-STATE ....... UI State & State Presentation
+│   ├── STD-FEEDBACK ....... Feedback, Notifications & Messaging
+│   ├── STD-FORM ........... Form & Validation Experience
+│   ├── STD-A11Y ........... Accessibility & Inclusive Design
+│   ├── STD-DESIGN ......... Design Handoff & Fidelity
+│   └── STD-DS ............. Design System & Shared Components
+│
+├── 05. WEB PLATFORM
+│   │
+│   ├── STD-WEB-ARCH ....... Web Application Architecture
+│   │                         ↳ Extends STD-ARCH
+│   │
+│   ├── STD-WEB-ROUTE ...... Routing, Navigation & URL State
+│   │                         ↳ Aligns With STD-UX
+│   │
+│   ├── STD-WEB-RESP ....... Responsive Layout
+│   │                         ↳ Uses STD-DS, STD-A11Y
+│   │
+│   ├── STD-WEB-FORM ....... Browser Form & Validation
+│   │                         ↳ Extends STD-FORM
+│   │
+│   ├── STD-WEB-AUTH ....... Browser Authentication & Sessions
+│   │                         ↳ Uses STD-SEC, STD-WEB-SEC
+│   │
+│   ├── STD-WEB-STORE ...... Browser Storage & Persistence
+│   │                         ↳ Uses STD-CACHE, STD-WEB-SEC
+│   │
+│   ├── STD-WEB-SEC ........ Browser & Web Application Security
+│   │                         ↳ Extends STD-SEC
+│   │
+│   ├── STD-WEB-PERF ....... Web Rendering & Memory Performance
+│   │                         ↳ Extends STD-PERF
+│   │
+│   ├── STD-WEB-SEO ........ SEO & Rendering Strategy
+│   └── STD-WEB-PWA ........ Progressive Web Apps
+│
+├── 06. MOBILE PLATFORM
+│   │
+│   ├── STD-MOB-ARCH ....... Mobile Application Architecture
+│   │                         ↳ Extends STD-ARCH
+│   │
+│   ├── STD-MOB-NAV ........ Navigation, Routing & Deep Linking
+│   │                         ↳ Aligns With STD-UX
+│   │
+│   ├── STD-MOB-LIFE ....... Lifecycle & Background Execution
+│   ├── STD-MOB-STORE ...... Local Storage & Secure Persistence
+│   │                         ↳ Uses STD-CACHE, STD-MOB-SEC
+│   │
+│   ├── STD-MOB-OFF ........ Offline, Connectivity & Sync
+│   │                         ↳ Uses STD-RES, STD-CACHE
+│   │
+│   ├── STD-MOB-PUSH ....... Push Notifications & Routing
+│   ├── STD-MOB-DEVICE ..... Device Permissions & Capabilities
+│   ├── STD-MOB-UI ......... Mobile Layout, Safe Areas & Keyboard
+│   │                         ↳ Uses STD-UX, STD-DS, STD-A11Y,
+│   │                           STD-FORM, STD-UI-STATE
+│   │
+│   ├── STD-MOB-SEC ........ Mobile Application Security
+│   │                         ↳ Extends STD-SEC
+│   │
+│   ├── STD-MOB-RELEASE .... Mobile Build, Signing & Store Release
+│   │                         ↳ Uses STD-VERSIONING
+│   │
+│   └── STD-MOB-PERF ....... Startup, Memory & Battery Performance
+│                             ↳ Extends STD-PERF
+│
+├── 07. BACKEND PLATFORM
+│   │
+│   ├── STD-BE-ARCH ........ Backend Application Architecture
+│   │                         ↳ Extends STD-ARCH
+│   │
+│   ├── STD-BE-AUTH ........ Authentication & Authorization
+│   ├── STD-BE-VALID ....... Request & Domain Validation
+│   ├── STD-BE-SEC ......... Backend Security & Hardening
+│   │                         ↳ Extends STD-SEC
+│   │
+│   ├── STD-BE-TX .......... Transaction Management & Unit of Work
+│   │                         ↳ Extends STD-DATA-TX
+│   │
+│   ├── STD-BE-CONCUR ...... Concurrency & Idempotency
+│   │                         ↳ Uses STD-DATA-TX, STD-RES
+│   │
+│   ├── STD-BE-JOB ......... Background Jobs & Scheduling
+│   ├── STD-BE-QUEUE ....... Queues & Event-Driven Processing
+│   ├── STD-BE-FILE ........ File Processing & Object Storage
+│   ├── STD-BE-HEALTH ...... Readiness, Liveness & Health
+│   └── STD-BE-PERF ........ Performance & Scalability
+│                             ↳ Extends STD-PERF
+│
+├── 08. TECHNOLOGY
+│   │
+│   ├── 08.1. WEB TECHNOLOGY
+│   │   ├── STD-REACT ...... React Components & Hooks
+│   │   ├── STD-TS ......... TypeScript Conventions
+│   │   ├── STD-RQ ......... TanStack Query
+│   │   ├── STD-NEXT ....... Next.js Architecture
+│   │   └── STD-REACT-TEST . React Testing, Vitest/Jest & RTL
+│   │                         ↳ Implements STD-TEST
+│   │
+│   ├── 08.2. REACT NATIVE TECHNOLOGY
+│   │   ├── STD-RN ......... React Native Architecture
+│   │   ├── STD-RN-NAV ..... Navigation & Expo Router
+│   │   ├── STD-RN-STATE ... React Native State Management
+│   │   ├── STD-RN-STORE ... Local & Secure Storage
+│   │   │                     ↳ Implements STD-MOB-STORE
+│   │   └── STD-RN-TEST .... Jest & React Native Testing Library
+│   │                         ↳ Implements STD-TEST
+│   │
+│   ├── 08.3. FLUTTER TECHNOLOGY
+│   │   ├── STD-FL-DART .... Dart Conventions
+│   │   ├── STD-FL-BLOC .... Flutter BLoC & Cubit
+│   │   ├── STD-FL-WIDGET .. Widget Composition & Theming
+│   │   ├── STD-FL-ROUTE ... Flutter Navigation & go_router
+│   │   └── STD-FL-TEST .... flutter_test, bloc_test & Integration
+│   │                         ↳ Implements STD-TEST
+│   │
+│   ├── 08.4. BACKEND TECHNOLOGY — .NET
+│   │   ├── STD-DOTNET ..... ASP.NET Core Architecture
+│   │   ├── STD-DOTNET-API . API, DI & Middleware
+│   │   ├── STD-DOTNET-EF .. Entity Framework Core
+│   │   │                     ↳ Implements STD-DATA,
+│   │   │                       STD-DATA-TX, STD-DATA-MIG
+│   │   │                     ↳ Uses STD-BE-TX
+│   │   │
+│   │   └── STD-DOTNET-TEST  xUnit & Integration Testing
+│   │                         ↳ Implements STD-TEST
+│   │
+│   └── 08.5. DATABASE TECHNOLOGY
+│       └── STD-PG ......... PostgreSQL Development & Migrations
+│                             ↳ Implements STD-DATA,
+│                               STD-DATA-TX, STD-DATA-MIG
+│                             ↳ Uses STD-PERF
+│
+├── 09. REUSABLE CAPABILITIES
+│   │
+│   ├── CAP-AUTH ........... Authentication & Registration
+│   ├── CAP-PROFILE ........ User Profile & Account Management
+│   ├── CAP-CRUD ........... CRUD, Listing & Pagination
+│   ├── CAP-UPLOAD ......... File Upload & Attachments
+│   ├── CAP-NOTIFY ......... Notification Delivery
+│   ├── CAP-CHAT ........... Realtime Chat
+│   ├── CAP-SHARE .......... Sharing, QR & Deep Links
+│   ├── CAP-AUDIT .......... Audit Trail & History
+│   ├── CAP-PERM ........... Roles & Permissions
+│   ├── CAP-SEARCH ......... Search & Indexing
+│   ├── CAP-PAYMENT ........ Payments & Billing
+│   └── CAP-REPORT ......... Reporting & Dashboards
+│
+└── 10. OPERATIONS & INFRASTRUCTURE
+    │
+    ├── STD-DEPLOY ......... Deployment, Rollout & Rollback
+    │                         ↳ Uses STD-CI, STD-FLAG,
+    │                           STD-VERSIONING
+    │
+    ├── STD-IAC ............ Infrastructure as Code
+    ├── STD-NET ............ Network, DNS, TLS & Infrastructure Security
+    ├── STD-BACKUP ......... Backup & Restore
+    ├── STD-DR ............. Disaster Recovery
+    ├── STD-SLO ............ Service Level Objectives
+    ├── STD-COST ........... Infrastructure & Cloud Cost Governance [NEW]
+    │                         ↳ Uses STD-LOG, STD-PERF, STD-SLO
+    │
+    ├── STD-INCIDENT ....... Incident Management & Postmortems
+    └── STD-RUNBOOK ........ Operational Runbooks & Maintenance

@@ -1,0 +1,366 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pm.local/schemas/standard-import.schema.json",
+  "title": "Standard Import",
+  "description": "Schema for a single Standard exported via GET /v1/standards/:id/export-json and re-imported via POST /v1/standards/import-json. Mirrors importStandardSchema in standards.schema.js.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "code",
+    "name"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1,
+      "description": "Must equal EXPORT_SCHEMA_VERSION in standards.schema.js. Import is rejected if this does not match."
+    },
+    "code": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Unique, human-readable identifier for the standard. Import is rejected if a standard with this code already exists in the target system."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "category": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 50
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "version": {
+      "type": "string",
+      "maxLength": 20
+    },
+    "status": {
+      "$ref": "#/$defs/status"
+    },
+    "depends_on": {
+      "type": "array",
+      "description": "Dependencies referenced by code (not internal id) so the file is portable across environments. Codes not found in the target system are skipped (see skippedDependencies in the import response) rather than failing the whole import.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "dependency_type": {
+            "type": "string",
+            "maxLength": 50
+          }
+        }
+      }
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ruleItem"
+      }
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/componentItem"
+      }
+    },
+    "user_stories": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/userStoryItem"
+      }
+    },
+    "integration_guide": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/integrationGuideItem"
+      }
+    },
+    "common_issues": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/commonIssueItem"
+      }
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/featureItem"
+      }
+    },
+    "diagrams": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/diagramItem"
+      }
+    }
+  },
+  "$defs": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "active",
+        "inactive"
+      ]
+    },
+    "layerValue": {
+      "type": "string",
+      "enum": [
+        "ui",
+        "api",
+        "db",
+        "process",
+        "security"
+      ]
+    },
+    "layer": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/layerValue"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/layerValue"
+          }
+        }
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "must",
+        "should",
+        "may"
+      ]
+    },
+    "ruleItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "layer",
+        "severity"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "detail": {
+          "type": "string"
+        },
+        "layer": {
+          "$ref": "#/$defs/layer"
+        },
+        "severity": {
+          "$ref": "#/$defs/severity"
+        },
+        "example_good": {
+          "type": "string"
+        },
+        "example_bad": {
+          "type": "string"
+        }
+      }
+    },
+    "componentItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "type",
+        "severity"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "$ref": "#/$defs/layer"
+        },
+        "severity": {
+          "$ref": "#/$defs/severity"
+        }
+      }
+    },
+    "acceptanceCriterion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "given",
+        "when",
+        "then"
+      ],
+      "properties": {
+        "given": {
+          "type": "string",
+          "minLength": 1
+        },
+        "when": {
+          "type": "string",
+          "minLength": 1
+        },
+        "then": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "userStoryItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "as_a",
+        "i_want",
+        "so_that",
+        "acceptance_criteria"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "as_a": {
+          "type": "string",
+          "minLength": 1
+        },
+        "i_want": {
+          "type": "string",
+          "minLength": 1
+        },
+        "so_that": {
+          "type": "string",
+          "minLength": 1
+        },
+        "acceptance_criteria": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/acceptanceCriterion"
+          }
+        },
+        "related_rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "integrationGuideItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "step",
+        "title",
+        "description"
+      ],
+      "properties": {
+        "step": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "commonIssueItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "issue",
+        "cause",
+        "solution"
+      ],
+      "properties": {
+        "issue": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cause": {
+          "type": "string",
+          "minLength": 1
+        },
+        "solution": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "featureItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "description"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "diagramItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "type",
+        "content"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "usecase",
+            "flow",
+            "erd",
+            "state",
+            "sequence",
+            "class",
+            "component",
+            "other"
+          ]
+        },
+        "content": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

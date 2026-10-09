@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "code": "STD-FL-ARCH",
+  "name": "Flutter Clean Architecture",
+  "category": "flutter",
+  "description": "Flutter feature-first architecture",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "title": "Separate presentation, domain and data layers using clear dependency direction",
+      "detail": "Separate presentation, domain and data layers using clear dependency direction. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: separate presentation, domain and data layers using clear dependency direction.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Expose repositories through contracts rather than widgets accessing clients",
+      "detail": "Expose repositories through contracts rather than widgets accessing clients. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: expose repositories through contracts rather than widgets accessing clients.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Keep use cases for meaningful orchestration, avoiding ceremonial wrappers",
+      "detail": "Keep use cases for meaningful orchestration, avoiding ceremonial wrappers. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: keep use cases for meaningful orchestration, avoiding ceremonial wrappers.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Prevent feature-to-feature private imports",
+      "detail": "Prevent feature-to-feature private imports. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: prevent feature-to-feature private imports.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Assess applicability",
+      "description": "Check project platform, requirements, architecture and applicable conditions for Flutter Clean Architecture; record exclusions and approved overrides."
+    },
+    {
+      "step": 2,
+      "title": "Apply rules",
+      "description": "Include applicable Flutter Clean Architecture rules in design, implementation and review checklist; link relevant requirement and code."
+    },
+    {
+      "step": 3,
+      "title": "Verify compliance",
+      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Inconsistent adoption of Flutter Clean Architecture",
+      "cause": "Project profile does not explicitly reference the standard or its owner.",
+      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+    },
+    {
+      "issue": "Written standard is not enforceable automatically",
+      "cause": "Some behaviour depends on design decisions and runtime context.",
+      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+    }
+  ],
+  "diagrams": [
+    {
+      "title": "Flutter Clean Architecture - adoption flow",
+      "type": "flow",
+      "content": "flowchart TD\n  A[Receive requirement] --> B[Resolve applicable standards]\n  B --> C[Design and implementation]\n  C --> D[Validation and review]\n  D --> E[Record evidence]"
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-REQ",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-TEST",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-MOB-ARCH",
+      "dependency_type": "requires"
+    }
+  ]
+}

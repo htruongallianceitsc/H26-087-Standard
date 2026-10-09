@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "code": "STD-ERR",
+  "name": "Error Handling Principles",
+  "category": "core",
+  "description": "Consistent failure taxonomy and recovery",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "title": "Distinguish validation, authentication, authorization, network and unexpected failures",
+      "detail": "Distinguish validation, authentication, authorization, network and unexpected failures. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: distinguish validation, authentication, authorization, network and unexpected failures.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Use typed errors/results and user-safe messages without exposing sensitive details",
+      "detail": "Use typed errors/results and user-safe messages without exposing sensitive details. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: use typed errors/results and user-safe messages without exposing sensitive details.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Provide actionable retries only for safe transient operations",
+      "detail": "Provide actionable retries only for safe transient operations. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: provide actionable retries only for safe transient operations.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Log diagnostic context while preventing secret and personal-data leakage",
+      "detail": "Log diagnostic context while preventing secret and personal-data leakage. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: log diagnostic context while preventing secret and personal-data leakage.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Assess applicability",
+      "description": "Check project platform, requirements, architecture and applicable conditions for Error Handling Principles; record exclusions and approved overrides."
+    },
+    {
+      "step": 2,
+      "title": "Apply rules",
+      "description": "Include applicable Error Handling Principles rules in design, implementation and review checklist; link relevant requirement and code."
+    },
+    {
+      "step": 3,
+      "title": "Verify compliance",
+      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Inconsistent adoption of Error Handling Principles",
+      "cause": "Project profile does not explicitly reference the standard or its owner.",
+      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+    },
+    {
+      "issue": "Written standard is not enforceable automatically",
+      "cause": "Some behaviour depends on design decisions and runtime context.",
+      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+    }
+  ],
+  "depends_on": []
+}

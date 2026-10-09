@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "code": "STD-SEARCH",
+  "name": "Advanced Search & Filtering Feature",
+  "category": "feature",
+  "description": "Composable query UX",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "title": "Define filter operators, searchable fields and default sorting",
+      "detail": "Define filter operators, searchable fields and default sorting. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: define filter operators, searchable fields and default sorting.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Persist shareable filter state when platform permits",
+      "detail": "Persist shareable filter state when platform permits. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: persist shareable filter state when platform permits.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Debounce client input and cancel stale requests",
+      "detail": "Debounce client input and cancel stale requests. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: debounce client input and cancel stale requests.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Handle no-results, slow responses and paginated datasets",
+      "detail": "Handle no-results, slow responses and paginated datasets. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: handle no-results, slow responses and paginated datasets.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Assess applicability",
+      "description": "Check project platform, requirements, architecture and applicable conditions for Advanced Search & Filtering Feature; record exclusions and approved overrides."
+    },
+    {
+      "step": 2,
+      "title": "Apply rules",
+      "description": "Include applicable Advanced Search & Filtering Feature rules in design, implementation and review checklist; link relevant requirement and code."
+    },
+    {
+      "step": 3,
+      "title": "Verify compliance",
+      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Inconsistent adoption of Advanced Search & Filtering Feature",
+      "cause": "Project profile does not explicitly reference the standard or its owner.",
+      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+    },
+    {
+      "issue": "Written standard is not enforceable automatically",
+      "cause": "Some behaviour depends on design decisions and runtime context.",
+      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+    }
+  ],
+  "features": [
+    {
+      "name": "Advanced Search & Filtering Feature",
+      "description": "Composable query UX"
+    }
+  ],
+  "user_stories": [
+    {
+      "title": "Use Advanced Search & Filtering Feature",
+      "as_a": "authorized application user",
+      "i_want": "composable query ux",
+      "so_that": "I can complete the intended task safely and predictably",
+      "acceptance_criteria": [
+        {
+          "given": "the user is eligible to access Advanced Search & Filtering Feature",
+          "when": "the user performs the main supported action",
+          "then": "the system returns an authorized, validated outcome and communicates its state"
+        },
+        {
+          "given": "an input, permission or dependency is invalid",
+          "when": "the user attempts the action",
+          "then": "the system blocks unsafe completion and shows a recoverable, non-sensitive error"
+        }
+      ],
+      "related_rules": [
+        "Define filter operators, searchable fields and default sorting"
+      ]
+    }
+  ],
+  "diagrams": [
+    {
+      "title": "Advanced Search & Filtering Feature - adoption flow",
+      "type": "flow",
+      "content": "flowchart TD\n  A[Receive requirement] --> B[Resolve applicable standards]\n  B --> C[Design and implementation]\n  C --> D[Validation and review]\n  D --> E[Record evidence]"
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-REQ",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-TEST",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-FEAT",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-BIZ",
+      "dependency_type": "requires"
+    }
+  ]
+}
