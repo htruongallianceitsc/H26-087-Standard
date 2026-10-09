@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "code": "STD-DOC",
+  "name": "Documentation & Traceability",
+  "category": "01_governance_delivery",
+  "description": "Documentation-first project records",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "title": "Keep requirements, screens, API and data contracts traceable using stable references",
+      "detail": "Keep requirements, screens, API and data contracts traceable using stable references. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: keep requirements, screens, api and data contracts traceable using stable references.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Record accepted decisions, change reasons and affected artifacts",
+      "detail": "Record accepted decisions, change reasons and affected artifacts. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: record accepted decisions, change reasons and affected artifacts.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Update specs before implementing change and reconcile documentation afterwards",
+      "detail": "Update specs before implementing change and reconcile documentation afterwards. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: update specs before implementing change and reconcile documentation afterwards.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Generate indexes from canonical documents instead of editing generated files",
+      "detail": "Generate indexes from canonical documents instead of editing generated files. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: generate indexes from canonical documents instead of editing generated files.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Assess applicability",
+      "description": "Check project platform, requirements, architecture and applicable conditions for Documentation & Traceability; record exclusions and approved overrides."
+    },
+    {
+      "step": 2,
+      "title": "Apply rules",
+      "description": "Include applicable Documentation & Traceability rules in design, implementation and review checklist; link relevant requirement and code."
+    },
+    {
+      "step": 3,
+      "title": "Verify compliance",
+      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Inconsistent adoption of Documentation & Traceability",
+      "cause": "Project profile does not explicitly reference the standard or its owner.",
+      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+    },
+    {
+      "issue": "Written standard is not enforceable automatically",
+      "cause": "Some behaviour depends on design decisions and runtime context.",
+      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-REQ",
+      "dependency_type": "requires"
+    }
+  ]
+}

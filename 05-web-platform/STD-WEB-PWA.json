@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "code": "STD-WEB-PWA",
+  "name": "Progressive Web Apps",
+  "category": "05_web_platform",
+  "description": "Optional installable browser experience",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "title": "Use service workers only for clearly defined cache/offline scenarios",
+      "detail": "Use service workers only for clearly defined cache/offline scenarios. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: use service workers only for clearly defined cache/offline scenarios.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Version cache entries and avoid caching private responses indiscriminately",
+      "detail": "Version cache entries and avoid caching private responses indiscriminately. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: version cache entries and avoid caching private responses indiscriminately.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Provide graceful fallback when push, install prompts or offline APIs are unsupported",
+      "detail": "Provide graceful fallback when push, install prompts or offline APIs are unsupported. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: provide graceful fallback when push, install prompts or offline apis are unsupported.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Test updates, stale assets and session changes across PWA lifecycle",
+      "detail": "Test updates, stale assets and session changes across PWA lifecycle. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: test updates, stale assets and session changes across pwa lifecycle.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Assess applicability",
+      "description": "Check project platform, requirements, architecture and applicable conditions for PWA & Service Worker; record exclusions and approved overrides."
+    },
+    {
+      "step": 2,
+      "title": "Apply rules",
+      "description": "Include applicable PWA & Service Worker rules in design, implementation and review checklist; link relevant requirement and code."
+    },
+    {
+      "step": 3,
+      "title": "Verify compliance",
+      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Inconsistent adoption of PWA & Service Worker",
+      "cause": "Project profile does not explicitly reference the standard or its owner.",
+      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+    },
+    {
+      "issue": "Written standard is not enforceable automatically",
+      "cause": "Some behaviour depends on design decisions and runtime context.",
+      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-REQ",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-TEST",
+      "dependency_type": "requires"
+    }
+  ]
+}

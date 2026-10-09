@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "code": "CAP-REPORT",
+  "name": "Reporting & Dashboards",
+  "category": "09_reusable_capabilities",
+  "description": "Canonical reusable capability for Reporting & Dashboards. Migrated from STD-DASHBOARD and aligned with STRUCTURE.txt.",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "title": "Document metric definitions, filters and reporting time zones",
+      "detail": "Document metric definitions, filters and reporting time zones. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: document metric definitions, filters and reporting time zones.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Ensure data aggregation respects tenant and user permissions",
+      "detail": "Ensure data aggregation respects tenant and user permissions. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: ensure data aggregation respects tenant and user permissions.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Provide loading, empty and partial-data indicators",
+      "detail": "Provide loading, empty and partial-data indicators. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: provide loading, empty and partial-data indicators.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Limit expensive queries and cache according to freshness requirements",
+      "detail": "Limit expensive queries and cache according to freshness requirements. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: limit expensive queries and cache according to freshness requirements.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Assess applicability",
+      "description": "Check project platform, requirements, architecture and applicable conditions for Dashboard & Reporting Feature; record exclusions and approved overrides."
+    },
+    {
+      "step": 2,
+      "title": "Apply rules",
+      "description": "Include applicable Dashboard & Reporting Feature rules in design, implementation and review checklist; link relevant requirement and code."
+    },
+    {
+      "step": 3,
+      "title": "Verify compliance",
+      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Inconsistent adoption of Dashboard & Reporting Feature",
+      "cause": "Project profile does not explicitly reference the standard or its owner.",
+      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+    },
+    {
+      "issue": "Written standard is not enforceable automatically",
+      "cause": "Some behaviour depends on design decisions and runtime context.",
+      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+    }
+  ],
+  "features": [
+    {
+      "name": "Dashboard & Reporting Feature",
+      "description": "KPI and reporting interactions"
+    }
+  ],
+  "user_stories": [
+    {
+      "title": "Use Dashboard & Reporting Feature",
+      "as_a": "authorized application user",
+      "i_want": "kpi and reporting interactions",
+      "so_that": "I can complete the intended task safely and predictably",
+      "acceptance_criteria": [
+        {
+          "given": "the user is eligible to access Dashboard & Reporting Feature",
+          "when": "the user performs the main supported action",
+          "then": "the system returns an authorized, validated outcome and communicates its state"
+        },
+        {
+          "given": "an input, permission or dependency is invalid",
+          "when": "the user attempts the action",
+          "then": "the system blocks unsafe completion and shows a recoverable, non-sensitive error"
+        }
+      ],
+      "related_rules": [
+        "Document metric definitions, filters and reporting time zones"
+      ]
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-REQ",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-TEST",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-FEAT",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-BIZ",
+      "dependency_type": "requires"
+    }
+  ]
+}

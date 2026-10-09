@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "code": "CAP-AUTH",
+  "name": "Authentication & Registration",
+  "category": "09_reusable_capabilities",
+  "description": "Canonical reusable capability for Authentication & Registration. Migrated from STD-AUTH and aligned with STRUCTURE.txt.",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "title": "Specify login, logout, token/session expiry and recovery behaviours",
+      "detail": "Specify login, logout, token/session expiry and recovery behaviours. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": [
+        "process",
+        "api"
+      ],
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: specify login, logout, token/session expiry and recovery behaviours.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Enforce rate limits and generic errors against credential enumeration",
+      "detail": "Enforce rate limits and generic errors against credential enumeration. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": [
+        "process",
+        "api"
+      ],
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: enforce rate limits and generic errors against credential enumeration.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Test invalid credentials, locked account, expired session and concurrent requests",
+      "detail": "Test invalid credentials, locked account, expired session and concurrent requests. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": [
+        "process",
+        "api"
+      ],
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: test invalid credentials, locked account, expired session and concurrent requests.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Separate client navigation from authoritative server authentication decisions",
+      "detail": "Separate client navigation from authoritative server authentication decisions. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": [
+        "process",
+        "api"
+      ],
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: separate client navigation from authoritative server authentication decisions.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Assess applicability",
+      "description": "Check project platform, requirements, architecture and applicable conditions for Authentication Feature; record exclusions and approved overrides."
+    },
+    {
+      "step": 2,
+      "title": "Apply rules",
+      "description": "Include applicable Authentication Feature rules in design, implementation and review checklist; link relevant requirement and code."
+    },
+    {
+      "step": 3,
+      "title": "Verify compliance",
+      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Inconsistent adoption of Authentication Feature",
+      "cause": "Project profile does not explicitly reference the standard or its owner.",
+      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+    },
+    {
+      "issue": "Written standard is not enforceable automatically",
+      "cause": "Some behaviour depends on design decisions and runtime context.",
+      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+    }
+  ],
+  "features": [
+    {
+      "name": "Authentication Feature",
+      "description": "Sign in and identity lifecycle"
+    }
+  ],
+  "user_stories": [
+    {
+      "title": "Use Authentication Feature",
+      "as_a": "authorized application user",
+      "i_want": "sign in and identity lifecycle",
+      "so_that": "I can complete the intended task safely and predictably",
+      "acceptance_criteria": [
+        {
+          "given": "the user is eligible to access Authentication Feature",
+          "when": "the user performs the main supported action",
+          "then": "the system returns an authorized, validated outcome and communicates its state"
+        },
+        {
+          "given": "an input, permission or dependency is invalid",
+          "when": "the user attempts the action",
+          "then": "the system blocks unsafe completion and shows a recoverable, non-sensitive error"
+        }
+      ],
+      "related_rules": [
+        "Specify login, logout, token/session expiry and recovery behaviours"
+      ]
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-REQ",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-TEST",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-FEAT",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-BIZ",
+      "dependency_type": "requires"
+    }
+  ]
+}

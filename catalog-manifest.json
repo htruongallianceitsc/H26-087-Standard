@@ -1,0 +1,192 @@
+{
+  "sourceOfTruth": "STRUCTURE.txt",
+  "schema": "standard-import.schema.json",
+  "count": 115,
+  "groups": [
+    {
+      "folder": "01-governance-delivery",
+      "files": [
+        "STD-REQ.json",
+        "STD-BIZ.json",
+        "STD-FEAT.json",
+        "STD-ARCH.json",
+        "STD-DOC.json",
+        "STD-NAME.json",
+        "STD-GIT.json",
+        "STD-TEST.json",
+        "STD-PERF-TEST.json",
+        "STD-CODE-REVIEW.json",
+        "STD-VERSIONING.json",
+        "STD-COMPLIANCE.json",
+        "STD-MONOREPO.json",
+        "STD-CI.json",
+        "STD-AI-DEV.json"
+      ]
+    },
+    {
+      "folder": "02-engineering-foundation",
+      "files": [
+        "STD-ERR.json",
+        "STD-LOG.json",
+        "STD-SEC.json",
+        "STD-PRIV.json",
+        "STD-ENV.json",
+        "STD-I18N.json",
+        "STD-ANALYTICS.json",
+        "STD-PERF.json",
+        "STD-RES.json",
+        "STD-DEP.json",
+        "STD-FLAG.json"
+      ]
+    },
+    {
+      "folder": "03-api-integration-data",
+      "files": [
+        "STD-API.json",
+        "STD-API-REST.json",
+        "STD-API-RT.json",
+        "STD-INTEGRATION.json",
+        "STD-WEBHOOK.json",
+        "STD-DATA.json",
+        "STD-DATA-TX.json",
+        "STD-DATA-MIG.json",
+        "STD-CACHE.json"
+      ]
+    },
+    {
+      "folder": "04-experience-ui-ux",
+      "files": [
+        "STD-UX.json",
+        "STD-UI-STATE.json",
+        "STD-FEEDBACK.json",
+        "STD-FORM.json",
+        "STD-A11Y.json",
+        "STD-DESIGN.json",
+        "STD-DS.json"
+      ]
+    },
+    {
+      "folder": "05-web-platform",
+      "files": [
+        "STD-WEB-ARCH.json",
+        "STD-WEB-ROUTE.json",
+        "STD-WEB-RESP.json",
+        "STD-WEB-FORM.json",
+        "STD-WEB-AUTH.json",
+        "STD-WEB-STORE.json",
+        "STD-WEB-SEC.json",
+        "STD-WEB-PERF.json",
+        "STD-WEB-SEO.json",
+        "STD-WEB-PWA.json"
+      ]
+    },
+    {
+      "folder": "06-mobile-platform",
+      "files": [
+        "STD-MOB-ARCH.json",
+        "STD-MOB-NAV.json",
+        "STD-MOB-LIFE.json",
+        "STD-MOB-STORE.json",
+        "STD-MOB-OFF.json",
+        "STD-MOB-PUSH.json",
+        "STD-MOB-DEVICE.json",
+        "STD-MOB-UI.json",
+        "STD-MOB-SEC.json",
+        "STD-MOB-RELEASE.json",
+        "STD-MOB-PERF.json"
+      ]
+    },
+    {
+      "folder": "07-backend-platform",
+      "files": [
+        "STD-BE-ARCH.json",
+        "STD-BE-AUTH.json",
+        "STD-BE-VALID.json",
+        "STD-BE-SEC.json",
+        "STD-BE-TX.json",
+        "STD-BE-CONCUR.json",
+        "STD-BE-JOB.json",
+        "STD-BE-QUEUE.json",
+        "STD-BE-FILE.json",
+        "STD-BE-HEALTH.json",
+        "STD-BE-PERF.json"
+      ]
+    },
+    {
+      "folder": "08-technology/08.1-web-technology",
+      "files": [
+        "STD-REACT.json",
+        "STD-TS.json",
+        "STD-RQ.json",
+        "STD-NEXT.json",
+        "STD-REACT-TEST.json"
+      ]
+    },
+    {
+      "folder": "08-technology/08.2-react-native-technology",
+      "files": [
+        "STD-RN.json",
+        "STD-RN-NAV.json",
+        "STD-RN-STATE.json",
+        "STD-RN-STORE.json",
+        "STD-RN-TEST.json"
+      ]
+    },
+    {
+      "folder": "08-technology/08.3-flutter-technology",
+      "files": [
+        "STD-FL-DART.json",
+        "STD-FL-BLOC.json",
+        "STD-FL-WIDGET.json",
+        "STD-FL-ROUTE.json",
+        "STD-FL-TEST.json"
+      ]
+    },
+    {
+      "folder": "08-technology/08.4-backend-technology-dotnet",
+      "files": [
+        "STD-DOTNET.json",
+        "STD-DOTNET-API.json",
+        "STD-DOTNET-EF.json",
+        "STD-DOTNET-TEST.json"
+      ]
+    },
+    {
+      "folder": "08-technology/08.5-database-technology",
+      "files": [
+        "STD-PG.json"
+      ]
+    },
+    {
+      "folder": "09-reusable-capabilities",
+      "files": [
+        "CAP-AUTH.json",
+        "CAP-PROFILE.json",
+        "CAP-CRUD.json",
+        "CAP-UPLOAD.json",
+        "CAP-NOTIFY.json",
+        "CAP-CHAT.json",
+        "CAP-SHARE.json",
+        "CAP-AUDIT.json",
+        "CAP-PERM.json",
+        "CAP-SEARCH.json",
+        "CAP-PAYMENT.json",
+        "CAP-REPORT.json"
+      ]
+    },
+    {
+      "folder": "10-operations-infrastructure",
+      "files": [
+        "STD-DEPLOY.json",
+        "STD-IAC.json",
+        "STD-NET.json",
+        "STD-BACKUP.json",
+        "STD-DR.json",
+        "STD-SLO.json",
+        "STD-COST.json",
+        "STD-INCIDENT.json",
+        "STD-RUNBOOK.json"
+      ]
+    }
+  ]
+}

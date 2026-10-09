@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "code": "STD-BE-CONCUR",
+  "name": "Concurrency & Idempotency",
+  "category": "07_backend_platform",
+  "description": "Canonical standard for Concurrency & Idempotency. Defines baseline rules, review expectations and adoption guidance for projects where this standard applies.",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "title": "Define an explicit Concurrency & Idempotency approach before implementation",
+      "detail": "Document scope, decisions, constraints and ownership for Concurrency & Idempotency; link the decision to relevant requirements and implementation evidence.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "The project records how Concurrency & Idempotency applies, who owns it, and how compliance is verified.",
+      "example_bad": "Concurrency & Idempotency is implemented ad hoc without documented rules or review evidence."
+    },
+    {
+      "title": "Handle failure, boundary and compatibility cases explicitly",
+      "detail": "Identify relevant failure modes, edge cases, compatibility constraints and rollback/recovery expectations before release.",
+      "layer": "api",
+      "severity": "should",
+      "example_good": "Boundary and failure cases are represented in acceptance criteria, tests, checks or operational guidance.",
+      "example_bad": "Only the happy path is defined and failures are left to implementation guesswork."
+    },
+    {
+      "title": "Verify adoption with repeatable evidence",
+      "detail": "Use automated checks where practical and manual review where judgement is required; record justified deviations instead of silently ignoring rules.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Review or automated evidence shows which rules were checked and any approved exceptions.",
+      "example_bad": "The standard exists as documentation but is not referenced during delivery or review."
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Assess applicability",
+      "description": "Determine whether STD-BE-CONCUR applies to the project, feature or change and record approved exclusions."
+    },
+    {
+      "step": 2,
+      "title": "Apply standard",
+      "description": "Apply the relevant Concurrency & Idempotency rules during requirement, design and implementation work."
+    },
+    {
+      "step": 3,
+      "title": "Verify compliance",
+      "description": "Run relevant automated checks and manual review, then capture evidence or approved deviations before completion."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Inconsistent adoption of Concurrency & Idempotency",
+      "cause": "The project profile does not resolve or assign the applicable standard clearly.",
+      "solution": "Reference STD-BE-CONCUR explicitly, assign ownership and include it in review/quality gates."
+    },
+    {
+      "issue": "Rules are documented but not verifiable",
+      "cause": "No test, lint, checklist, review evidence or operational check is tied to the rule.",
+      "solution": "Pair each important rule with practical verification evidence and record exceptions."
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-DATA-TX",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-RES",
+      "dependency_type": "uses"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "code": "STD-MOB-ARCH",
+  "name": "Mobile Application Architecture",
+  "category": "06_mobile_platform",
+  "description": "Mobile feature boundaries and OS integration",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "title": "Keep platform integrations behind interfaces/adapters",
+      "detail": "Keep platform integrations behind interfaces/adapters. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: keep platform integrations behind interfaces/adapters.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Separate presentation, application state and domain/data responsibilities",
+      "detail": "Separate presentation, application state and domain/data responsibilities. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: separate presentation, application state and domain/data responsibilities.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Design degraded behaviour for network loss and app process termination",
+      "detail": "Design degraded behaviour for network loss and app process termination. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: design degraded behaviour for network loss and app process termination.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Identify iOS and Android capability differences explicitly",
+      "detail": "Identify iOS and Android capability differences explicitly. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: identify ios and android capability differences explicitly.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Assess applicability",
+      "description": "Check project platform, requirements, architecture and applicable conditions for Mobile Application Architecture; record exclusions and approved overrides."
+    },
+    {
+      "step": 2,
+      "title": "Apply rules",
+      "description": "Include applicable Mobile Application Architecture rules in design, implementation and review checklist; link relevant requirement and code."
+    },
+    {
+      "step": 3,
+      "title": "Verify compliance",
+      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Inconsistent adoption of Mobile Application Architecture",
+      "cause": "Project profile does not explicitly reference the standard or its owner.",
+      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+    },
+    {
+      "issue": "Written standard is not enforceable automatically",
+      "cause": "Some behaviour depends on design decisions and runtime context.",
+      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+    }
+  ],
+  "diagrams": [
+    {
+      "title": "Mobile Application Architecture - adoption flow",
+      "type": "flow",
+      "content": "flowchart TD\n  A[Receive requirement] --> B[Resolve applicable standards]\n  B --> C[Design and implementation]\n  C --> D[Validation and review]\n  D --> E[Record evidence]"
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-REQ",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-TEST",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-ARCH",
+      "dependency_type": "extends"
+    }
+  ]
+}

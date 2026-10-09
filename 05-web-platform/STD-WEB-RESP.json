@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "code": "STD-WEB-RESP",
+  "name": "Responsive Layout",
+  "category": "05_web_platform",
+  "description": "Responsive design and inclusive interaction",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "title": "Use responsive breakpoints based on layout content rather than devices alone",
+      "detail": "Use responsive breakpoints based on layout content rather than devices alone. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: use responsive breakpoints based on layout content rather than devices alone.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Ensure keyboard navigation, focus visibility and semantic labeling",
+      "detail": "Ensure keyboard navigation, focus visibility and semantic labeling. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: ensure keyboard navigation, focus visibility and semantic labeling.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Verify contrast, text resize and reduced-motion interactions",
+      "detail": "Verify contrast, text resize and reduced-motion interactions. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: verify contrast, text resize and reduced-motion interactions.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Test primary layouts across narrow and wide viewports",
+      "detail": "Test primary layouts across narrow and wide viewports. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: test primary layouts across narrow and wide viewports.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Assess applicability",
+      "description": "Check project platform, requirements, architecture and applicable conditions for Responsive Layout & Accessibility; record exclusions and approved overrides."
+    },
+    {
+      "step": 2,
+      "title": "Apply rules",
+      "description": "Include applicable Responsive Layout & Accessibility rules in design, implementation and review checklist; link relevant requirement and code."
+    },
+    {
+      "step": 3,
+      "title": "Verify compliance",
+      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Inconsistent adoption of Responsive Layout & Accessibility",
+      "cause": "Project profile does not explicitly reference the standard or its owner.",
+      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+    },
+    {
+      "issue": "Written standard is not enforceable automatically",
+      "cause": "Some behaviour depends on design decisions and runtime context.",
+      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-REQ",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-TEST",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-DS",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-A11Y",
+      "dependency_type": "uses"
+    }
+  ]
+}

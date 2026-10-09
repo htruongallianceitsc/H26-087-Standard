@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "code": "CAP-SHARE",
+  "name": "Sharing, QR & Deep Links",
+  "category": "09_reusable_capabilities",
+  "description": "Canonical reusable capability for Sharing, QR & Deep Links. Migrated from STD-SHARE and aligned with STRUCTURE.txt.",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "title": "Validate shared resource access and expiry rules",
+      "detail": "Validate shared resource access and expiry rules. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: validate shared resource access and expiry rules.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Handle installed vs not-installed app navigation with safe fallback",
+      "detail": "Handle installed vs not-installed app navigation with safe fallback. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Implementation/review evidence explicitly demonstrates: handle installed vs not-installed app navigation with safe fallback.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Treat deferred attribution as best-effort and avoid guarantees across stores",
+      "detail": "Treat deferred attribution as best-effort and avoid guarantees across stores. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: treat deferred attribution as best-effort and avoid guarantees across stores.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    },
+    {
+      "title": "Prevent open redirects and log link-resolution failures safely",
+      "detail": "Prevent open redirects and log link-resolution failures safely. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Implementation/review evidence explicitly demonstrates: prevent open redirects and log link-resolution failures safely.",
+      "example_bad": "An affected change ignores this rule without review or documented exception."
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Assess applicability",
+      "description": "Check project platform, requirements, architecture and applicable conditions for Sharing & Deep Link Feature; record exclusions and approved overrides."
+    },
+    {
+      "step": 2,
+      "title": "Apply rules",
+      "description": "Include applicable Sharing & Deep Link Feature rules in design, implementation and review checklist; link relevant requirement and code."
+    },
+    {
+      "step": 3,
+      "title": "Verify compliance",
+      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Inconsistent adoption of Sharing & Deep Link Feature",
+      "cause": "Project profile does not explicitly reference the standard or its owner.",
+      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+    },
+    {
+      "issue": "Written standard is not enforceable automatically",
+      "cause": "Some behaviour depends on design decisions and runtime context.",
+      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+    }
+  ],
+  "features": [
+    {
+      "name": "Sharing & Deep Link Feature",
+      "description": "Share links, attribution and redirect"
+    }
+  ],
+  "user_stories": [
+    {
+      "title": "Use Sharing & Deep Link Feature",
+      "as_a": "authorized application user",
+      "i_want": "share links, attribution and redirect",
+      "so_that": "I can complete the intended task safely and predictably",
+      "acceptance_criteria": [
+        {
+          "given": "the user is eligible to access Sharing & Deep Link Feature",
+          "when": "the user performs the main supported action",
+          "then": "the system returns an authorized, validated outcome and communicates its state"
+        },
+        {
+          "given": "an input, permission or dependency is invalid",
+          "when": "the user attempts the action",
+          "then": "the system blocks unsafe completion and shows a recoverable, non-sensitive error"
+        }
+      ],
+      "related_rules": [
+        "Validate shared resource access and expiry rules"
+      ]
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-REQ",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-TEST",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-FEAT",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-BIZ",
+      "dependency_type": "requires"
+    }
+  ]
+}
