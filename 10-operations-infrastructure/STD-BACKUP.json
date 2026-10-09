@@ -1,103 +1,66 @@
 {
   "schemaVersion": 1,
   "code": "STD-BACKUP",
-  "name": "Backup & Restore",
+  "name": "Sao lưu & Khôi phục",
   "category": "10_operations_infrastructure",
-  "description": "Backup & Restore standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-BACKUP applies.",
-  "version": "2.0.0",
+  "description": "Tiêu chuẩn chuẩn hóa cho Sao lưu & Khôi phục. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define backup scope, frequency, retention and owner",
-      "detail": "Identify each critical datastore/configuration/artifact, recovery point objective and retention requirement.",
+      "title": "Xác định rõ cách tiếp cận cho sao lưu & khôi phục trước khi triển khai",
+      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Sao lưu & Khôi phục; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
       "layer": "process",
       "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Define backup scope, frequency, retention and owner.",
-      "example_bad": "The change violates or ignores the rule: Define backup scope, frequency, retention and owner."
+      "example_good": "Project ghi nhận rõ cách Sao lưu & Khôi phục được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
+      "example_bad": "Sao lưu & Khôi phục được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review."
     },
     {
-      "title": "Encrypt and isolate backups",
-      "detail": "Protect backups in transit/at rest and prevent routine production credentials or destructive incidents from deleting all recovery copies.",
-      "layer": "security",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Encrypt and isolate backups.",
-      "example_bad": "The change violates or ignores the rule: Encrypt and isolate backups."
-    },
-    {
-      "title": "Test restores regularly",
-      "detail": "A backup is not considered reliable until representative restore procedures are executed and recovery time/data integrity are verified.",
-      "layer": "db",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Test restores regularly.",
-      "example_bad": "The change violates or ignores the rule: Test restores regularly."
-    },
-    {
-      "title": "Monitor backup success and age",
-      "detail": "Alert on failed, incomplete or stale backups and retain evidence of successful scheduled runs.",
+      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
+      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
       "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Monitor backup success and age.",
-      "example_bad": "The change violates or ignores the rule: Monitor backup success and age."
+      "severity": "should",
+      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
+      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán."
     },
     {
-      "title": "Include configuration and keys needed for recovery",
-      "detail": "Recovery planning covers infrastructure/config/secrets metadata and rotation dependencies, not database files alone.",
+      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
+      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
       "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Include configuration and keys needed for recovery.",
-      "example_bad": "The change violates or ignores the rule: Include configuration and keys needed for recovery."
-    },
-    {
-      "title": "Honor retention and privacy requirements",
-      "detail": "Expired backups containing regulated/personal data follow documented retention/deletion policy where technically and legally feasible.",
-      "layer": "security",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Honor retention and privacy requirements.",
-      "example_bad": "The change violates or ignores the rule: Honor retention and privacy requirements."
+      "severity": "should",
+      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
+      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Resolve applicability and dependencies",
-      "description": "Confirm where STD-BACKUP applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Sao lưu & Khôi phục; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Record project decisions",
-      "description": "Apply the rules of Backup & Restore to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Sao lưu & Khôi phục áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Implement with evidence",
-      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
-    },
-    {
-      "step": 4,
-      "title": "Verify before completion",
-      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Backup & Restore is applied inconsistently across features",
-      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
-      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
+      "issue": "Áp dụng Sao lưu & Khôi phục không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-BACKUP trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Implementation satisfies the happy path but misses Backup & Restore failure cases",
-      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
-      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
+      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
+      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
+      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
     }
   ],
-  "depends_on": [
-    {
-      "code": "STD-DATA",
-      "dependency_type": "uses"
-    },
-    {
-      "code": "STD-PRIV",
-      "dependency_type": "uses"
-    }
-  ]
+  "depends_on": [],
+  "diagrams": []
 }

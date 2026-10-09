@@ -1,85 +1,85 @@
 {
   "schemaVersion": 1,
   "code": "STD-FEAT",
-  "name": "Feature Specification & Decomposition",
+  "name": "Đặc tả & Phân rã Feature",
   "category": "01_governance_delivery",
-  "description": "Feature scope and traceability",
-  "version": "1.1.0",
+  "description": "Chuẩn hóa phạm vi feature, phân rã và khả năng truy vết.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "State feature purpose, actors, in-scope and out-of-scope behaviours",
-      "detail": "State feature purpose, actors, in-scope and out-of-scope behaviours. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Nêu rõ mục đích feature, actor, hành vi trong phạm vi và ngoài phạm vi",
+      "detail": "Nêu rõ mục đích feature, actor, hành vi trong phạm vi và ngoài phạm vi. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Implementation/review evidence explicitly demonstrates: state feature purpose, actors, in-scope and out-of-scope behaviours.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Nêu rõ mục đích feature, actor, hành vi trong phạm vi và ngoài phạm vi.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Link each feature to source requirements instead of inventing requirements",
-      "detail": "Link each feature to source requirements instead of inventing requirements. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Liên kết từng feature với requirement nguồn thay vì tự tạo thêm requirement",
+      "detail": "Liên kết từng feature với requirement nguồn thay vì tự tạo thêm requirement. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Implementation/review evidence explicitly demonstrates: link each feature to source requirements instead of inventing requirements.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Liên kết từng feature với requirement nguồn thay vì tự tạo thêm requirement.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Describe happy paths, alternate flows, empty states and failure states",
-      "detail": "Describe happy paths, alternate flows, empty states and failure states. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Mô tả happy path, luồng thay thế, trạng thái rỗng và trạng thái lỗi",
+      "detail": "Mô tả happy path, luồng thay thế, trạng thái rỗng và trạng thái lỗi. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Implementation/review evidence explicitly demonstrates: describe happy paths, alternate flows, empty states and failure states.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Mô tả happy path, luồng thay thế, trạng thái rỗng và trạng thái lỗi.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Define testable completion conditions before implementation",
-      "detail": "Define testable completion conditions before implementation. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Xác định điều kiện hoàn thành có thể kiểm thử trước khi triển khai",
+      "detail": "Xác định điều kiện hoàn thành có thể kiểm thử trước khi triển khai. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Implementation/review evidence explicitly demonstrates: define testable completion conditions before implementation.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Xác định điều kiện hoàn thành có thể kiểm thử trước khi triển khai.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Check project platform, requirements, architecture and applicable conditions for Feature Specification; record exclusions and approved overrides."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Đặc tả & Phân rã Feature; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Apply rules",
-      "description": "Include applicable Feature Specification rules in design, implementation and review checklist; link relevant requirement and code."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Đặc tả & Phân rã Feature áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Feature Specification",
-      "cause": "Project profile does not explicitly reference the standard or its owner.",
-      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+      "issue": "Áp dụng Đặc tả & Phân rã Feature không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-FEAT trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Written standard is not enforceable automatically",
-      "cause": "Some behaviour depends on design decisions and runtime context.",
-      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+      "issue": "Standard dạng văn bản không thể tự động thực thi hoàn toàn",
+      "cause": "Một số hành vi phụ thuộc vào quyết định thiết kế và ngữ cảnh runtime.",
+      "solution": "Kết hợp lint/test tự động với review thủ công và bằng chứng chấp nhận được ghi nhận."
     }
   ],
   "diagrams": [
     {
-      "title": "Feature Specification - adoption flow",
+      "title": "Đặc tả & Phân rã Feature - luồng áp dụng",
       "type": "flow",
-      "content": "flowchart TD\n  A[Receive requirement] --> B[Resolve applicable standards]\n  B --> C[Design and implementation]\n  C --> D[Validation and review]\n  D --> E[Record evidence]"
+      "content": "flowchart TD\n  A[Tiếp nhận requirement] --> B[Xác định standard áp dụng]\n  B --> C[Thiết kế và triển khai]\n  C --> D[Validation và review]\n  D --> E[Ghi nhận bằng chứng]"
     }
   ],
   "depends_on": [
     {
       "code": "STD-REQ",
-      "dependency_type": "uses"
+      "dependency_type": "requires"
     }
   ]
 }

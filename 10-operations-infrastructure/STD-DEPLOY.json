@@ -1,93 +1,64 @@
 {
   "schemaVersion": 1,
   "code": "STD-DEPLOY",
-  "name": "Deployment, Rollout & Rollback",
+  "name": "Triển khai, Rollout & Rollback",
   "category": "10_operations_infrastructure",
-  "description": "Deployment, Rollout & Rollback standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-DEPLOY applies.",
-  "version": "2.0.0",
+  "description": "Tiêu chuẩn chuẩn hóa cho Triển khai, Rollout & Rollback. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Produce immutable versioned artifacts",
-      "detail": "Build once and promote the same identifiable artifact across environments; do not rebuild production from a moving branch.",
+      "title": "Xác định rõ cách tiếp cận cho triển khai, rollout & rollback trước khi triển khai thực tế",
+      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Triển khai, Rollout & Rollback; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
       "layer": "process",
       "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Produce immutable versioned artifacts.",
-      "example_bad": "The change violates or ignores the rule: Produce immutable versioned artifacts."
+      "example_good": "Project ghi nhận rõ cách Triển khai, Rollout & Rollback được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
+      "example_bad": "Triển khai, Rollout & Rollback được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review."
     },
     {
-      "title": "Automate pre-deployment quality gates",
-      "detail": "Required tests, security checks, configuration validation and migration readiness must pass before production rollout.",
+      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
+      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
       "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Automate pre-deployment quality gates.",
-      "example_bad": "The change violates or ignores the rule: Automate pre-deployment quality gates."
+      "severity": "should",
+      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
+      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán."
     },
     {
-      "title": "Use progressive or controlled rollout for material risk",
-      "detail": "Choose rolling, blue/green, canary or phased mobile/store rollout according to failure impact and rollback capability.",
+      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
+      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
       "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Use progressive or controlled rollout for material risk.",
-      "example_bad": "The change violates or ignores the rule: Use progressive or controlled rollout for material risk."
-    },
-    {
-      "title": "Define rollback and forward-fix before deployment",
-      "detail": "Know whether code, configuration and database changes can be safely rolled back together; breaking migrations require staged compatibility.",
-      "layer": "db",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Define rollback and forward-fix before deployment.",
-      "example_bad": "The change violates or ignores the rule: Define rollback and forward-fix before deployment."
-    },
-    {
-      "title": "Run post-deployment verification",
-      "detail": "Check health, key SLI/SLO signals and critical smoke flows and stop/rollback rollout on defined failure thresholds.",
-      "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Run post-deployment verification.",
-      "example_bad": "The change violates or ignores the rule: Run post-deployment verification."
-    },
-    {
-      "title": "Record deployment evidence",
-      "detail": "Capture artifact/version, source revision, approver/actor, environment, migration/config changes and result.",
-      "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Record deployment evidence.",
-      "example_bad": "The change violates or ignores the rule: Record deployment evidence."
+      "severity": "should",
+      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
+      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Resolve applicability and dependencies",
-      "description": "Confirm where STD-DEPLOY applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Triển khai, Rollout & Rollback; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Record project decisions",
-      "description": "Apply the rules of Deployment, Rollout & Rollback to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Triển khai, Rollout & Rollback áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Implement with evidence",
-      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
-    },
-    {
-      "step": 4,
-      "title": "Verify before completion",
-      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Deployment, Rollout & Rollback is applied inconsistently across features",
-      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
-      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
+      "issue": "Áp dụng Triển khai, Rollout & Rollback không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-DEPLOY trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Implementation satisfies the happy path but misses Deployment, Rollout & Rollback failure cases",
-      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
-      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
+      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
+      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
+      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
     }
   ],
   "depends_on": [
@@ -103,5 +74,6 @@
       "code": "STD-VERSIONING",
       "dependency_type": "uses"
     }
-  ]
+  ],
+  "diagrams": []
 }

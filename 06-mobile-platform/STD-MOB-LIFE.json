@@ -1,82 +1,83 @@
 {
   "schemaVersion": 1,
   "code": "STD-MOB-LIFE",
-  "name": "Lifecycle & Background Execution",
+  "name": "Vòng đời & Thực thi nền",
   "category": "06_mobile_platform",
-  "description": "Lifecycle and resource recovery",
-  "version": "1.1.0",
+  "description": "Chuẩn xử lý lifecycle và phục hồi tài nguyên ứng dụng.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Model foreground, background, resume and process recreation as distinct cases",
-      "detail": "Model foreground, background, resume and process recreation as distinct cases. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Mô hình hóa foreground, background, resume và process recreation thành các trường hợp riêng biệt",
+      "detail": "Mô hình hóa foreground, background, resume và process recreation thành các trường hợp riêng biệt. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Implementation/review evidence explicitly demonstrates: model foreground, background, resume and process recreation as distinct cases.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Mô hình hóa foreground, background, resume và process recreation thành các trường hợp riêng biệt.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Reconnect socket and refresh stale state with bounded/idempotent logic",
-      "detail": "Reconnect socket and refresh stale state with bounded/idempotent logic. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Reconnect socket và refresh state đã stale bằng logic có giới hạn và idempotent",
+      "detail": "Reconnect socket và refresh state đã stale bằng logic có giới hạn và idempotent. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Implementation/review evidence explicitly demonstrates: reconnect socket and refresh stale state with bounded/idempotent logic.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Reconnect socket và refresh state đã stale bằng logic có giới hạn và idempotent.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Dispose listeners/controllers and cancel obsolete operations",
-      "detail": "Dispose listeners/controllers and cancel obsolete operations. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Dispose listener/controller và hủy các thao tác đã không còn cần thiết",
+      "detail": "Dispose listener/controller và hủy các thao tác đã không còn cần thiết. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Implementation/review evidence explicitly demonstrates: dispose listeners/controllers and cancel obsolete operations.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Dispose listener/controller và hủy các thao tác đã không còn cần thiết.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Test app interruption during login, upload, notification and realtime sessions",
-      "detail": "Test app interruption during login, upload, notification and realtime sessions. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Kiểm thử việc app bị gián đoạn trong quá trình login, upload, notification và realtime session",
+      "detail": "Kiểm thử việc app bị gián đoạn trong quá trình login, upload, notification và realtime session. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Implementation/review evidence explicitly demonstrates: test app interruption during login, upload, notification and realtime sessions.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Kiểm thử việc app bị gián đoạn trong quá trình login, upload, notification và realtime session.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Check project platform, requirements, architecture and applicable conditions for App Lifecycle & Background Resume; record exclusions and approved overrides."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Vòng đời & Thực thi nền; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Apply rules",
-      "description": "Include applicable App Lifecycle & Background Resume rules in design, implementation and review checklist; link relevant requirement and code."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Vòng đời & Thực thi nền áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of App Lifecycle & Background Resume",
-      "cause": "Project profile does not explicitly reference the standard or its owner.",
-      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+      "issue": "Áp dụng Vòng đời & Thực thi nền không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-MOB-LIFE trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Written standard is not enforceable automatically",
-      "cause": "Some behaviour depends on design decisions and runtime context.",
-      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+      "issue": "Standard dạng văn bản không thể tự động thực thi hoàn toàn",
+      "cause": "Một số hành vi phụ thuộc vào quyết định thiết kế và ngữ cảnh runtime.",
+      "solution": "Kết hợp lint/test tự động với review thủ công và bằng chứng chấp nhận được ghi nhận."
     }
   ],
   "depends_on": [
     {
       "code": "STD-REQ",
-      "dependency_type": "uses"
+      "dependency_type": "requires"
     },
     {
       "code": "STD-TEST",
-      "dependency_type": "uses"
+      "dependency_type": "requires"
     }
-  ]
+  ],
+  "diagrams": []
 }

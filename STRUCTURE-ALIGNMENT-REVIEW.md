@@ -1,29 +1,29 @@
-# Structure Alignment Review
+# Báo cáo căn chỉnh cấu trúc
 
-`STRUCTURE.txt` is treated as the source of truth. `standard-import.schema.json` is treated as the validation contract for every active catalog JSON file.
+`STRUCTURE.txt` được xem là nguồn chuẩn (source of truth). `standard-import.schema.json` được xem là hợp đồng validation cho mọi file JSON đang hoạt động trong catalog.
 
-- Active catalog standards/capabilities after alignment: **115**
-- Existing standards reused in their canonical destination: **47**
-- Existing standards migrated/renamed to new canonical codes: **12**
-- Missing standards/capabilities created: **56**
-- Legacy codes intentionally not kept in the active catalog because they are not listed in STRUCTURE.txt: **14**
+- Số standard/capability đang hoạt động sau khi căn chỉnh: **115**
+- Standard hiện có được tái sử dụng tại vị trí chuẩn: **47**
+- Standard hiện có được migrate/đổi sang code chuẩn mới: **12**
+- Standard/capability còn thiếu đã được tạo bổ sung: **56**
+- Code legacy không được giữ trong catalog hoạt động vì không có trong `STRUCTURE.txt`: **14**
 
-## Migrated codes
+## Code đã migrate
 
-- `STD-AI` → `STD-AI-DEV` (source: `01-core/STD-AI.json`)
-- `STD-AUTH` → `CAP-AUTH` (source: `05-feature/STD-AUTH.json`)
-- `STD-PROFILE` → `CAP-PROFILE` (source: `05-feature/STD-PROFILE.json`)
-- `STD-CRUD` → `CAP-CRUD` (source: `05-feature/STD-CRUD.json`)
-- `STD-UPLOAD` → `CAP-UPLOAD` (source: `05-feature/STD-UPLOAD.json`)
-- `STD-NOTIFY` → `CAP-NOTIFY` (source: `05-feature/STD-NOTIFY.json`)
-- `STD-CHAT` → `CAP-CHAT` (source: `05-feature/STD-CHAT.json`)
-- `STD-SHARE` → `CAP-SHARE` (source: `05-feature/STD-SHARE.json`)
-- `STD-AUDIT` → `CAP-AUDIT` (source: `05-feature/STD-AUDIT.json`)
-- `STD-PERM` → `CAP-PERM` (source: `05-feature/STD-PERM.json`)
-- `STD-SEARCH` → `CAP-SEARCH` (source: `05-feature/STD-SEARCH.json`)
-- `STD-DASHBOARD` → `CAP-REPORT` (source: `05-feature/STD-DASHBOARD.json`)
+- `STD-AI` → `STD-AI-DEV` (nguồn: `01-core/STD-AI.json`)
+- `STD-AUTH` → `CAP-AUTH` (nguồn: `05-feature/STD-AUTH.json`)
+- `STD-PROFILE` → `CAP-PROFILE` (nguồn: `05-feature/STD-PROFILE.json`)
+- `STD-CRUD` → `CAP-CRUD` (nguồn: `05-feature/STD-CRUD.json`)
+- `STD-UPLOAD` → `CAP-UPLOAD` (nguồn: `05-feature/STD-UPLOAD.json`)
+- `STD-NOTIFY` → `CAP-NOTIFY` (nguồn: `05-feature/STD-NOTIFY.json`)
+- `STD-CHAT` → `CAP-CHAT` (nguồn: `05-feature/STD-CHAT.json`)
+- `STD-SHARE` → `CAP-SHARE` (nguồn: `05-feature/STD-SHARE.json`)
+- `STD-AUDIT` → `CAP-AUDIT` (nguồn: `05-feature/STD-AUDIT.json`)
+- `STD-PERM` → `CAP-PERM` (nguồn: `05-feature/STD-PERM.json`)
+- `STD-SEARCH` → `CAP-SEARCH` (nguồn: `05-feature/STD-SEARCH.json`)
+- `STD-DASHBOARD` → `CAP-REPORT` (nguồn: `05-feature/STD-DASHBOARD.json`)
 
-## Legacy/non-canonical codes excluded from active catalog
+## Code legacy/không chuẩn bị loại khỏi catalog hoạt động
 
 - `STD-DB`
 - `STD-FL-ARCH`
@@ -40,9 +40,9 @@
 - `STD-RN-ARCH`
 - `STD-RN-EXPO`
 
-## Validation intent
+## Mục tiêu validation
 
-- Folder grouping and active filenames mirror `STRUCTURE.txt`.
-- Each active file name matches its JSON `code`.
-- Dependencies explicitly stated in `STRUCTURE.txt` are represented in `depends_on`.
-- Existing content is retained when a canonical code already existed; generated content is used only for missing canonical entries.
+- Nhóm folder và tên file đang hoạt động phản chiếu `STRUCTURE.txt`.
+- Tên mỗi file đang hoạt động khớp với trường JSON `code`.
+- Các dependency được nêu rõ trong `STRUCTURE.txt` được biểu diễn trong `depends_on`.
+- Nội dung hiện có được giữ lại khi code chuẩn đã tồn tại; nội dung sinh mới chỉ được dùng cho các mục chuẩn còn thiếu.

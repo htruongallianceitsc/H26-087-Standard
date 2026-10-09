@@ -1,107 +1,66 @@
 {
   "schemaVersion": 1,
   "code": "STD-INCIDENT",
-  "name": "Incident Management & Postmortems",
+  "name": "Quản lý sự cố & Postmortem",
   "category": "10_operations_infrastructure",
-  "description": "Incident Management & Postmortems standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-INCIDENT applies.",
-  "version": "2.0.0",
+  "description": "Tiêu chuẩn chuẩn hóa cho Quản lý sự cố & Postmortem. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define severity levels and escalation ownership",
-      "detail": "Incidents are classified by user/business impact with clear on-call/incident commander escalation paths.",
+      "title": "Xác định rõ cách tiếp cận cho quản lý sự cố & postmortem trước khi triển khai",
+      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Quản lý sự cố & Postmortem; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
       "layer": "process",
       "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Define severity levels and escalation ownership.",
-      "example_bad": "The change violates or ignores the rule: Define severity levels and escalation ownership."
+      "example_good": "Project ghi nhận rõ cách Quản lý sự cố & Postmortem được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
+      "example_bad": "Quản lý sự cố & Postmortem được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review."
     },
     {
-      "title": "Prioritize mitigation before root-cause perfection",
-      "detail": "During active impact, stabilize service, protect data and communicate status before deep remediation when safe.",
+      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
+      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
       "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Prioritize mitigation before root-cause perfection.",
-      "example_bad": "The change violates or ignores the rule: Prioritize mitigation before root-cause perfection."
+      "severity": "should",
+      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
+      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán."
     },
     {
-      "title": "Maintain a timestamped incident timeline",
-      "detail": "Record detections, decisions, actions, deployments and communications to support coordination and later analysis.",
+      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
+      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
       "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Maintain a timestamped incident timeline.",
-      "example_bad": "The change violates or ignores the rule: Maintain a timestamped incident timeline."
-    },
-    {
-      "title": "Communicate using known channels and cadence",
-      "detail": "Stakeholders receive impact, mitigation and next-update expectations without exposing unverified or sensitive detail.",
-      "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Communicate using known channels and cadence.",
-      "example_bad": "The change violates or ignores the rule: Communicate using known channels and cadence."
-    },
-    {
-      "title": "Run blameless postmortems for material incidents",
-      "detail": "Capture contributing technical/process factors, detection gaps and prioritized corrective actions with owners/dates.",
-      "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Run blameless postmortems for material incidents.",
-      "example_bad": "The change violates or ignores the rule: Run blameless postmortems for material incidents."
-    },
-    {
-      "title": "Track corrective actions to completion",
-      "detail": "High-risk recurrence prevention items become normal governed work and are not closed merely when service is restored.",
-      "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Track corrective actions to completion.",
-      "example_bad": "The change violates or ignores the rule: Track corrective actions to completion."
+      "severity": "should",
+      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
+      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Resolve applicability and dependencies",
-      "description": "Confirm where STD-INCIDENT applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Quản lý sự cố & Postmortem; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Record project decisions",
-      "description": "Apply the rules of Incident Management & Postmortems to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Quản lý sự cố & Postmortem áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Implement with evidence",
-      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
-    },
-    {
-      "step": 4,
-      "title": "Verify before completion",
-      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Incident Management & Postmortems is applied inconsistently across features",
-      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
-      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
+      "issue": "Áp dụng Quản lý sự cố & Postmortem không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-INCIDENT trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Implementation satisfies the happy path but misses Incident Management & Postmortems failure cases",
-      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
-      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
+      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
+      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
+      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
     }
   ],
-  "depends_on": [
-    {
-      "code": "STD-LOG",
-      "dependency_type": "uses"
-    },
-    {
-      "code": "STD-SLO",
-      "dependency_type": "uses"
-    },
-    {
-      "code": "STD-RUNBOOK",
-      "dependency_type": "uses"
-    }
-  ]
+  "depends_on": [],
+  "diagrams": []
 }

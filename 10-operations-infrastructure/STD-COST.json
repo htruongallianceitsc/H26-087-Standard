@@ -1,93 +1,64 @@
 {
   "schemaVersion": 1,
   "code": "STD-COST",
-  "name": "Infrastructure & Cloud Cost Governance",
+  "name": "Quản trị chi phí hạ tầng & Cloud",
   "category": "10_operations_infrastructure",
-  "description": "Infrastructure & Cloud Cost Governance standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-COST applies.",
-  "version": "2.0.0",
+  "description": "Tiêu chuẩn chuẩn hóa cho Quản trị chi phí hạ tầng & Cloud. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Tag or attribute cloud resources to accountable owners and environments",
-      "detail": "Resources and major shared services expose enough metadata for cost allocation and anomaly investigation.",
+      "title": "Xác định rõ cách tiếp cận cho quản trị chi phí hạ tầng & cloud trước khi triển khai",
+      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Quản trị chi phí hạ tầng & Cloud; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
       "layer": "process",
       "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Tag or attribute cloud resources to accountable owners and environments.",
-      "example_bad": "The change violates or ignores the rule: Tag or attribute cloud resources to accountable owners and environments."
+      "example_good": "Project ghi nhận rõ cách Quản trị chi phí hạ tầng & Cloud được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
+      "example_bad": "Quản trị chi phí hạ tầng & Cloud được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review."
     },
     {
-      "title": "Define budgets and anomaly alerts",
-      "detail": "Projects establish expected spend and notify owners when daily/monthly cost deviates materially from baseline or budget.",
-      "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Define budgets and anomaly alerts.",
-      "example_bad": "The change violates or ignores the rule: Define budgets and anomaly alerts."
-    },
-    {
-      "title": "Measure unit cost for material workloads",
-      "detail": "Where meaningful, track cost per request/user/job/storage unit or business transaction to distinguish growth from inefficiency.",
+      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
+      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
       "layer": "process",
       "severity": "should",
-      "example_good": "The implementation and review evidence demonstrate: Measure unit cost for material workloads.",
-      "example_bad": "The change violates or ignores the rule: Measure unit cost for material workloads."
+      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
+      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán."
     },
     {
-      "title": "Right-size using measured utilization",
-      "detail": "Scale instance sizes, retention, storage tiers and autoscaling from telemetry rather than permanent peak provisioning.",
+      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
+      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
       "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Right-size using measured utilization.",
-      "example_bad": "The change violates or ignores the rule: Right-size using measured utilization."
-    },
-    {
-      "title": "Include cost impact in architecture and performance decisions",
-      "detail": "New managed services, high-cardinality telemetry, egress and duplication of data require explicit cost consideration.",
-      "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Include cost impact in architecture and performance decisions.",
-      "example_bad": "The change violates or ignores the rule: Include cost impact in architecture and performance decisions."
-    },
-    {
-      "title": "Do not trade away required reliability or security solely for cost",
-      "detail": "Optimization must preserve approved SLO, backup, compliance and security requirements.",
-      "layer": "security",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Do not trade away required reliability or security solely for cost.",
-      "example_bad": "The change violates or ignores the rule: Do not trade away required reliability or security solely for cost."
+      "severity": "should",
+      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
+      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Resolve applicability and dependencies",
-      "description": "Confirm where STD-COST applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Quản trị chi phí hạ tầng & Cloud; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Record project decisions",
-      "description": "Apply the rules of Infrastructure & Cloud Cost Governance to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Quản trị chi phí hạ tầng & Cloud áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Implement with evidence",
-      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
-    },
-    {
-      "step": 4,
-      "title": "Verify before completion",
-      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Infrastructure & Cloud Cost Governance is applied inconsistently across features",
-      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
-      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
+      "issue": "Áp dụng Quản trị chi phí hạ tầng & Cloud không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-COST trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Implementation satisfies the happy path but misses Infrastructure & Cloud Cost Governance failure cases",
-      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
-      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
+      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
+      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
+      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
     }
   ],
   "depends_on": [
@@ -103,5 +74,6 @@
       "code": "STD-SLO",
       "dependency_type": "uses"
     }
-  ]
+  ],
+  "diagrams": []
 }

@@ -1,103 +1,66 @@
 {
   "schemaVersion": 1,
   "code": "STD-NET",
-  "name": "Network, DNS, TLS & Infrastructure Security",
+  "name": "Mạng, DNS, TLS & Bảo mật hạ tầng",
   "category": "10_operations_infrastructure",
-  "description": "Network, DNS, TLS & Infrastructure Security standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-NET applies.",
-  "version": "2.0.0",
+  "description": "Tiêu chuẩn chuẩn hóa cho Mạng, DNS, TLS & Bảo mật hạ tầng. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Use TLS for network traffic carrying credentials or sensitive/business data",
-      "detail": "Use supported protocol/cipher configurations and automated certificate renewal/expiry monitoring.",
-      "layer": "security",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Use TLS for network traffic carrying credentials or sensitive/business data.",
-      "example_bad": "The change violates or ignores the rule: Use TLS for network traffic carrying credentials or sensitive/business data."
-    },
-    {
-      "title": "Apply deny-by-default network exposure",
-      "detail": "Expose only required ports/services and restrict administrative/data-plane access to approved sources or private networks.",
-      "layer": "security",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Apply deny-by-default network exposure.",
-      "example_bad": "The change violates or ignores the rule: Apply deny-by-default network exposure."
-    },
-    {
-      "title": "Separate public ingress from internal service access",
-      "detail": "Use controlled gateways/load balancers/private networking and avoid making databases/caches directly public.",
-      "layer": "security",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Separate public ingress from internal service access.",
-      "example_bad": "The change violates or ignores the rule: Separate public ingress from internal service access."
-    },
-    {
-      "title": "Manage DNS as controlled infrastructure",
-      "detail": "DNS changes are versioned/reviewed where feasible, use appropriate TTLs for migration, and critical records are monitored.",
+      "title": "Xác định rõ cách tiếp cận cho mạng, DNS, TLS & bảo mật hạ tầng trước khi triển khai",
+      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Mạng, DNS, TLS & Bảo mật hạ tầng; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
       "layer": "process",
       "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Manage DNS as controlled infrastructure.",
-      "example_bad": "The change violates or ignores the rule: Manage DNS as controlled infrastructure."
+      "example_good": "Project ghi nhận rõ cách Mạng, DNS, TLS & Bảo mật hạ tầng được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
+      "example_bad": "Mạng, DNS, TLS & Bảo mật hạ tầng được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review."
     },
     {
-      "title": "Protect administrative access",
-      "detail": "Use strong identity/MFA, least privilege, audited access and avoid shared static credentials for infrastructure consoles/SSH.",
-      "layer": "security",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Protect administrative access.",
-      "example_bad": "The change violates or ignores the rule: Protect administrative access."
-    },
-    {
-      "title": "Document egress dependencies and firewall requirements",
-      "detail": "Critical third-party endpoints, ports and DNS behavior are known so network restrictions and incident diagnosis are possible.",
+      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
+      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
       "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Document egress dependencies and firewall requirements.",
-      "example_bad": "The change violates or ignores the rule: Document egress dependencies and firewall requirements."
+      "severity": "should",
+      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
+      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán."
+    },
+    {
+      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
+      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
+      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Resolve applicability and dependencies",
-      "description": "Confirm where STD-NET applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Mạng, DNS, TLS & Bảo mật hạ tầng; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Record project decisions",
-      "description": "Apply the rules of Network, DNS, TLS & Infrastructure Security to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Mạng, DNS, TLS & Bảo mật hạ tầng áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Implement with evidence",
-      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
-    },
-    {
-      "step": 4,
-      "title": "Verify before completion",
-      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Network, DNS, TLS & Infrastructure Security is applied inconsistently across features",
-      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
-      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
+      "issue": "Áp dụng Mạng, DNS, TLS & Bảo mật hạ tầng không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-NET trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Implementation satisfies the happy path but misses Network, DNS, TLS & Infrastructure Security failure cases",
-      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
-      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
+      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
+      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
+      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
     }
   ],
-  "depends_on": [
-    {
-      "code": "STD-SEC",
-      "dependency_type": "uses"
-    },
-    {
-      "code": "STD-IAC",
-      "dependency_type": "aligns_with"
-    }
-  ]
+  "depends_on": [],
+  "diagrams": []
 }

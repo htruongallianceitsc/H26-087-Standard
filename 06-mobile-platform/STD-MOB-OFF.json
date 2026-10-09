@@ -1,82 +1,82 @@
 {
   "schemaVersion": 1,
   "code": "STD-MOB-OFF",
-  "name": "Offline, Connectivity & Sync",
+  "name": "Offline, Kết nối & Đồng bộ",
   "category": "06_mobile_platform",
-  "description": "Resilient mobile networking",
-  "version": "1.1.0",
+  "description": "Chuẩn networking Mobile có khả năng phục hồi khi offline/kết nối không ổn định.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Identify offline-readable and offline-writable operations explicitly",
-      "detail": "Identify offline-readable and offline-writable operations explicitly. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Xác định rõ thao tác có thể đọc và ghi khi offline",
+      "detail": "Xác định rõ thao tác có thể đọc và ghi khi offline. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Implementation/review evidence explicitly demonstrates: identify offline-readable and offline-writable operations explicitly.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Xác định rõ thao tác có thể đọc và ghi khi offline.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Use bounded retries with backoff and only retry idempotent-safe operations",
-      "detail": "Use bounded retries with backoff and only retry idempotent-safe operations. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Sử dụng retry có giới hạn kèm backoff và chỉ retry operation an toàn về idempotency",
+      "detail": "Sử dụng retry có giới hạn kèm backoff và chỉ retry operation an toàn về idempotency. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Implementation/review evidence explicitly demonstrates: use bounded retries with backoff and only retry idempotent-safe operations.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Sử dụng retry có giới hạn kèm backoff và chỉ retry operation an toàn về idempotency.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Define conflict resolution and pending-write reconciliation rules",
-      "detail": "Define conflict resolution and pending-write reconciliation rules. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Xác định quy tắc xử lý xung đột và đối soát các thao tác ghi đang chờ",
+      "detail": "Xác định quy tắc xử lý xung đột và đối soát các thao tác ghi đang chờ. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Implementation/review evidence explicitly demonstrates: define conflict resolution and pending-write reconciliation rules.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Xác định quy tắc xử lý xung đột và đối soát các thao tác ghi đang chờ.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Test intermittent connectivity and duplicate submissions",
-      "detail": "Test intermittent connectivity and duplicate submissions. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Kiểm thử kết nối chập chờn và submit trùng",
+      "detail": "Kiểm thử kết nối chập chờn và submit trùng. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Implementation/review evidence explicitly demonstrates: test intermittent connectivity and duplicate submissions.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Kiểm thử kết nối chập chờn và submit trùng.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Check project platform, requirements, architecture and applicable conditions for Offline, Retry & Synchronization; record exclusions and approved overrides."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Offline, Kết nối & Đồng bộ; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Apply rules",
-      "description": "Include applicable Offline, Retry & Synchronization rules in design, implementation and review checklist; link relevant requirement and code."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Offline, Kết nối & Đồng bộ áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Offline, Retry & Synchronization",
-      "cause": "Project profile does not explicitly reference the standard or its owner.",
-      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+      "issue": "Áp dụng Offline, Kết nối & Đồng bộ không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-MOB-OFF trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Written standard is not enforceable automatically",
-      "cause": "Some behaviour depends on design decisions and runtime context.",
-      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+      "issue": "Standard dạng văn bản không thể tự động thực thi hoàn toàn",
+      "cause": "Một số hành vi phụ thuộc vào quyết định thiết kế và ngữ cảnh runtime.",
+      "solution": "Kết hợp lint/test tự động với review thủ công và bằng chứng chấp nhận được ghi nhận."
     }
   ],
   "depends_on": [
     {
       "code": "STD-REQ",
-      "dependency_type": "uses"
+      "dependency_type": "requires"
     },
     {
       "code": "STD-TEST",
-      "dependency_type": "uses"
+      "dependency_type": "requires"
     },
     {
       "code": "STD-RES",
@@ -86,5 +86,6 @@
       "code": "STD-CACHE",
       "dependency_type": "uses"
     }
-  ]
+  ],
+  "diagrams": []
 }

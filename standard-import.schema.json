@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://pm.local/schemas/standard-import.schema.json",
-  "title": "Standard Import",
-  "description": "Schema for a single Standard exported via GET /v1/standards/:id/export-json and re-imported via POST /v1/standards/import-json. Mirrors importStandardSchema in standards.schema.js.",
+  "title": "Nhập Standard",
+  "description": "Schema cho một Standard được export qua GET /v1/standards/:id/export-json và import lại qua POST /v1/standards/import-json. Cấu trúc này phản chiếu importStandardSchema trong standards.schema.js.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -13,13 +13,13 @@
   "properties": {
     "schemaVersion": {
       "const": 1,
-      "description": "Must equal EXPORT_SCHEMA_VERSION in standards.schema.js. Import is rejected if this does not match."
+      "description": "Phải bằng EXPORT_SCHEMA_VERSION trong standards.schema.js. Import sẽ bị từ chối nếu giá trị này không khớp."
     },
     "code": {
       "type": "string",
       "minLength": 1,
       "maxLength": 100,
-      "description": "Unique, human-readable identifier for the standard. Import is rejected if a standard with this code already exists in the target system."
+      "description": "Mã định danh duy nhất, dễ đọc cho standard. Import sẽ bị từ chối nếu target system đã tồn tại standard cùng code."
     },
     "name": {
       "type": "string",
@@ -48,7 +48,7 @@
     },
     "depends_on": {
       "type": "array",
-      "description": "Dependencies referenced by code (not internal id) so the file is portable across environments. Codes not found in the target system are skipped (see skippedDependencies in the import response) rather than failing the whole import.",
+      "description": "Dependency được tham chiếu bằng code (không phải internal id) để file có thể di chuyển giữa các môi trường. Code không tồn tại ở target system sẽ được bỏ qua (xem skippedDependencies trong import response) thay vì làm thất bại toàn bộ import.",
       "items": {
         "type": "object",
         "additionalProperties": false,

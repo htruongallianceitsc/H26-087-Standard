@@ -1,103 +1,66 @@
 {
   "schemaVersion": 1,
   "code": "STD-DATA-TX",
-  "name": "Transactions, Concurrency & Consistency",
+  "name": "Giao dịch, Đồng thời & Tính nhất quán",
   "category": "03_api_integration_data",
-  "description": "Transactions, Concurrency & Consistency standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-DATA-TX applies.",
-  "version": "2.0.0",
+  "description": "Tiêu chuẩn chuẩn hóa cho Giao dịch, Đồng thời & Tính nhất quán. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Choose transaction boundaries around business invariants",
-      "detail": "A transaction should include the minimum set of database changes that must succeed or fail together for one business operation.",
+      "title": "Xác định rõ cách tiếp cận cho giao dịch, đồng thời & tính nhất quán trước khi triển khai",
+      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Giao dịch, Đồng thời & Tính nhất quán; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
       "layer": "db",
       "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Choose transaction boundaries around business invariants.",
-      "example_bad": "The change violates or ignores the rule: Choose transaction boundaries around business invariants."
+      "example_good": "Project ghi nhận rõ cách Giao dịch, Đồng thời & Tính nhất quán được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
+      "example_bad": "Giao dịch, Đồng thời & Tính nhất quán được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review."
     },
     {
-      "title": "Do not hold database transactions across slow external calls",
-      "detail": "Commit or use an outbox/saga pattern rather than keeping locks open while calling remote services unless explicitly justified.",
-      "layer": "db",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Do not hold database transactions across slow external calls.",
-      "example_bad": "The change violates or ignores the rule: Do not hold database transactions across slow external calls."
-    },
-    {
-      "title": "Select isolation and locking based on concurrency risk",
-      "detail": "Use database defaults deliberately; use optimistic tokens, unique constraints or row locks for known race conditions.",
-      "layer": "db",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Select isolation and locking based on concurrency risk.",
-      "example_bad": "The change violates or ignores the rule: Select isolation and locking based on concurrency risk."
-    },
-    {
-      "title": "Make retried operations safe",
-      "detail": "Transactions subject to deadlock/serialization retry must be idempotent or protected from duplicate side effects.",
-      "layer": "db",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Make retried operations safe.",
-      "example_bad": "The change violates or ignores the rule: Make retried operations safe."
-    },
-    {
-      "title": "Use outbox/inbox patterns for database plus messaging consistency",
-      "detail": "When one logical operation updates durable data and publishes/consumes messages, avoid unsafe dual writes.",
+      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
+      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
       "layer": "db",
       "severity": "should",
-      "example_good": "The implementation and review evidence demonstrate: Use outbox/inbox patterns for database plus messaging consistency.",
-      "example_bad": "The change violates or ignores the rule: Use outbox/inbox patterns for database plus messaging consistency."
+      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
+      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán."
     },
     {
-      "title": "Test concurrent behavior for critical invariants",
-      "detail": "Automated tests should exercise duplicate, parallel update and retry scenarios where money, inventory, identity or other critical state is affected.",
+      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
+      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
       "layer": "process",
       "severity": "should",
-      "example_good": "The implementation and review evidence demonstrate: Test concurrent behavior for critical invariants.",
-      "example_bad": "The change violates or ignores the rule: Test concurrent behavior for critical invariants."
+      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
+      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Resolve applicability and dependencies",
-      "description": "Confirm where STD-DATA-TX applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Giao dịch, Đồng thời & Tính nhất quán; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Record project decisions",
-      "description": "Apply the rules of Transactions, Concurrency & Consistency to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Giao dịch, Đồng thời & Tính nhất quán áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Implement with evidence",
-      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
-    },
-    {
-      "step": 4,
-      "title": "Verify before completion",
-      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Transactions, Concurrency & Consistency is applied inconsistently across features",
-      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
-      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
+      "issue": "Áp dụng Giao dịch, Đồng thời & Tính nhất quán không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-DATA-TX trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Implementation satisfies the happy path but misses Transactions, Concurrency & Consistency failure cases",
-      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
-      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
+      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
+      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
+      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
     }
   ],
-  "depends_on": [
-    {
-      "code": "STD-DATA",
-      "dependency_type": "uses"
-    },
-    {
-      "code": "STD-RES",
-      "dependency_type": "uses"
-    }
-  ]
+  "depends_on": [],
+  "diagrams": []
 }

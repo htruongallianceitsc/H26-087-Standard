@@ -1,107 +1,66 @@
 {
   "schemaVersion": 1,
   "code": "STD-SLO",
-  "name": "Service Level Objectives",
+  "name": "Mục tiêu mức dịch vụ (SLO)",
   "category": "10_operations_infrastructure",
-  "description": "Service Level Objectives standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-SLO applies.",
-  "version": "2.0.0",
+  "description": "Tiêu chuẩn chuẩn hóa cho Mục tiêu mức dịch vụ (SLO). Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define user-centered service level indicators",
-      "detail": "Choose measurable availability, latency, correctness or freshness signals that reflect user-visible service rather than infrastructure uptime alone.",
+      "title": "Xác định rõ cách tiếp cận cho Mục tiêu mức dịch vụ (SLO) trước khi triển khai",
+      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Mục tiêu mức dịch vụ (SLO); liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
       "layer": "process",
       "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Define user-centered service level indicators.",
-      "example_bad": "The change violates or ignores the rule: Define user-centered service level indicators."
+      "example_good": "Project ghi nhận rõ cách Mục tiêu mức dịch vụ (SLO) được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
+      "example_bad": "Mục tiêu mức dịch vụ (SLO) được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review."
     },
     {
-      "title": "Set explicit SLO targets and windows",
-      "detail": "Each critical service/flow defines target percentage/threshold and measurement window with clear inclusion/exclusion rules.",
-      "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Set explicit SLO targets and windows.",
-      "example_bad": "The change violates or ignores the rule: Set explicit SLO targets and windows."
-    },
-    {
-      "title": "Track error budget",
-      "detail": "Calculate remaining budget and use it to guide release/risk decisions when reliability materially misses target.",
-      "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Track error budget.",
-      "example_bad": "The change violates or ignores the rule: Track error budget."
-    },
-    {
-      "title": "Alert on actionable burn rate",
-      "detail": "Prefer alerts that indicate likely SLO exhaustion and require action rather than noisy threshold-only infrastructure alerts.",
-      "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Alert on actionable burn rate.",
-      "example_bad": "The change violates or ignores the rule: Alert on actionable burn rate."
-    },
-    {
-      "title": "Align SLOs with dependency and business criticality",
-      "detail": "Do not promise a stronger end-to-end SLO than dependencies and architecture can realistically support without mitigation.",
-      "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Align SLOs with dependency and business criticality.",
-      "example_bad": "The change violates or ignores the rule: Align SLOs with dependency and business criticality."
-    },
-    {
-      "title": "Review SLOs using production evidence",
-      "detail": "Periodically adjust indicators/targets when they no longer represent user impact, while preserving historical comparability.",
+      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
+      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
       "layer": "process",
       "severity": "should",
-      "example_good": "The implementation and review evidence demonstrate: Review SLOs using production evidence.",
-      "example_bad": "The change violates or ignores the rule: Review SLOs using production evidence."
+      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
+      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán."
+    },
+    {
+      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
+      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
+      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Resolve applicability and dependencies",
-      "description": "Confirm where STD-SLO applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Mục tiêu mức dịch vụ (SLO); ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Record project decisions",
-      "description": "Apply the rules of Service Level Objectives to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Mục tiêu mức dịch vụ (SLO) áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Implement with evidence",
-      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
-    },
-    {
-      "step": 4,
-      "title": "Verify before completion",
-      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Service Level Objectives is applied inconsistently across features",
-      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
-      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
+      "issue": "Áp dụng Mục tiêu mức dịch vụ (SLO) không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-SLO trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Implementation satisfies the happy path but misses Service Level Objectives failure cases",
-      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
-      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
+      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
+      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
+      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
     }
   ],
-  "depends_on": [
-    {
-      "code": "STD-LOG",
-      "dependency_type": "uses"
-    },
-    {
-      "code": "STD-RES",
-      "dependency_type": "uses"
-    },
-    {
-      "code": "STD-PERF",
-      "dependency_type": "uses"
-    }
-  ]
+  "depends_on": [],
+  "diagrams": []
 }

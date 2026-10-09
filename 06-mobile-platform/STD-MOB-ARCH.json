@@ -1,89 +1,89 @@
 {
   "schemaVersion": 1,
   "code": "STD-MOB-ARCH",
-  "name": "Mobile Application Architecture",
+  "name": "Kiến trúc ứng dụng Mobile",
   "category": "06_mobile_platform",
-  "description": "Mobile feature boundaries and OS integration",
-  "version": "1.1.0",
+  "description": "Chuẩn ranh giới feature trên Mobile và tích hợp với hệ điều hành.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Keep platform integrations behind interfaces/adapters",
-      "detail": "Keep platform integrations behind interfaces/adapters. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Đặt tích hợp nền tảng phía sau interface/adapter",
+      "detail": "Đặt tích hợp nền tảng phía sau interface/adapter. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Implementation/review evidence explicitly demonstrates: keep platform integrations behind interfaces/adapters.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Đặt tích hợp nền tảng phía sau interface/adapter.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Separate presentation, application state and domain/data responsibilities",
-      "detail": "Separate presentation, application state and domain/data responsibilities. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Tách trách nhiệm presentation, application state và domain/data",
+      "detail": "Tách trách nhiệm presentation, application state và domain/data. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Implementation/review evidence explicitly demonstrates: separate presentation, application state and domain/data responsibilities.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tách trách nhiệm presentation, application state và domain/data.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Design degraded behaviour for network loss and app process termination",
-      "detail": "Design degraded behaviour for network loss and app process termination. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Thiết kế hành vi suy giảm chức năng khi mất mạng hoặc tiến trình ứng dụng bị kết thúc",
+      "detail": "Thiết kế hành vi suy giảm chức năng khi mất mạng hoặc tiến trình ứng dụng bị kết thúc. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Implementation/review evidence explicitly demonstrates: design degraded behaviour for network loss and app process termination.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Thiết kế hành vi suy giảm chức năng khi mất mạng hoặc tiến trình ứng dụng bị kết thúc.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Identify iOS and Android capability differences explicitly",
-      "detail": "Identify iOS and Android capability differences explicitly. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Xác định rõ khác biệt capability giữa iOS và Android",
+      "detail": "Xác định rõ khác biệt capability giữa iOS và Android. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Implementation/review evidence explicitly demonstrates: identify ios and android capability differences explicitly.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Xác định rõ khác biệt capability giữa iOS và Android.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Check project platform, requirements, architecture and applicable conditions for Mobile Application Architecture; record exclusions and approved overrides."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Kiến trúc ứng dụng Mobile; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Apply rules",
-      "description": "Include applicable Mobile Application Architecture rules in design, implementation and review checklist; link relevant requirement and code."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Kiến trúc ứng dụng Mobile áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Mobile Application Architecture",
-      "cause": "Project profile does not explicitly reference the standard or its owner.",
-      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+      "issue": "Áp dụng Kiến trúc ứng dụng Mobile không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-MOB-ARCH trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Written standard is not enforceable automatically",
-      "cause": "Some behaviour depends on design decisions and runtime context.",
-      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+      "issue": "Standard dạng văn bản không thể tự động thực thi hoàn toàn",
+      "cause": "Một số hành vi phụ thuộc vào quyết định thiết kế và ngữ cảnh runtime.",
+      "solution": "Kết hợp lint/test tự động với review thủ công và bằng chứng chấp nhận được ghi nhận."
     }
   ],
   "diagrams": [
     {
-      "title": "Mobile Application Architecture - adoption flow",
+      "title": "Kiến trúc ứng dụng Mobile - luồng áp dụng",
       "type": "flow",
-      "content": "flowchart TD\n  A[Receive requirement] --> B[Resolve applicable standards]\n  B --> C[Design and implementation]\n  C --> D[Validation and review]\n  D --> E[Record evidence]"
+      "content": "flowchart TD\n  A[Tiếp nhận requirement] --> B[Xác định standard áp dụng]\n  B --> C[Thiết kế và triển khai]\n  C --> D[Validation và review]\n  D --> E[Ghi nhận bằng chứng]"
     }
   ],
   "depends_on": [
     {
       "code": "STD-REQ",
-      "dependency_type": "uses"
+      "dependency_type": "requires"
     },
     {
       "code": "STD-TEST",
-      "dependency_type": "uses"
+      "dependency_type": "requires"
     },
     {
       "code": "STD-ARCH",

@@ -1,73 +1,74 @@
 {
   "schemaVersion": 1,
   "code": "STD-ERR",
-  "name": "Error Handling & Classification",
+  "name": "Xử lý & Phân loại lỗi",
   "category": "02_engineering_foundation",
-  "description": "Consistent failure taxonomy and recovery",
+  "description": "Chuẩn hóa phân loại lỗi và cơ chế phục hồi.",
   "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Distinguish validation, authentication, authorization, network and unexpected failures",
-      "detail": "Distinguish validation, authentication, authorization, network and unexpected failures. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Phân biệt lỗi validation, authentication, authorization, network và lỗi ngoài dự kiến",
+      "detail": "Phân biệt lỗi validation, authentication, authorization, network và lỗi ngoài dự kiến. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Implementation/review evidence explicitly demonstrates: distinguish validation, authentication, authorization, network and unexpected failures.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Phân biệt lỗi validation, authentication, authorization, network và lỗi ngoài dự kiến.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Use typed errors/results and user-safe messages without exposing sensitive details",
-      "detail": "Use typed errors/results and user-safe messages without exposing sensitive details. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Sử dụng error/result có kiểu dữ liệu và message an toàn cho người dùng, không làm lộ chi tiết nhạy cảm",
+      "detail": "Sử dụng error/result có kiểu dữ liệu và message an toàn cho người dùng, không làm lộ chi tiết nhạy cảm. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Implementation/review evidence explicitly demonstrates: use typed errors/results and user-safe messages without exposing sensitive details.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Sử dụng error/result có kiểu dữ liệu và message an toàn cho người dùng, không làm lộ chi tiết nhạy cảm.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Provide actionable retries only for safe transient operations",
-      "detail": "Provide actionable retries only for safe transient operations. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Chỉ cung cấp thao tác retry cho các operation tạm thời và an toàn để thử lại",
+      "detail": "Chỉ cung cấp thao tác retry cho các operation tạm thời và an toàn để thử lại. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Implementation/review evidence explicitly demonstrates: provide actionable retries only for safe transient operations.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Chỉ cung cấp thao tác retry cho các operation tạm thời và an toàn để thử lại.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Log diagnostic context while preventing secret and personal-data leakage",
-      "detail": "Log diagnostic context while preventing secret and personal-data leakage. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Log ngữ cảnh chẩn đoán nhưng phải ngăn rò rỉ secret và dữ liệu cá nhân",
+      "detail": "Log ngữ cảnh chẩn đoán nhưng phải ngăn rò rỉ secret và dữ liệu cá nhân. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Implementation/review evidence explicitly demonstrates: log diagnostic context while preventing secret and personal-data leakage.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Log ngữ cảnh chẩn đoán nhưng phải ngăn rò rỉ secret và dữ liệu cá nhân.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Check project platform, requirements, architecture and applicable conditions for Error Handling Principles; record exclusions and approved overrides."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Xử lý & Phân loại lỗi; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Apply rules",
-      "description": "Include applicable Error Handling Principles rules in design, implementation and review checklist; link relevant requirement and code."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Xử lý & Phân loại lỗi áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Error Handling Principles",
-      "cause": "Project profile does not explicitly reference the standard or its owner.",
-      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+      "issue": "Áp dụng Xử lý & Phân loại lỗi không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-ERR trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Written standard is not enforceable automatically",
-      "cause": "Some behaviour depends on design decisions and runtime context.",
-      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+      "issue": "Standard dạng văn bản không thể tự động thực thi hoàn toàn",
+      "cause": "Một số hành vi phụ thuộc vào quyết định thiết kế và ngữ cảnh runtime.",
+      "solution": "Kết hợp lint/test tự động với review thủ công và bằng chứng chấp nhận được ghi nhận."
     }
   ],
-  "depends_on": []
+  "depends_on": [],
+  "diagrams": []
 }

@@ -1,78 +1,79 @@
 {
   "schemaVersion": 1,
   "code": "STD-CI",
-  "name": "Continuous Integration & Build Pipeline",
+  "name": "Tích hợp liên tục & Pipeline Build",
   "category": "01_governance_delivery",
-  "description": "Reproducible build and deployment",
-  "version": "1.1.0",
+  "description": "Đảm bảo quy trình build và triển khai có thể tái lập.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Use lockfiles and reproducible builds in CI",
-      "detail": "Use lockfiles and reproducible builds in CI. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Sử dụng lockfile và build có thể tái lập trong CI",
+      "detail": "Sử dụng lockfile và build có thể tái lập trong CI. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Implementation/review evidence explicitly demonstrates: use lockfiles and reproducible builds in ci.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Sử dụng lockfile và build có thể tái lập trong CI.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Separate environments and inject secrets at runtime or secure build settings",
-      "detail": "Separate environments and inject secrets at runtime or secure build settings. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Tách biệt môi trường và inject secret tại runtime hoặc qua build setting an toàn",
+      "detail": "Tách biệt môi trường và inject secret tại runtime hoặc qua build setting an toàn. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Implementation/review evidence explicitly demonstrates: separate environments and inject secrets at runtime or secure build settings.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tách biệt môi trường và inject secret tại runtime hoặc qua build setting an toàn.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Promote tested artifacts and keep release/rollback procedure documented",
-      "detail": "Promote tested artifacts and keep release/rollback procedure documented. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Promote artifact đã được kiểm thử và duy trì tài liệu quy trình release/rollback",
+      "detail": "Promote artifact đã được kiểm thử và duy trì tài liệu quy trình release/rollback. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Implementation/review evidence explicitly demonstrates: promote tested artifacts and keep release/rollback procedure documented.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Promote artifact đã được kiểm thử và duy trì tài liệu quy trình release/rollback.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Enforce required approvals for production deployments",
-      "detail": "Enforce required approvals for production deployments. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Bắt buộc các phê duyệt cần thiết trước khi deploy production",
+      "detail": "Bắt buộc các phê duyệt cần thiết trước khi deploy production. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Implementation/review evidence explicitly demonstrates: enforce required approvals for production deployments.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Bắt buộc các phê duyệt cần thiết trước khi deploy production.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Check project platform, requirements, architecture and applicable conditions for CI/CD & Release Process; record exclusions and approved overrides."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Tích hợp liên tục & Pipeline Build; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Apply rules",
-      "description": "Include applicable CI/CD & Release Process rules in design, implementation and review checklist; link relevant requirement and code."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Tích hợp liên tục & Pipeline Build áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of CI/CD & Release Process",
-      "cause": "Project profile does not explicitly reference the standard or its owner.",
-      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+      "issue": "Áp dụng Tích hợp liên tục & Pipeline Build không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-CI trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Written standard is not enforceable automatically",
-      "cause": "Some behaviour depends on design decisions and runtime context.",
-      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+      "issue": "Standard dạng văn bản không thể tự động thực thi hoàn toàn",
+      "cause": "Một số hành vi phụ thuộc vào quyết định thiết kế và ngữ cảnh runtime.",
+      "solution": "Kết hợp lint/test tự động với review thủ công và bằng chứng chấp nhận được ghi nhận."
     }
   ],
   "depends_on": [
     {
       "code": "STD-TEST",
-      "dependency_type": "uses"
+      "dependency_type": "requires"
     }
-  ]
+  ],
+  "diagrams": []
 }

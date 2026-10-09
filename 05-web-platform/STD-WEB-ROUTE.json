@@ -1,86 +1,87 @@
 {
   "schemaVersion": 1,
   "code": "STD-WEB-ROUTE",
-  "name": "Routing, Navigation & URL State",
+  "name": "Routing, Điều hướng & Trạng thái URL",
   "category": "05_web_platform",
-  "description": "URL-driven navigation and access",
-  "version": "1.1.0",
+  "description": "Chuẩn điều hướng dựa trên URL và kiểm soát truy cập.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define canonical routes, parameters and missing-route behaviour",
-      "detail": "Define canonical routes, parameters and missing-route behaviour. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Xác định route chuẩn, parameter và hành vi khi route không tồn tại",
+      "detail": "Xác định route chuẩn, parameter và hành vi khi route không tồn tại. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Implementation/review evidence explicitly demonstrates: define canonical routes, parameters and missing-route behaviour.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Xác định route chuẩn, parameter và hành vi khi route không tồn tại.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Preserve navigable filter/query state in the URL when shareable",
-      "detail": "Preserve navigable filter/query state in the URL when shareable. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Giữ trạng thái filter/query có thể điều hướng trong URL khi phù hợp để chia sẻ",
+      "detail": "Giữ trạng thái filter/query có thể điều hướng trong URL khi phù hợp để chia sẻ. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Implementation/review evidence explicitly demonstrates: preserve navigable filter/query state in the url when shareable.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Giữ trạng thái filter/query có thể điều hướng trong URL khi phù hợp để chia sẻ.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Protect restricted pages with UI guards while relying on server authorization",
-      "detail": "Protect restricted pages with UI guards while relying on server authorization. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Bảo vệ trang bị giới hạn bằng UI guard nhưng vẫn dựa vào authorization phía server",
+      "detail": "Bảo vệ trang bị giới hạn bằng UI guard nhưng vẫn dựa vào authorization phía server. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Implementation/review evidence explicitly demonstrates: protect restricted pages with ui guards while relying on server authorization.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Bảo vệ trang bị giới hạn bằng UI guard nhưng vẫn dựa vào authorization phía server.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Handle deep reload and direct navigation with hosting fallback rules",
-      "detail": "Handle deep reload and direct navigation with hosting fallback rules. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Xử lý reload sâu và điều hướng trực tiếp bằng quy tắc fallback của hosting",
+      "detail": "Xử lý reload sâu và điều hướng trực tiếp bằng quy tắc fallback của hosting. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Implementation/review evidence explicitly demonstrates: handle deep reload and direct navigation with hosting fallback rules.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Xử lý reload sâu và điều hướng trực tiếp bằng quy tắc fallback của hosting.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Check project platform, requirements, architecture and applicable conditions for Browser Routing & URL State; record exclusions and approved overrides."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Routing, Điều hướng & Trạng thái URL; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Apply rules",
-      "description": "Include applicable Browser Routing & URL State rules in design, implementation and review checklist; link relevant requirement and code."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Routing, Điều hướng & Trạng thái URL áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Browser Routing & URL State",
-      "cause": "Project profile does not explicitly reference the standard or its owner.",
-      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+      "issue": "Áp dụng Routing, Điều hướng & Trạng thái URL không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-WEB-ROUTE trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Written standard is not enforceable automatically",
-      "cause": "Some behaviour depends on design decisions and runtime context.",
-      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+      "issue": "Standard dạng văn bản không thể tự động thực thi hoàn toàn",
+      "cause": "Một số hành vi phụ thuộc vào quyết định thiết kế và ngữ cảnh runtime.",
+      "solution": "Kết hợp lint/test tự động với review thủ công và bằng chứng chấp nhận được ghi nhận."
     }
   ],
   "depends_on": [
     {
       "code": "STD-REQ",
-      "dependency_type": "uses"
+      "dependency_type": "requires"
     },
     {
       "code": "STD-TEST",
-      "dependency_type": "uses"
+      "dependency_type": "requires"
     },
     {
       "code": "STD-UX",
       "dependency_type": "aligns_with"
     }
-  ]
+  ],
+  "diagrams": []
 }

@@ -1,103 +1,66 @@
 {
   "schemaVersion": 1,
   "code": "STD-DATA",
-  "name": "Data Modeling & Schema Design",
+  "name": "Mô hình dữ liệu & Thiết kế Schema",
   "category": "03_api_integration_data",
-  "description": "Data Modeling & Schema Design standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-DATA applies.",
-  "version": "2.0.0",
+  "description": "Tiêu chuẩn chuẩn hóa cho Mô hình dữ liệu & Thiết kế Schema. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Model business invariants in the database where appropriate",
-      "detail": "Use primary keys, foreign keys, uniqueness, nullability and check constraints to protect durable invariants in addition to application validation.",
+      "title": "Xác định rõ cách tiếp cận cho mô hình dữ liệu & thiết kế schema trước khi triển khai",
+      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Mô hình dữ liệu & Thiết kế Schema; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
       "layer": "db",
       "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Model business invariants in the database where appropriate.",
-      "example_bad": "The change violates or ignores the rule: Model business invariants in the database where appropriate."
+      "example_good": "Project ghi nhận rõ cách Mô hình dữ liệu & Thiết kế Schema được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
+      "example_bad": "Mô hình dữ liệu & Thiết kế Schema được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review."
     },
     {
-      "title": "Use consistent identity and audit fields",
-      "detail": "Define project conventions for surrogate/natural keys, created/updated timestamps, actor fields and soft-delete behavior where needed.",
-      "layer": "db",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Use consistent identity and audit fields.",
-      "example_bad": "The change violates or ignores the rule: Use consistent identity and audit fields."
-    },
-    {
-      "title": "Choose data types that preserve meaning",
-      "detail": "Use timezone-aware timestamps for instants, fixed precision for money, explicit length/precision and domain-appropriate types rather than generic strings.",
-      "layer": "db",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Choose data types that preserve meaning.",
-      "example_bad": "The change violates or ignores the rule: Choose data types that preserve meaning."
-    },
-    {
-      "title": "Design indexes from real query patterns",
-      "detail": "Index selective filter/join/order columns based on measured access paths; review write/storage cost and avoid redundant indexes.",
-      "layer": "db",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Design indexes from real query patterns.",
-      "example_bad": "The change violates or ignores the rule: Design indexes from real query patterns."
-    },
-    {
-      "title": "Define ownership and lifecycle for each data set",
-      "detail": "Identify source of truth, writers, retention, archival/deletion and consistency expectations.",
-      "layer": "db",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Define ownership and lifecycle for each data set.",
-      "example_bad": "The change violates or ignores the rule: Define ownership and lifecycle for each data set."
-    },
-    {
-      "title": "Avoid embedding presentation concerns in canonical data",
-      "detail": "Persist stable business codes/values and localize/format them in presentation or explicit projection layers.",
+      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
+      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
       "layer": "db",
       "severity": "should",
-      "example_good": "The implementation and review evidence demonstrate: Avoid embedding presentation concerns in canonical data.",
-      "example_bad": "The change violates or ignores the rule: Avoid embedding presentation concerns in canonical data."
+      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
+      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán."
+    },
+    {
+      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
+      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
+      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Resolve applicability and dependencies",
-      "description": "Confirm where STD-DATA applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Mô hình dữ liệu & Thiết kế Schema; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Record project decisions",
-      "description": "Apply the rules of Data Modeling & Schema Design to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Mô hình dữ liệu & Thiết kế Schema áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Implement with evidence",
-      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
-    },
-    {
-      "step": 4,
-      "title": "Verify before completion",
-      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Data Modeling & Schema Design is applied inconsistently across features",
-      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
-      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
+      "issue": "Áp dụng Mô hình dữ liệu & Thiết kế Schema không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-DATA trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Implementation satisfies the happy path but misses Data Modeling & Schema Design failure cases",
-      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
-      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
+      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
+      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
+      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
     }
   ],
-  "depends_on": [
-    {
-      "code": "STD-PRIV",
-      "dependency_type": "uses"
-    },
-    {
-      "code": "STD-SEC",
-      "dependency_type": "uses"
-    }
-  ]
+  "depends_on": [],
+  "diagrams": []
 }

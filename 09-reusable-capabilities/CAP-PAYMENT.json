@@ -1,123 +1,66 @@
 {
   "schemaVersion": 1,
   "code": "CAP-PAYMENT",
-  "name": "Payments & Billing",
+  "name": "Thanh toán & Lập hóa đơn",
   "category": "09_reusable_capabilities",
-  "description": "Payments & Billing standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when CAP-PAYMENT applies.",
-  "version": "2.0.0",
+  "description": "Tiêu chuẩn chuẩn hóa cho Thanh toán & Lập hóa đơn. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Treat payment state as a durable state machine",
-      "detail": "Define initiated/pending/authorized/captured/failed/cancelled/refunded or provider-specific mapped states and allowed transitions explicitly.",
+      "title": "Xác định rõ cách tiếp cận cho thanh toán & lập hóa đơn trước khi triển khai",
+      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Thanh toán & Lập hóa đơn; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
       "layer": "process",
       "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Treat payment state as a durable state machine.",
-      "example_bad": "The change violates or ignores the rule: Treat payment state as a durable state machine."
+      "example_good": "Project ghi nhận rõ cách Thanh toán & Lập hóa đơn được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
+      "example_bad": "Thanh toán & Lập hóa đơn được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review."
     },
     {
-      "title": "Use idempotency for payment creation and capture",
-      "detail": "Client retries, callback retries and network ambiguity must not create duplicate charges or duplicate business fulfillment.",
-      "layer": "api",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Use idempotency for payment creation and capture.",
-      "example_bad": "The change violates or ignores the rule: Use idempotency for payment creation and capture."
-    },
-    {
-      "title": "Never store raw card secrets unless the system is explicitly certified to do so",
-      "detail": "Prefer tokenized hosted/payment-provider flows and keep sensitive payment data outside application storage/logs.",
-      "layer": "security",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Never store raw card secrets unless the system is explicitly certified to do so.",
-      "example_bad": "The change violates or ignores the rule: Never store raw card secrets unless the system is explicitly certified to do so."
-    },
-    {
-      "title": "Verify provider callbacks and reconcile asynchronously",
-      "detail": "Authenticate webhook signatures, deduplicate events and reconcile provider state for missed/out-of-order callbacks.",
-      "layer": "security",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Verify provider callbacks and reconcile asynchronously.",
-      "example_bad": "The change violates or ignores the rule: Verify provider callbacks and reconcile asynchronously."
-    },
-    {
-      "title": "Separate payment success from order fulfillment until durable confirmation",
-      "detail": "Fulfillment follows the approved authoritative payment condition and can recover after process restart.",
+      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
+      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
       "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Separate payment success from order fulfillment until durable confirmation.",
-      "example_bad": "The change violates or ignores the rule: Separate payment success from order fulfillment until durable confirmation."
+      "severity": "should",
+      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
+      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán."
     },
     {
-      "title": "Maintain auditable monetary records",
-      "detail": "Store currency, amount, provider reference, business reference, status history and refund/adjustment evidence with fixed-precision monetary types.",
-      "layer": "db",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Maintain auditable monetary records.",
-      "example_bad": "The change violates or ignores the rule: Maintain auditable monetary records."
-    },
-    {
-      "title": "Handle refunds and partial outcomes explicitly",
-      "detail": "Define permissions, idempotency, partial refund rules and reconciliation for refund/cancel/chargeback cases.",
+      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
+      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
       "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Handle refunds and partial outcomes explicitly.",
-      "example_bad": "The change violates or ignores the rule: Handle refunds and partial outcomes explicitly."
+      "severity": "should",
+      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
+      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Resolve capability requirements",
-      "description": "Link CAP-PAYMENT to the feature/business requirements, applicable platform/technology standards and external provider constraints."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Thanh toán & Lập hóa đơn; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Design states, contracts and invariants",
-      "description": "Define Payments & Billing states, API/data contracts, security rules, failure/retry behavior and acceptance criteria before implementation."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Thanh toán & Lập hóa đơn áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Implement through project architecture",
-      "description": "Apply the capability using the project-selected web/mobile/backend/database technology standards without embedding vendor-specific behavior in unrelated layers."
-    },
-    {
-      "step": 4,
-      "title": "Verify end-to-end scenarios",
-      "description": "Test happy path, authorization, validation, duplicate/retry, failure/recovery and audit/observability scenarios that apply."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Provider charged successfully but order remains unpaid",
-      "cause": "Payment callback and business state were not reconciled durably.",
-      "solution": "Persist provider references/events and run idempotent reconciliation."
+      "issue": "Áp dụng Thanh toán & Lập hóa đơn không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ CAP-PAYMENT trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Retry creates duplicate payment",
-      "cause": "Payment creation/capture lacks idempotency.",
-      "solution": "Use a stable idempotency key and unique durable business/provider mapping."
+      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
+      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
+      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
     }
   ],
-  "depends_on": [
-    {
-      "code": "STD-BE-CONCUR",
-      "dependency_type": "uses"
-    },
-    {
-      "code": "STD-DATA-TX",
-      "dependency_type": "uses"
-    },
-    {
-      "code": "STD-WEBHOOK",
-      "dependency_type": "uses"
-    },
-    {
-      "code": "STD-SEC",
-      "dependency_type": "uses"
-    },
-    {
-      "code": "STD-PRIV",
-      "dependency_type": "uses"
-    }
-  ]
+  "depends_on": [],
+  "diagrams": []
 }

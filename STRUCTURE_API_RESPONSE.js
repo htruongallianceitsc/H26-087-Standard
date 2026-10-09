@@ -1,125 +1,125 @@
 /**
- * Static catalog definition for Standards & Capabilities.
- * Hierarchical tree representation.
+ * Định nghĩa catalog tĩnh cho Standards & Capabilities.
+ * Biểu diễn theo cây phân cấp.
  */
 
 const STANDARD_CATALOG = [
     {
         key: '01',
         code: '01',
-        name: 'Governance & Delivery',
-        title: '01. GOVERNANCE & DELIVERY',
+        name: 'Quản trị & Bàn giao',
+        title: '01. QUẢN TRỊ & BÀN GIAO',
         type: 'category',
         children: [
             {
                 code: 'STD-REQ',
-                name: 'Requirements & Acceptance Criteria',
-                title: 'STD-REQ ............ Requirements & Acceptance Criteria',
+                name: 'Yêu cầu & Tiêu chí chấp nhận',
+                title: 'STD-REQ ............ Yêu cầu & Tiêu chí chấp nhận',
                 type: 'standard'
             },
             {
                 code: 'STD-BIZ',
-                name: 'Business Rules & Business Processes',
-                title: 'STD-BIZ ............ Business Rules & Business Processes',
+                name: 'Quy tắc nghiệp vụ & Quy trình nghiệp vụ',
+                title: 'STD-BIZ ............ Quy tắc nghiệp vụ & Quy trình nghiệp vụ',
                 type: 'standard'
             },
             {
                 code: 'STD-FEAT',
-                name: 'Feature Specification & Decomposition',
-                title: 'STD-FEAT ........... Feature Specification & Decomposition',
+                name: 'Đặc tả & Phân rã Feature',
+                title: 'STD-FEAT ........... Đặc tả & Phân rã Feature',
                 type: 'standard'
             },
             {
                 code: 'STD-ARCH',
-                name: 'Architecture Principles & ADRs',
-                title: 'STD-ARCH ........... Architecture Principles & ADRs',
+                name: 'Nguyên tắc kiến trúc & ADR',
+                title: 'STD-ARCH ........... Nguyên tắc kiến trúc & ADR',
                 type: 'standard'
             },
             {
                 code: 'STD-DOC',
-                name: 'Documentation & Traceability',
-                title: 'STD-DOC ............ Documentation & Traceability',
+                name: 'Tài liệu hóa & Truy vết',
+                title: 'STD-DOC ............ Tài liệu hóa & Truy vết',
                 type: 'standard'
             },
             {
                 code: 'STD-NAME',
-                name: 'Naming & Code Organization',
-                title: 'STD-NAME ........... Naming & Code Organization',
+                name: 'Đặt tên & Tổ chức mã nguồn',
+                title: 'STD-NAME ........... Đặt tên & Tổ chức mã nguồn',
                 type: 'standard'
             },
             {
                 code: 'STD-GIT',
-                name: 'Git Workflow & Branching Strategy',
-                title: 'STD-GIT ............ Git Workflow & Branching Strategy',
+                name: 'Quy trình Git & Chiến lược Branch',
+                title: 'STD-GIT ............ Quy trình Git & Chiến lược Branch',
                 type: 'standard'
             },
             {
                 code: 'STD-TEST',
-                name: 'Testing Strategy & Quality Gates',
-                title: 'STD-TEST ........... Testing Strategy & Quality Gates',
+                name: 'Chiến lược kiểm thử & Quality Gate',
+                title: 'STD-TEST ........... Chiến lược kiểm thử & Quality Gate',
                 type: 'standard'
             },
             {
                 code: 'STD-PERF-TEST',
-                name: 'Performance, Load & Stress Testing',
-                title: 'STD-PERF-TEST ...... Performance, Load & Stress Testing',
+                name: 'Kiểm thử hiệu năng, tải & stress',
+                title: 'STD-PERF-TEST ...... Kiểm thử hiệu năng, tải & stress',
                 type: 'standard',
-                tag: 'NEW',
+                tag: 'MỚI',
                 relations: [
-                    { type: 'EXTENDS', targets: ['STD-TEST'], label: 'Extends STD-TEST' },
-                    { type: 'USES', targets: ['STD-PERF', 'STD-SLO'], label: 'Uses STD-PERF, STD-SLO' }
+                    { type: 'EXTENDS', targets: ['STD-TEST'], label: 'Mở rộng STD-TEST' },
+                    { type: 'USES', targets: ['STD-PERF', 'STD-SLO'], label: 'Sử dụng STD-PERF, STD-SLO' }
                 ]
             },
             {
                 code: 'STD-CODE-REVIEW',
-                name: 'Code Review & Pull Request Governance',
-                title: 'STD-CODE-REVIEW .... Code Review & Pull Request Governance',
+                name: 'Code Review & Quản trị Pull Request',
+                title: 'STD-CODE-REVIEW .... Code Review & Quản trị Pull Request',
                 type: 'standard',
-                tag: 'NEW',
+                tag: 'MỚI',
                 relations: [
-                    { type: 'USES', targets: ['STD-GIT', 'STD-TEST', 'STD-SEC'], label: 'Uses STD-GIT, STD-TEST, STD-SEC' }
+                    { type: 'USES', targets: ['STD-GIT', 'STD-TEST', 'STD-SEC'], label: 'Sử dụng STD-GIT, STD-TEST, STD-SEC' }
                 ]
             },
             {
                 code: 'STD-VERSIONING',
-                name: 'Versioning, Compatibility & Deprecation',
-                title: 'STD-VERSIONING ..... Versioning, Compatibility & Deprecation',
+                name: 'Quản lý phiên bản, Tương thích & Ngừng hỗ trợ',
+                title: 'STD-VERSIONING ..... Quản lý phiên bản, Tương thích & Ngừng hỗ trợ',
                 type: 'standard',
-                tag: 'NEW',
+                tag: 'MỚI',
                 relations: [
-                    { type: 'USED_BY', targets: ['STD-API', 'STD-CI', 'STD-DEPLOY'], label: 'Used by STD-API, STD-CI, STD-DEPLOY' }
+                    { type: 'USED_BY', targets: ['STD-API', 'STD-CI', 'STD-DEPLOY'], label: 'Được sử dụng bởi STD-API, STD-CI, STD-DEPLOY' }
                 ]
             },
             {
                 code: 'STD-COMPLIANCE',
-                name: 'Regulatory Compliance & Evidence',
-                title: 'STD-COMPLIANCE ..... Regulatory Compliance & Evidence',
+                name: 'Tuân thủ quy định & Bằng chứng',
+                title: 'STD-COMPLIANCE ..... Tuân thủ quy định & Bằng chứng',
                 type: 'standard',
-                tag: 'NEW',
+                tag: 'MỚI',
                 relations: [
-                    { type: 'USES', targets: ['STD-SEC', 'STD-PRIV', 'STD-DOC'], label: 'Uses STD-SEC, STD-PRIV, STD-DOC' }
+                    { type: 'USES', targets: ['STD-SEC', 'STD-PRIV', 'STD-DOC'], label: 'Sử dụng STD-SEC, STD-PRIV, STD-DOC' }
                 ]
             },
             {
                 code: 'STD-MONOREPO',
-                name: 'Monorepo & Workspace Management',
-                title: 'STD-MONOREPO ...... Monorepo & Workspace Management',
+                name: 'Quản lý Monorepo & Workspace',
+                title: 'STD-MONOREPO ...... Quản lý Monorepo & Workspace',
                 type: 'standard',
-                tag: 'NEW/OPTIONAL',
+                tag: 'MỚI/TÙY CHỌN',
                 relations: [
-                    { type: 'USES', targets: ['STD-GIT', 'STD-DEP', 'STD-CI'], label: 'Uses STD-GIT, STD-DEP, STD-CI' }
+                    { type: 'USES', targets: ['STD-GIT', 'STD-DEP', 'STD-CI'], label: 'Sử dụng STD-GIT, STD-DEP, STD-CI' }
                 ]
             },
             {
                 code: 'STD-CI',
-                name: 'Continuous Integration & Build Pipeline',
-                title: 'STD-CI ............. Continuous Integration & Build Pipeline',
+                name: 'Tích hợp liên tục & Pipeline Build',
+                title: 'STD-CI ............. Tích hợp liên tục & Pipeline Build',
                 type: 'standard'
             },
             {
                 code: 'STD-AI-DEV',
-                name: 'AI-Assisted Development & Agent Workflow',
-                title: 'STD-AI-DEV ......... AI-Assisted Development & Agent Workflow',
+                name: 'Phát triển hỗ trợ bởi AI & Quy trình Agent',
+                title: 'STD-AI-DEV ......... Phát triển hỗ trợ bởi AI & Quy trình Agent',
                 type: 'standard'
             }
         ]
@@ -127,14 +127,14 @@ const STANDARD_CATALOG = [
     {
         key: '02',
         code: '02',
-        name: 'Engineering Foundation',
-        title: '02. ENGINEERING FOUNDATION',
+        name: 'Nền tảng Kỹ thuật',
+        title: '02. NỀN TẢNG KỸ THUẬT',
         type: 'category',
         children: [
             {
                 code: 'STD-ERR',
-                name: 'Error Handling & Classification',
-                title: 'STD-ERR ............ Error Handling & Classification',
+                name: 'Xử lý & Phân loại lỗi',
+                title: 'STD-ERR ............ Xử lý & Phân loại lỗi',
                 type: 'standard'
             },
             {
@@ -145,44 +145,44 @@ const STANDARD_CATALOG = [
             },
             {
                 code: 'STD-SEC',
-                name: 'Application Security Principles',
-                title: 'STD-SEC ............ Application Security Principles',
+                name: 'Nguyên tắc bảo mật ứng dụng',
+                title: 'STD-SEC ............ Nguyên tắc bảo mật ứng dụng',
                 type: 'standard'
             },
             {
                 code: 'STD-PRIV',
-                name: 'Privacy, PII & Data Retention',
-                title: 'STD-PRIV ........... Privacy, PII & Data Retention',
+                name: 'Quyền riêng tư, PII & Lưu giữ dữ liệu',
+                title: 'STD-PRIV ........... Quyền riêng tư, PII & Lưu giữ dữ liệu',
                 type: 'standard'
             },
             {
                 code: 'STD-ENV',
-                name: 'Environment, Configuration & Secrets',
-                title: 'STD-ENV ............ Environment, Configuration & Secrets',
+                name: 'Môi trường, Cấu hình & Secret',
+                title: 'STD-ENV ............ Môi trường, Cấu hình & Secret',
                 type: 'standard'
             },
             {
                 code: 'STD-I18N',
-                name: 'Internationalization & Localization',
-                title: 'STD-I18N ........... Internationalization & Localization',
+                name: 'Quốc tế hóa & Bản địa hóa',
+                title: 'STD-I18N ........... Quốc tế hóa & Bản địa hóa',
                 type: 'standard'
             },
             {
                 code: 'STD-ANALYTICS',
-                name: 'Product Analytics & Event Tracking',
-                title: 'STD-ANALYTICS ...... Product Analytics & Event Tracking',
+                name: 'Phân tích sản phẩm & Theo dõi sự kiện',
+                title: 'STD-ANALYTICS ...... Phân tích sản phẩm & Theo dõi sự kiện',
                 type: 'standard'
             },
             {
                 code: 'STD-PERF',
-                name: 'Performance Engineering Principles',
-                title: 'STD-PERF ........... Performance Engineering Principles',
+                name: 'Nguyên tắc kỹ thuật hiệu năng',
+                title: 'STD-PERF ........... Nguyên tắc kỹ thuật hiệu năng',
                 type: 'standard'
             },
             {
                 code: 'STD-RES',
-                name: 'Reliability, Resilience & Fault Tolerance',
-                title: 'STD-RES ............ Reliability, Resilience & Fault Tolerance',
+                name: 'Độ tin cậy, Khả năng phục hồi & Chịu lỗi',
+                title: 'STD-RES ............ Độ tin cậy, Khả năng phục hồi & Chịu lỗi',
                 type: 'standard',
                 notes: 'Includes chaos testing principles',
                 relations: [
@@ -191,14 +191,14 @@ const STANDARD_CATALOG = [
             },
             {
                 code: 'STD-DEP',
-                name: 'Dependency & Package Management',
-                title: 'STD-DEP ............ Dependency & Package Management',
+                name: 'Quản lý dependency & Package',
+                title: 'STD-DEP ............ Quản lý dependency & Package',
                 type: 'standard'
             },
             {
                 code: 'STD-FLAG',
-                name: 'Feature Flags & Progressive Rollout',
-                title: 'STD-FLAG ........... Feature Flags & Progressive Rollout',
+                name: 'Feature Flag & Rollout tăng dần',
+                title: 'STD-FLAG ........... Feature Flag & Rollout tăng dần',
                 type: 'standard'
             }
         ]
@@ -206,68 +206,68 @@ const STANDARD_CATALOG = [
     {
         key: '03',
         code: '03',
-        name: 'API, Integration & Data',
-        title: '03. API, INTEGRATION & DATA',
+        name: 'API, Tích hợp & Dữ liệu',
+        title: '03. API, TÍCH HỢP & DỮ LIỆU',
         type: 'category',
         children: [
             {
                 code: 'STD-API',
-                name: 'API Contracts & Versioning',
-                title: 'STD-API ............ API Contracts & Versioning',
+                name: 'Hợp đồng API & Quản lý phiên bản',
+                title: 'STD-API ............ Hợp đồng API & Quản lý phiên bản',
                 type: 'standard',
                 relations: [
-                    { type: 'USES', targets: ['STD-VERSIONING'], label: 'Uses STD-VERSIONING' }
+                    { type: 'USES', targets: ['STD-VERSIONING'], label: 'Sử dụng STD-VERSIONING' }
                 ]
             },
             {
                 code: 'STD-API-REST',
-                name: 'RESTful API Design',
-                title: 'STD-API-REST ....... RESTful API Design',
+                name: 'Thiết kế RESTful API',
+                title: 'STD-API-REST ....... Thiết kế RESTful API',
                 type: 'standard'
             },
             {
                 code: 'STD-API-RT',
-                name: 'Realtime API & WebSocket/SSE',
-                title: 'STD-API-RT ......... Realtime API & WebSocket/SSE',
+                name: 'API thời gian thực & WebSocket/SSE',
+                title: 'STD-API-RT ......... API thời gian thực & WebSocket/SSE',
                 type: 'standard'
             },
             {
                 code: 'STD-INTEGRATION',
-                name: 'Third-Party Integration',
-                title: 'STD-INTEGRATION .... Third-Party Integration',
+                name: 'Tích hợp bên thứ ba',
+                title: 'STD-INTEGRATION .... Tích hợp bên thứ ba',
                 type: 'standard'
             },
             {
                 code: 'STD-WEBHOOK',
-                name: 'Webhook & Event Contracts',
-                title: 'STD-WEBHOOK ........ Webhook & Event Contracts',
+                name: 'Webhook & Hợp đồng sự kiện',
+                title: 'STD-WEBHOOK ........ Webhook & Hợp đồng sự kiện',
                 type: 'standard'
             },
             {
                 code: 'STD-DATA',
-                name: 'Data Modeling & Schema Design',
-                title: 'STD-DATA ........... Data Modeling & Schema Design',
+                name: 'Mô hình dữ liệu & Thiết kế Schema',
+                title: 'STD-DATA ........... Mô hình dữ liệu & Thiết kế Schema',
                 type: 'standard'
             },
             {
                 code: 'STD-DATA-TX',
-                name: 'Transactions, Concurrency & Consistency',
-                title: 'STD-DATA-TX ........ Transactions, Concurrency & Consistency',
+                name: 'Giao dịch, Đồng thời & Tính nhất quán',
+                title: 'STD-DATA-TX ........ Giao dịch, Đồng thời & Tính nhất quán',
                 type: 'standard'
             },
             {
                 code: 'STD-DATA-MIG',
-                name: 'Schema Evolution & Database Migrations',
-                title: 'STD-DATA-MIG ....... Schema Evolution & Database Migrations',
+                name: 'Tiến hóa Schema & Migration cơ sở dữ liệu',
+                title: 'STD-DATA-MIG ....... Tiến hóa Schema & Migration cơ sở dữ liệu',
                 type: 'standard',
                 relations: [
-                    { type: 'USES', targets: ['STD-VERSIONING'], label: 'Uses STD-VERSIONING' }
+                    { type: 'USES', targets: ['STD-VERSIONING'], label: 'Sử dụng STD-VERSIONING' }
                 ]
             },
             {
                 code: 'STD-CACHE',
-                name: 'Caching & Cache Invalidation',
-                title: 'STD-CACHE .......... Caching & Cache Invalidation',
+                name: 'Bộ nhớ đệm & Vô hiệu hóa Cache',
+                title: 'STD-CACHE .......... Bộ nhớ đệm & Vô hiệu hóa Cache',
                 type: 'standard'
             }
         ]
@@ -275,50 +275,50 @@ const STANDARD_CATALOG = [
     {
         key: '04',
         code: '04',
-        name: 'Experience — UI / UX',
-        title: '04. EXPERIENCE — UI / UX',
+        name: 'Trải nghiệm — UI / UX',
+        title: '04. TRẢI NGHIỆM — UI / UX',
         type: 'category',
         children: [
             {
                 code: 'STD-UX',
-                name: 'UX & Interaction Principles',
-                title: 'STD-UX ............. UX & Interaction Principles',
+                name: 'Nguyên tắc UX & Tương tác',
+                title: 'STD-UX ............. Nguyên tắc UX & Tương tác',
                 type: 'standard'
             },
             {
                 code: 'STD-UI-STATE',
-                name: 'UI State & State Presentation',
-                title: 'STD-UI-STATE ....... UI State & State Presentation',
+                name: 'Trạng thái UI & Cách trình bày trạng thái',
+                title: 'STD-UI-STATE ....... Trạng thái UI & Cách trình bày trạng thái',
                 type: 'standard'
             },
             {
                 code: 'STD-FEEDBACK',
-                name: 'Feedback, Notifications & Messaging',
-                title: 'STD-FEEDBACK ....... Feedback, Notifications & Messaging',
+                name: 'Phản hồi, Thông báo & Messaging',
+                title: 'STD-FEEDBACK ....... Phản hồi, Thông báo & Messaging',
                 type: 'standard'
             },
             {
                 code: 'STD-FORM',
-                name: 'Form & Validation Experience',
-                title: 'STD-FORM ........... Form & Validation Experience',
+                name: 'Trải nghiệm Form & Validation',
+                title: 'STD-FORM ........... Trải nghiệm Form & Validation',
                 type: 'standard'
             },
             {
                 code: 'STD-A11Y',
-                name: 'Accessibility & Inclusive Design',
-                title: 'STD-A11Y ........... Accessibility & Inclusive Design',
+                name: 'Khả năng tiếp cận & Thiết kế hòa nhập',
+                title: 'STD-A11Y ........... Khả năng tiếp cận & Thiết kế hòa nhập',
                 type: 'standard'
             },
             {
                 code: 'STD-DESIGN',
-                name: 'Design Handoff & Fidelity',
-                title: 'STD-DESIGN ......... Design Handoff & Fidelity',
+                name: 'Bàn giao thiết kế & Độ trung thực',
+                title: 'STD-DESIGN ......... Bàn giao thiết kế & Độ trung thực',
                 type: 'standard'
             },
             {
                 code: 'STD-DS',
-                name: 'Design System & Shared Components',
-                title: 'STD-DS ............. Design System & Shared Components',
+                name: 'Design System & Component dùng chung',
+                title: 'STD-DS ............. Design System & Component dùng chung',
                 type: 'standard'
             }
         ]
@@ -326,92 +326,92 @@ const STANDARD_CATALOG = [
     {
         key: '05',
         code: '05',
-        name: 'Web Platform',
-        title: '05. WEB PLATFORM',
+        name: 'Nền tảng Web',
+        title: '05. NỀN TẢNG WEB',
         type: 'category',
         children: [
             {
                 code: 'STD-WEB-ARCH',
-                name: 'Web Application Architecture',
-                title: 'STD-WEB-ARCH ....... Web Application Architecture',
+                name: 'Kiến trúc ứng dụng Web',
+                title: 'STD-WEB-ARCH ....... Kiến trúc ứng dụng Web',
                 type: 'standard',
                 relations: [
-                    { type: 'EXTENDS', targets: ['STD-ARCH'], label: 'Extends STD-ARCH' }
+                    { type: 'EXTENDS', targets: ['STD-ARCH'], label: 'Mở rộng STD-ARCH' }
                 ]
             },
             {
                 code: 'STD-WEB-ROUTE',
-                name: 'Routing, Navigation & URL State',
-                title: 'STD-WEB-ROUTE ...... Routing, Navigation & URL State',
+                name: 'Routing, Điều hướng & Trạng thái URL',
+                title: 'STD-WEB-ROUTE ...... Routing, Điều hướng & Trạng thái URL',
                 type: 'standard',
                 relations: [
-                    { type: 'ALIGNS_WITH', targets: ['STD-UX'], label: 'Aligns With STD-UX' }
+                    { type: 'ALIGNS_WITH', targets: ['STD-UX'], label: 'Căn chỉnh với STD-UX' }
                 ]
             },
             {
                 code: 'STD-WEB-RESP',
-                name: 'Responsive Layout',
-                title: 'STD-WEB-RESP ....... Responsive Layout',
+                name: 'Layout Responsive',
+                title: 'STD-WEB-RESP ....... Layout Responsive',
                 type: 'standard',
                 relations: [
-                    { type: 'USES', targets: ['STD-DS', 'STD-A11Y'], label: 'Uses STD-DS, STD-A11Y' }
+                    { type: 'USES', targets: ['STD-DS', 'STD-A11Y'], label: 'Sử dụng STD-DS, STD-A11Y' }
                 ]
             },
             {
                 code: 'STD-WEB-FORM',
-                name: 'Browser Form & Validation',
-                title: 'STD-WEB-FORM ....... Browser Form & Validation',
+                name: 'Form trình duyệt & Validation',
+                title: 'STD-WEB-FORM ....... Form trình duyệt & Validation',
                 type: 'standard',
                 relations: [
-                    { type: 'EXTENDS', targets: ['STD-FORM'], label: 'Extends STD-FORM' }
+                    { type: 'EXTENDS', targets: ['STD-FORM'], label: 'Mở rộng STD-FORM' }
                 ]
             },
             {
                 code: 'STD-WEB-AUTH',
-                name: 'Browser Authentication & Sessions',
-                title: 'STD-WEB-AUTH ....... Browser Authentication & Sessions',
+                name: 'Xác thực trình duyệt & Session',
+                title: 'STD-WEB-AUTH ....... Xác thực trình duyệt & Session',
                 type: 'standard',
                 relations: [
-                    { type: 'USES', targets: ['STD-SEC', 'STD-WEB-SEC'], label: 'Uses STD-SEC, STD-WEB-SEC' }
+                    { type: 'USES', targets: ['STD-SEC', 'STD-WEB-SEC'], label: 'Sử dụng STD-SEC, STD-WEB-SEC' }
                 ]
             },
             {
                 code: 'STD-WEB-STORE',
-                name: 'Browser Storage & Persistence',
-                title: 'STD-WEB-STORE ...... Browser Storage & Persistence',
+                name: 'Lưu trữ trình duyệt & Persistence',
+                title: 'STD-WEB-STORE ...... Lưu trữ trình duyệt & Persistence',
                 type: 'standard',
                 relations: [
-                    { type: 'USES', targets: ['STD-CACHE', 'STD-WEB-SEC'], label: 'Uses STD-CACHE, STD-WEB-SEC' }
+                    { type: 'USES', targets: ['STD-CACHE', 'STD-WEB-SEC'], label: 'Sử dụng STD-CACHE, STD-WEB-SEC' }
                 ]
             },
             {
                 code: 'STD-WEB-SEC',
-                name: 'Browser & Web Application Security',
-                title: 'STD-WEB-SEC ........ Browser & Web Application Security',
+                name: 'Bảo mật trình duyệt & Ứng dụng Web',
+                title: 'STD-WEB-SEC ........ Bảo mật trình duyệt & Ứng dụng Web',
                 type: 'standard',
                 relations: [
-                    { type: 'EXTENDS', targets: ['STD-SEC'], label: 'Extends STD-SEC' }
+                    { type: 'EXTENDS', targets: ['STD-SEC'], label: 'Mở rộng STD-SEC' }
                 ]
             },
             {
                 code: 'STD-WEB-PERF',
-                name: 'Web Rendering & Memory Performance',
-                title: 'STD-WEB-PERF ....... Web Rendering & Memory Performance',
+                name: 'Hiệu năng Render Web & Bộ nhớ',
+                title: 'STD-WEB-PERF ....... Hiệu năng Render Web & Bộ nhớ',
                 type: 'standard',
                 relations: [
-                    { type: 'EXTENDS', targets: ['STD-PERF'], label: 'Extends STD-PERF' }
+                    { type: 'EXTENDS', targets: ['STD-PERF'], label: 'Mở rộng STD-PERF' }
                 ]
             },
             {
                 code: 'STD-WEB-SEO',
-                name: 'SEO & Rendering Strategy',
-                title: 'STD-WEB-SEO ........ SEO & Rendering Strategy',
+                name: 'SEO & Chiến lược Rendering',
+                title: 'STD-WEB-SEO ........ SEO & Chiến lược Rendering',
                 type: 'standard'
             },
             {
                 code: 'STD-WEB-PWA',
-                name: 'Progressive Web Apps',
-                title: 'STD-WEB-PWA ........ Progressive Web Apps',
+                name: 'Progressive Web App (PWA)',
+                title: 'STD-WEB-PWA ........ Progressive Web App (PWA)',
                 type: 'standard'
             }
         ]
@@ -419,102 +419,102 @@ const STANDARD_CATALOG = [
     {
         key: '06',
         code: '06',
-        name: 'Mobile Platform',
-        title: '06. MOBILE PLATFORM',
+        name: 'Nền tảng Mobile',
+        title: '06. NỀN TẢNG MOBILE',
         type: 'category',
         children: [
             {
                 code: 'STD-MOB-ARCH',
-                name: 'Mobile Application Architecture',
-                title: 'STD-MOB-ARCH ....... Mobile Application Architecture',
+                name: 'Kiến trúc ứng dụng Mobile',
+                title: 'STD-MOB-ARCH ....... Kiến trúc ứng dụng Mobile',
                 type: 'standard',
                 relations: [
-                    { type: 'EXTENDS', targets: ['STD-ARCH'], label: 'Extends STD-ARCH' }
+                    { type: 'EXTENDS', targets: ['STD-ARCH'], label: 'Mở rộng STD-ARCH' }
                 ]
             },
             {
                 code: 'STD-MOB-NAV',
-                name: 'Navigation, Routing & Deep Linking',
-                title: 'STD-MOB-NAV ........ Navigation, Routing & Deep Linking',
+                name: 'Điều hướng, Routing & Deep Linking',
+                title: 'STD-MOB-NAV ........ Điều hướng, Routing & Deep Linking',
                 type: 'standard',
                 relations: [
-                    { type: 'ALIGNS_WITH', targets: ['STD-UX'], label: 'Aligns With STD-UX' }
+                    { type: 'ALIGNS_WITH', targets: ['STD-UX'], label: 'Căn chỉnh với STD-UX' }
                 ]
             },
             {
                 code: 'STD-MOB-LIFE',
-                name: 'Lifecycle & Background Execution',
-                title: 'STD-MOB-LIFE ....... Lifecycle & Background Execution',
+                name: 'Vòng đời & Thực thi nền',
+                title: 'STD-MOB-LIFE ....... Vòng đời & Thực thi nền',
                 type: 'standard'
             },
             {
                 code: 'STD-MOB-STORE',
-                name: 'Local Storage & Secure Persistence',
-                title: 'STD-MOB-STORE ...... Local Storage & Secure Persistence',
+                name: 'Lưu trữ cục bộ & Lưu trữ an toàn',
+                title: 'STD-MOB-STORE ...... Lưu trữ cục bộ & Lưu trữ an toàn',
                 type: 'standard',
                 relations: [
-                    { type: 'USES', targets: ['STD-CACHE', 'STD-MOB-SEC'], label: 'Uses STD-CACHE, STD-MOB-SEC' }
+                    { type: 'USES', targets: ['STD-CACHE', 'STD-MOB-SEC'], label: 'Sử dụng STD-CACHE, STD-MOB-SEC' }
                 ]
             },
             {
                 code: 'STD-MOB-OFF',
-                name: 'Offline, Connectivity & Sync',
-                title: 'STD-MOB-OFF ........ Offline, Connectivity & Sync',
+                name: 'Offline, Kết nối & Đồng bộ',
+                title: 'STD-MOB-OFF ........ Offline, Kết nối & Đồng bộ',
                 type: 'standard',
                 relations: [
-                    { type: 'USES', targets: ['STD-RES', 'STD-CACHE'], label: 'Uses STD-RES, STD-CACHE' }
+                    { type: 'USES', targets: ['STD-RES', 'STD-CACHE'], label: 'Sử dụng STD-RES, STD-CACHE' }
                 ]
             },
             {
                 code: 'STD-MOB-PUSH',
-                name: 'Push Notifications & Routing',
-                title: 'STD-MOB-PUSH ....... Push Notifications & Routing',
+                name: 'Push Notification & Routing',
+                title: 'STD-MOB-PUSH ....... Push Notification & Routing',
                 type: 'standard'
             },
             {
                 code: 'STD-MOB-DEVICE',
-                name: 'Device Permissions & Capabilities',
-                title: 'STD-MOB-DEVICE ..... Device Permissions & Capabilities',
+                name: 'Quyền thiết bị & Khả năng nền tảng',
+                title: 'STD-MOB-DEVICE ..... Quyền thiết bị & Khả năng nền tảng',
                 type: 'standard'
             },
             {
                 code: 'STD-MOB-UI',
-                name: 'Mobile Layout, Safe Areas & Keyboard',
-                title: 'STD-MOB-UI ......... Mobile Layout, Safe Areas & Keyboard',
+                name: 'Layout Mobile, Safe Area & Bàn phím',
+                title: 'STD-MOB-UI ......... Layout Mobile, Safe Area & Bàn phím',
                 type: 'standard',
                 relations: [
                     {
                         type: 'USES',
                         targets: ['STD-UX', 'STD-DS', 'STD-A11Y', 'STD-FORM', 'STD-UI-STATE'],
-                        label: 'Uses STD-UX, STD-DS, STD-A11Y, STD-FORM, STD-UI-STATE'
+                        label: 'Sử dụng STD-UX, STD-DS, STD-A11Y, STD-FORM, STD-UI-STATE'
                     }
                 ]
             },
             {
                 code: 'STD-MOB-SEC',
-                name: 'Mobile Application Security',
-                title: 'STD-MOB-SEC ........ Mobile Application Security',
+                name: 'Bảo mật ứng dụng Mobile',
+                title: 'STD-MOB-SEC ........ Bảo mật ứng dụng Mobile',
                 type: 'standard',
                 relations: [
-                    { type: 'EXTENDS', targets: ['STD-SEC'], label: 'Extends STD-SEC' }
+                    { type: 'EXTENDS', targets: ['STD-SEC'], label: 'Mở rộng STD-SEC' }
                 ]
             },
             {
                 code: 'STD-MOB-RELEASE',
-                name: 'Mobile Build, Signing & Store Release',
-                title: 'STD-MOB-RELEASE .... Mobile Build, Signing & Store Release',
+                name: 'Build Mobile, Ký ứng dụng & Phát hành Store',
+                title: 'STD-MOB-RELEASE .... Build Mobile, Ký ứng dụng & Phát hành Store',
                 type: 'standard',
                 relations: [
-                    { type: 'USES', targets: ['STD-VERSIONING'], label: 'Uses STD-VERSIONING' }
+                    { type: 'USES', targets: ['STD-VERSIONING'], label: 'Sử dụng STD-VERSIONING' }
                 ]
             },
             {
                 code: 'STD-MOB-PERF',
-                name: 'Startup, Memory & Battery Performance',
-                title: 'STD-MOB-PERF ....... Startup, Memory & Battery Performance',
+                name: 'Hiệu năng khởi động, Bộ nhớ & Pin',
+                title: 'STD-MOB-PERF ....... Hiệu năng khởi động, Bộ nhớ & Pin',
                 type: 'standard',
                 relations: [
-                    { type: 'EXTENDS', targets: ['STD-PERF'], label: 'Extends STD-PERF' }
+                    { type: 'EXTENDS', targets: ['STD-PERF'], label: 'Mở rộng STD-PERF' }
                 ]
             }
         ]
@@ -522,89 +522,89 @@ const STANDARD_CATALOG = [
     {
         key: '07',
         code: '07',
-        name: 'Backend Platform',
-        title: '07. BACKEND PLATFORM',
+        name: 'Nền tảng Backend',
+        title: '07. NỀN TẢNG BACKEND',
         type: 'category',
         children: [
             {
                 code: 'STD-BE-ARCH',
-                name: 'Backend Application Architecture',
-                title: 'STD-BE-ARCH ........ Backend Application Architecture',
+                name: 'Kiến trúc ứng dụng Backend',
+                title: 'STD-BE-ARCH ........ Kiến trúc ứng dụng Backend',
                 type: 'standard',
                 relations: [
-                    { type: 'EXTENDS', targets: ['STD-ARCH'], label: 'Extends STD-ARCH' }
+                    { type: 'EXTENDS', targets: ['STD-ARCH'], label: 'Mở rộng STD-ARCH' }
                 ]
             },
             {
                 code: 'STD-BE-AUTH',
-                name: 'Authentication & Authorization',
-                title: 'STD-BE-AUTH ........ Authentication & Authorization',
+                name: 'Xác thực & Phân quyền',
+                title: 'STD-BE-AUTH ........ Xác thực & Phân quyền',
                 type: 'standard'
             },
             {
                 code: 'STD-BE-VALID',
-                name: 'Request & Domain Validation',
-                title: 'STD-BE-VALID ....... Request & Domain Validation',
+                name: 'Xác thực Request & Domain',
+                title: 'STD-BE-VALID ....... Xác thực Request & Domain',
                 type: 'standard'
             },
             {
                 code: 'STD-BE-SEC',
-                name: 'Backend Security & Hardening',
-                title: 'STD-BE-SEC ......... Backend Security & Hardening',
+                name: 'Bảo mật & Hardening Backend',
+                title: 'STD-BE-SEC ......... Bảo mật & Hardening Backend',
                 type: 'standard',
                 relations: [
-                    { type: 'EXTENDS', targets: ['STD-SEC'], label: 'Extends STD-SEC' }
+                    { type: 'EXTENDS', targets: ['STD-SEC'], label: 'Mở rộng STD-SEC' }
                 ]
             },
             {
                 code: 'STD-BE-TX',
-                name: 'Transaction Management & Unit of Work',
-                title: 'STD-BE-TX .......... Transaction Management & Unit of Work',
+                name: 'Quản lý giao dịch & Unit of Work',
+                title: 'STD-BE-TX .......... Quản lý giao dịch & Unit of Work',
                 type: 'standard',
                 relations: [
-                    { type: 'EXTENDS', targets: ['STD-DATA-TX'], label: 'Extends STD-DATA-TX' }
+                    { type: 'EXTENDS', targets: ['STD-DATA-TX'], label: 'Mở rộng STD-DATA-TX' }
                 ]
             },
             {
                 code: 'STD-BE-CONCUR',
-                name: 'Concurrency & Idempotency',
-                title: 'STD-BE-CONCUR ...... Concurrency & Idempotency',
+                name: 'Xử lý đồng thời & Tính idempotent',
+                title: 'STD-BE-CONCUR ...... Xử lý đồng thời & Tính idempotent',
                 type: 'standard',
                 relations: [
-                    { type: 'USES', targets: ['STD-DATA-TX', 'STD-RES'], label: 'Uses STD-DATA-TX, STD-RES' }
+                    { type: 'USES', targets: ['STD-DATA-TX', 'STD-RES'], label: 'Sử dụng STD-DATA-TX, STD-RES' }
                 ]
             },
             {
                 code: 'STD-BE-JOB',
-                name: 'Background Jobs & Scheduling',
-                title: 'STD-BE-JOB ......... Background Jobs & Scheduling',
+                name: 'Tác vụ nền & Lập lịch',
+                title: 'STD-BE-JOB ......... Tác vụ nền & Lập lịch',
                 type: 'standard'
             },
             {
                 code: 'STD-BE-QUEUE',
-                name: 'Queues & Event-Driven Processing',
-                title: 'STD-BE-QUEUE ....... Queues & Event-Driven Processing',
+                name: 'Hàng đợi & Xử lý hướng sự kiện',
+                title: 'STD-BE-QUEUE ....... Hàng đợi & Xử lý hướng sự kiện',
                 type: 'standard'
             },
             {
                 code: 'STD-BE-FILE',
-                name: 'File Processing & Object Storage',
-                title: 'STD-BE-FILE ........ File Processing & Object Storage',
+                name: 'Xử lý tệp & Object Storage',
+                title: 'STD-BE-FILE ........ Xử lý tệp & Object Storage',
                 type: 'standard'
             },
             {
                 code: 'STD-BE-HEALTH',
-                name: 'Readiness, Liveness & Health',
-                title: 'STD-BE-HEALTH ...... Readiness, Liveness & Health',
+                name: 'Readiness, Liveness & Health Check',
+                title: 'STD-BE-HEALTH ...... Readiness, Liveness & Health Check',
                 type: 'standard'
             },
             {
                 code: 'STD-BE-PERF',
-                name: 'Performance & Scalability',
-                title: 'STD-BE-PERF ........ Performance & Scalability',
+                name: 'Hiệu năng & Khả năng mở rộng',
+                title: 'STD-BE-PERF ........ Hiệu năng & Khả năng mở rộng',
                 type: 'standard',
                 relations: [
-                    { type: 'EXTENDS', targets: ['STD-PERF'], label: 'Extends STD-PERF' }
+                    { type: 'EXTENDS', targets: ['STD-PERF'], label: 'Mở rộng STD-PERF' }
                 ]
             }
         ]
@@ -612,27 +612,27 @@ const STANDARD_CATALOG = [
     {
         key: '08',
         code: '08',
-        name: 'Technology',
-        title: '08. TECHNOLOGY',
+        name: 'Công nghệ',
+        title: '08. CÔNG NGHỆ',
         type: 'category',
         children: [
             {
                 key: '08.1',
                 code: '08.1',
-                name: 'Web Technology',
-                title: '08.1. WEB TECHNOLOGY',
+                name: 'Công nghệ Web',
+                title: '08.1. CÔNG NGHỆ WEB',
                 type: 'category',
                 children: [
                     {
                         code: 'STD-REACT',
-                        name: 'React Components & Hooks',
-                        title: 'STD-REACT ...... React Components & Hooks',
+                        name: 'React Component & Hook',
+                        title: 'STD-REACT ...... React Component & Hook',
                         type: 'standard'
                     },
                     {
                         code: 'STD-TS',
-                        name: 'TypeScript Conventions',
-                        title: 'STD-TS ......... TypeScript Conventions',
+                        name: 'Quy ước TypeScript',
+                        title: 'STD-TS ......... Quy ước TypeScript',
                         type: 'standard'
                     },
                     {
@@ -643,17 +643,17 @@ const STANDARD_CATALOG = [
                     },
                     {
                         code: 'STD-NEXT',
-                        name: 'Next.js Architecture',
-                        title: 'STD-NEXT ....... Next.js Architecture',
+                        name: 'Kiến trúc Next.js',
+                        title: 'STD-NEXT ....... Kiến trúc Next.js',
                         type: 'standard'
                     },
                     {
                         code: 'STD-REACT-TEST',
-                        name: 'React Testing, Vitest/Jest & RTL',
-                        title: 'STD-REACT-TEST . React Testing, Vitest/Jest & RTL',
+                        name: 'Kiểm thử React, Vitest/Jest & RTL',
+                        title: 'STD-REACT-TEST . Kiểm thử React, Vitest/Jest & RTL',
                         type: 'standard',
                         relations: [
-                            { type: 'IMPLEMENTS', targets: ['STD-TEST'], label: 'Implements STD-TEST' }
+                            { type: 'IMPLEMENTS', targets: ['STD-TEST'], label: 'Hiện thực STD-TEST' }
                         ]
                     }
                 ]
@@ -661,35 +661,35 @@ const STANDARD_CATALOG = [
             {
                 key: '08.2',
                 code: '08.2',
-                name: 'React Native Technology',
-                title: '08.2. REACT NATIVE TECHNOLOGY',
+                name: 'Công nghệ React Native',
+                title: '08.2. CÔNG NGHỆ REACT NATIVE',
                 type: 'category',
                 children: [
                     {
                         code: 'STD-RN',
-                        name: 'React Native Architecture',
-                        title: 'STD-RN ......... React Native Architecture',
+                        name: 'Kiến trúc React Native',
+                        title: 'STD-RN ......... Kiến trúc React Native',
                         type: 'standard'
                     },
                     {
                         code: 'STD-RN-NAV',
-                        name: 'Navigation & Expo Router',
-                        title: 'STD-RN-NAV ..... Navigation & Expo Router',
+                        name: 'Điều hướng & Expo Router',
+                        title: 'STD-RN-NAV ..... Điều hướng & Expo Router',
                         type: 'standard'
                     },
                     {
                         code: 'STD-RN-STATE',
-                        name: 'React Native State Management',
-                        title: 'STD-RN-STATE ... React Native State Management',
+                        name: 'Quản lý State React Native',
+                        title: 'STD-RN-STATE ... Quản lý State React Native',
                         type: 'standard'
                     },
                     {
                         code: 'STD-RN-STORE',
-                        name: 'Local & Secure Storage',
-                        title: 'STD-RN-STORE ... Local & Secure Storage',
+                        name: 'Lưu trữ cục bộ & An toàn',
+                        title: 'STD-RN-STORE ... Lưu trữ cục bộ & An toàn',
                         type: 'standard',
                         relations: [
-                            { type: 'IMPLEMENTS', targets: ['STD-MOB-STORE'], label: 'Implements STD-MOB-STORE' }
+                            { type: 'IMPLEMENTS', targets: ['STD-MOB-STORE'], label: 'Hiện thực STD-MOB-STORE' }
                         ]
                     },
                     {
@@ -698,7 +698,7 @@ const STANDARD_CATALOG = [
                         title: 'STD-RN-TEST .... Jest & React Native Testing Library',
                         type: 'standard',
                         relations: [
-                            { type: 'IMPLEMENTS', targets: ['STD-TEST'], label: 'Implements STD-TEST' }
+                            { type: 'IMPLEMENTS', targets: ['STD-TEST'], label: 'Hiện thực STD-TEST' }
                         ]
                     }
                 ]
@@ -706,14 +706,14 @@ const STANDARD_CATALOG = [
             {
                 key: '08.3',
                 code: '08.3',
-                name: 'Flutter Technology',
-                title: '08.3. FLUTTER TECHNOLOGY',
+                name: 'Công nghệ Flutter',
+                title: '08.3. CÔNG NGHỆ FLUTTER',
                 type: 'category',
                 children: [
                     {
                         code: 'STD-FL-DART',
-                        name: 'Dart Conventions',
-                        title: 'STD-FL-DART .... Dart Conventions',
+                        name: 'Quy ước Dart',
+                        title: 'STD-FL-DART .... Quy ước Dart',
                         type: 'standard'
                     },
                     {
@@ -724,23 +724,23 @@ const STANDARD_CATALOG = [
                     },
                     {
                         code: 'STD-FL-WIDGET',
-                        name: 'Widget Composition & Theming',
-                        title: 'STD-FL-WIDGET .. Widget Composition & Theming',
+                        name: 'Tổ hợp Widget & Theming',
+                        title: 'STD-FL-WIDGET .. Tổ hợp Widget & Theming',
                         type: 'standard'
                     },
                     {
                         code: 'STD-FL-ROUTE',
-                        name: 'Flutter Navigation & go_router',
-                        title: 'STD-FL-ROUTE ... Flutter Navigation & go_router',
+                        name: 'Điều hướng Flutter & go_router',
+                        title: 'STD-FL-ROUTE ... Điều hướng Flutter & go_router',
                         type: 'standard'
                     },
                     {
                         code: 'STD-FL-TEST',
-                        name: 'flutter_test, bloc_test & Integration',
-                        title: 'STD-FL-TEST .... flutter_test, bloc_test & Integration',
+                        name: 'flutter_test, bloc_test & Kiểm thử tích hợp',
+                        title: 'STD-FL-TEST .... flutter_test, bloc_test & Kiểm thử tích hợp',
                         type: 'standard',
                         relations: [
-                            { type: 'IMPLEMENTS', targets: ['STD-TEST'], label: 'Implements STD-TEST' }
+                            { type: 'IMPLEMENTS', targets: ['STD-TEST'], label: 'Hiện thực STD-TEST' }
                         ]
                     }
                 ]
@@ -748,20 +748,20 @@ const STANDARD_CATALOG = [
             {
                 key: '08.4',
                 code: '08.4',
-                name: 'Backend Technology — .NET',
-                title: '08.4. BACKEND TECHNOLOGY — .NET',
+                name: 'Công nghệ Backend — .NET',
+                title: '08.4. CÔNG NGHỆ BACKEND — .NET',
                 type: 'category',
                 children: [
                     {
                         code: 'STD-DOTNET',
-                        name: 'ASP.NET Core Architecture',
-                        title: 'STD-DOTNET ..... ASP.NET Core Architecture',
+                        name: 'Kiến trúc ASP.NET Core',
+                        title: 'STD-DOTNET ..... Kiến trúc ASP.NET Core',
                         type: 'standard'
                     },
                     {
                         code: 'STD-DOTNET-API',
-                        name: 'API, DI & Middleware',
-                        title: 'STD-DOTNET-API . API, DI & Middleware',
+                        name: 'API, Dependency Injection & Middleware',
+                        title: 'STD-DOTNET-API . API, Dependency Injection & Middleware',
                         type: 'standard'
                     },
                     {
@@ -773,18 +773,18 @@ const STANDARD_CATALOG = [
                             {
                                 type: 'IMPLEMENTS',
                                 targets: ['STD-DATA', 'STD-DATA-TX', 'STD-DATA-MIG'],
-                                label: 'Implements STD-DATA, STD-DATA-TX, STD-DATA-MIG'
+                                label: 'Hiện thực STD-DATA, STD-DATA-TX, STD-DATA-MIG'
                             },
-                            { type: 'USES', targets: ['STD-BE-TX'], label: 'Uses STD-BE-TX' }
+                            { type: 'USES', targets: ['STD-BE-TX'], label: 'Sử dụng STD-BE-TX' }
                         ]
                     },
                     {
                         code: 'STD-DOTNET-TEST',
-                        name: 'xUnit & Integration Testing',
-                        title: 'STD-DOTNET-TEST  xUnit & Integration Testing',
+                        name: 'xUnit & Kiểm thử tích hợp',
+                        title: 'STD-DOTNET-TEST  xUnit & Kiểm thử tích hợp',
                         type: 'standard',
                         relations: [
-                            { type: 'IMPLEMENTS', targets: ['STD-TEST'], label: 'Implements STD-TEST' }
+                            { type: 'IMPLEMENTS', targets: ['STD-TEST'], label: 'Hiện thực STD-TEST' }
                         ]
                     }
                 ]
@@ -792,22 +792,22 @@ const STANDARD_CATALOG = [
             {
                 key: '08.5',
                 code: '08.5',
-                name: 'Database Technology',
-                title: '08.5. DATABASE TECHNOLOGY',
+                name: 'Công nghệ Cơ sở dữ liệu',
+                title: '08.5. CÔNG NGHỆ CƠ SỞ DỮ LIỆU',
                 type: 'category',
                 children: [
                     {
                         code: 'STD-PG',
-                        name: 'PostgreSQL Development & Migrations',
-                        title: 'STD-PG ......... PostgreSQL Development & Migrations',
+                        name: 'Phát triển PostgreSQL & Migration',
+                        title: 'STD-PG ......... Phát triển PostgreSQL & Migration',
                         type: 'standard',
                         relations: [
                             {
                                 type: 'IMPLEMENTS',
                                 targets: ['STD-DATA', 'STD-DATA-TX', 'STD-DATA-MIG'],
-                                label: 'Implements STD-DATA, STD-DATA-TX, STD-DATA-MIG'
+                                label: 'Hiện thực STD-DATA, STD-DATA-TX, STD-DATA-MIG'
                             },
-                            { type: 'USES', targets: ['STD-PERF'], label: 'Uses STD-PERF' }
+                            { type: 'USES', targets: ['STD-PERF'], label: 'Sử dụng STD-PERF' }
                         ]
                     }
                 ]
@@ -817,80 +817,80 @@ const STANDARD_CATALOG = [
     {
         key: '09',
         code: '09',
-        name: 'Reusable Capabilities',
-        title: '09. REUSABLE CAPABILITIES',
+        name: 'Capability tái sử dụng',
+        title: '09. CAPABILITY TÁI SỬ DỤNG',
         type: 'category',
         children: [
             {
                 code: 'CAP-AUTH',
-                name: 'Authentication & Registration',
-                title: 'CAP-AUTH ........... Authentication & Registration',
+                name: 'Xác thực & Đăng ký',
+                title: 'CAP-AUTH ........... Xác thực & Đăng ký',
                 type: 'capability'
             },
             {
                 code: 'CAP-PROFILE',
-                name: 'User Profile & Account Management',
-                title: 'CAP-PROFILE ........ User Profile & Account Management',
+                name: 'Hồ sơ người dùng & Quản lý tài khoản',
+                title: 'CAP-PROFILE ........ Hồ sơ người dùng & Quản lý tài khoản',
                 type: 'capability'
             },
             {
                 code: 'CAP-CRUD',
-                name: 'CRUD, Listing & Pagination',
-                title: 'CAP-CRUD ........... CRUD, Listing & Pagination',
+                name: 'CRUD, Danh sách & Phân trang',
+                title: 'CAP-CRUD ........... CRUD, Danh sách & Phân trang',
                 type: 'capability'
             },
             {
                 code: 'CAP-UPLOAD',
-                name: 'File Upload & Attachments',
-                title: 'CAP-UPLOAD ......... File Upload & Attachments',
+                name: 'Tải tệp lên & Tệp đính kèm',
+                title: 'CAP-UPLOAD ......... Tải tệp lên & Tệp đính kèm',
                 type: 'capability'
             },
             {
                 code: 'CAP-NOTIFY',
-                name: 'Notification Delivery',
-                title: 'CAP-NOTIFY ......... Notification Delivery',
+                name: 'Phân phối thông báo',
+                title: 'CAP-NOTIFY ......... Phân phối thông báo',
                 type: 'capability'
             },
             {
                 code: 'CAP-CHAT',
-                name: 'Realtime Chat',
-                title: 'CAP-CHAT ........... Realtime Chat',
+                name: 'Trò chuyện thời gian thực',
+                title: 'CAP-CHAT ........... Trò chuyện thời gian thực',
                 type: 'capability'
             },
             {
                 code: 'CAP-SHARE',
-                name: 'Sharing, QR & Deep Links',
-                title: 'CAP-SHARE .......... Sharing, QR & Deep Links',
+                name: 'Chia sẻ, QR & Deep Link',
+                title: 'CAP-SHARE .......... Chia sẻ, QR & Deep Link',
                 type: 'capability'
             },
             {
                 code: 'CAP-AUDIT',
-                name: 'Audit Trail & History',
-                title: 'CAP-AUDIT .......... Audit Trail & History',
+                name: 'Nhật ký kiểm toán & Lịch sử thay đổi',
+                title: 'CAP-AUDIT .......... Nhật ký kiểm toán & Lịch sử thay đổi',
                 type: 'capability'
             },
             {
                 code: 'CAP-PERM',
-                name: 'Roles & Permissions',
-                title: 'CAP-PERM ........... Roles & Permissions',
+                name: 'Vai trò & Quyền hạn',
+                title: 'CAP-PERM ........... Vai trò & Quyền hạn',
                 type: 'capability'
             },
             {
                 code: 'CAP-SEARCH',
-                name: 'Search & Indexing',
-                title: 'CAP-SEARCH ......... Search & Indexing',
+                name: 'Tìm kiếm & Lập chỉ mục',
+                title: 'CAP-SEARCH ......... Tìm kiếm & Lập chỉ mục',
                 type: 'capability'
             },
             {
                 code: 'CAP-PAYMENT',
-                name: 'Payments & Billing',
-                title: 'CAP-PAYMENT ........ Payments & Billing',
+                name: 'Thanh toán & Lập hóa đơn',
+                title: 'CAP-PAYMENT ........ Thanh toán & Lập hóa đơn',
                 type: 'capability'
             },
             {
                 code: 'CAP-REPORT',
-                name: 'Reporting & Dashboards',
-                title: 'CAP-REPORT ......... Reporting & Dashboards',
+                name: 'Báo cáo & Dashboard',
+                title: 'CAP-REPORT ......... Báo cáo & Dashboard',
                 type: 'capability'
             }
         ]
@@ -898,73 +898,73 @@ const STANDARD_CATALOG = [
     {
         key: '10',
         code: '10',
-        name: 'Operations & Infrastructure',
-        title: '10. OPERATIONS & INFRASTRUCTURE',
+        name: 'Vận hành & Hạ tầng',
+        title: '10. VẬN HÀNH & HẠ TẦNG',
         type: 'category',
         children: [
             {
                 code: 'STD-DEPLOY',
-                name: 'Deployment, Rollout & Rollback',
-                title: 'STD-DEPLOY ......... Deployment, Rollout & Rollback',
+                name: 'Triển khai, Rollout & Rollback',
+                title: 'STD-DEPLOY ......... Triển khai, Rollout & Rollback',
                 type: 'standard',
                 relations: [
                     {
                         type: 'USES',
                         targets: ['STD-CI', 'STD-FLAG', 'STD-VERSIONING'],
-                        label: 'Uses STD-CI, STD-FLAG, STD-VERSIONING'
+                        label: 'Sử dụng STD-CI, STD-FLAG, STD-VERSIONING'
                     }
                 ]
             },
             {
                 code: 'STD-IAC',
-                name: 'Infrastructure as Code',
-                title: 'STD-IAC ............ Infrastructure as Code',
+                name: 'Hạ tầng dưới dạng mã nguồn',
+                title: 'STD-IAC ............ Hạ tầng dưới dạng mã nguồn',
                 type: 'standard'
             },
             {
                 code: 'STD-NET',
-                name: 'Network, DNS, TLS & Infrastructure Security',
-                title: 'STD-NET ............ Network, DNS, TLS & Infrastructure Security',
+                name: 'Mạng, DNS, TLS & Bảo mật hạ tầng',
+                title: 'STD-NET ............ Mạng, DNS, TLS & Bảo mật hạ tầng',
                 type: 'standard'
             },
             {
                 code: 'STD-BACKUP',
-                name: 'Backup & Restore',
-                title: 'STD-BACKUP ......... Backup & Restore',
+                name: 'Sao lưu & Khôi phục',
+                title: 'STD-BACKUP ......... Sao lưu & Khôi phục',
                 type: 'standard'
             },
             {
                 code: 'STD-DR',
-                name: 'Disaster Recovery',
-                title: 'STD-DR ............. Disaster Recovery',
+                name: 'Khôi phục sau thảm họa',
+                title: 'STD-DR ............. Khôi phục sau thảm họa',
                 type: 'standard'
             },
             {
                 code: 'STD-SLO',
-                name: 'Service Level Objectives',
-                title: 'STD-SLO ............ Service Level Objectives',
+                name: 'Mục tiêu mức dịch vụ (SLO)',
+                title: 'STD-SLO ............ Mục tiêu mức dịch vụ (SLO)',
                 type: 'standard'
             },
             {
                 code: 'STD-COST',
-                name: 'Infrastructure & Cloud Cost Governance',
-                title: 'STD-COST ........... Infrastructure & Cloud Cost Governance',
+                name: 'Quản trị chi phí hạ tầng & Cloud',
+                title: 'STD-COST ........... Quản trị chi phí hạ tầng & Cloud',
                 type: 'standard',
-                tag: 'NEW',
+                tag: 'MỚI',
                 relations: [
-                    { type: 'USES', targets: ['STD-LOG', 'STD-PERF', 'STD-SLO'], label: 'Uses STD-LOG, STD-PERF, STD-SLO' }
+                    { type: 'USES', targets: ['STD-LOG', 'STD-PERF', 'STD-SLO'], label: 'Sử dụng STD-LOG, STD-PERF, STD-SLO' }
                 ]
             },
             {
                 code: 'STD-INCIDENT',
-                name: 'Incident Management & Postmortems',
-                title: 'STD-INCIDENT ....... Incident Management & Postmortems',
+                name: 'Quản lý sự cố & Postmortem',
+                title: 'STD-INCIDENT ....... Quản lý sự cố & Postmortem',
                 type: 'standard'
             },
             {
                 code: 'STD-RUNBOOK',
-                name: 'Operational Runbooks & Maintenance',
-                title: 'STD-RUNBOOK ........ Operational Runbooks & Maintenance',
+                name: 'Runbook vận hành & Bảo trì',
+                title: 'STD-RUNBOOK ........ Runbook vận hành & Bảo trì',
                 type: 'standard'
             }
         ]

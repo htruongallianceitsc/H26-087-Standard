@@ -3,91 +3,62 @@
   "code": "STD-DOTNET-EF",
   "name": "Entity Framework Core",
   "category": "08_technology",
-  "description": "Entity Framework Core standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-DOTNET-EF applies.",
-  "version": "2.0.0",
+  "description": "Tiêu chuẩn chuẩn hóa cho Entity Framework Core. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Keep DbContext lifetime scoped to one unit of work",
-      "detail": "Do not share DbContext across threads or cache it beyond the application/request/job scope.",
+      "title": "Xác định rõ cách tiếp cận cho Entity Framework Core trước khi triển khai",
+      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Entity Framework Core; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
       "layer": "db",
       "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Keep DbContext lifetime scoped to one unit of work.",
-      "example_bad": "The change violates or ignores the rule: Keep DbContext lifetime scoped to one unit of work."
+      "example_good": "Project ghi nhận rõ cách Entity Framework Core được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
+      "example_bad": "Entity Framework Core được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review."
     },
     {
-      "title": "Use explicit projections for read APIs",
-      "detail": "Select only required columns into response/read models; avoid loading large tracked entity graphs by default.",
+      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
+      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
       "layer": "db",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Use explicit projections for read APIs.",
-      "example_bad": "The change violates or ignores the rule: Use explicit projections for read APIs."
+      "severity": "should",
+      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
+      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán."
     },
     {
-      "title": "Use AsNoTracking for read-only queries",
-      "detail": "Disable tracking when entities will not be updated to reduce memory and change-tracker overhead.",
-      "layer": "db",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Use AsNoTracking for read-only queries.",
-      "example_bad": "The change violates or ignores the rule: Use AsNoTracking for read-only queries."
-    },
-    {
-      "title": "Avoid N+1 query patterns",
-      "detail": "Inspect generated SQL and use projection/join/explicit loading appropriate to the use case rather than hidden per-row queries.",
-      "layer": "db",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Avoid N+1 query patterns.",
-      "example_bad": "The change violates or ignores the rule: Avoid N+1 query patterns."
-    },
-    {
-      "title": "Model concurrency and database constraints explicitly",
-      "detail": "Use concurrency tokens where needed and configure unique/foreign/check constraints that protect invariants.",
-      "layer": "db",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Model concurrency and database constraints explicitly.",
-      "example_bad": "The change violates or ignores the rule: Model concurrency and database constraints explicitly."
-    },
-    {
-      "title": "Apply migrations through controlled deployment",
-      "detail": "Do not auto-run unsafe production migrations on every app startup; review locking/backfill compatibility and use staged migration for breaking changes.",
-      "layer": "db",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Apply migrations through controlled deployment.",
-      "example_bad": "The change violates or ignores the rule: Apply migrations through controlled deployment."
+      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
+      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
+      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Resolve applicability and dependencies",
-      "description": "Confirm where STD-DOTNET-EF applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Entity Framework Core; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Record project decisions",
-      "description": "Apply the rules of Entity Framework Core to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Entity Framework Core áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Implement with evidence",
-      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
-    },
-    {
-      "step": 4,
-      "title": "Verify before completion",
-      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Entity Framework Core is applied inconsistently across features",
-      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
-      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
+      "issue": "Áp dụng Entity Framework Core không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-DOTNET-EF trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Implementation satisfies the happy path but misses Entity Framework Core failure cases",
-      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
-      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
+      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
+      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
+      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
     }
   ],
   "depends_on": [
@@ -106,10 +77,7 @@
     {
       "code": "STD-BE-TX",
       "dependency_type": "uses"
-    },
-    {
-      "code": "STD-PERF",
-      "dependency_type": "uses"
     }
-  ]
+  ],
+  "diagrams": []
 }

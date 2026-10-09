@@ -1,103 +1,71 @@
 {
   "schemaVersion": 1,
   "code": "STD-DATA-MIG",
-  "name": "Schema Evolution & Database Migrations",
+  "name": "Tiến hóa Schema & Migration cơ sở dữ liệu",
   "category": "03_api_integration_data",
-  "description": "Schema Evolution & Database Migrations standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-DATA-MIG applies.",
-  "version": "2.0.0",
+  "description": "Tiêu chuẩn chuẩn hóa cho Tiến hóa Schema & Migration cơ sở dữ liệu. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Use expand–migrate–contract for breaking schema changes",
-      "detail": "Introduce backward-compatible schema first, deploy compatible code, migrate/backfill data, switch reads/writes, then remove old schema in a later safe release.",
+      "title": "Xác định rõ cách tiếp cận cho tiến hóa schema & migration cơ sở dữ liệu trước khi triển khai",
+      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Tiến hóa Schema & Migration cơ sở dữ liệu; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
       "layer": "db",
       "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Use expand–migrate–contract for breaking schema changes.",
-      "example_bad": "The change violates or ignores the rule: Use expand–migrate–contract for breaking schema changes."
+      "example_good": "Project ghi nhận rõ cách Tiến hóa Schema & Migration cơ sở dữ liệu được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
+      "example_bad": "Tiến hóa Schema & Migration cơ sở dữ liệu được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review."
     },
     {
-      "title": "Keep migrations deterministic and version controlled",
-      "detail": "Each migration is immutable after shared use, ordered, reviewable and applied by a controlled deployment process.",
-      "layer": "db",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Keep migrations deterministic and version controlled.",
-      "example_bad": "The change violates or ignores the rule: Keep migrations deterministic and version controlled."
-    },
-    {
-      "title": "Design migrations for production data volume and locking",
-      "detail": "Estimate runtime/lock impact, batch large backfills and avoid long blocking DDL on hot tables where the database provides safer alternatives.",
-      "layer": "db",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Design migrations for production data volume and locking.",
-      "example_bad": "The change violates or ignores the rule: Design migrations for production data volume and locking."
-    },
-    {
-      "title": "Define rollback or forward-fix strategy before release",
-      "detail": "For destructive or irreversible changes, document backup, compatibility window and forward remediation rather than assuming automatic down migration is safe.",
-      "layer": "db",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Define rollback or forward-fix strategy before release.",
-      "example_bad": "The change violates or ignores the rule: Define rollback or forward-fix strategy before release."
-    },
-    {
-      "title": "Separate schema change from business backfill when operationally safer",
-      "detail": "Long-running data transformations should run as resumable, observable jobs instead of blocking application startup/deployment.",
+      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
+      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
       "layer": "db",
       "severity": "should",
-      "example_good": "The implementation and review evidence demonstrate: Separate schema change from business backfill when operationally safer.",
-      "example_bad": "The change violates or ignores the rule: Separate schema change from business backfill when operationally safer."
+      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
+      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán."
     },
     {
-      "title": "Verify migration state during deployment",
-      "detail": "Deployment must fail safely when expected migration prerequisites/version are missing and expose current schema version for diagnostics.",
+      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
+      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
       "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Verify migration state during deployment.",
-      "example_bad": "The change violates or ignores the rule: Verify migration state during deployment."
+      "severity": "should",
+      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
+      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Resolve applicability and dependencies",
-      "description": "Confirm where STD-DATA-MIG applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Tiến hóa Schema & Migration cơ sở dữ liệu; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Record project decisions",
-      "description": "Apply the rules of Schema Evolution & Database Migrations to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Tiến hóa Schema & Migration cơ sở dữ liệu áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Implement with evidence",
-      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
-    },
-    {
-      "step": 4,
-      "title": "Verify before completion",
-      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Deployment fails because old code sees the new schema",
-      "cause": "A breaking migration was applied in one step.",
-      "solution": "Use expand–migrate–contract and keep rolling-deployment compatibility."
+      "issue": "Áp dụng Tiến hóa Schema & Migration cơ sở dữ liệu không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-DATA-MIG trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Large migration blocks production traffic",
-      "cause": "DDL/backfill was not evaluated against table size and locks.",
-      "solution": "Use online-safe DDL, batching and a separately observable backfill job."
+      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
+      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
+      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
     }
   ],
   "depends_on": [
     {
-      "code": "STD-DATA",
-      "dependency_type": "uses"
-    },
-    {
       "code": "STD-VERSIONING",
       "dependency_type": "uses"
     }
-  ]
+  ],
+  "diagrams": []
 }

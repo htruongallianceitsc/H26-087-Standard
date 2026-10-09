@@ -1,93 +1,64 @@
 {
   "schemaVersion": 1,
   "code": "STD-COMPLIANCE",
-  "name": "Regulatory Compliance & Evidence",
+  "name": "Tuân thủ quy định & Bằng chứng",
   "category": "01_governance_delivery",
-  "description": "Regulatory Compliance & Evidence standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-COMPLIANCE applies.",
-  "version": "2.0.0",
+  "description": "Tiêu chuẩn chuẩn hóa cho Tuân thủ quy định & Bằng chứng. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Identify applicable regulatory and contractual obligations",
-      "detail": "For each project, record applicable jurisdictions, regulations, contractual controls and evidence owners before processing regulated data or releasing regulated functionality.",
+      "title": "Xác định rõ cách tiếp cận cho tuân thủ quy định & bằng chứng trước khi triển khai",
+      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Tuân thủ quy định & Bằng chứng; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
       "layer": "process",
       "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Identify applicable regulatory and contractual obligations.",
-      "example_bad": "The change violates or ignores the rule: Identify applicable regulatory and contractual obligations."
+      "example_good": "Project ghi nhận rõ cách Tuân thủ quy định & Bằng chứng được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
+      "example_bad": "Tuân thủ quy định & Bằng chứng được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review."
     },
     {
-      "title": "Map obligations to technical and process controls",
-      "detail": "Translate each applicable obligation into concrete controls, owners, evidence and review cadence rather than keeping compliance as narrative documentation.",
-      "layer": "security",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Map obligations to technical and process controls.",
-      "example_bad": "The change violates or ignores the rule: Map obligations to technical and process controls."
-    },
-    {
-      "title": "Maintain auditable evidence",
-      "detail": "Preserve required approvals, configuration evidence, access logs, test results and change records for the defined retention period.",
+      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
+      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
       "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Maintain auditable evidence.",
-      "example_bad": "The change violates or ignores the rule: Maintain auditable evidence."
+      "severity": "should",
+      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
+      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán."
     },
     {
-      "title": "Apply least privilege and separation of duties where required",
-      "detail": "Regulated workflows must identify incompatible duties and enforce independent approval for sensitive actions where applicable.",
-      "layer": "security",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Apply least privilege and separation of duties where required.",
-      "example_bad": "The change violates or ignores the rule: Apply least privilege and separation of duties where required."
-    },
-    {
-      "title": "Review compliance impact when requirements or data flows change",
-      "detail": "Changes to collected data, integrations, geography, retention or user rights trigger a compliance re-assessment.",
+      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
+      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
       "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Review compliance impact when requirements or data flows change.",
-      "example_bad": "The change violates or ignores the rule: Review compliance impact when requirements or data flows change."
-    },
-    {
-      "title": "Document approved exceptions with expiry and compensating controls",
-      "detail": "Any deviation must state risk, approver, compensating control and review/expiry date.",
-      "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Document approved exceptions with expiry and compensating controls.",
-      "example_bad": "The change violates or ignores the rule: Document approved exceptions with expiry and compensating controls."
+      "severity": "should",
+      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
+      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Resolve applicability and dependencies",
-      "description": "Confirm where STD-COMPLIANCE applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Tuân thủ quy định & Bằng chứng; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Record project decisions",
-      "description": "Apply the rules of Regulatory Compliance & Evidence to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Tuân thủ quy định & Bằng chứng áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Implement with evidence",
-      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
-    },
-    {
-      "step": 4,
-      "title": "Verify before completion",
-      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Regulatory Compliance & Evidence is applied inconsistently across features",
-      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
-      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
+      "issue": "Áp dụng Tuân thủ quy định & Bằng chứng không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-COMPLIANCE trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Implementation satisfies the happy path but misses Regulatory Compliance & Evidence failure cases",
-      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
-      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
+      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
+      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
+      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
     }
   ],
   "depends_on": [
@@ -103,5 +74,6 @@
       "code": "STD-DOC",
       "dependency_type": "uses"
     }
-  ]
+  ],
+  "diagrams": []
 }

@@ -1,94 +1,66 @@
 {
   "schemaVersion": 1,
   "code": "STD-UX",
-  "name": "UX & Interaction Principles",
+  "name": "Nguyên tắc UX & Tương tác",
   "category": "04_experience_ui_ux",
-  "description": "UX & Interaction Principles standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-UX applies.",
-  "version": "2.0.0",
+  "description": "Tiêu chuẩn chuẩn hóa cho Nguyên tắc UX & Tương tác. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Design around user goals and complete task flows",
-      "detail": "Each feature defines primary users, entry points, goal, success outcome and important alternate/failure paths before detailed UI implementation.",
+      "title": "Xác định rõ cách tiếp cận cho nguyên tắc UX & tương tác trước khi triển khai",
+      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Nguyên tắc UX & Tương tác; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
       "layer": "ui",
       "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Design around user goals and complete task flows.",
-      "example_bad": "The change violates or ignores the rule: Design around user goals and complete task flows."
+      "example_good": "Project ghi nhận rõ cách Nguyên tắc UX & Tương tác được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
+      "example_bad": "Nguyên tắc UX & Tương tác được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review."
     },
     {
-      "title": "Preserve consistency with established interaction patterns",
-      "detail": "Navigation, actions, terminology and control behavior should reuse platform/design-system conventions unless research or requirements justify a deviation.",
-      "layer": "ui",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Preserve consistency with established interaction patterns.",
-      "example_bad": "The change violates or ignores the rule: Preserve consistency with established interaction patterns."
-    },
-    {
-      "title": "Minimize irreversible actions and surprise",
-      "detail": "Destructive or high-impact actions require clear consequence, appropriate confirmation and recovery/undo where feasible.",
-      "layer": "ui",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Minimize irreversible actions and surprise.",
-      "example_bad": "The change violates or ignores the rule: Minimize irreversible actions and surprise."
-    },
-    {
-      "title": "Keep system status visible",
-      "detail": "Users should understand loading, progress, completion, offline/degraded state and errors without guessing whether an action occurred.",
-      "layer": "ui",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Keep system status visible.",
-      "example_bad": "The change violates or ignores the rule: Keep system status visible."
-    },
-    {
-      "title": "Reduce cognitive load",
-      "detail": "Prioritize primary actions, progressively disclose complexity and avoid presenting unnecessary choices or technical implementation detail.",
+      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
+      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
       "layer": "ui",
       "severity": "should",
-      "example_good": "The implementation and review evidence demonstrate: Reduce cognitive load.",
-      "example_bad": "The change violates or ignores the rule: Reduce cognitive load."
+      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
+      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán."
     },
     {
-      "title": "Validate critical journeys with representative users or evidence",
-      "detail": "High-impact flows should be reviewed against usability, accessibility and real content/device constraints before release.",
+      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
+      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
       "layer": "process",
       "severity": "should",
-      "example_good": "The implementation and review evidence demonstrate: Validate critical journeys with representative users or evidence.",
-      "example_bad": "The change violates or ignores the rule: Validate critical journeys with representative users or evidence."
+      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
+      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Resolve applicability and dependencies",
-      "description": "Confirm where STD-UX applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Nguyên tắc UX & Tương tác; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Record project decisions",
-      "description": "Apply the rules of UX & Interaction Principles to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Nguyên tắc UX & Tương tác áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Implement with evidence",
-      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
-    },
-    {
-      "step": 4,
-      "title": "Verify before completion",
-      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "UX & Interaction Principles is applied inconsistently across features",
-      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
-      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
+      "issue": "Áp dụng Nguyên tắc UX & Tương tác không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-UX trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Implementation satisfies the happy path but misses UX & Interaction Principles failure cases",
-      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
-      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
+      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
+      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
+      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
     }
   ],
-  "depends_on": []
+  "depends_on": [],
+  "diagrams": []
 }

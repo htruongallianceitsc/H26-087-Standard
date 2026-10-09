@@ -1,119 +1,120 @@
 {
   "schemaVersion": 1,
   "code": "CAP-NOTIFY",
-  "name": "Notification Delivery",
+  "name": "Phân phối thông báo",
   "category": "09_reusable_capabilities",
-  "description": "Canonical reusable capability for Notification Delivery. Migrated from STD-NOTIFY and aligned with STRUCTURE.txt.",
-  "version": "1.1.0",
+  "description": "Capability tái sử dụng chuẩn cho Phân phối thông báo. Được chuyển từ STD-NOTIFY và căn chỉnh theo STRUCTURE.txt.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Separate message events, delivery preferences and presentation",
-      "detail": "Separate message events, delivery preferences and presentation. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Tách biệt message event, tùy chọn phân phối và cách trình bày",
+      "detail": "Tách biệt message event, tùy chọn phân phối và cách trình bày. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Implementation/review evidence explicitly demonstrates: separate message events, delivery preferences and presentation.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tách biệt message event, tùy chọn phân phối và cách trình bày.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Avoid sending private data to unauthorized recipients",
-      "detail": "Avoid sending private data to unauthorized recipients. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Tránh gửi dữ liệu riêng tư tới người nhận không được phép",
+      "detail": "Tránh gửi dữ liệu riêng tư tới người nhận không được phép. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Implementation/review evidence explicitly demonstrates: avoid sending private data to unauthorized recipients.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tránh gửi dữ liệu riêng tư tới người nhận không được phép.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Make notification actions idempotent and validate destinations",
-      "detail": "Make notification actions idempotent and validate destinations. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Đảm bảo action từ notification có tính idempotent và validation destination",
+      "detail": "Đảm bảo action từ notification có tính idempotent và validation destination. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Implementation/review evidence explicitly demonstrates: make notification actions idempotent and validate destinations.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Đảm bảo action từ notification có tính idempotent và validation destination.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Test duplicate delivery, unread counters and dismissal state",
-      "detail": "Test duplicate delivery, unread counters and dismissal state. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Kiểm thử phân phối trùng, bộ đếm chưa đọc và trạng thái dismissal",
+      "detail": "Kiểm thử phân phối trùng, bộ đếm chưa đọc và trạng thái dismissal. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Implementation/review evidence explicitly demonstrates: test duplicate delivery, unread counters and dismissal state.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Kiểm thử phân phối trùng, bộ đếm chưa đọc và trạng thái dismissal.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Check project platform, requirements, architecture and applicable conditions for Notification Feature; record exclusions and approved overrides."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Phân phối thông báo; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Apply rules",
-      "description": "Include applicable Notification Feature rules in design, implementation and review checklist; link relevant requirement and code."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Phân phối thông báo áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Notification Feature",
-      "cause": "Project profile does not explicitly reference the standard or its owner.",
-      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+      "issue": "Áp dụng Phân phối thông báo không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ CAP-NOTIFY trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Written standard is not enforceable automatically",
-      "cause": "Some behaviour depends on design decisions and runtime context.",
-      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+      "issue": "Standard dạng văn bản không thể tự động thực thi hoàn toàn",
+      "cause": "Một số hành vi phụ thuộc vào quyết định thiết kế và ngữ cảnh runtime.",
+      "solution": "Kết hợp lint/test tự động với review thủ công và bằng chứng chấp nhận được ghi nhận."
     }
   ],
   "features": [
     {
-      "name": "Notification Feature",
-      "description": "In-app and external message behaviours"
+      "name": "Feature thông báo",
+      "description": "Hành vi message trong app và qua kênh bên ngoài"
     }
   ],
   "user_stories": [
     {
-      "title": "Use Notification Feature",
-      "as_a": "authorized application user",
-      "i_want": "in-app and external message behaviours",
-      "so_that": "I can complete the intended task safely and predictably",
+      "title": "Sử dụng Feature thông báo",
+      "as_a": "người dùng ứng dụng đã được xác thực và có quyền",
+      "i_want": "hành vi message trong app và qua kênh bên ngoài",
+      "so_that": "tôi có thể hoàn thành tác vụ mong muốn một cách an toàn và có thể dự đoán",
       "acceptance_criteria": [
         {
-          "given": "the user is eligible to access Notification Feature",
-          "when": "the user performs the main supported action",
-          "then": "the system returns an authorized, validated outcome and communicates its state"
+          "given": "người dùng đủ điều kiện truy cập Feature thông báo",
+          "when": "người dùng thực hiện thao tác chính được hỗ trợ",
+          "then": "hệ thống trả về kết quả đã được phân quyền, được validation và truyền đạt rõ trạng thái"
         },
         {
-          "given": "an input, permission or dependency is invalid",
-          "when": "the user attempts the action",
-          "then": "the system blocks unsafe completion and shows a recoverable, non-sensitive error"
+          "given": "input, permission hoặc dependency không hợp lệ",
+          "when": "người dùng thực hiện thao tác",
+          "then": "hệ thống chặn việc hoàn tất không an toàn và hiển thị lỗi có thể khôi phục, không chứa dữ liệu nhạy cảm"
         }
       ],
       "related_rules": [
-        "Separate message events, delivery preferences and presentation"
+        "Tách biệt message event, tùy chọn phân phối và cách trình bày"
       ]
     }
   ],
   "depends_on": [
     {
       "code": "STD-REQ",
-      "dependency_type": "uses"
+      "dependency_type": "requires"
     },
     {
       "code": "STD-TEST",
-      "dependency_type": "uses"
+      "dependency_type": "requires"
     },
     {
       "code": "STD-FEAT",
-      "dependency_type": "uses"
+      "dependency_type": "requires"
     },
     {
       "code": "STD-BIZ",
-      "dependency_type": "uses"
+      "dependency_type": "requires"
     }
-  ]
+  ],
+  "diagrams": []
 }

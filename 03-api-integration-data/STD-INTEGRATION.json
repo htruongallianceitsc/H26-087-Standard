@@ -1,107 +1,66 @@
 {
   "schemaVersion": 1,
   "code": "STD-INTEGRATION",
-  "name": "Third-Party Integration",
+  "name": "Tích hợp bên thứ ba",
   "category": "03_api_integration_data",
-  "description": "Third-Party Integration standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-INTEGRATION applies.",
-  "version": "2.0.0",
+  "description": "Tiêu chuẩn chuẩn hóa cho Tích hợp bên thứ ba. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Wrap third-party services behind an owned boundary",
-      "detail": "Application/domain code should depend on an internal interface/model so vendor-specific details remain localized.",
+      "title": "Xác định rõ cách tiếp cận cho tích hợp bên thứ ba trước khi triển khai",
+      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Tích hợp bên thứ ba; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
       "layer": "api",
       "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Wrap third-party services behind an owned boundary.",
-      "example_bad": "The change violates or ignores the rule: Wrap third-party services behind an owned boundary."
+      "example_good": "Project ghi nhận rõ cách Tích hợp bên thứ ba được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
+      "example_bad": "Tích hợp bên thứ ba được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review."
     },
     {
-      "title": "Define timeout, retry, rate-limit and failure behavior",
-      "detail": "Every remote integration specifies bounded timeout, retryable conditions, backoff, quotas and degraded behavior.",
+      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
+      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
       "layer": "api",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Define timeout, retry, rate-limit and failure behavior.",
-      "example_bad": "The change violates or ignores the rule: Define timeout, retry, rate-limit and failure behavior."
+      "severity": "should",
+      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
+      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán."
     },
     {
-      "title": "Validate and sanitize external data",
-      "detail": "Treat third-party payloads as untrusted; validate schema, size, identifiers and content before persistence or business use.",
-      "layer": "security",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Validate and sanitize external data.",
-      "example_bad": "The change violates or ignores the rule: Validate and sanitize external data."
-    },
-    {
-      "title": "Map external identifiers and status values explicitly",
-      "detail": "Do not leak unstable vendor enums or IDs throughout the domain; maintain a documented mapping and unknown-value handling.",
-      "layer": "api",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Map external identifiers and status values explicitly.",
-      "example_bad": "The change violates or ignores the rule: Map external identifiers and status values explicitly."
-    },
-    {
-      "title": "Protect credentials and callback endpoints",
-      "detail": "Use scoped credentials, rotation, signature verification where available and safe secret storage.",
-      "layer": "security",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Protect credentials and callback endpoints.",
-      "example_bad": "The change violates or ignores the rule: Protect credentials and callback endpoints."
-    },
-    {
-      "title": "Provide observability and reconciliation",
-      "detail": "Log/measure correlation IDs, attempts, latency and failures and provide a reconciliation path for business-critical integrations.",
+      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
+      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
       "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Provide observability and reconciliation.",
-      "example_bad": "The change violates or ignores the rule: Provide observability and reconciliation."
+      "severity": "should",
+      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
+      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Resolve applicability and dependencies",
-      "description": "Confirm where STD-INTEGRATION applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Tích hợp bên thứ ba; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Record project decisions",
-      "description": "Apply the rules of Third-Party Integration to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Tích hợp bên thứ ba áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Implement with evidence",
-      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
-    },
-    {
-      "step": 4,
-      "title": "Verify before completion",
-      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Third-Party Integration is applied inconsistently across features",
-      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
-      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
+      "issue": "Áp dụng Tích hợp bên thứ ba không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-INTEGRATION trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Implementation satisfies the happy path but misses Third-Party Integration failure cases",
-      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
-      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
+      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
+      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
+      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
     }
   ],
-  "depends_on": [
-    {
-      "code": "STD-API",
-      "dependency_type": "uses"
-    },
-    {
-      "code": "STD-RES",
-      "dependency_type": "uses"
-    },
-    {
-      "code": "STD-SEC",
-      "dependency_type": "uses"
-    }
-  ]
+  "depends_on": [],
+  "diagrams": []
 }

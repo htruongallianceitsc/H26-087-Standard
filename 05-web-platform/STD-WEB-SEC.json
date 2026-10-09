@@ -1,103 +1,71 @@
 {
   "schemaVersion": 1,
   "code": "STD-WEB-SEC",
-  "name": "Browser & Web Application Security",
+  "name": "Bảo mật trình duyệt & Ứng dụng Web",
   "category": "05_web_platform",
-  "description": "Browser & Web Application Security standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-WEB-SEC applies.",
-  "version": "2.0.0",
+  "description": "Tiêu chuẩn chuẩn hóa cho Bảo mật trình duyệt & Ứng dụng Web. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Prevent script injection by default",
-      "detail": "Rely on framework escaping, avoid unsafe HTML sinks, sanitize explicitly allowed rich content and apply a restrictive Content Security Policy where feasible.",
+      "title": "Xác định rõ cách tiếp cận cho bảo mật trình duyệt & ứng dụng Web trước khi triển khai",
+      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Bảo mật trình duyệt & Ứng dụng Web; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
       "layer": "security",
       "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Prevent script injection by default.",
-      "example_bad": "The change violates or ignores the rule: Prevent script injection by default."
+      "example_good": "Project ghi nhận rõ cách Bảo mật trình duyệt & Ứng dụng Web được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
+      "example_bad": "Bảo mật trình duyệt & Ứng dụng Web được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review."
     },
     {
-      "title": "Protect browser sessions and cookies",
-      "detail": "Session cookies containing credentials use Secure, HttpOnly and appropriate SameSite settings; session rotation and expiry follow authentication risk.",
+      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
+      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
       "layer": "security",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Protect browser sessions and cookies.",
-      "example_bad": "The change violates or ignores the rule: Protect browser sessions and cookies."
+      "severity": "should",
+      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
+      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán."
     },
     {
-      "title": "Protect state-changing requests against CSRF where cookie authentication is used",
-      "detail": "Use same-site policy plus CSRF token/origin validation appropriate to the architecture.",
-      "layer": "security",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Protect state-changing requests against CSRF where cookie authentication is used.",
-      "example_bad": "The change violates or ignores the rule: Protect state-changing requests against CSRF where cookie authentication is used."
-    },
-    {
-      "title": "Restrict cross-origin access explicitly",
-      "detail": "CORS uses an allowlist of required origins/methods/headers; credentials are never combined with wildcard origins.",
-      "layer": "security",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Restrict cross-origin access explicitly.",
-      "example_bad": "The change violates or ignores the rule: Restrict cross-origin access explicitly."
-    },
-    {
-      "title": "Prevent clickjacking and unsafe navigation",
-      "detail": "Use frame-ancestors/X-Frame-Options as appropriate and validate redirect/return URLs against trusted destinations.",
-      "layer": "security",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Prevent clickjacking and unsafe navigation.",
-      "example_bad": "The change violates or ignores the rule: Prevent clickjacking and unsafe navigation."
-    },
-    {
-      "title": "Do not store long-lived secrets in browser-readable storage",
-      "detail": "Tokens or sensitive secrets accessible to JavaScript require explicit threat review; prefer secure server-managed sessions where appropriate.",
-      "layer": "security",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Do not store long-lived secrets in browser-readable storage.",
-      "example_bad": "The change violates or ignores the rule: Do not store long-lived secrets in browser-readable storage."
+      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
+      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
+      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Resolve applicability and dependencies",
-      "description": "Confirm where STD-WEB-SEC applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Bảo mật trình duyệt & Ứng dụng Web; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Record project decisions",
-      "description": "Apply the rules of Browser & Web Application Security to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Bảo mật trình duyệt & Ứng dụng Web áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Implement with evidence",
-      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
-    },
-    {
-      "step": 4,
-      "title": "Verify before completion",
-      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Browser & Web Application Security is applied inconsistently across features",
-      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
-      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
+      "issue": "Áp dụng Bảo mật trình duyệt & Ứng dụng Web không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-WEB-SEC trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Implementation satisfies the happy path but misses Browser & Web Application Security failure cases",
-      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
-      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
+      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
+      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
+      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
     }
   ],
   "depends_on": [
     {
       "code": "STD-SEC",
       "dependency_type": "extends"
-    },
-    {
-      "code": "STD-PRIV",
-      "dependency_type": "uses"
     }
-  ]
+  ],
+  "diagrams": []
 }

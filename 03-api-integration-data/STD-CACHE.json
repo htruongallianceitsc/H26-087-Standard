@@ -1,103 +1,66 @@
 {
   "schemaVersion": 1,
   "code": "STD-CACHE",
-  "name": "Caching & Cache Invalidation",
+  "name": "Bộ nhớ đệm & Vô hiệu hóa Cache",
   "category": "03_api_integration_data",
-  "description": "Caching & Cache Invalidation standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-CACHE applies.",
-  "version": "2.0.0",
+  "description": "Tiêu chuẩn chuẩn hóa cho Bộ nhớ đệm & Vô hiệu hóa Cache. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define cache ownership, key, TTL and invalidation before use",
-      "detail": "Every cache has an owner, key composition, value schema, TTL and explicit invalidation/refresh strategy.",
-      "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Define cache ownership, key, TTL and invalidation before use.",
-      "example_bad": "The change violates or ignores the rule: Define cache ownership, key, TTL and invalidation before use."
-    },
-    {
-      "title": "Never treat cache as the only durable source of truth",
-      "detail": "Loss or eviction of a cache must not destroy authoritative business data.",
+      "title": "Xác định rõ cách tiếp cận cho caching & cache invalidation trước khi triển khai",
+      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Bộ nhớ đệm & Vô hiệu hóa Cache; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
       "layer": "db",
       "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Never treat cache as the only durable source of truth.",
-      "example_bad": "The change violates or ignores the rule: Never treat cache as the only durable source of truth."
+      "example_good": "Project ghi nhận rõ cách Bộ nhớ đệm & Vô hiệu hóa Cache được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
+      "example_bad": "Bộ nhớ đệm & Vô hiệu hóa Cache được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review."
     },
     {
-      "title": "Prevent cross-user or cross-tenant leakage",
-      "detail": "Cache keys and authorization checks must include all isolation dimensions needed to keep data scoped correctly.",
-      "layer": "security",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Prevent cross-user or cross-tenant leakage.",
-      "example_bad": "The change violates or ignores the rule: Prevent cross-user or cross-tenant leakage."
-    },
-    {
-      "title": "Handle stale data deliberately",
-      "detail": "Document acceptable staleness and choose cache-aside, write-through, refresh-ahead or explicit revalidation behavior accordingly.",
-      "layer": "api",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Handle stale data deliberately.",
-      "example_bad": "The change violates or ignores the rule: Handle stale data deliberately."
-    },
-    {
-      "title": "Bound cache size and stampede behavior",
-      "detail": "Apply size/eviction limits and use single-flight, jittered TTL or request coalescing for hot keys when needed.",
-      "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Bound cache size and stampede behavior.",
-      "example_bad": "The change violates or ignores the rule: Bound cache size and stampede behavior."
-    },
-    {
-      "title": "Version cached payloads when schema can outlive deployments",
-      "detail": "Keys or payloads must remain compatible across rolling deployments or be safely invalidated.",
+      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
+      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
       "layer": "db",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Version cached payloads when schema can outlive deployments.",
-      "example_bad": "The change violates or ignores the rule: Version cached payloads when schema can outlive deployments."
+      "severity": "should",
+      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
+      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán."
+    },
+    {
+      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
+      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
+      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Resolve applicability and dependencies",
-      "description": "Confirm where STD-CACHE applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Bộ nhớ đệm & Vô hiệu hóa Cache; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Record project decisions",
-      "description": "Apply the rules of Caching & Cache Invalidation to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Bộ nhớ đệm & Vô hiệu hóa Cache áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Implement with evidence",
-      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
-    },
-    {
-      "step": 4,
-      "title": "Verify before completion",
-      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Caching & Cache Invalidation is applied inconsistently across features",
-      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
-      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
+      "issue": "Áp dụng Bộ nhớ đệm & Vô hiệu hóa Cache không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-CACHE trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Implementation satisfies the happy path but misses Caching & Cache Invalidation failure cases",
-      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
-      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
+      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
+      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
+      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
     }
   ],
-  "depends_on": [
-    {
-      "code": "STD-RES",
-      "dependency_type": "uses"
-    },
-    {
-      "code": "STD-PERF",
-      "dependency_type": "uses"
-    }
-  ]
+  "depends_on": [],
+  "diagrams": []
 }

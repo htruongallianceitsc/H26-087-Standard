@@ -1,131 +1,132 @@
 {
   "schemaVersion": 1,
   "code": "CAP-PERM",
-  "name": "Roles & Permissions",
+  "name": "Vai trò & Quyền hạn",
   "category": "09_reusable_capabilities",
-  "description": "Canonical reusable capability for Roles & Permissions. Migrated from STD-PERM and aligned with STRUCTURE.txt.",
-  "version": "1.1.0",
+  "description": "Capability tái sử dụng chuẩn cho Vai trò & Quyền hạn. Được chuyển từ STD-PERM và căn chỉnh theo STRUCTURE.txt.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define roles and permissions as explicit operations on resources",
-      "detail": "Define roles and permissions as explicit operations on resources. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Định nghĩa vai trò và quyền hạn thành các thao tác rõ ràng trên resource",
+      "detail": "Định nghĩa vai trò và quyền hạn thành các thao tác rõ ràng trên resource. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": [
         "process",
         "security"
       ],
       "severity": "must",
-      "example_good": "Implementation/review evidence explicitly demonstrates: define roles and permissions as explicit operations on resources.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Định nghĩa vai trò và quyền hạn thành các thao tác rõ ràng trên resource.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Enforce permission checks in APIs instead of only hiding UI",
-      "detail": "Enforce permission checks in APIs instead of only hiding UI. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Thực thi kiểm tra quyền trong API thay vì chỉ ẩn UI",
+      "detail": "Thực thi kiểm tra quyền trong API thay vì chỉ ẩn UI. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": [
         "process",
         "security"
       ],
       "severity": "must",
-      "example_good": "Implementation/review evidence explicitly demonstrates: enforce permission checks in apis instead of only hiding ui.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Thực thi kiểm tra quyền trong API thay vì chỉ ẩn UI.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Test least-privilege, revocation and inherited role edge cases",
-      "detail": "Test least-privilege, revocation and inherited role edge cases. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Kiểm thử các trường hợp biên về đặc quyền tối thiểu, thu hồi quyền và role kế thừa",
+      "detail": "Kiểm thử các trường hợp biên về đặc quyền tối thiểu, thu hồi quyền và role kế thừa. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": [
         "process",
         "security"
       ],
       "severity": "should",
-      "example_good": "Implementation/review evidence explicitly demonstrates: test least-privilege, revocation and inherited role edge cases.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Kiểm thử các trường hợp biên về đặc quyền tối thiểu, thu hồi quyền và role kế thừa.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     },
     {
-      "title": "Track sensitive role changes in audit logs",
-      "detail": "Track sensitive role changes in audit logs. Verification: inspect the relevant requirement, implementation or automated check; record evidence for compliance and explain justified deviations.",
+      "title": "Theo dõi thay đổi role nhạy cảm trong audit log",
+      "detail": "Theo dõi thay đổi role nhạy cảm trong audit log. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
       "layer": [
         "process",
         "security"
       ],
       "severity": "should",
-      "example_good": "Implementation/review evidence explicitly demonstrates: track sensitive role changes in audit logs.",
-      "example_bad": "An affected change ignores this rule without review or documented exception."
+      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Theo dõi thay đổi role nhạy cảm trong audit log.",
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Check project platform, requirements, architecture and applicable conditions for Roles & Permissions Feature; record exclusions and approved overrides."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Vai trò & Quyền hạn; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Apply rules",
-      "description": "Include applicable Roles & Permissions Feature rules in design, implementation and review checklist; link relevant requirement and code."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Vai trò & Quyền hạn áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Review evidence, run relevant automated checks, record failures and follow-up work before completion."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Roles & Permissions Feature",
-      "cause": "Project profile does not explicitly reference the standard or its owner.",
-      "solution": "Attach standard by code to project profile, assign owner and check compliance before change approval."
+      "issue": "Áp dụng Vai trò & Quyền hạn không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ CAP-PERM trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Written standard is not enforceable automatically",
-      "cause": "Some behaviour depends on design decisions and runtime context.",
-      "solution": "Pair automated lint/tests with manual review and recorded acceptance evidence."
+      "issue": "Standard dạng văn bản không thể tự động thực thi hoàn toàn",
+      "cause": "Một số hành vi phụ thuộc vào quyết định thiết kế và ngữ cảnh runtime.",
+      "solution": "Kết hợp lint/test tự động với review thủ công và bằng chứng chấp nhận được ghi nhận."
     }
   ],
   "features": [
     {
-      "name": "Roles & Permissions Feature",
-      "description": "Centralized authorization decisions"
+      "name": "Feature vai trò & quyền hạn",
+      "description": "Quyết định phân quyền tập trung"
     }
   ],
   "user_stories": [
     {
-      "title": "Use Roles & Permissions Feature",
-      "as_a": "authorized application user",
-      "i_want": "centralized authorization decisions",
-      "so_that": "I can complete the intended task safely and predictably",
+      "title": "Sử dụng Feature vai trò & quyền hạn",
+      "as_a": "người dùng ứng dụng đã được xác thực và có quyền",
+      "i_want": "quyết định phân quyền tập trung",
+      "so_that": "tôi có thể hoàn thành tác vụ mong muốn một cách an toàn và có thể dự đoán",
       "acceptance_criteria": [
         {
-          "given": "the user is eligible to access Roles & Permissions Feature",
-          "when": "the user performs the main supported action",
-          "then": "the system returns an authorized, validated outcome and communicates its state"
+          "given": "người dùng đủ điều kiện truy cập Feature vai trò & quyền hạn",
+          "when": "người dùng thực hiện thao tác chính được hỗ trợ",
+          "then": "hệ thống trả về kết quả đã được phân quyền, được validation và truyền đạt rõ trạng thái"
         },
         {
-          "given": "an input, permission or dependency is invalid",
-          "when": "the user attempts the action",
-          "then": "the system blocks unsafe completion and shows a recoverable, non-sensitive error"
+          "given": "input, permission hoặc dependency không hợp lệ",
+          "when": "người dùng thực hiện thao tác",
+          "then": "hệ thống chặn việc hoàn tất không an toàn và hiển thị lỗi có thể khôi phục, không chứa dữ liệu nhạy cảm"
         }
       ],
       "related_rules": [
-        "Define roles and permissions as explicit operations on resources"
+        "Định nghĩa vai trò và quyền hạn thành các thao tác rõ ràng trên resource"
       ]
     }
   ],
   "depends_on": [
     {
       "code": "STD-REQ",
-      "dependency_type": "uses"
+      "dependency_type": "requires"
     },
     {
       "code": "STD-TEST",
-      "dependency_type": "uses"
+      "dependency_type": "requires"
     },
     {
       "code": "STD-FEAT",
-      "dependency_type": "uses"
+      "dependency_type": "requires"
     },
     {
       "code": "STD-BIZ",
-      "dependency_type": "uses"
+      "dependency_type": "requires"
     }
-  ]
+  ],
+  "diagrams": []
 }

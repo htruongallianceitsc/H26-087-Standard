@@ -1,93 +1,64 @@
 {
   "schemaVersion": 1,
   "code": "STD-PERF-TEST",
-  "name": "Performance, Load & Stress Testing",
+  "name": "Kiểm thử hiệu năng, tải & stress",
   "category": "01_governance_delivery",
-  "description": "Performance, Load & Stress Testing standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-PERF-TEST applies.",
-  "version": "2.0.0",
+  "description": "Tiêu chuẩn chuẩn hóa cho Kiểm thử hiệu năng, tải & stress. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "version": "1.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define measurable performance objectives before testing",
-      "detail": "Specify workload, concurrency, dataset, latency percentiles, throughput, error rate and resource limits aligned with relevant SLOs.",
+      "title": "Xác định rõ cách tiếp cận cho kiểm thử hiệu năng, tải & stress trước khi triển khai",
+      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Kiểm thử hiệu năng, tải & stress; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
       "layer": "process",
       "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Define measurable performance objectives before testing.",
-      "example_bad": "The change violates or ignores the rule: Define measurable performance objectives before testing."
+      "example_good": "Project ghi nhận rõ cách Kiểm thử hiệu năng, tải & stress được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
+      "example_bad": "Kiểm thử hiệu năng, tải & stress được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review."
     },
     {
-      "title": "Separate load, stress, spike, endurance and capacity scenarios",
-      "detail": "Choose the test type based on the risk being evaluated and document expected behavior for each scenario.",
+      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
+      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
       "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Separate load, stress, spike, endurance and capacity scenarios.",
-      "example_bad": "The change violates or ignores the rule: Separate load, stress, spike, endurance and capacity scenarios."
+      "severity": "should",
+      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
+      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán."
     },
     {
-      "title": "Test production-representative critical paths",
-      "detail": "Use realistic request mix, payload sizes, authentication, cache state and data volume; synthetic trivial endpoints are insufficient.",
-      "layer": "api",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Test production-representative critical paths.",
-      "example_bad": "The change violates or ignores the rule: Test production-representative critical paths."
-    },
-    {
-      "title": "Capture server and dependency telemetry during tests",
-      "detail": "Correlate latency with CPU, memory, GC, database, cache, queue and downstream metrics so bottlenecks can be diagnosed.",
+      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
+      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
       "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Capture server and dependency telemetry during tests.",
-      "example_bad": "The change violates or ignores the rule: Capture server and dependency telemetry during tests."
-    },
-    {
-      "title": "Define pass/fail thresholds and regression budgets",
-      "detail": "Performance tests must fail when agreed latency, error, throughput or resource thresholds regress beyond the accepted budget.",
-      "layer": "process",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Define pass/fail thresholds and regression budgets.",
-      "example_bad": "The change violates or ignores the rule: Define pass/fail thresholds and regression budgets."
-    },
-    {
-      "title": "Protect production and shared environments",
-      "detail": "Load generation requires rate controls, test data isolation and approval when it could affect real users or shared dependencies.",
-      "layer": "security",
-      "severity": "must",
-      "example_good": "The implementation and review evidence demonstrate: Protect production and shared environments.",
-      "example_bad": "The change violates or ignores the rule: Protect production and shared environments."
+      "severity": "should",
+      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
+      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Resolve applicability and dependencies",
-      "description": "Confirm where STD-PERF-TEST applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
+      "title": "Đánh giá phạm vi áp dụng",
+      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Kiểm thử hiệu năng, tải & stress; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
     },
     {
       "step": 2,
-      "title": "Record project decisions",
-      "description": "Apply the rules of Performance, Load & Stress Testing to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
+      "title": "Áp dụng quy tắc",
+      "description": "Đưa các quy tắc Kiểm thử hiệu năng, tải & stress áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
     },
     {
       "step": 3,
-      "title": "Implement with evidence",
-      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
-    },
-    {
-      "step": 4,
-      "title": "Verify before completion",
-      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
+      "title": "Xác minh tuân thủ",
+      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
     }
   ],
   "common_issues": [
     {
-      "issue": "Performance, Load & Stress Testing is applied inconsistently across features",
-      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
-      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
+      "issue": "Áp dụng Kiểm thử hiệu năng, tải & stress không nhất quán",
+      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
+      "solution": "Tham chiếu rõ STD-PERF-TEST trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
     },
     {
-      "issue": "Implementation satisfies the happy path but misses Performance, Load & Stress Testing failure cases",
-      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
-      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
+      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
+      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
+      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
     }
   ],
   "depends_on": [
@@ -103,5 +74,6 @@
       "code": "STD-SLO",
       "dependency_type": "uses"
     }
-  ]
+  ],
+  "diagrams": []
 }
