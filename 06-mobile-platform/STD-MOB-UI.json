@@ -4,7 +4,7 @@
   "name": "Mobile Layout, Safe Areas & Keyboard",
   "category": "06_mobile_platform",
   "description": "Adaptive mobile visual behaviour",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -84,11 +84,11 @@
   "depends_on": [
     {
       "code": "STD-REQ",
-      "dependency_type": "requires"
+      "dependency_type": "uses"
     },
     {
       "code": "STD-TEST",
-      "dependency_type": "requires"
+      "dependency_type": "uses"
     },
     {
       "code": "STD-UX",

@@ -3,63 +3,101 @@
   "code": "STD-API-REST",
   "name": "RESTful API Design",
   "category": "03_api_integration_data",
-  "description": "Canonical standard for RESTful API Design. Defines baseline rules, review expectations and adoption guidance for projects where this standard applies.",
-  "version": "1.0.0",
+  "description": "RESTful API Design standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-API-REST applies.",
+  "version": "2.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define an explicit RESTful API Design approach before implementation",
-      "detail": "Document scope, decisions, constraints and ownership for RESTful API Design; link the decision to relevant requirements and implementation evidence.",
+      "title": "Model REST resources with consistent nouns and HTTP methods",
+      "detail": "Use resource-oriented URLs and standard method semantics; avoid action verbs in paths unless the operation is not naturally resource-oriented.",
       "layer": "api",
       "severity": "must",
-      "example_good": "The project records how RESTful API Design applies, who owns it, and how compliance is verified.",
-      "example_bad": "RESTful API Design is implemented ad hoc without documented rules or review evidence."
+      "example_good": "The implementation and review evidence demonstrate: Model REST resources with consistent nouns and HTTP methods.",
+      "example_bad": "The change violates or ignores the rule: Model REST resources with consistent nouns and HTTP methods."
     },
     {
-      "title": "Handle failure, boundary and compatibility cases explicitly",
-      "detail": "Identify relevant failure modes, edge cases, compatibility constraints and rollback/recovery expectations before release.",
+      "title": "Use HTTP status codes consistently",
+      "detail": "Distinguish success, validation, authentication, authorization, conflict, not-found, rate-limit and server errors using agreed status semantics.",
       "layer": "api",
-      "severity": "should",
-      "example_good": "Boundary and failure cases are represented in acceptance criteria, tests, checks or operational guidance.",
-      "example_bad": "Only the happy path is defined and failures are left to implementation guesswork."
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Use HTTP status codes consistently.",
+      "example_bad": "The change violates or ignores the rule: Use HTTP status codes consistently."
     },
     {
-      "title": "Verify adoption with repeatable evidence",
-      "detail": "Use automated checks where practical and manual review where judgement is required; record justified deviations instead of silently ignoring rules.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Review or automated evidence shows which rules were checked and any approved exceptions.",
-      "example_bad": "The standard exists as documentation but is not referenced during delivery or review."
+      "title": "Return structured machine-readable errors",
+      "detail": "Errors expose stable application/error codes, safe user-facing context and correlation identifiers; never expose stack traces or secrets.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Return structured machine-readable errors.",
+      "example_bad": "The change violates or ignores the rule: Return structured machine-readable errors."
+    },
+    {
+      "title": "Standardize pagination, filtering and sorting",
+      "detail": "List endpoints define bounded page size, deterministic ordering and consistent query parameter conventions.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Standardize pagination, filtering and sorting.",
+      "example_bad": "The change violates or ignores the rule: Standardize pagination, filtering and sorting."
+    },
+    {
+      "title": "Design write operations for duplicate and concurrency behavior",
+      "detail": "Use idempotency keys, conditional requests, unique constraints or version tokens where retries or concurrent updates can cause duplicate effects.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Design write operations for duplicate and concurrency behavior.",
+      "example_bad": "The change violates or ignores the rule: Design write operations for duplicate and concurrency behavior."
+    },
+    {
+      "title": "Document the contract in OpenAPI",
+      "detail": "Request/response schemas, auth, status codes and examples must be represented in the API contract and kept aligned with implementation.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Document the contract in OpenAPI.",
+      "example_bad": "The change violates or ignores the rule: Document the contract in OpenAPI."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Determine whether STD-API-REST applies to the project, feature or change and record approved exclusions."
+      "title": "Resolve applicability and dependencies",
+      "description": "Confirm where STD-API-REST applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
     },
     {
       "step": 2,
-      "title": "Apply standard",
-      "description": "Apply the relevant RESTful API Design rules during requirement, design and implementation work."
+      "title": "Record project decisions",
+      "description": "Apply the rules of RESTful API Design to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Run relevant automated checks and manual review, then capture evidence or approved deviations before completion."
+      "title": "Implement with evidence",
+      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
+    },
+    {
+      "step": 4,
+      "title": "Verify before completion",
+      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of RESTful API Design",
-      "cause": "The project profile does not resolve or assign the applicable standard clearly.",
-      "solution": "Reference STD-API-REST explicitly, assign ownership and include it in review/quality gates."
+      "issue": "RESTful API Design is applied inconsistently across features",
+      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
+      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
     },
     {
-      "issue": "Rules are documented but not verifiable",
-      "cause": "No test, lint, checklist, review evidence or operational check is tied to the rule.",
-      "solution": "Pair each important rule with practical verification evidence and record exceptions."
+      "issue": "Implementation satisfies the happy path but misses RESTful API Design failure cases",
+      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
+      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
     }
   ],
-  "depends_on": []
+  "depends_on": [
+    {
+      "code": "STD-API",
+      "dependency_type": "extends"
+    },
+    {
+      "code": "STD-RES",
+      "dependency_type": "uses"
+    }
+  ]
 }

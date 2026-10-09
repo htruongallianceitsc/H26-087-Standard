@@ -4,7 +4,7 @@
   "name": "PostgreSQL Development & Migrations",
   "category": "08_technology",
   "description": "Database correctness and operability",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -70,18 +70,6 @@
     }
   ],
   "depends_on": [
-    {
-      "code": "STD-REQ",
-      "dependency_type": "requires"
-    },
-    {
-      "code": "STD-TEST",
-      "dependency_type": "requires"
-    },
-    {
-      "code": "STD-SEC",
-      "dependency_type": "requires"
-    },
     {
       "code": "STD-DATA",
       "dependency_type": "implements"

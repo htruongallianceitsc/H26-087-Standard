@@ -3,63 +3,105 @@
   "code": "STD-DR",
   "name": "Disaster Recovery",
   "category": "10_operations_infrastructure",
-  "description": "Canonical standard for Disaster Recovery. Defines baseline rules, review expectations and adoption guidance for projects where this standard applies.",
-  "version": "1.0.0",
+  "description": "Disaster Recovery standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-DR applies.",
+  "version": "2.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define an explicit Disaster Recovery approach before implementation",
-      "detail": "Document scope, decisions, constraints and ownership for Disaster Recovery; link the decision to relevant requirements and implementation evidence.",
+      "title": "Define RTO and RPO for critical services",
+      "detail": "Business owners approve maximum recovery time and data loss objectives that drive architecture and backup choices.",
       "layer": "process",
       "severity": "must",
-      "example_good": "The project records how Disaster Recovery applies, who owns it, and how compliance is verified.",
-      "example_bad": "Disaster Recovery is implemented ad hoc without documented rules or review evidence."
+      "example_good": "The implementation and review evidence demonstrate: Define RTO and RPO for critical services.",
+      "example_bad": "The change violates or ignores the rule: Define RTO and RPO for critical services."
     },
     {
-      "title": "Handle failure, boundary and compatibility cases explicitly",
-      "detail": "Identify relevant failure modes, edge cases, compatibility constraints and rollback/recovery expectations before release.",
+      "title": "Document service dependencies and recovery order",
+      "detail": "Recovery plans identify DNS/network, identity, secrets, databases, queues, storage and application ordering.",
       "layer": "process",
-      "severity": "should",
-      "example_good": "Boundary and failure cases are represented in acceptance criteria, tests, checks or operational guidance.",
-      "example_bad": "Only the happy path is defined and failures are left to implementation guesswork."
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Document service dependencies and recovery order.",
+      "example_bad": "The change violates or ignores the rule: Document service dependencies and recovery order."
     },
     {
-      "title": "Verify adoption with repeatable evidence",
-      "detail": "Use automated checks where practical and manual review where judgement is required; record justified deviations instead of silently ignoring rules.",
+      "title": "Maintain recovery capability outside the primary failure domain",
+      "detail": "Critical backups/configuration/runbooks and required credentials are available when the primary region/account/system is unavailable.",
+      "layer": "security",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Maintain recovery capability outside the primary failure domain.",
+      "example_bad": "The change violates or ignores the rule: Maintain recovery capability outside the primary failure domain."
+    },
+    {
+      "title": "Exercise disaster recovery scenarios",
+      "detail": "Run scheduled tabletop and technical recovery tests and record actual recovery time/data loss against objectives.",
       "layer": "process",
-      "severity": "should",
-      "example_good": "Review or automated evidence shows which rules were checked and any approved exceptions.",
-      "example_bad": "The standard exists as documentation but is not referenced during delivery or review."
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Exercise disaster recovery scenarios.",
+      "example_bad": "The change violates or ignores the rule: Exercise disaster recovery scenarios."
+    },
+    {
+      "title": "Define failover and failback behavior",
+      "detail": "Document traffic cutover, data consistency, split-brain prevention and safe return to normal operation.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Define failover and failback behavior.",
+      "example_bad": "The change violates or ignores the rule: Define failover and failback behavior."
+    },
+    {
+      "title": "Update DR plans after material architecture changes",
+      "detail": "New dependencies, regions, data stores or identity systems trigger recovery-plan review.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Update DR plans after material architecture changes.",
+      "example_bad": "The change violates or ignores the rule: Update DR plans after material architecture changes."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Determine whether STD-DR applies to the project, feature or change and record approved exclusions."
+      "title": "Resolve applicability and dependencies",
+      "description": "Confirm where STD-DR applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
     },
     {
       "step": 2,
-      "title": "Apply standard",
-      "description": "Apply the relevant Disaster Recovery rules during requirement, design and implementation work."
+      "title": "Record project decisions",
+      "description": "Apply the rules of Disaster Recovery to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Run relevant automated checks and manual review, then capture evidence or approved deviations before completion."
+      "title": "Implement with evidence",
+      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
+    },
+    {
+      "step": 4,
+      "title": "Verify before completion",
+      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Disaster Recovery",
-      "cause": "The project profile does not resolve or assign the applicable standard clearly.",
-      "solution": "Reference STD-DR explicitly, assign ownership and include it in review/quality gates."
+      "issue": "Disaster Recovery is applied inconsistently across features",
+      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
+      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
     },
     {
-      "issue": "Rules are documented but not verifiable",
-      "cause": "No test, lint, checklist, review evidence or operational check is tied to the rule.",
-      "solution": "Pair each important rule with practical verification evidence and record exceptions."
+      "issue": "Implementation satisfies the happy path but misses Disaster Recovery failure cases",
+      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
+      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
     }
   ],
-  "depends_on": []
+  "depends_on": [
+    {
+      "code": "STD-BACKUP",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-SLO",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-RUNBOOK",
+      "dependency_type": "uses"
+    }
+  ]
 }

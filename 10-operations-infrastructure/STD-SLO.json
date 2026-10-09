@@ -3,63 +3,105 @@
   "code": "STD-SLO",
   "name": "Service Level Objectives",
   "category": "10_operations_infrastructure",
-  "description": "Canonical standard for Service Level Objectives. Defines baseline rules, review expectations and adoption guidance for projects where this standard applies.",
-  "version": "1.0.0",
+  "description": "Service Level Objectives standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-SLO applies.",
+  "version": "2.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define an explicit Service Level Objectives approach before implementation",
-      "detail": "Document scope, decisions, constraints and ownership for Service Level Objectives; link the decision to relevant requirements and implementation evidence.",
+      "title": "Define user-centered service level indicators",
+      "detail": "Choose measurable availability, latency, correctness or freshness signals that reflect user-visible service rather than infrastructure uptime alone.",
       "layer": "process",
       "severity": "must",
-      "example_good": "The project records how Service Level Objectives applies, who owns it, and how compliance is verified.",
-      "example_bad": "Service Level Objectives is implemented ad hoc without documented rules or review evidence."
+      "example_good": "The implementation and review evidence demonstrate: Define user-centered service level indicators.",
+      "example_bad": "The change violates or ignores the rule: Define user-centered service level indicators."
     },
     {
-      "title": "Handle failure, boundary and compatibility cases explicitly",
-      "detail": "Identify relevant failure modes, edge cases, compatibility constraints and rollback/recovery expectations before release.",
+      "title": "Set explicit SLO targets and windows",
+      "detail": "Each critical service/flow defines target percentage/threshold and measurement window with clear inclusion/exclusion rules.",
       "layer": "process",
-      "severity": "should",
-      "example_good": "Boundary and failure cases are represented in acceptance criteria, tests, checks or operational guidance.",
-      "example_bad": "Only the happy path is defined and failures are left to implementation guesswork."
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Set explicit SLO targets and windows.",
+      "example_bad": "The change violates or ignores the rule: Set explicit SLO targets and windows."
     },
     {
-      "title": "Verify adoption with repeatable evidence",
-      "detail": "Use automated checks where practical and manual review where judgement is required; record justified deviations instead of silently ignoring rules.",
+      "title": "Track error budget",
+      "detail": "Calculate remaining budget and use it to guide release/risk decisions when reliability materially misses target.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Track error budget.",
+      "example_bad": "The change violates or ignores the rule: Track error budget."
+    },
+    {
+      "title": "Alert on actionable burn rate",
+      "detail": "Prefer alerts that indicate likely SLO exhaustion and require action rather than noisy threshold-only infrastructure alerts.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Alert on actionable burn rate.",
+      "example_bad": "The change violates or ignores the rule: Alert on actionable burn rate."
+    },
+    {
+      "title": "Align SLOs with dependency and business criticality",
+      "detail": "Do not promise a stronger end-to-end SLO than dependencies and architecture can realistically support without mitigation.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Align SLOs with dependency and business criticality.",
+      "example_bad": "The change violates or ignores the rule: Align SLOs with dependency and business criticality."
+    },
+    {
+      "title": "Review SLOs using production evidence",
+      "detail": "Periodically adjust indicators/targets when they no longer represent user impact, while preserving historical comparability.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Review or automated evidence shows which rules were checked and any approved exceptions.",
-      "example_bad": "The standard exists as documentation but is not referenced during delivery or review."
+      "example_good": "The implementation and review evidence demonstrate: Review SLOs using production evidence.",
+      "example_bad": "The change violates or ignores the rule: Review SLOs using production evidence."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Determine whether STD-SLO applies to the project, feature or change and record approved exclusions."
+      "title": "Resolve applicability and dependencies",
+      "description": "Confirm where STD-SLO applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
     },
     {
       "step": 2,
-      "title": "Apply standard",
-      "description": "Apply the relevant Service Level Objectives rules during requirement, design and implementation work."
+      "title": "Record project decisions",
+      "description": "Apply the rules of Service Level Objectives to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Run relevant automated checks and manual review, then capture evidence or approved deviations before completion."
+      "title": "Implement with evidence",
+      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
+    },
+    {
+      "step": 4,
+      "title": "Verify before completion",
+      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Service Level Objectives",
-      "cause": "The project profile does not resolve or assign the applicable standard clearly.",
-      "solution": "Reference STD-SLO explicitly, assign ownership and include it in review/quality gates."
+      "issue": "Service Level Objectives is applied inconsistently across features",
+      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
+      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
     },
     {
-      "issue": "Rules are documented but not verifiable",
-      "cause": "No test, lint, checklist, review evidence or operational check is tied to the rule.",
-      "solution": "Pair each important rule with practical verification evidence and record exceptions."
+      "issue": "Implementation satisfies the happy path but misses Service Level Objectives failure cases",
+      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
+      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
     }
   ],
-  "depends_on": []
+  "depends_on": [
+    {
+      "code": "STD-LOG",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-RES",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-PERF",
+      "dependency_type": "uses"
+    }
+  ]
 }

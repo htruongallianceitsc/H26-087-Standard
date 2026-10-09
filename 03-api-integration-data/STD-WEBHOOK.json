@@ -3,63 +3,105 @@
   "code": "STD-WEBHOOK",
   "name": "Webhook & Event Contracts",
   "category": "03_api_integration_data",
-  "description": "Canonical standard for Webhook & Event Contracts. Defines baseline rules, review expectations and adoption guidance for projects where this standard applies.",
-  "version": "1.0.0",
+  "description": "Webhook & Event Contracts standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-WEBHOOK applies.",
+  "version": "2.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define an explicit Webhook & Event Contracts approach before implementation",
-      "detail": "Document scope, decisions, constraints and ownership for Webhook & Event Contracts; link the decision to relevant requirements and implementation evidence.",
+      "title": "Authenticate webhook senders",
+      "detail": "Verify a signature, mTLS, token or equivalent trusted mechanism before processing; never trust source IP alone unless contractually fixed and supplemented.",
+      "layer": "security",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Authenticate webhook senders.",
+      "example_bad": "The change violates or ignores the rule: Authenticate webhook senders."
+    },
+    {
+      "title": "Verify signature against the raw canonical payload",
+      "detail": "Perform verification before parsing/mutating the payload and apply replay/timestamp protection when supported.",
+      "layer": "security",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Verify signature against the raw canonical payload.",
+      "example_bad": "The change violates or ignores the rule: Verify signature against the raw canonical payload."
+    },
+    {
+      "title": "Acknowledge quickly and process asynchronously when work is non-trivial",
+      "detail": "Keep provider-facing response latency bounded and move durable business processing to a queue/job when appropriate.",
       "layer": "api",
       "severity": "must",
-      "example_good": "The project records how Webhook & Event Contracts applies, who owns it, and how compliance is verified.",
-      "example_bad": "Webhook & Event Contracts is implemented ad hoc without documented rules or review evidence."
+      "example_good": "The implementation and review evidence demonstrate: Acknowledge quickly and process asynchronously when work is non-trivial.",
+      "example_bad": "The change violates or ignores the rule: Acknowledge quickly and process asynchronously when work is non-trivial."
     },
     {
-      "title": "Handle failure, boundary and compatibility cases explicitly",
-      "detail": "Identify relevant failure modes, edge cases, compatibility constraints and rollback/recovery expectations before release.",
+      "title": "Make webhook processing idempotent",
+      "detail": "Use provider event ID or a deterministic business key so retries and duplicate delivery do not duplicate effects.",
       "layer": "api",
-      "severity": "should",
-      "example_good": "Boundary and failure cases are represented in acceptance criteria, tests, checks or operational guidance.",
-      "example_bad": "Only the happy path is defined and failures are left to implementation guesswork."
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Make webhook processing idempotent.",
+      "example_bad": "The change violates or ignores the rule: Make webhook processing idempotent."
     },
     {
-      "title": "Verify adoption with repeatable evidence",
-      "detail": "Use automated checks where practical and manual review where judgement is required; record justified deviations instead of silently ignoring rules.",
+      "title": "Persist enough evidence for replay and support",
+      "detail": "Record safe event metadata, processing state, attempts and correlation without storing prohibited secrets or excess personal data.",
       "layer": "process",
-      "severity": "should",
-      "example_good": "Review or automated evidence shows which rules were checked and any approved exceptions.",
-      "example_bad": "The standard exists as documentation but is not referenced during delivery or review."
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Persist enough evidence for replay and support.",
+      "example_bad": "The change violates or ignores the rule: Persist enough evidence for replay and support."
+    },
+    {
+      "title": "Define retry and dead-letter handling",
+      "detail": "Failed processing has bounded retry, alerting and a manual or automated recovery path.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Define retry and dead-letter handling.",
+      "example_bad": "The change violates or ignores the rule: Define retry and dead-letter handling."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Determine whether STD-WEBHOOK applies to the project, feature or change and record approved exclusions."
+      "title": "Resolve applicability and dependencies",
+      "description": "Confirm where STD-WEBHOOK applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
     },
     {
       "step": 2,
-      "title": "Apply standard",
-      "description": "Apply the relevant Webhook & Event Contracts rules during requirement, design and implementation work."
+      "title": "Record project decisions",
+      "description": "Apply the rules of Webhook & Event Contracts to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Run relevant automated checks and manual review, then capture evidence or approved deviations before completion."
+      "title": "Implement with evidence",
+      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
+    },
+    {
+      "step": 4,
+      "title": "Verify before completion",
+      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Webhook & Event Contracts",
-      "cause": "The project profile does not resolve or assign the applicable standard clearly.",
-      "solution": "Reference STD-WEBHOOK explicitly, assign ownership and include it in review/quality gates."
+      "issue": "Webhook & Event Contracts is applied inconsistently across features",
+      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
+      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
     },
     {
-      "issue": "Rules are documented but not verifiable",
-      "cause": "No test, lint, checklist, review evidence or operational check is tied to the rule.",
-      "solution": "Pair each important rule with practical verification evidence and record exceptions."
+      "issue": "Implementation satisfies the happy path but misses Webhook & Event Contracts failure cases",
+      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
+      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
     }
   ],
-  "depends_on": []
+  "depends_on": [
+    {
+      "code": "STD-INTEGRATION",
+      "dependency_type": "extends"
+    },
+    {
+      "code": "STD-RES",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-SEC",
+      "dependency_type": "uses"
+    }
+  ]
 }

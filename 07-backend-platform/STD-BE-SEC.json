@@ -3,68 +3,101 @@
   "code": "STD-BE-SEC",
   "name": "Backend Security & Hardening",
   "category": "07_backend_platform",
-  "description": "Canonical standard for Backend Security & Hardening. Defines baseline rules, review expectations and adoption guidance for projects where this standard applies.",
-  "version": "1.0.0",
+  "description": "Backend Security & Hardening standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-BE-SEC applies.",
+  "version": "2.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define an explicit Backend Security & Hardening approach before implementation",
-      "detail": "Document scope, decisions, constraints and ownership for Backend Security & Hardening; link the decision to relevant requirements and implementation evidence.",
+      "title": "Validate and normalize all external input",
+      "detail": "Apply allowlisted validation for shape, length, range and identifiers before business or persistence use.",
       "layer": "security",
       "severity": "must",
-      "example_good": "The project records how Backend Security & Hardening applies, who owns it, and how compliance is verified.",
-      "example_bad": "Backend Security & Hardening is implemented ad hoc without documented rules or review evidence."
+      "example_good": "The implementation and review evidence demonstrate: Validate and normalize all external input.",
+      "example_bad": "The change violates or ignores the rule: Validate and normalize all external input."
     },
     {
-      "title": "Handle failure, boundary and compatibility cases explicitly",
-      "detail": "Identify relevant failure modes, edge cases, compatibility constraints and rollback/recovery expectations before release.",
+      "title": "Use centralized safe exception handling",
+      "detail": "Return stable safe errors and correlation IDs; never expose stack traces, SQL, file paths, tokens or internal secrets to clients.",
       "layer": "security",
-      "severity": "should",
-      "example_good": "Boundary and failure cases are represented in acceptance criteria, tests, checks or operational guidance.",
-      "example_bad": "Only the happy path is defined and failures are left to implementation guesswork."
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Use centralized safe exception handling.",
+      "example_bad": "The change violates or ignores the rule: Use centralized safe exception handling."
     },
     {
-      "title": "Verify adoption with repeatable evidence",
-      "detail": "Use automated checks where practical and manual review where judgement is required; record justified deviations instead of silently ignoring rules.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Review or automated evidence shows which rules were checked and any approved exceptions.",
-      "example_bad": "The standard exists as documentation but is not referenced during delivery or review."
+      "title": "Protect against injection",
+      "detail": "Use parameterized queries/ORM parameters, safe command APIs and output encoding; never concatenate untrusted input into SQL, shell or templates.",
+      "layer": "security",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Protect against injection.",
+      "example_bad": "The change violates or ignores the rule: Protect against injection."
+    },
+    {
+      "title": "Apply rate limiting and resource limits",
+      "detail": "Protect authentication and expensive/public endpoints from brute force and resource exhaustion with appropriate quotas and bounds.",
+      "layer": "security",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Apply rate limiting and resource limits.",
+      "example_bad": "The change violates or ignores the rule: Apply rate limiting and resource limits."
+    },
+    {
+      "title": "Run with least-privilege infrastructure identities",
+      "detail": "Application database/cloud/filesystem credentials receive only permissions required for that service and environment.",
+      "layer": "security",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Run with least-privilege infrastructure identities.",
+      "example_bad": "The change violates or ignores the rule: Run with least-privilege infrastructure identities."
+    },
+    {
+      "title": "Keep security-relevant dependencies and configuration patched",
+      "detail": "Track supported runtime/framework versions, scan vulnerabilities and apply prioritized security updates.",
+      "layer": "security",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Keep security-relevant dependencies and configuration patched.",
+      "example_bad": "The change violates or ignores the rule: Keep security-relevant dependencies and configuration patched."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Determine whether STD-BE-SEC applies to the project, feature or change and record approved exclusions."
+      "title": "Resolve applicability and dependencies",
+      "description": "Confirm where STD-BE-SEC applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
     },
     {
       "step": 2,
-      "title": "Apply standard",
-      "description": "Apply the relevant Backend Security & Hardening rules during requirement, design and implementation work."
+      "title": "Record project decisions",
+      "description": "Apply the rules of Backend Security & Hardening to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Run relevant automated checks and manual review, then capture evidence or approved deviations before completion."
+      "title": "Implement with evidence",
+      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
+    },
+    {
+      "step": 4,
+      "title": "Verify before completion",
+      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Backend Security & Hardening",
-      "cause": "The project profile does not resolve or assign the applicable standard clearly.",
-      "solution": "Reference STD-BE-SEC explicitly, assign ownership and include it in review/quality gates."
+      "issue": "Backend Security & Hardening is applied inconsistently across features",
+      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
+      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
     },
     {
-      "issue": "Rules are documented but not verifiable",
-      "cause": "No test, lint, checklist, review evidence or operational check is tied to the rule.",
-      "solution": "Pair each important rule with practical verification evidence and record exceptions."
+      "issue": "Implementation satisfies the happy path but misses Backend Security & Hardening failure cases",
+      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
+      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
     }
   ],
   "depends_on": [
     {
       "code": "STD-SEC",
       "dependency_type": "extends"
+    },
+    {
+      "code": "STD-ENV",
+      "dependency_type": "uses"
     }
   ]
 }

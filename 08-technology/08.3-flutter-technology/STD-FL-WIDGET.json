@@ -4,7 +4,7 @@
   "name": "Widget Composition & Theming",
   "category": "08_technology",
   "description": "Flutter presentation architecture",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -71,16 +71,24 @@
   ],
   "depends_on": [
     {
-      "code": "STD-REQ",
-      "dependency_type": "requires"
+      "code": "STD-MOB-UI",
+      "dependency_type": "implements"
     },
     {
-      "code": "STD-TEST",
-      "dependency_type": "requires"
+      "code": "STD-DS",
+      "dependency_type": "uses"
     },
     {
-      "code": "STD-MOB-ARCH",
-      "dependency_type": "requires"
+      "code": "STD-A11Y",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-FORM",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-UI-STATE",
+      "dependency_type": "uses"
     }
   ]
 }

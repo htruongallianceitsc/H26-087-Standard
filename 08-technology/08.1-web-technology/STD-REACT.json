@@ -4,7 +4,7 @@
   "name": "React Components & Hooks",
   "category": "08_technology",
   "description": "Reusable React architecture",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -71,16 +71,20 @@
   ],
   "depends_on": [
     {
-      "code": "STD-REQ",
-      "dependency_type": "requires"
-    },
-    {
-      "code": "STD-TEST",
-      "dependency_type": "requires"
-    },
-    {
       "code": "STD-WEB-ARCH",
-      "dependency_type": "requires"
+      "dependency_type": "implements"
+    },
+    {
+      "code": "STD-UI-STATE",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-DS",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-ERR",
+      "dependency_type": "uses"
     }
   ]
 }

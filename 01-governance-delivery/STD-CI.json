@@ -4,7 +4,7 @@
   "name": "Continuous Integration & Build Pipeline",
   "category": "01_governance_delivery",
   "description": "Reproducible build and deployment",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -72,7 +72,7 @@
   "depends_on": [
     {
       "code": "STD-TEST",
-      "dependency_type": "requires"
+      "dependency_type": "uses"
     }
   ]
 }

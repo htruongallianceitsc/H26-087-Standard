@@ -3,65 +3,98 @@
   "code": "STD-DATA-MIG",
   "name": "Schema Evolution & Database Migrations",
   "category": "03_api_integration_data",
-  "description": "Canonical standard for Schema Evolution & Database Migrations. Defines baseline rules, review expectations and adoption guidance for projects where this standard applies.",
-  "version": "1.0.0",
+  "description": "Schema Evolution & Database Migrations standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-DATA-MIG applies.",
+  "version": "2.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define an explicit Schema Evolution & Database Migrations approach before implementation",
-      "detail": "Document scope, decisions, constraints and ownership for Schema Evolution & Database Migrations; link the decision to relevant requirements and implementation evidence.",
+      "title": "Use expand–migrate–contract for breaking schema changes",
+      "detail": "Introduce backward-compatible schema first, deploy compatible code, migrate/backfill data, switch reads/writes, then remove old schema in a later safe release.",
       "layer": "db",
       "severity": "must",
-      "example_good": "The project records how Schema Evolution & Database Migrations applies, who owns it, and how compliance is verified.",
-      "example_bad": "Schema Evolution & Database Migrations is implemented ad hoc without documented rules or review evidence."
+      "example_good": "The implementation and review evidence demonstrate: Use expand–migrate–contract for breaking schema changes.",
+      "example_bad": "The change violates or ignores the rule: Use expand–migrate–contract for breaking schema changes."
     },
     {
-      "title": "Handle failure, boundary and compatibility cases explicitly",
-      "detail": "Identify relevant failure modes, edge cases, compatibility constraints and rollback/recovery expectations before release.",
+      "title": "Keep migrations deterministic and version controlled",
+      "detail": "Each migration is immutable after shared use, ordered, reviewable and applied by a controlled deployment process.",
+      "layer": "db",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Keep migrations deterministic and version controlled.",
+      "example_bad": "The change violates or ignores the rule: Keep migrations deterministic and version controlled."
+    },
+    {
+      "title": "Design migrations for production data volume and locking",
+      "detail": "Estimate runtime/lock impact, batch large backfills and avoid long blocking DDL on hot tables where the database provides safer alternatives.",
+      "layer": "db",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Design migrations for production data volume and locking.",
+      "example_bad": "The change violates or ignores the rule: Design migrations for production data volume and locking."
+    },
+    {
+      "title": "Define rollback or forward-fix strategy before release",
+      "detail": "For destructive or irreversible changes, document backup, compatibility window and forward remediation rather than assuming automatic down migration is safe.",
+      "layer": "db",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Define rollback or forward-fix strategy before release.",
+      "example_bad": "The change violates or ignores the rule: Define rollback or forward-fix strategy before release."
+    },
+    {
+      "title": "Separate schema change from business backfill when operationally safer",
+      "detail": "Long-running data transformations should run as resumable, observable jobs instead of blocking application startup/deployment.",
       "layer": "db",
       "severity": "should",
-      "example_good": "Boundary and failure cases are represented in acceptance criteria, tests, checks or operational guidance.",
-      "example_bad": "Only the happy path is defined and failures are left to implementation guesswork."
+      "example_good": "The implementation and review evidence demonstrate: Separate schema change from business backfill when operationally safer.",
+      "example_bad": "The change violates or ignores the rule: Separate schema change from business backfill when operationally safer."
     },
     {
-      "title": "Verify adoption with repeatable evidence",
-      "detail": "Use automated checks where practical and manual review where judgement is required; record justified deviations instead of silently ignoring rules.",
+      "title": "Verify migration state during deployment",
+      "detail": "Deployment must fail safely when expected migration prerequisites/version are missing and expose current schema version for diagnostics.",
       "layer": "process",
-      "severity": "should",
-      "example_good": "Review or automated evidence shows which rules were checked and any approved exceptions.",
-      "example_bad": "The standard exists as documentation but is not referenced during delivery or review."
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Verify migration state during deployment.",
+      "example_bad": "The change violates or ignores the rule: Verify migration state during deployment."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Determine whether STD-DATA-MIG applies to the project, feature or change and record approved exclusions."
+      "title": "Resolve applicability and dependencies",
+      "description": "Confirm where STD-DATA-MIG applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
     },
     {
       "step": 2,
-      "title": "Apply standard",
-      "description": "Apply the relevant Schema Evolution & Database Migrations rules during requirement, design and implementation work."
+      "title": "Record project decisions",
+      "description": "Apply the rules of Schema Evolution & Database Migrations to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Run relevant automated checks and manual review, then capture evidence or approved deviations before completion."
+      "title": "Implement with evidence",
+      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
+    },
+    {
+      "step": 4,
+      "title": "Verify before completion",
+      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Schema Evolution & Database Migrations",
-      "cause": "The project profile does not resolve or assign the applicable standard clearly.",
-      "solution": "Reference STD-DATA-MIG explicitly, assign ownership and include it in review/quality gates."
+      "issue": "Deployment fails because old code sees the new schema",
+      "cause": "A breaking migration was applied in one step.",
+      "solution": "Use expand–migrate–contract and keep rolling-deployment compatibility."
     },
     {
-      "issue": "Rules are documented but not verifiable",
-      "cause": "No test, lint, checklist, review evidence or operational check is tied to the rule.",
-      "solution": "Pair each important rule with practical verification evidence and record exceptions."
+      "issue": "Large migration blocks production traffic",
+      "cause": "DDL/backfill was not evaluated against table size and locks.",
+      "solution": "Use online-safe DDL, batching and a separately observable backfill job."
     }
   ],
   "depends_on": [
+    {
+      "code": "STD-DATA",
+      "dependency_type": "uses"
+    },
     {
       "code": "STD-VERSIONING",
       "dependency_type": "uses"

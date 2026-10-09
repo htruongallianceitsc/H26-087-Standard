@@ -3,62 +3,91 @@
   "code": "STD-PERF-TEST",
   "name": "Performance, Load & Stress Testing",
   "category": "01_governance_delivery",
-  "description": "Canonical standard for Performance, Load & Stress Testing. Defines baseline rules, review expectations and adoption guidance for projects where this standard applies.",
-  "version": "1.0.0",
+  "description": "Performance, Load & Stress Testing standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-PERF-TEST applies.",
+  "version": "2.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define an explicit Performance, Load & Stress Testing approach before implementation",
-      "detail": "Document scope, decisions, constraints and ownership for Performance, Load & Stress Testing; link the decision to relevant requirements and implementation evidence.",
+      "title": "Define measurable performance objectives before testing",
+      "detail": "Specify workload, concurrency, dataset, latency percentiles, throughput, error rate and resource limits aligned with relevant SLOs.",
       "layer": "process",
       "severity": "must",
-      "example_good": "The project records how Performance, Load & Stress Testing applies, who owns it, and how compliance is verified.",
-      "example_bad": "Performance, Load & Stress Testing is implemented ad hoc without documented rules or review evidence."
+      "example_good": "The implementation and review evidence demonstrate: Define measurable performance objectives before testing.",
+      "example_bad": "The change violates or ignores the rule: Define measurable performance objectives before testing."
     },
     {
-      "title": "Handle failure, boundary and compatibility cases explicitly",
-      "detail": "Identify relevant failure modes, edge cases, compatibility constraints and rollback/recovery expectations before release.",
+      "title": "Separate load, stress, spike, endurance and capacity scenarios",
+      "detail": "Choose the test type based on the risk being evaluated and document expected behavior for each scenario.",
       "layer": "process",
-      "severity": "should",
-      "example_good": "Boundary and failure cases are represented in acceptance criteria, tests, checks or operational guidance.",
-      "example_bad": "Only the happy path is defined and failures are left to implementation guesswork."
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Separate load, stress, spike, endurance and capacity scenarios.",
+      "example_bad": "The change violates or ignores the rule: Separate load, stress, spike, endurance and capacity scenarios."
     },
     {
-      "title": "Verify adoption with repeatable evidence",
-      "detail": "Use automated checks where practical and manual review where judgement is required; record justified deviations instead of silently ignoring rules.",
+      "title": "Test production-representative critical paths",
+      "detail": "Use realistic request mix, payload sizes, authentication, cache state and data volume; synthetic trivial endpoints are insufficient.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Test production-representative critical paths.",
+      "example_bad": "The change violates or ignores the rule: Test production-representative critical paths."
+    },
+    {
+      "title": "Capture server and dependency telemetry during tests",
+      "detail": "Correlate latency with CPU, memory, GC, database, cache, queue and downstream metrics so bottlenecks can be diagnosed.",
       "layer": "process",
-      "severity": "should",
-      "example_good": "Review or automated evidence shows which rules were checked and any approved exceptions.",
-      "example_bad": "The standard exists as documentation but is not referenced during delivery or review."
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Capture server and dependency telemetry during tests.",
+      "example_bad": "The change violates or ignores the rule: Capture server and dependency telemetry during tests."
+    },
+    {
+      "title": "Define pass/fail thresholds and regression budgets",
+      "detail": "Performance tests must fail when agreed latency, error, throughput or resource thresholds regress beyond the accepted budget.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Define pass/fail thresholds and regression budgets.",
+      "example_bad": "The change violates or ignores the rule: Define pass/fail thresholds and regression budgets."
+    },
+    {
+      "title": "Protect production and shared environments",
+      "detail": "Load generation requires rate controls, test data isolation and approval when it could affect real users or shared dependencies.",
+      "layer": "security",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Protect production and shared environments.",
+      "example_bad": "The change violates or ignores the rule: Protect production and shared environments."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Determine whether STD-PERF-TEST applies to the project, feature or change and record approved exclusions."
+      "title": "Resolve applicability and dependencies",
+      "description": "Confirm where STD-PERF-TEST applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
     },
     {
       "step": 2,
-      "title": "Apply standard",
-      "description": "Apply the relevant Performance, Load & Stress Testing rules during requirement, design and implementation work."
+      "title": "Record project decisions",
+      "description": "Apply the rules of Performance, Load & Stress Testing to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Run relevant automated checks and manual review, then capture evidence or approved deviations before completion."
+      "title": "Implement with evidence",
+      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
+    },
+    {
+      "step": 4,
+      "title": "Verify before completion",
+      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Performance, Load & Stress Testing",
-      "cause": "The project profile does not resolve or assign the applicable standard clearly.",
-      "solution": "Reference STD-PERF-TEST explicitly, assign ownership and include it in review/quality gates."
+      "issue": "Performance, Load & Stress Testing is applied inconsistently across features",
+      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
+      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
     },
     {
-      "issue": "Rules are documented but not verifiable",
-      "cause": "No test, lint, checklist, review evidence or operational check is tied to the rule.",
-      "solution": "Pair each important rule with practical verification evidence and record exceptions."
+      "issue": "Implementation satisfies the happy path but misses Performance, Load & Stress Testing failure cases",
+      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
+      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
     }
   ],
   "depends_on": [

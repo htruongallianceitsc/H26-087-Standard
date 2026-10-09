@@ -4,7 +4,7 @@
   "name": "Navigation & Expo Router",
   "category": "08_technology",
   "description": "Mobile React navigation patterns",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -71,16 +71,12 @@
   ],
   "depends_on": [
     {
-      "code": "STD-REQ",
-      "dependency_type": "requires"
+      "code": "STD-MOB-NAV",
+      "dependency_type": "implements"
     },
     {
-      "code": "STD-TEST",
-      "dependency_type": "requires"
-    },
-    {
-      "code": "STD-MOB-ARCH",
-      "dependency_type": "requires"
+      "code": "STD-UX",
+      "dependency_type": "aligns_with"
     }
   ]
 }

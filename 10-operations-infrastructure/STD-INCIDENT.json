@@ -3,63 +3,105 @@
   "code": "STD-INCIDENT",
   "name": "Incident Management & Postmortems",
   "category": "10_operations_infrastructure",
-  "description": "Canonical standard for Incident Management & Postmortems. Defines baseline rules, review expectations and adoption guidance for projects where this standard applies.",
-  "version": "1.0.0",
+  "description": "Incident Management & Postmortems standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-INCIDENT applies.",
+  "version": "2.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define an explicit Incident Management & Postmortems approach before implementation",
-      "detail": "Document scope, decisions, constraints and ownership for Incident Management & Postmortems; link the decision to relevant requirements and implementation evidence.",
+      "title": "Define severity levels and escalation ownership",
+      "detail": "Incidents are classified by user/business impact with clear on-call/incident commander escalation paths.",
       "layer": "process",
       "severity": "must",
-      "example_good": "The project records how Incident Management & Postmortems applies, who owns it, and how compliance is verified.",
-      "example_bad": "Incident Management & Postmortems is implemented ad hoc without documented rules or review evidence."
+      "example_good": "The implementation and review evidence demonstrate: Define severity levels and escalation ownership.",
+      "example_bad": "The change violates or ignores the rule: Define severity levels and escalation ownership."
     },
     {
-      "title": "Handle failure, boundary and compatibility cases explicitly",
-      "detail": "Identify relevant failure modes, edge cases, compatibility constraints and rollback/recovery expectations before release.",
+      "title": "Prioritize mitigation before root-cause perfection",
+      "detail": "During active impact, stabilize service, protect data and communicate status before deep remediation when safe.",
       "layer": "process",
-      "severity": "should",
-      "example_good": "Boundary and failure cases are represented in acceptance criteria, tests, checks or operational guidance.",
-      "example_bad": "Only the happy path is defined and failures are left to implementation guesswork."
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Prioritize mitigation before root-cause perfection.",
+      "example_bad": "The change violates or ignores the rule: Prioritize mitigation before root-cause perfection."
     },
     {
-      "title": "Verify adoption with repeatable evidence",
-      "detail": "Use automated checks where practical and manual review where judgement is required; record justified deviations instead of silently ignoring rules.",
+      "title": "Maintain a timestamped incident timeline",
+      "detail": "Record detections, decisions, actions, deployments and communications to support coordination and later analysis.",
       "layer": "process",
-      "severity": "should",
-      "example_good": "Review or automated evidence shows which rules were checked and any approved exceptions.",
-      "example_bad": "The standard exists as documentation but is not referenced during delivery or review."
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Maintain a timestamped incident timeline.",
+      "example_bad": "The change violates or ignores the rule: Maintain a timestamped incident timeline."
+    },
+    {
+      "title": "Communicate using known channels and cadence",
+      "detail": "Stakeholders receive impact, mitigation and next-update expectations without exposing unverified or sensitive detail.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Communicate using known channels and cadence.",
+      "example_bad": "The change violates or ignores the rule: Communicate using known channels and cadence."
+    },
+    {
+      "title": "Run blameless postmortems for material incidents",
+      "detail": "Capture contributing technical/process factors, detection gaps and prioritized corrective actions with owners/dates.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Run blameless postmortems for material incidents.",
+      "example_bad": "The change violates or ignores the rule: Run blameless postmortems for material incidents."
+    },
+    {
+      "title": "Track corrective actions to completion",
+      "detail": "High-risk recurrence prevention items become normal governed work and are not closed merely when service is restored.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Track corrective actions to completion.",
+      "example_bad": "The change violates or ignores the rule: Track corrective actions to completion."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Determine whether STD-INCIDENT applies to the project, feature or change and record approved exclusions."
+      "title": "Resolve applicability and dependencies",
+      "description": "Confirm where STD-INCIDENT applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
     },
     {
       "step": 2,
-      "title": "Apply standard",
-      "description": "Apply the relevant Incident Management & Postmortems rules during requirement, design and implementation work."
+      "title": "Record project decisions",
+      "description": "Apply the rules of Incident Management & Postmortems to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Run relevant automated checks and manual review, then capture evidence or approved deviations before completion."
+      "title": "Implement with evidence",
+      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
+    },
+    {
+      "step": 4,
+      "title": "Verify before completion",
+      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Incident Management & Postmortems",
-      "cause": "The project profile does not resolve or assign the applicable standard clearly.",
-      "solution": "Reference STD-INCIDENT explicitly, assign ownership and include it in review/quality gates."
+      "issue": "Incident Management & Postmortems is applied inconsistently across features",
+      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
+      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
     },
     {
-      "issue": "Rules are documented but not verifiable",
-      "cause": "No test, lint, checklist, review evidence or operational check is tied to the rule.",
-      "solution": "Pair each important rule with practical verification evidence and record exceptions."
+      "issue": "Implementation satisfies the happy path but misses Incident Management & Postmortems failure cases",
+      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
+      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
     }
   ],
-  "depends_on": []
+  "depends_on": [
+    {
+      "code": "STD-LOG",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-SLO",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-RUNBOOK",
+      "dependency_type": "uses"
+    }
+  ]
 }

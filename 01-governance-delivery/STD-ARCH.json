@@ -3,63 +3,101 @@
   "code": "STD-ARCH",
   "name": "Architecture Principles & ADRs",
   "category": "01_governance_delivery",
-  "description": "Canonical standard for Architecture Principles & ADRs. Defines baseline rules, review expectations and adoption guidance for projects where this standard applies.",
-  "version": "1.0.0",
+  "description": "Architecture Principles & ADRs standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-ARCH applies.",
+  "version": "2.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define an explicit Architecture Principles & ADRs approach before implementation",
-      "detail": "Document scope, decisions, constraints and ownership for Architecture Principles & ADRs; link the decision to relevant requirements and implementation evidence.",
+      "title": "Document significant architecture decisions with ADRs",
+      "detail": "Record context, decision, alternatives considered, consequences, owner and date for decisions that materially affect structure, dependencies, data, security, scalability or operability.",
       "layer": "process",
       "severity": "must",
-      "example_good": "The project records how Architecture Principles & ADRs applies, who owns it, and how compliance is verified.",
-      "example_bad": "Architecture Principles & ADRs is implemented ad hoc without documented rules or review evidence."
+      "example_good": "The implementation and review evidence demonstrate: Document significant architecture decisions with ADRs.",
+      "example_bad": "The change violates or ignores the rule: Document significant architecture decisions with ADRs."
     },
     {
-      "title": "Handle failure, boundary and compatibility cases explicitly",
-      "detail": "Identify relevant failure modes, edge cases, compatibility constraints and rollback/recovery expectations before release.",
+      "title": "Define system boundaries and dependency direction",
+      "detail": "Make module/service boundaries explicit and keep dependency direction consistent with the chosen architecture; domain/business rules must not depend on delivery or infrastructure details.",
       "layer": "process",
-      "severity": "should",
-      "example_good": "Boundary and failure cases are represented in acceptance criteria, tests, checks or operational guidance.",
-      "example_bad": "Only the happy path is defined and failures are left to implementation guesswork."
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Define system boundaries and dependency direction.",
+      "example_bad": "The change violates or ignores the rule: Define system boundaries and dependency direction."
     },
     {
-      "title": "Verify adoption with repeatable evidence",
-      "detail": "Use automated checks where practical and manual review where judgement is required; record justified deviations instead of silently ignoring rules.",
+      "title": "Prefer explicit contracts between boundaries",
+      "detail": "Define APIs, events, data contracts and extension points at boundaries so components can evolve independently and be tested in isolation.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Prefer explicit contracts between boundaries.",
+      "example_bad": "The change violates or ignores the rule: Prefer explicit contracts between boundaries."
+    },
+    {
+      "title": "Design for replaceability at volatile boundaries",
+      "detail": "Abstract external services, persistence providers and framework-specific concerns when replacement or testing cost justifies the indirection.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Review or automated evidence shows which rules were checked and any approved exceptions.",
-      "example_bad": "The standard exists as documentation but is not referenced during delivery or review."
+      "example_good": "The implementation and review evidence demonstrate: Design for replaceability at volatile boundaries.",
+      "example_bad": "The change violates or ignores the rule: Design for replaceability at volatile boundaries."
+    },
+    {
+      "title": "Evaluate cross-cutting quality attributes before implementation",
+      "detail": "Capture expected security, availability, performance, maintainability and deployment constraints and show how the architecture addresses them.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Evaluate cross-cutting quality attributes before implementation.",
+      "example_bad": "The change violates or ignores the rule: Evaluate cross-cutting quality attributes before implementation."
+    },
+    {
+      "title": "Review architecture drift for material changes",
+      "detail": "Changes that bypass defined boundaries or introduce new patterns require an ADR update or an explicit approved exception.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "The implementation and review evidence demonstrate: Review architecture drift for material changes.",
+      "example_bad": "The change violates or ignores the rule: Review architecture drift for material changes."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Determine whether STD-ARCH applies to the project, feature or change and record approved exclusions."
+      "title": "Resolve applicability and dependencies",
+      "description": "Confirm where STD-ARCH applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
     },
     {
       "step": 2,
-      "title": "Apply standard",
-      "description": "Apply the relevant Architecture Principles & ADRs rules during requirement, design and implementation work."
+      "title": "Record project decisions",
+      "description": "Apply the rules of Architecture Principles & ADRs to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Run relevant automated checks and manual review, then capture evidence or approved deviations before completion."
+      "title": "Implement with evidence",
+      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
+    },
+    {
+      "step": 4,
+      "title": "Verify before completion",
+      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Architecture Principles & ADRs",
-      "cause": "The project profile does not resolve or assign the applicable standard clearly.",
-      "solution": "Reference STD-ARCH explicitly, assign ownership and include it in review/quality gates."
+      "issue": "Architecture Principles & ADRs is applied inconsistently across features",
+      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
+      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
     },
     {
-      "issue": "Rules are documented but not verifiable",
-      "cause": "No test, lint, checklist, review evidence or operational check is tied to the rule.",
-      "solution": "Pair each important rule with practical verification evidence and record exceptions."
+      "issue": "Implementation satisfies the happy path but misses Architecture Principles & ADRs failure cases",
+      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
+      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
     }
   ],
-  "depends_on": []
+  "depends_on": [
+    {
+      "code": "STD-REQ",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-DOC",
+      "dependency_type": "uses"
+    }
+  ]
 }

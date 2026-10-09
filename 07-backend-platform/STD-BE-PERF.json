@@ -3,68 +3,101 @@
   "code": "STD-BE-PERF",
   "name": "Performance & Scalability",
   "category": "07_backend_platform",
-  "description": "Canonical standard for Performance & Scalability. Defines baseline rules, review expectations and adoption guidance for projects where this standard applies.",
-  "version": "1.0.0",
+  "description": "Performance & Scalability standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-BE-PERF applies.",
+  "version": "2.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define an explicit Performance & Scalability approach before implementation",
-      "detail": "Document scope, decisions, constraints and ownership for Performance & Scalability; link the decision to relevant requirements and implementation evidence.",
+      "title": "Profile endpoint and worker hotspots with production-like data",
+      "detail": "Measure end-to-end latency and resource use before optimization and identify database/downstream contribution.",
       "layer": "api",
       "severity": "must",
-      "example_good": "The project records how Performance & Scalability applies, who owns it, and how compliance is verified.",
-      "example_bad": "Performance & Scalability is implemented ad hoc without documented rules or review evidence."
+      "example_good": "The implementation and review evidence demonstrate: Profile endpoint and worker hotspots with production-like data.",
+      "example_bad": "The change violates or ignores the rule: Profile endpoint and worker hotspots with production-like data."
     },
     {
-      "title": "Handle failure, boundary and compatibility cases explicitly",
-      "detail": "Identify relevant failure modes, edge cases, compatibility constraints and rollback/recovery expectations before release.",
+      "title": "Use asynchronous I/O for I/O-bound server work",
+      "detail": "Avoid blocking threads on network/database/file calls in scalable request and worker paths.",
       "layer": "api",
-      "severity": "should",
-      "example_good": "Boundary and failure cases are represented in acceptance criteria, tests, checks or operational guidance.",
-      "example_bad": "Only the happy path is defined and failures are left to implementation guesswork."
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Use asynchronous I/O for I/O-bound server work.",
+      "example_bad": "The change violates or ignores the rule: Use asynchronous I/O for I/O-bound server work."
     },
     {
-      "title": "Verify adoption with repeatable evidence",
-      "detail": "Use automated checks where practical and manual review where judgement is required; record justified deviations instead of silently ignoring rules.",
+      "title": "Bound request payloads, result sets and parallelism",
+      "detail": "Set limits for body/file sizes, page sizes, fan-out and concurrent background work.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Bound request payloads, result sets and parallelism.",
+      "example_bad": "The change violates or ignores the rule: Bound request payloads, result sets and parallelism."
+    },
+    {
+      "title": "Avoid N+1 and unnecessary materialization",
+      "detail": "Shape queries/projections to required data and stream or paginate large results rather than materializing unbounded collections.",
+      "layer": "db",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Avoid N+1 and unnecessary materialization.",
+      "example_bad": "The change violates or ignores the rule: Avoid N+1 and unnecessary materialization."
+    },
+    {
+      "title": "Manage pools and caches explicitly",
+      "detail": "Tune and monitor database/http/thread/cache pools; resource limits must match deployment capacity.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Manage pools and caches explicitly.",
+      "example_bad": "The change violates or ignores the rule: Manage pools and caches explicitly."
+    },
+    {
+      "title": "Load test critical paths before material capacity changes",
+      "detail": "Use representative scenarios and compare p95/p99, throughput, error rate and resource saturation against budgets.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Review or automated evidence shows which rules were checked and any approved exceptions.",
-      "example_bad": "The standard exists as documentation but is not referenced during delivery or review."
+      "example_good": "The implementation and review evidence demonstrate: Load test critical paths before material capacity changes.",
+      "example_bad": "The change violates or ignores the rule: Load test critical paths before material capacity changes."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Determine whether STD-BE-PERF applies to the project, feature or change and record approved exclusions."
+      "title": "Resolve applicability and dependencies",
+      "description": "Confirm where STD-BE-PERF applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
     },
     {
       "step": 2,
-      "title": "Apply standard",
-      "description": "Apply the relevant Performance & Scalability rules during requirement, design and implementation work."
+      "title": "Record project decisions",
+      "description": "Apply the rules of Performance & Scalability to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Run relevant automated checks and manual review, then capture evidence or approved deviations before completion."
+      "title": "Implement with evidence",
+      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
+    },
+    {
+      "step": 4,
+      "title": "Verify before completion",
+      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Performance & Scalability",
-      "cause": "The project profile does not resolve or assign the applicable standard clearly.",
-      "solution": "Reference STD-BE-PERF explicitly, assign ownership and include it in review/quality gates."
+      "issue": "Performance & Scalability is applied inconsistently across features",
+      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
+      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
     },
     {
-      "issue": "Rules are documented but not verifiable",
-      "cause": "No test, lint, checklist, review evidence or operational check is tied to the rule.",
-      "solution": "Pair each important rule with practical verification evidence and record exceptions."
+      "issue": "Implementation satisfies the happy path but misses Performance & Scalability failure cases",
+      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
+      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
     }
   ],
   "depends_on": [
     {
       "code": "STD-PERF",
       "dependency_type": "extends"
+    },
+    {
+      "code": "STD-DATA",
+      "dependency_type": "uses"
     }
   ]
 }

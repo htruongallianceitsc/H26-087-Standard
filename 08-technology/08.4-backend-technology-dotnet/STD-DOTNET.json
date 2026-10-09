@@ -4,7 +4,7 @@
   "name": "ASP.NET Core Architecture",
   "category": "08_technology",
   "description": "Web API layering and framework practices",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -72,15 +72,15 @@
   "depends_on": [
     {
       "code": "STD-REQ",
-      "dependency_type": "requires"
+      "dependency_type": "uses"
     },
     {
       "code": "STD-TEST",
-      "dependency_type": "requires"
+      "dependency_type": "uses"
     },
     {
       "code": "STD-SEC",
-      "dependency_type": "requires"
+      "dependency_type": "uses"
     }
   ]
 }

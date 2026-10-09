@@ -3,63 +3,101 @@
   "code": "STD-UI-STATE",
   "name": "UI State & State Presentation",
   "category": "04_experience_ui_ux",
-  "description": "Canonical standard for UI State & State Presentation. Defines baseline rules, review expectations and adoption guidance for projects where this standard applies.",
-  "version": "1.0.0",
+  "description": "UI State & State Presentation standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-UI-STATE applies.",
+  "version": "2.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define an explicit UI State & State Presentation approach before implementation",
-      "detail": "Document scope, decisions, constraints and ownership for UI State & State Presentation; link the decision to relevant requirements and implementation evidence.",
+      "title": "Model meaningful UI states explicitly",
+      "detail": "A data-driven screen/component distinguishes initial, loading, success/data, empty, refreshing, validation error, business/system error and other applicable states rather than one boolean loading flag.",
       "layer": "ui",
       "severity": "must",
-      "example_good": "The project records how UI State & State Presentation applies, who owns it, and how compliance is verified.",
-      "example_bad": "UI State & State Presentation is implemented ad hoc without documented rules or review evidence."
+      "example_good": "The implementation and review evidence demonstrate: Model meaningful UI states explicitly.",
+      "example_bad": "The change violates or ignores the rule: Model meaningful UI states explicitly."
     },
     {
-      "title": "Handle failure, boundary and compatibility cases explicitly",
-      "detail": "Identify relevant failure modes, edge cases, compatibility constraints and rollback/recovery expectations before release.",
+      "title": "Distinguish initial loading from refresh",
+      "detail": "Refreshing existing data should normally preserve useful content and indicate background progress instead of replacing the whole screen with a blocking loader.",
       "layer": "ui",
-      "severity": "should",
-      "example_good": "Boundary and failure cases are represented in acceptance criteria, tests, checks or operational guidance.",
-      "example_bad": "Only the happy path is defined and failures are left to implementation guesswork."
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Distinguish initial loading from refresh.",
+      "example_bad": "The change violates or ignores the rule: Distinguish initial loading from refresh."
     },
     {
-      "title": "Verify adoption with repeatable evidence",
-      "detail": "Use automated checks where practical and manual review where judgement is required; record justified deviations instead of silently ignoring rules.",
+      "title": "Treat empty as a successful state",
+      "detail": "No-data results use an intentional empty state with context/action where useful; they are not rendered as an error.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Treat empty as a successful state.",
+      "example_bad": "The change violates or ignores the rule: Treat empty as a successful state."
+    },
+    {
+      "title": "Represent offline and stale data explicitly when supported",
+      "detail": "When cached data is shown without confirmed connectivity/freshness, communicate stale/offline state and available recovery behavior.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Represent offline and stale data explicitly when supported.",
+      "example_bad": "The change violates or ignores the rule: Represent offline and stale data explicitly when supported."
+    },
+    {
+      "title": "Keep validation, business and technical errors distinct",
+      "detail": "The UI renders each error class with the appropriate scope and action instead of collapsing all failures into one generic toast.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Keep validation, business and technical errors distinct.",
+      "example_bad": "The change violates or ignores the rule: Keep validation, business and technical errors distinct."
+    },
+    {
+      "title": "Make state transitions deterministic and testable",
+      "detail": "Async completion from obsolete requests must not overwrite newer state; critical state transitions have automated tests or equivalent evidence.",
       "layer": "process",
-      "severity": "should",
-      "example_good": "Review or automated evidence shows which rules were checked and any approved exceptions.",
-      "example_bad": "The standard exists as documentation but is not referenced during delivery or review."
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Make state transitions deterministic and testable.",
+      "example_bad": "The change violates or ignores the rule: Make state transitions deterministic and testable."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Determine whether STD-UI-STATE applies to the project, feature or change and record approved exclusions."
+      "title": "Resolve applicability and dependencies",
+      "description": "Confirm where STD-UI-STATE applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
     },
     {
       "step": 2,
-      "title": "Apply standard",
-      "description": "Apply the relevant UI State & State Presentation rules during requirement, design and implementation work."
+      "title": "Record project decisions",
+      "description": "Apply the rules of UI State & State Presentation to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Run relevant automated checks and manual review, then capture evidence or approved deviations before completion."
+      "title": "Implement with evidence",
+      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
+    },
+    {
+      "step": 4,
+      "title": "Verify before completion",
+      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of UI State & State Presentation",
-      "cause": "The project profile does not resolve or assign the applicable standard clearly.",
-      "solution": "Reference STD-UI-STATE explicitly, assign ownership and include it in review/quality gates."
+      "issue": "Everything is represented by isLoading + error string",
+      "cause": "State model is too coarse to represent refresh, empty, stale, validation and business errors.",
+      "solution": "Introduce explicit state variants and transition tests."
     },
     {
-      "issue": "Rules are documented but not verifiable",
-      "cause": "No test, lint, checklist, review evidence or operational check is tied to the rule.",
-      "solution": "Pair each important rule with practical verification evidence and record exceptions."
+      "issue": "Old request overwrites newer UI data",
+      "cause": "Concurrent async work is not correlated or cancelled.",
+      "solution": "Use request identity/cancellation and accept results only for the current intent."
     }
   ],
-  "depends_on": []
+  "depends_on": [
+    {
+      "code": "STD-UX",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-FEEDBACK",
+      "dependency_type": "aligns_with"
+    }
+  ]
 }

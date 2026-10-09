@@ -3,63 +3,101 @@
   "code": "STD-FLAG",
   "name": "Feature Flags & Progressive Rollout",
   "category": "02_engineering_foundation",
-  "description": "Canonical standard for Feature Flags & Progressive Rollout. Defines baseline rules, review expectations and adoption guidance for projects where this standard applies.",
-  "version": "1.0.0",
+  "description": "Feature Flags & Progressive Rollout standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-FLAG applies.",
+  "version": "2.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define an explicit Feature Flags & Progressive Rollout approach before implementation",
-      "detail": "Document scope, decisions, constraints and ownership for Feature Flags & Progressive Rollout; link the decision to relevant requirements and implementation evidence.",
+      "title": "Every feature flag has an owner, purpose and removal condition",
+      "detail": "Flags must record owner, default, target audience, rollout plan and expiry/removal criteria.",
       "layer": "process",
       "severity": "must",
-      "example_good": "The project records how Feature Flags & Progressive Rollout applies, who owns it, and how compliance is verified.",
-      "example_bad": "Feature Flags & Progressive Rollout is implemented ad hoc without documented rules or review evidence."
+      "example_good": "The implementation and review evidence demonstrate: Every feature flag has an owner, purpose and removal condition.",
+      "example_bad": "The change violates or ignores the rule: Every feature flag has an owner, purpose and removal condition."
     },
     {
-      "title": "Handle failure, boundary and compatibility cases explicitly",
-      "detail": "Identify relevant failure modes, edge cases, compatibility constraints and rollback/recovery expectations before release.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Boundary and failure cases are represented in acceptance criteria, tests, checks or operational guidance.",
-      "example_bad": "Only the happy path is defined and failures are left to implementation guesswork."
+      "title": "Choose safe defaults for unavailable flag services",
+      "detail": "Define whether each flag fails open or closed; security and authorization controls must not depend on a client-side feature flag.",
+      "layer": "security",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Choose safe defaults for unavailable flag services.",
+      "example_bad": "The change violates or ignores the rule: Choose safe defaults for unavailable flag services."
     },
     {
-      "title": "Verify adoption with repeatable evidence",
-      "detail": "Use automated checks where practical and manual review where judgement is required; record justified deviations instead of silently ignoring rules.",
+      "title": "Support progressive rollout and rapid rollback",
+      "detail": "Use percentage/cohort targeting where useful and keep the previous behavior deployable until rollout confidence is established.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Support progressive rollout and rapid rollback.",
+      "example_bad": "The change violates or ignores the rule: Support progressive rollout and rapid rollback."
+    },
+    {
+      "title": "Test both enabled and disabled paths while both are supported",
+      "detail": "Automated or explicit manual coverage must include important flag states and interaction with migrations/configuration.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Test both enabled and disabled paths while both are supported.",
+      "example_bad": "The change violates or ignores the rule: Test both enabled and disabled paths while both are supported."
+    },
+    {
+      "title": "Do not use long-lived flags as permanent configuration",
+      "detail": "Retire rollout/experiment flags after completion; persistent business configuration belongs in a governed configuration model.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Review or automated evidence shows which rules were checked and any approved exceptions.",
-      "example_bad": "The standard exists as documentation but is not referenced during delivery or review."
+      "example_good": "The implementation and review evidence demonstrate: Do not use long-lived flags as permanent configuration.",
+      "example_bad": "The change violates or ignores the rule: Do not use long-lived flags as permanent configuration."
+    },
+    {
+      "title": "Protect sensitive targeting attributes",
+      "detail": "Do not expose confidential segmentation logic or unnecessary personal attributes to clients.",
+      "layer": "security",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Protect sensitive targeting attributes.",
+      "example_bad": "The change violates or ignores the rule: Protect sensitive targeting attributes."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Determine whether STD-FLAG applies to the project, feature or change and record approved exclusions."
+      "title": "Resolve applicability and dependencies",
+      "description": "Confirm where STD-FLAG applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
     },
     {
       "step": 2,
-      "title": "Apply standard",
-      "description": "Apply the relevant Feature Flags & Progressive Rollout rules during requirement, design and implementation work."
+      "title": "Record project decisions",
+      "description": "Apply the rules of Feature Flags & Progressive Rollout to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Run relevant automated checks and manual review, then capture evidence or approved deviations before completion."
+      "title": "Implement with evidence",
+      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
+    },
+    {
+      "step": 4,
+      "title": "Verify before completion",
+      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Feature Flags & Progressive Rollout",
-      "cause": "The project profile does not resolve or assign the applicable standard clearly.",
-      "solution": "Reference STD-FLAG explicitly, assign ownership and include it in review/quality gates."
+      "issue": "Feature Flags & Progressive Rollout is applied inconsistently across features",
+      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
+      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
     },
     {
-      "issue": "Rules are documented but not verifiable",
-      "cause": "No test, lint, checklist, review evidence or operational check is tied to the rule.",
-      "solution": "Pair each important rule with practical verification evidence and record exceptions."
+      "issue": "Implementation satisfies the happy path but misses Feature Flags & Progressive Rollout failure cases",
+      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
+      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
     }
   ],
-  "depends_on": []
+  "depends_on": [
+    {
+      "code": "STD-RES",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-ANALYTICS",
+      "dependency_type": "uses"
+    }
+  ]
 }

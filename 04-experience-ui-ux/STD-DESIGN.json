@@ -3,63 +3,105 @@
   "code": "STD-DESIGN",
   "name": "Design Handoff & Fidelity",
   "category": "04_experience_ui_ux",
-  "description": "Canonical standard for Design Handoff & Fidelity. Defines baseline rules, review expectations and adoption guidance for projects where this standard applies.",
-  "version": "1.0.0",
+  "description": "Design Handoff & Fidelity standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-DESIGN applies.",
+  "version": "2.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define an explicit Design Handoff & Fidelity approach before implementation",
-      "detail": "Document scope, decisions, constraints and ownership for Design Handoff & Fidelity; link the decision to relevant requirements and implementation evidence.",
+      "title": "Treat approved design artifacts as implementation input",
+      "detail": "Screens/components must reference the approved design/version and documented functional requirements; deviations require explicit rationale.",
       "layer": "ui",
       "severity": "must",
-      "example_good": "The project records how Design Handoff & Fidelity applies, who owns it, and how compliance is verified.",
-      "example_bad": "Design Handoff & Fidelity is implemented ad hoc without documented rules or review evidence."
+      "example_good": "The implementation and review evidence demonstrate: Treat approved design artifacts as implementation input.",
+      "example_bad": "The change violates or ignores the rule: Treat approved design artifacts as implementation input."
     },
     {
-      "title": "Handle failure, boundary and compatibility cases explicitly",
-      "detail": "Identify relevant failure modes, edge cases, compatibility constraints and rollback/recovery expectations before release.",
+      "title": "Capture responsive, state and interaction variants",
+      "detail": "Design handoff includes key breakpoints, loading/empty/error/disabled states and interaction behavior, not only a success-state screenshot.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Capture responsive, state and interaction variants.",
+      "example_bad": "The change violates or ignores the rule: Capture responsive, state and interaction variants."
+    },
+    {
+      "title": "Specify reusable tokens and components instead of one-off values",
+      "detail": "Colors, typography, spacing, radius and shared controls should map to the design system where one exists.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Specify reusable tokens and components instead of one-off values.",
+      "example_bad": "The change violates or ignores the rule: Specify reusable tokens and components instead of one-off values."
+    },
+    {
+      "title": "Resolve ambiguous behavior before implementation completion",
+      "detail": "Missing interactions, copy, validation, overflow and edge cases are recorded as questions/decisions rather than guessed silently.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Resolve ambiguous behavior before implementation completion.",
+      "example_bad": "The change violates or ignores the rule: Resolve ambiguous behavior before implementation completion."
+    },
+    {
+      "title": "Verify implementation fidelity at target viewports/devices",
+      "detail": "Review layout, hierarchy, typography, states and interaction against design using representative content.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Verify implementation fidelity at target viewports/devices.",
+      "example_bad": "The change violates or ignores the rule: Verify implementation fidelity at target viewports/devices."
+    },
+    {
+      "title": "Allow platform conventions when documented",
+      "detail": "Design fidelity does not override accessibility, native interaction or technical constraints without an explicit product/design decision.",
       "layer": "ui",
       "severity": "should",
-      "example_good": "Boundary and failure cases are represented in acceptance criteria, tests, checks or operational guidance.",
-      "example_bad": "Only the happy path is defined and failures are left to implementation guesswork."
-    },
-    {
-      "title": "Verify adoption with repeatable evidence",
-      "detail": "Use automated checks where practical and manual review where judgement is required; record justified deviations instead of silently ignoring rules.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Review or automated evidence shows which rules were checked and any approved exceptions.",
-      "example_bad": "The standard exists as documentation but is not referenced during delivery or review."
+      "example_good": "The implementation and review evidence demonstrate: Allow platform conventions when documented.",
+      "example_bad": "The change violates or ignores the rule: Allow platform conventions when documented."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Determine whether STD-DESIGN applies to the project, feature or change and record approved exclusions."
+      "title": "Resolve applicability and dependencies",
+      "description": "Confirm where STD-DESIGN applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
     },
     {
       "step": 2,
-      "title": "Apply standard",
-      "description": "Apply the relevant Design Handoff & Fidelity rules during requirement, design and implementation work."
+      "title": "Record project decisions",
+      "description": "Apply the rules of Design Handoff & Fidelity to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Run relevant automated checks and manual review, then capture evidence or approved deviations before completion."
+      "title": "Implement with evidence",
+      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
+    },
+    {
+      "step": 4,
+      "title": "Verify before completion",
+      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Design Handoff & Fidelity",
-      "cause": "The project profile does not resolve or assign the applicable standard clearly.",
-      "solution": "Reference STD-DESIGN explicitly, assign ownership and include it in review/quality gates."
+      "issue": "Design Handoff & Fidelity is applied inconsistently across features",
+      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
+      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
     },
     {
-      "issue": "Rules are documented but not verifiable",
-      "cause": "No test, lint, checklist, review evidence or operational check is tied to the rule.",
-      "solution": "Pair each important rule with practical verification evidence and record exceptions."
+      "issue": "Implementation satisfies the happy path but misses Design Handoff & Fidelity failure cases",
+      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
+      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
     }
   ],
-  "depends_on": []
+  "depends_on": [
+    {
+      "code": "STD-DS",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-UI-STATE",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-A11Y",
+      "dependency_type": "uses"
+    }
+  ]
 }

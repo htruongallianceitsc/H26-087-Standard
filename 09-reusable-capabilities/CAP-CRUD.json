@@ -4,7 +4,7 @@
   "name": "CRUD, Listing & Pagination",
   "category": "09_reusable_capabilities",
   "description": "Canonical reusable capability for CRUD, Listing & Pagination. Migrated from STD-CRUD and aligned with STRUCTURE.txt.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -101,19 +101,19 @@
   "depends_on": [
     {
       "code": "STD-REQ",
-      "dependency_type": "requires"
+      "dependency_type": "uses"
     },
     {
       "code": "STD-TEST",
-      "dependency_type": "requires"
+      "dependency_type": "uses"
     },
     {
       "code": "STD-FEAT",
-      "dependency_type": "requires"
+      "dependency_type": "uses"
     },
     {
       "code": "STD-BIZ",
-      "dependency_type": "requires"
+      "dependency_type": "uses"
     }
   ]
 }

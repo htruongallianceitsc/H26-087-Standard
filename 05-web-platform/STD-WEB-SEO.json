@@ -4,7 +4,7 @@
   "name": "SEO & Rendering Strategy",
   "category": "05_web_platform",
   "description": "Search discoverability when publicly indexed",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -72,11 +72,11 @@
   "depends_on": [
     {
       "code": "STD-REQ",
-      "dependency_type": "requires"
+      "dependency_type": "uses"
     },
     {
       "code": "STD-TEST",
-      "dependency_type": "requires"
+      "dependency_type": "uses"
     }
   ]
 }

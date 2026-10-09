@@ -3,63 +3,105 @@
   "code": "STD-FEEDBACK",
   "name": "Feedback, Notifications & Messaging",
   "category": "04_experience_ui_ux",
-  "description": "Canonical standard for Feedback, Notifications & Messaging. Defines baseline rules, review expectations and adoption guidance for projects where this standard applies.",
-  "version": "1.0.0",
+  "description": "Feedback, Notifications & Messaging standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-FEEDBACK applies.",
+  "version": "2.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define an explicit Feedback, Notifications & Messaging approach before implementation",
-      "detail": "Document scope, decisions, constraints and ownership for Feedback, Notifications & Messaging; link the decision to relevant requirements and implementation evidence.",
-      "layer": "process",
+      "title": "Choose feedback surface by scope and urgency",
+      "detail": "Use inline feedback for field/local issues, toast for lightweight transient confirmation, persistent banner for ongoing/global conditions, and dialog only when blocking decision is required.",
+      "layer": "ui",
       "severity": "must",
-      "example_good": "The project records how Feedback, Notifications & Messaging applies, who owns it, and how compliance is verified.",
-      "example_bad": "Feedback, Notifications & Messaging is implemented ad hoc without documented rules or review evidence."
+      "example_good": "The implementation and review evidence demonstrate: Choose feedback surface by scope and urgency.",
+      "example_bad": "The change violates or ignores the rule: Choose feedback surface by scope and urgency."
     },
     {
-      "title": "Handle failure, boundary and compatibility cases explicitly",
-      "detail": "Identify relevant failure modes, edge cases, compatibility constraints and rollback/recovery expectations before release.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Boundary and failure cases are represented in acceptance criteria, tests, checks or operational guidance.",
-      "example_bad": "Only the happy path is defined and failures are left to implementation guesswork."
+      "title": "Never display raw backend or exception messages to users",
+      "detail": "Map stable error codes/types to safe localized user messages and log technical detail with correlation separately.",
+      "layer": "security",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Never display raw backend or exception messages to users.",
+      "example_bad": "The change violates or ignores the rule: Never display raw backend or exception messages to users."
     },
     {
-      "title": "Verify adoption with repeatable evidence",
-      "detail": "Use automated checks where practical and manual review where judgement is required; record justified deviations instead of silently ignoring rules.",
-      "layer": "process",
+      "title": "Make actionable failures explain next steps",
+      "detail": "Messages state what happened in user terms and, when possible, provide retry, correction or support action.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Make actionable failures explain next steps.",
+      "example_bad": "The change violates or ignores the rule: Make actionable failures explain next steps."
+    },
+    {
+      "title": "Avoid success noise for obvious actions",
+      "detail": "Do not toast every successful interaction when the resulting UI state already clearly confirms the action.",
+      "layer": "ui",
       "severity": "should",
-      "example_good": "Review or automated evidence shows which rules were checked and any approved exceptions.",
-      "example_bad": "The standard exists as documentation but is not referenced during delivery or review."
+      "example_good": "The implementation and review evidence demonstrate: Avoid success noise for obvious actions.",
+      "example_bad": "The change violates or ignores the rule: Avoid success noise for obvious actions."
+    },
+    {
+      "title": "Persist important state until resolved",
+      "detail": "Offline, account restriction, unsaved changes or other ongoing conditions must not disappear as transient toasts.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Persist important state until resolved.",
+      "example_bad": "The change violates or ignores the rule: Persist important state until resolved."
+    },
+    {
+      "title": "Make feedback accessible",
+      "detail": "Dynamic messages use appropriate live-region/focus behavior and do not rely on color, icon or animation alone.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Make feedback accessible.",
+      "example_bad": "The change violates or ignores the rule: Make feedback accessible."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Determine whether STD-FEEDBACK applies to the project, feature or change and record approved exclusions."
+      "title": "Resolve applicability and dependencies",
+      "description": "Confirm where STD-FEEDBACK applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
     },
     {
       "step": 2,
-      "title": "Apply standard",
-      "description": "Apply the relevant Feedback, Notifications & Messaging rules during requirement, design and implementation work."
+      "title": "Record project decisions",
+      "description": "Apply the rules of Feedback, Notifications & Messaging to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Run relevant automated checks and manual review, then capture evidence or approved deviations before completion."
+      "title": "Implement with evidence",
+      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
+    },
+    {
+      "step": 4,
+      "title": "Verify before completion",
+      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Feedback, Notifications & Messaging",
-      "cause": "The project profile does not resolve or assign the applicable standard clearly.",
-      "solution": "Reference STD-FEEDBACK explicitly, assign ownership and include it in review/quality gates."
+      "issue": "Raw API message is shown in a toast",
+      "cause": "Transport/technical messages are treated as UX copy.",
+      "solution": "Map stable error codes to safe localized feedback and log technical details separately."
     },
     {
-      "issue": "Rules are documented but not verifiable",
-      "cause": "No test, lint, checklist, review evidence or operational check is tied to the rule.",
-      "solution": "Pair each important rule with practical verification evidence and record exceptions."
+      "issue": "Persistent failure disappears after a few seconds",
+      "cause": "A transient toast is used for an ongoing condition.",
+      "solution": "Use persistent inline/banner/dialog feedback based on scope and required action."
     }
   ],
-  "depends_on": []
+  "depends_on": [
+    {
+      "code": "STD-UX",
+      "dependency_type": "extends"
+    },
+    {
+      "code": "STD-UI-STATE",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-I18N",
+      "dependency_type": "uses"
+    }
+  ]
 }

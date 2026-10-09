@@ -3,63 +3,101 @@
   "code": "STD-DATA",
   "name": "Data Modeling & Schema Design",
   "category": "03_api_integration_data",
-  "description": "Canonical standard for Data Modeling & Schema Design. Defines baseline rules, review expectations and adoption guidance for projects where this standard applies.",
-  "version": "1.0.0",
+  "description": "Data Modeling & Schema Design standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-DATA applies.",
+  "version": "2.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define an explicit Data Modeling & Schema Design approach before implementation",
-      "detail": "Document scope, decisions, constraints and ownership for Data Modeling & Schema Design; link the decision to relevant requirements and implementation evidence.",
+      "title": "Model business invariants in the database where appropriate",
+      "detail": "Use primary keys, foreign keys, uniqueness, nullability and check constraints to protect durable invariants in addition to application validation.",
       "layer": "db",
       "severity": "must",
-      "example_good": "The project records how Data Modeling & Schema Design applies, who owns it, and how compliance is verified.",
-      "example_bad": "Data Modeling & Schema Design is implemented ad hoc without documented rules or review evidence."
+      "example_good": "The implementation and review evidence demonstrate: Model business invariants in the database where appropriate.",
+      "example_bad": "The change violates or ignores the rule: Model business invariants in the database where appropriate."
     },
     {
-      "title": "Handle failure, boundary and compatibility cases explicitly",
-      "detail": "Identify relevant failure modes, edge cases, compatibility constraints and rollback/recovery expectations before release.",
+      "title": "Use consistent identity and audit fields",
+      "detail": "Define project conventions for surrogate/natural keys, created/updated timestamps, actor fields and soft-delete behavior where needed.",
+      "layer": "db",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Use consistent identity and audit fields.",
+      "example_bad": "The change violates or ignores the rule: Use consistent identity and audit fields."
+    },
+    {
+      "title": "Choose data types that preserve meaning",
+      "detail": "Use timezone-aware timestamps for instants, fixed precision for money, explicit length/precision and domain-appropriate types rather than generic strings.",
+      "layer": "db",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Choose data types that preserve meaning.",
+      "example_bad": "The change violates or ignores the rule: Choose data types that preserve meaning."
+    },
+    {
+      "title": "Design indexes from real query patterns",
+      "detail": "Index selective filter/join/order columns based on measured access paths; review write/storage cost and avoid redundant indexes.",
+      "layer": "db",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Design indexes from real query patterns.",
+      "example_bad": "The change violates or ignores the rule: Design indexes from real query patterns."
+    },
+    {
+      "title": "Define ownership and lifecycle for each data set",
+      "detail": "Identify source of truth, writers, retention, archival/deletion and consistency expectations.",
+      "layer": "db",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Define ownership and lifecycle for each data set.",
+      "example_bad": "The change violates or ignores the rule: Define ownership and lifecycle for each data set."
+    },
+    {
+      "title": "Avoid embedding presentation concerns in canonical data",
+      "detail": "Persist stable business codes/values and localize/format them in presentation or explicit projection layers.",
       "layer": "db",
       "severity": "should",
-      "example_good": "Boundary and failure cases are represented in acceptance criteria, tests, checks or operational guidance.",
-      "example_bad": "Only the happy path is defined and failures are left to implementation guesswork."
-    },
-    {
-      "title": "Verify adoption with repeatable evidence",
-      "detail": "Use automated checks where practical and manual review where judgement is required; record justified deviations instead of silently ignoring rules.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Review or automated evidence shows which rules were checked and any approved exceptions.",
-      "example_bad": "The standard exists as documentation but is not referenced during delivery or review."
+      "example_good": "The implementation and review evidence demonstrate: Avoid embedding presentation concerns in canonical data.",
+      "example_bad": "The change violates or ignores the rule: Avoid embedding presentation concerns in canonical data."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Determine whether STD-DATA applies to the project, feature or change and record approved exclusions."
+      "title": "Resolve applicability and dependencies",
+      "description": "Confirm where STD-DATA applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
     },
     {
       "step": 2,
-      "title": "Apply standard",
-      "description": "Apply the relevant Data Modeling & Schema Design rules during requirement, design and implementation work."
+      "title": "Record project decisions",
+      "description": "Apply the rules of Data Modeling & Schema Design to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Run relevant automated checks and manual review, then capture evidence or approved deviations before completion."
+      "title": "Implement with evidence",
+      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
+    },
+    {
+      "step": 4,
+      "title": "Verify before completion",
+      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Data Modeling & Schema Design",
-      "cause": "The project profile does not resolve or assign the applicable standard clearly.",
-      "solution": "Reference STD-DATA explicitly, assign ownership and include it in review/quality gates."
+      "issue": "Data Modeling & Schema Design is applied inconsistently across features",
+      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
+      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
     },
     {
-      "issue": "Rules are documented but not verifiable",
-      "cause": "No test, lint, checklist, review evidence or operational check is tied to the rule.",
-      "solution": "Pair each important rule with practical verification evidence and record exceptions."
+      "issue": "Implementation satisfies the happy path but misses Data Modeling & Schema Design failure cases",
+      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
+      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
     }
   ],
-  "depends_on": []
+  "depends_on": [
+    {
+      "code": "STD-PRIV",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-SEC",
+      "dependency_type": "uses"
+    }
+  ]
 }

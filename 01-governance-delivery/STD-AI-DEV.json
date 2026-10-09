@@ -4,7 +4,7 @@
   "name": "AI-Assisted Development & Agent Workflow",
   "category": "01_governance_delivery",
   "description": "Canonical reusable capability for AI-Assisted Development & Agent Workflow. Migrated from STD-AI and aligned with STRUCTURE.txt.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -79,11 +79,11 @@
   "depends_on": [
     {
       "code": "STD-DOC",
-      "dependency_type": "requires"
+      "dependency_type": "uses"
     },
     {
       "code": "STD-TEST",
-      "dependency_type": "requires"
+      "dependency_type": "uses"
     }
   ]
 }

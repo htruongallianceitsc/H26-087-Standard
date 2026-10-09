@@ -3,63 +3,101 @@
   "code": "STD-DATA-TX",
   "name": "Transactions, Concurrency & Consistency",
   "category": "03_api_integration_data",
-  "description": "Canonical standard for Transactions, Concurrency & Consistency. Defines baseline rules, review expectations and adoption guidance for projects where this standard applies.",
-  "version": "1.0.0",
+  "description": "Transactions, Concurrency & Consistency standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-DATA-TX applies.",
+  "version": "2.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define an explicit Transactions, Concurrency & Consistency approach before implementation",
-      "detail": "Document scope, decisions, constraints and ownership for Transactions, Concurrency & Consistency; link the decision to relevant requirements and implementation evidence.",
+      "title": "Choose transaction boundaries around business invariants",
+      "detail": "A transaction should include the minimum set of database changes that must succeed or fail together for one business operation.",
       "layer": "db",
       "severity": "must",
-      "example_good": "The project records how Transactions, Concurrency & Consistency applies, who owns it, and how compliance is verified.",
-      "example_bad": "Transactions, Concurrency & Consistency is implemented ad hoc without documented rules or review evidence."
+      "example_good": "The implementation and review evidence demonstrate: Choose transaction boundaries around business invariants.",
+      "example_bad": "The change violates or ignores the rule: Choose transaction boundaries around business invariants."
     },
     {
-      "title": "Handle failure, boundary and compatibility cases explicitly",
-      "detail": "Identify relevant failure modes, edge cases, compatibility constraints and rollback/recovery expectations before release.",
+      "title": "Do not hold database transactions across slow external calls",
+      "detail": "Commit or use an outbox/saga pattern rather than keeping locks open while calling remote services unless explicitly justified.",
+      "layer": "db",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Do not hold database transactions across slow external calls.",
+      "example_bad": "The change violates or ignores the rule: Do not hold database transactions across slow external calls."
+    },
+    {
+      "title": "Select isolation and locking based on concurrency risk",
+      "detail": "Use database defaults deliberately; use optimistic tokens, unique constraints or row locks for known race conditions.",
+      "layer": "db",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Select isolation and locking based on concurrency risk.",
+      "example_bad": "The change violates or ignores the rule: Select isolation and locking based on concurrency risk."
+    },
+    {
+      "title": "Make retried operations safe",
+      "detail": "Transactions subject to deadlock/serialization retry must be idempotent or protected from duplicate side effects.",
+      "layer": "db",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Make retried operations safe.",
+      "example_bad": "The change violates or ignores the rule: Make retried operations safe."
+    },
+    {
+      "title": "Use outbox/inbox patterns for database plus messaging consistency",
+      "detail": "When one logical operation updates durable data and publishes/consumes messages, avoid unsafe dual writes.",
       "layer": "db",
       "severity": "should",
-      "example_good": "Boundary and failure cases are represented in acceptance criteria, tests, checks or operational guidance.",
-      "example_bad": "Only the happy path is defined and failures are left to implementation guesswork."
+      "example_good": "The implementation and review evidence demonstrate: Use outbox/inbox patterns for database plus messaging consistency.",
+      "example_bad": "The change violates or ignores the rule: Use outbox/inbox patterns for database plus messaging consistency."
     },
     {
-      "title": "Verify adoption with repeatable evidence",
-      "detail": "Use automated checks where practical and manual review where judgement is required; record justified deviations instead of silently ignoring rules.",
+      "title": "Test concurrent behavior for critical invariants",
+      "detail": "Automated tests should exercise duplicate, parallel update and retry scenarios where money, inventory, identity or other critical state is affected.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Review or automated evidence shows which rules were checked and any approved exceptions.",
-      "example_bad": "The standard exists as documentation but is not referenced during delivery or review."
+      "example_good": "The implementation and review evidence demonstrate: Test concurrent behavior for critical invariants.",
+      "example_bad": "The change violates or ignores the rule: Test concurrent behavior for critical invariants."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Determine whether STD-DATA-TX applies to the project, feature or change and record approved exclusions."
+      "title": "Resolve applicability and dependencies",
+      "description": "Confirm where STD-DATA-TX applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
     },
     {
       "step": 2,
-      "title": "Apply standard",
-      "description": "Apply the relevant Transactions, Concurrency & Consistency rules during requirement, design and implementation work."
+      "title": "Record project decisions",
+      "description": "Apply the rules of Transactions, Concurrency & Consistency to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Run relevant automated checks and manual review, then capture evidence or approved deviations before completion."
+      "title": "Implement with evidence",
+      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
+    },
+    {
+      "step": 4,
+      "title": "Verify before completion",
+      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Transactions, Concurrency & Consistency",
-      "cause": "The project profile does not resolve or assign the applicable standard clearly.",
-      "solution": "Reference STD-DATA-TX explicitly, assign ownership and include it in review/quality gates."
+      "issue": "Transactions, Concurrency & Consistency is applied inconsistently across features",
+      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
+      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
     },
     {
-      "issue": "Rules are documented but not verifiable",
-      "cause": "No test, lint, checklist, review evidence or operational check is tied to the rule.",
-      "solution": "Pair each important rule with practical verification evidence and record exceptions."
+      "issue": "Implementation satisfies the happy path but misses Transactions, Concurrency & Consistency failure cases",
+      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
+      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
     }
   ],
-  "depends_on": []
+  "depends_on": [
+    {
+      "code": "STD-DATA",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-RES",
+      "dependency_type": "uses"
+    }
+  ]
 }

@@ -3,68 +3,101 @@
   "code": "STD-BE-ARCH",
   "name": "Backend Application Architecture",
   "category": "07_backend_platform",
-  "description": "Canonical standard for Backend Application Architecture. Defines baseline rules, review expectations and adoption guidance for projects where this standard applies.",
-  "version": "1.0.0",
+  "description": "Backend Application Architecture standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-BE-ARCH applies.",
+  "version": "2.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define an explicit Backend Application Architecture approach before implementation",
-      "detail": "Document scope, decisions, constraints and ownership for Backend Application Architecture; link the decision to relevant requirements and implementation evidence.",
+      "title": "Separate delivery, application/domain and infrastructure responsibilities",
+      "detail": "HTTP/queue/framework concerns do not contain core business rules; domain/application logic is testable without hosting infrastructure.",
       "layer": "api",
       "severity": "must",
-      "example_good": "The project records how Backend Application Architecture applies, who owns it, and how compliance is verified.",
-      "example_bad": "Backend Application Architecture is implemented ad hoc without documented rules or review evidence."
+      "example_good": "The implementation and review evidence demonstrate: Separate delivery, application/domain and infrastructure responsibilities.",
+      "example_bad": "The change violates or ignores the rule: Separate delivery, application/domain and infrastructure responsibilities."
     },
     {
-      "title": "Handle failure, boundary and compatibility cases explicitly",
-      "detail": "Identify relevant failure modes, edge cases, compatibility constraints and rollback/recovery expectations before release.",
+      "title": "Define one application use-case boundary for each business operation",
+      "detail": "Controllers/handlers translate input and delegate to explicit use cases/services that own orchestration, validation and transaction intent.",
       "layer": "api",
-      "severity": "should",
-      "example_good": "Boundary and failure cases are represented in acceptance criteria, tests, checks or operational guidance.",
-      "example_bad": "Only the happy path is defined and failures are left to implementation guesswork."
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Define one application use-case boundary for each business operation.",
+      "example_bad": "The change violates or ignores the rule: Define one application use-case boundary for each business operation."
     },
     {
-      "title": "Verify adoption with repeatable evidence",
-      "detail": "Use automated checks where practical and manual review where judgement is required; record justified deviations instead of silently ignoring rules.",
+      "title": "Keep dependency direction inward",
+      "detail": "Domain/application layers depend on abstractions; infrastructure implements those abstractions and is composed at the application boundary.",
       "layer": "process",
-      "severity": "should",
-      "example_good": "Review or automated evidence shows which rules were checked and any approved exceptions.",
-      "example_bad": "The standard exists as documentation but is not referenced during delivery or review."
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Keep dependency direction inward.",
+      "example_bad": "The change violates or ignores the rule: Keep dependency direction inward."
+    },
+    {
+      "title": "Do not expose persistence entities as public API contracts",
+      "detail": "Use explicit request/response/domain models where persistence shape and public contract can evolve independently.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Do not expose persistence entities as public API contracts.",
+      "example_bad": "The change violates or ignores the rule: Do not expose persistence entities as public API contracts."
+    },
+    {
+      "title": "Centralize cross-cutting behavior in approved middleware/pipeline mechanisms",
+      "detail": "Authentication, authorization, correlation, logging and exception mapping should not be duplicated ad hoc in every endpoint.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Centralize cross-cutting behavior in approved middleware/pipeline mechanisms.",
+      "example_bad": "The change violates or ignores the rule: Centralize cross-cutting behavior in approved middleware/pipeline mechanisms."
+    },
+    {
+      "title": "Design services for stateless horizontal scaling unless stateful ownership is explicit",
+      "detail": "Do not rely on process memory for durable session/business state without a documented single-owner architecture.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Design services for stateless horizontal scaling unless stateful ownership is explicit.",
+      "example_bad": "The change violates or ignores the rule: Design services for stateless horizontal scaling unless stateful ownership is explicit."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Determine whether STD-BE-ARCH applies to the project, feature or change and record approved exclusions."
+      "title": "Resolve applicability and dependencies",
+      "description": "Confirm where STD-BE-ARCH applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
     },
     {
       "step": 2,
-      "title": "Apply standard",
-      "description": "Apply the relevant Backend Application Architecture rules during requirement, design and implementation work."
+      "title": "Record project decisions",
+      "description": "Apply the rules of Backend Application Architecture to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Run relevant automated checks and manual review, then capture evidence or approved deviations before completion."
+      "title": "Implement with evidence",
+      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
+    },
+    {
+      "step": 4,
+      "title": "Verify before completion",
+      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Backend Application Architecture",
-      "cause": "The project profile does not resolve or assign the applicable standard clearly.",
-      "solution": "Reference STD-BE-ARCH explicitly, assign ownership and include it in review/quality gates."
+      "issue": "Backend Application Architecture is applied inconsistently across features",
+      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
+      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
     },
     {
-      "issue": "Rules are documented but not verifiable",
-      "cause": "No test, lint, checklist, review evidence or operational check is tied to the rule.",
-      "solution": "Pair each important rule with practical verification evidence and record exceptions."
+      "issue": "Implementation satisfies the happy path but misses Backend Application Architecture failure cases",
+      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
+      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
     }
   ],
   "depends_on": [
     {
       "code": "STD-ARCH",
       "dependency_type": "extends"
+    },
+    {
+      "code": "STD-API",
+      "dependency_type": "uses"
     }
   ]
 }

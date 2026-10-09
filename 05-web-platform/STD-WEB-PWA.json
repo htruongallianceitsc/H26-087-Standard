@@ -4,7 +4,7 @@
   "name": "Progressive Web Apps",
   "category": "05_web_platform",
   "description": "Optional installable browser experience",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -72,11 +72,11 @@
   "depends_on": [
     {
       "code": "STD-REQ",
-      "dependency_type": "requires"
+      "dependency_type": "uses"
     },
     {
       "code": "STD-TEST",
-      "dependency_type": "requires"
+      "dependency_type": "uses"
     }
   ]
 }

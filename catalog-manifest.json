@@ -1,192 +1,1043 @@
 {
+  "schemaVersion": 1,
+  "catalog": "H26-087-Standard",
   "sourceOfTruth": "STRUCTURE.txt",
-  "schema": "standard-import.schema.json",
-  "count": 115,
-  "groups": [
+  "standardCount": 115,
+  "standards": [
     {
-      "folder": "01-governance-delivery",
-      "files": [
-        "STD-REQ.json",
-        "STD-BIZ.json",
-        "STD-FEAT.json",
-        "STD-ARCH.json",
-        "STD-DOC.json",
-        "STD-NAME.json",
-        "STD-GIT.json",
-        "STD-TEST.json",
-        "STD-PERF-TEST.json",
-        "STD-CODE-REVIEW.json",
-        "STD-VERSIONING.json",
-        "STD-COMPLIANCE.json",
-        "STD-MONOREPO.json",
-        "STD-CI.json",
-        "STD-AI-DEV.json"
-      ]
+      "code": "STD-AI-DEV",
+      "name": "AI-Assisted Development & Agent Workflow",
+      "category": "01_governance_delivery",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "01-governance-delivery/STD-AI-DEV.json",
+      "sha256": "97e1c956f68b2b168ab592df5fbc9b541ff96bff72c417e755e84d1a7a6bb36c"
     },
     {
-      "folder": "02-engineering-foundation",
-      "files": [
-        "STD-ERR.json",
-        "STD-LOG.json",
-        "STD-SEC.json",
-        "STD-PRIV.json",
-        "STD-ENV.json",
-        "STD-I18N.json",
-        "STD-ANALYTICS.json",
-        "STD-PERF.json",
-        "STD-RES.json",
-        "STD-DEP.json",
-        "STD-FLAG.json"
-      ]
+      "code": "STD-ARCH",
+      "name": "Architecture Principles & ADRs",
+      "category": "01_governance_delivery",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "01-governance-delivery/STD-ARCH.json",
+      "sha256": "615ef10a3bf7008c0abc82034df8ee5bf2da4cd1c3609c49658327364e02a98e"
     },
     {
-      "folder": "03-api-integration-data",
-      "files": [
-        "STD-API.json",
-        "STD-API-REST.json",
-        "STD-API-RT.json",
-        "STD-INTEGRATION.json",
-        "STD-WEBHOOK.json",
-        "STD-DATA.json",
-        "STD-DATA-TX.json",
-        "STD-DATA-MIG.json",
-        "STD-CACHE.json"
-      ]
+      "code": "STD-BIZ",
+      "name": "Business Rules & Business Processes",
+      "category": "01_governance_delivery",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "01-governance-delivery/STD-BIZ.json",
+      "sha256": "586fc7ac9b77c329dec914f46fae6ee5ef3fbb580982b59c83c5e62f12544bd2"
     },
     {
-      "folder": "04-experience-ui-ux",
-      "files": [
-        "STD-UX.json",
-        "STD-UI-STATE.json",
-        "STD-FEEDBACK.json",
-        "STD-FORM.json",
-        "STD-A11Y.json",
-        "STD-DESIGN.json",
-        "STD-DS.json"
-      ]
+      "code": "STD-CI",
+      "name": "Continuous Integration & Build Pipeline",
+      "category": "01_governance_delivery",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "01-governance-delivery/STD-CI.json",
+      "sha256": "292339807d6d9353876a73e19e138a07787310db1bc299beef4980c724a23e3e"
     },
     {
-      "folder": "05-web-platform",
-      "files": [
-        "STD-WEB-ARCH.json",
-        "STD-WEB-ROUTE.json",
-        "STD-WEB-RESP.json",
-        "STD-WEB-FORM.json",
-        "STD-WEB-AUTH.json",
-        "STD-WEB-STORE.json",
-        "STD-WEB-SEC.json",
-        "STD-WEB-PERF.json",
-        "STD-WEB-SEO.json",
-        "STD-WEB-PWA.json"
-      ]
+      "code": "STD-CODE-REVIEW",
+      "name": "Code Review & Pull Request Governance",
+      "category": "01_governance_delivery",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "01-governance-delivery/STD-CODE-REVIEW.json",
+      "sha256": "b6418053146b863f9c988bee1e74c09557eaaefc56eb3ec0e345e63213923459"
     },
     {
-      "folder": "06-mobile-platform",
-      "files": [
-        "STD-MOB-ARCH.json",
-        "STD-MOB-NAV.json",
-        "STD-MOB-LIFE.json",
-        "STD-MOB-STORE.json",
-        "STD-MOB-OFF.json",
-        "STD-MOB-PUSH.json",
-        "STD-MOB-DEVICE.json",
-        "STD-MOB-UI.json",
-        "STD-MOB-SEC.json",
-        "STD-MOB-RELEASE.json",
-        "STD-MOB-PERF.json"
-      ]
+      "code": "STD-COMPLIANCE",
+      "name": "Regulatory Compliance & Evidence",
+      "category": "01_governance_delivery",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "01-governance-delivery/STD-COMPLIANCE.json",
+      "sha256": "1dc74e24649d0b1b8085224e9c7070aaba0833d2114a68579c89f94d8b7e6e3f"
     },
     {
-      "folder": "07-backend-platform",
-      "files": [
-        "STD-BE-ARCH.json",
-        "STD-BE-AUTH.json",
-        "STD-BE-VALID.json",
-        "STD-BE-SEC.json",
-        "STD-BE-TX.json",
-        "STD-BE-CONCUR.json",
-        "STD-BE-JOB.json",
-        "STD-BE-QUEUE.json",
-        "STD-BE-FILE.json",
-        "STD-BE-HEALTH.json",
-        "STD-BE-PERF.json"
-      ]
+      "code": "STD-DOC",
+      "name": "Documentation & Traceability",
+      "category": "01_governance_delivery",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "01-governance-delivery/STD-DOC.json",
+      "sha256": "bab37c65da1be451f13dfd425e39f14b0742a80ef7b4daa3b1a4e5ecda9758f7"
     },
     {
-      "folder": "08-technology/08.1-web-technology",
-      "files": [
-        "STD-REACT.json",
-        "STD-TS.json",
-        "STD-RQ.json",
-        "STD-NEXT.json",
-        "STD-REACT-TEST.json"
-      ]
+      "code": "STD-FEAT",
+      "name": "Feature Specification & Decomposition",
+      "category": "01_governance_delivery",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "01-governance-delivery/STD-FEAT.json",
+      "sha256": "35e35b31615781f03eda8bbcc4ef04b35f8a84c263bed5c20e94efd9ceaa7c31"
     },
     {
-      "folder": "08-technology/08.2-react-native-technology",
-      "files": [
-        "STD-RN.json",
-        "STD-RN-NAV.json",
-        "STD-RN-STATE.json",
-        "STD-RN-STORE.json",
-        "STD-RN-TEST.json"
-      ]
+      "code": "STD-GIT",
+      "name": "Git Workflow & Branching Strategy",
+      "category": "01_governance_delivery",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "01-governance-delivery/STD-GIT.json",
+      "sha256": "54fad7021aa5fa6005d42b96f6c999331e527b5bbe0a56ba6cfd1416a5adb3d5"
     },
     {
-      "folder": "08-technology/08.3-flutter-technology",
-      "files": [
-        "STD-FL-DART.json",
-        "STD-FL-BLOC.json",
-        "STD-FL-WIDGET.json",
-        "STD-FL-ROUTE.json",
-        "STD-FL-TEST.json"
-      ]
+      "code": "STD-MONOREPO",
+      "name": "Monorepo & Workspace Management",
+      "category": "01_governance_delivery",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "01-governance-delivery/STD-MONOREPO.json",
+      "sha256": "06a0521700971d0ea11272a71fd4d37e91e81ed6a44d8d041855cbf553d457c9"
     },
     {
-      "folder": "08-technology/08.4-backend-technology-dotnet",
-      "files": [
-        "STD-DOTNET.json",
-        "STD-DOTNET-API.json",
-        "STD-DOTNET-EF.json",
-        "STD-DOTNET-TEST.json"
-      ]
+      "code": "STD-NAME",
+      "name": "Naming & Code Organization",
+      "category": "01_governance_delivery",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "01-governance-delivery/STD-NAME.json",
+      "sha256": "ffd30aa228888c650a5efc804b86a0867baab101591431cd19d5191b96bef587"
     },
     {
-      "folder": "08-technology/08.5-database-technology",
-      "files": [
-        "STD-PG.json"
-      ]
+      "code": "STD-PERF-TEST",
+      "name": "Performance, Load & Stress Testing",
+      "category": "01_governance_delivery",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "01-governance-delivery/STD-PERF-TEST.json",
+      "sha256": "ddd46cbff54932931f69918a8e104d78dd94408e349369b12966a2faa9476b64"
     },
     {
-      "folder": "09-reusable-capabilities",
-      "files": [
-        "CAP-AUTH.json",
-        "CAP-PROFILE.json",
-        "CAP-CRUD.json",
-        "CAP-UPLOAD.json",
-        "CAP-NOTIFY.json",
-        "CAP-CHAT.json",
-        "CAP-SHARE.json",
-        "CAP-AUDIT.json",
-        "CAP-PERM.json",
-        "CAP-SEARCH.json",
-        "CAP-PAYMENT.json",
-        "CAP-REPORT.json"
-      ]
+      "code": "STD-REQ",
+      "name": "Requirements & Acceptance Criteria",
+      "category": "01_governance_delivery",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "01-governance-delivery/STD-REQ.json",
+      "sha256": "8b5c3ffea0d8ea066dd5e3d4ce6cf996a140c4ab310d9811064ea794cce47aa6"
     },
     {
-      "folder": "10-operations-infrastructure",
-      "files": [
-        "STD-DEPLOY.json",
-        "STD-IAC.json",
-        "STD-NET.json",
-        "STD-BACKUP.json",
-        "STD-DR.json",
-        "STD-SLO.json",
-        "STD-COST.json",
-        "STD-INCIDENT.json",
-        "STD-RUNBOOK.json"
-      ]
+      "code": "STD-TEST",
+      "name": "Testing Strategy & Quality Gates",
+      "category": "01_governance_delivery",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "01-governance-delivery/STD-TEST.json",
+      "sha256": "efe837d369c86046268eec31a1ae951fb1be705de90e055a77cad4fd2899fdaa"
+    },
+    {
+      "code": "STD-VERSIONING",
+      "name": "Versioning, Compatibility & Deprecation",
+      "category": "01_governance_delivery",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "01-governance-delivery/STD-VERSIONING.json",
+      "sha256": "80397c51508d3714274841953dba37e491a71166ea615bd67584eb4d79d885ad"
+    },
+    {
+      "code": "STD-ANALYTICS",
+      "name": "Product Analytics & Event Tracking",
+      "category": "02_engineering_foundation",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "02-engineering-foundation/STD-ANALYTICS.json",
+      "sha256": "1907c17a7bb4e3f3d711dde4b49b75aa192fe264a971bf143d5fd888d7368022"
+    },
+    {
+      "code": "STD-DEP",
+      "name": "Dependency & Package Management",
+      "category": "02_engineering_foundation",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "02-engineering-foundation/STD-DEP.json",
+      "sha256": "376047ed65e9361c75679e61b82fc12989f1a100ff4bcb8164b83796abe92a50"
+    },
+    {
+      "code": "STD-ENV",
+      "name": "Environment, Configuration & Secrets",
+      "category": "02_engineering_foundation",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "02-engineering-foundation/STD-ENV.json",
+      "sha256": "7966735b94259bf4a648e2900af772c2c646f6312f6b652711c3cc4efdf62c13"
+    },
+    {
+      "code": "STD-ERR",
+      "name": "Error Handling & Classification",
+      "category": "02_engineering_foundation",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "02-engineering-foundation/STD-ERR.json",
+      "sha256": "76a29e1c9937f98896e27593b1a2d04c169168e78fd557a12c31dd5e79ce094a"
+    },
+    {
+      "code": "STD-FLAG",
+      "name": "Feature Flags & Progressive Rollout",
+      "category": "02_engineering_foundation",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "02-engineering-foundation/STD-FLAG.json",
+      "sha256": "5aaba636be8c309da912cf6fb6fe2727d6d843d870ee6340cb5324e43d57c946"
+    },
+    {
+      "code": "STD-I18N",
+      "name": "Internationalization & Localization",
+      "category": "02_engineering_foundation",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "02-engineering-foundation/STD-I18N.json",
+      "sha256": "e08b35585bb0830d314c1f592799338866bc5b4de5815d439797445e38f026ec"
+    },
+    {
+      "code": "STD-LOG",
+      "name": "Logging & Observability",
+      "category": "02_engineering_foundation",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "02-engineering-foundation/STD-LOG.json",
+      "sha256": "4d31493fe1965249cd45c43627fc3d91208aae8eec5b41f4fac63d3b4f0adf33"
+    },
+    {
+      "code": "STD-PERF",
+      "name": "Performance Engineering Principles",
+      "category": "02_engineering_foundation",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "02-engineering-foundation/STD-PERF.json",
+      "sha256": "1cd91e62aaeb46a1d56434c2712f455ce489945cc55c8497773b05d9a82280ba"
+    },
+    {
+      "code": "STD-PRIV",
+      "name": "Privacy, PII & Data Retention",
+      "category": "02_engineering_foundation",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "02-engineering-foundation/STD-PRIV.json",
+      "sha256": "908c1d935083ad86dcad77ba76b1f386d803ed5ac1535e2279b6beea32b6355c"
+    },
+    {
+      "code": "STD-RES",
+      "name": "Reliability, Resilience & Fault Tolerance",
+      "category": "02_engineering_foundation",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "02-engineering-foundation/STD-RES.json",
+      "sha256": "fa1e84a316c5ea7a9d1b8e25e012d5bc880cb8673d27cdd19f4a37fde95b57d4"
+    },
+    {
+      "code": "STD-SEC",
+      "name": "Application Security Principles",
+      "category": "02_engineering_foundation",
+      "version": "1.0.0",
+      "status": "active",
+      "path": "02-engineering-foundation/STD-SEC.json",
+      "sha256": "f79959f7a85140f0d370a7de569a0e3d422b2241e57fdfd8200c147dc38f0f64"
+    },
+    {
+      "code": "STD-API-REST",
+      "name": "RESTful API Design",
+      "category": "03_api_integration_data",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "03-api-integration-data/STD-API-REST.json",
+      "sha256": "4427c7e96f21268db74b98cbc96b3af41f3972dee9102a14a750a060ea752b86"
+    },
+    {
+      "code": "STD-API-RT",
+      "name": "Realtime API & WebSocket/SSE",
+      "category": "03_api_integration_data",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "03-api-integration-data/STD-API-RT.json",
+      "sha256": "a6614657b62a3b3560bdf188a7fe520deba922cae3a30e8c10f00403de0d7d0a"
+    },
+    {
+      "code": "STD-API",
+      "name": "API Contracts & Versioning",
+      "category": "03_api_integration_data",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "03-api-integration-data/STD-API.json",
+      "sha256": "de46ed0333c718479c42466758494d54455f5c06cc27759c960626613dc66614"
+    },
+    {
+      "code": "STD-CACHE",
+      "name": "Caching & Cache Invalidation",
+      "category": "03_api_integration_data",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "03-api-integration-data/STD-CACHE.json",
+      "sha256": "56200d749c756e95847e98263058eb586bc9f182984f4f33817e73290469e9a2"
+    },
+    {
+      "code": "STD-DATA-MIG",
+      "name": "Schema Evolution & Database Migrations",
+      "category": "03_api_integration_data",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "03-api-integration-data/STD-DATA-MIG.json",
+      "sha256": "a48fb5bd8eaff50670031bdbeea6485cc3030d20c90dd43a2073cae0d8ce6fdc"
+    },
+    {
+      "code": "STD-DATA-TX",
+      "name": "Transactions, Concurrency & Consistency",
+      "category": "03_api_integration_data",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "03-api-integration-data/STD-DATA-TX.json",
+      "sha256": "def7a0db745adefedceb97349a80a72b224de6e920827b80e56e9153e386c558"
+    },
+    {
+      "code": "STD-DATA",
+      "name": "Data Modeling & Schema Design",
+      "category": "03_api_integration_data",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "03-api-integration-data/STD-DATA.json",
+      "sha256": "5b4cb8f8077fd9c5a59a8f20d972043f44664b1a122be36dd8bb220ca5fae2d4"
+    },
+    {
+      "code": "STD-INTEGRATION",
+      "name": "Third-Party Integration",
+      "category": "03_api_integration_data",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "03-api-integration-data/STD-INTEGRATION.json",
+      "sha256": "54a7e9e4ea6814e30bf30197f1822a2894cefa4c18e29cb36ebebc00ca8b8dac"
+    },
+    {
+      "code": "STD-WEBHOOK",
+      "name": "Webhook & Event Contracts",
+      "category": "03_api_integration_data",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "03-api-integration-data/STD-WEBHOOK.json",
+      "sha256": "5612b033808d921fcb24ae3c06e9b2bd24a7e8b46942890a6070ca5ce0a66e25"
+    },
+    {
+      "code": "STD-A11Y",
+      "name": "Accessibility & Inclusive Design",
+      "category": "04_experience_ui_ux",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "04-experience-ui-ux/STD-A11Y.json",
+      "sha256": "e014a6afab0a015292362029fa3ddf8d68d006582a2972dda39ff43c4e8b99c1"
+    },
+    {
+      "code": "STD-DESIGN",
+      "name": "Design Handoff & Fidelity",
+      "category": "04_experience_ui_ux",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "04-experience-ui-ux/STD-DESIGN.json",
+      "sha256": "d116823ffa177f452527d1e2a07971999ed4480ee9adf9bd6928a9bb98b85c3b"
+    },
+    {
+      "code": "STD-DS",
+      "name": "Design System & Shared Components",
+      "category": "04_experience_ui_ux",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "04-experience-ui-ux/STD-DS.json",
+      "sha256": "c7aa031552493603a7a8bfc372858ced7678afe89824d511dd823c76f31377b0"
+    },
+    {
+      "code": "STD-FEEDBACK",
+      "name": "Feedback, Notifications & Messaging",
+      "category": "04_experience_ui_ux",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "04-experience-ui-ux/STD-FEEDBACK.json",
+      "sha256": "0a292d382e3395f5ee69b57ced777bf296c22469ec07b785871d32e833e764e3"
+    },
+    {
+      "code": "STD-FORM",
+      "name": "Form & Validation Experience",
+      "category": "04_experience_ui_ux",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "04-experience-ui-ux/STD-FORM.json",
+      "sha256": "54f5162ee2bf3991ca0d44e033f6950961e50a72944c36431ecb422554ab876f"
+    },
+    {
+      "code": "STD-UI-STATE",
+      "name": "UI State & State Presentation",
+      "category": "04_experience_ui_ux",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "04-experience-ui-ux/STD-UI-STATE.json",
+      "sha256": "de4eb1218bc95f0a4cb62c9e7f9720a5ba8e55b53a18956afec35573cceec5bb"
+    },
+    {
+      "code": "STD-UX",
+      "name": "UX & Interaction Principles",
+      "category": "04_experience_ui_ux",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "04-experience-ui-ux/STD-UX.json",
+      "sha256": "7c50b5ee8c9c06038d2ac42822fe09cc97345a167dc98d257e62f058f5928bde"
+    },
+    {
+      "code": "STD-WEB-ARCH",
+      "name": "Web Application Architecture",
+      "category": "05_web_platform",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "05-web-platform/STD-WEB-ARCH.json",
+      "sha256": "77a89cb47ea4c56ff64684ad1326b2c681a52ad396a3cddd2f25daa92f6b8e6c"
+    },
+    {
+      "code": "STD-WEB-AUTH",
+      "name": "Browser Authentication & Sessions",
+      "category": "05_web_platform",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "05-web-platform/STD-WEB-AUTH.json",
+      "sha256": "b52ea09bbeef33e359d995c7a22d72724b45bcc432bb3d9e7e007917bace7cf8"
+    },
+    {
+      "code": "STD-WEB-FORM",
+      "name": "Browser Form & Validation",
+      "category": "05_web_platform",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "05-web-platform/STD-WEB-FORM.json",
+      "sha256": "b0db19d2826447ca8e90f632d50b8296d49926a5b9b38d36e55fcdb9f7ad0085"
+    },
+    {
+      "code": "STD-WEB-PERF",
+      "name": "Web Rendering & Memory Performance",
+      "category": "05_web_platform",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "05-web-platform/STD-WEB-PERF.json",
+      "sha256": "598469edf394a16e8ed70bd0450fd65d9925faf8fdaf9ca0b506bb26f71f8057"
+    },
+    {
+      "code": "STD-WEB-PWA",
+      "name": "Progressive Web Apps",
+      "category": "05_web_platform",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "05-web-platform/STD-WEB-PWA.json",
+      "sha256": "e21caab4c5c9e7b69952a92d6d70e4909111c1eb034c0799106f625eb7ef6524"
+    },
+    {
+      "code": "STD-WEB-RESP",
+      "name": "Responsive Layout",
+      "category": "05_web_platform",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "05-web-platform/STD-WEB-RESP.json",
+      "sha256": "968e750e358106bcdec376f81da135c61771e21e0797567cd875012b26a1f6cf"
+    },
+    {
+      "code": "STD-WEB-ROUTE",
+      "name": "Routing, Navigation & URL State",
+      "category": "05_web_platform",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "05-web-platform/STD-WEB-ROUTE.json",
+      "sha256": "717fdaaa48254f5acdb23c80b068762746d8c37774002afe40059bd0bfd8310f"
+    },
+    {
+      "code": "STD-WEB-SEC",
+      "name": "Browser & Web Application Security",
+      "category": "05_web_platform",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "05-web-platform/STD-WEB-SEC.json",
+      "sha256": "3a716297cf6329c74a9ed6577ead2ff0c8503e282431b4910ed19f106fff686e"
+    },
+    {
+      "code": "STD-WEB-SEO",
+      "name": "SEO & Rendering Strategy",
+      "category": "05_web_platform",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "05-web-platform/STD-WEB-SEO.json",
+      "sha256": "e36b561f2b02d941abfd04c91fe63edee055d63c73bdca0b7fd50ff660b51b1b"
+    },
+    {
+      "code": "STD-WEB-STORE",
+      "name": "Browser Storage & Persistence",
+      "category": "05_web_platform",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "05-web-platform/STD-WEB-STORE.json",
+      "sha256": "02e3ed7b49d4d1c5b9a94647916eb7d0c5089e08aefeb7a4230f0e5a935d47a9"
+    },
+    {
+      "code": "STD-MOB-ARCH",
+      "name": "Mobile Application Architecture",
+      "category": "06_mobile_platform",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "06-mobile-platform/STD-MOB-ARCH.json",
+      "sha256": "7c3c25090a3e81a7ca2bc343b32b4c42f6d3084fe74b5479711a8d5b4b834862"
+    },
+    {
+      "code": "STD-MOB-DEVICE",
+      "name": "Device Permissions & Capabilities",
+      "category": "06_mobile_platform",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "06-mobile-platform/STD-MOB-DEVICE.json",
+      "sha256": "ec1038ebbc8a18e0761fd89f960c208df3aef58495f914fc58b1bf11f0f54aa6"
+    },
+    {
+      "code": "STD-MOB-LIFE",
+      "name": "Lifecycle & Background Execution",
+      "category": "06_mobile_platform",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "06-mobile-platform/STD-MOB-LIFE.json",
+      "sha256": "cc6e8a22f88c81fd92f83082320e0748bed96c6db54acc612beb1e3c38ac0488"
+    },
+    {
+      "code": "STD-MOB-NAV",
+      "name": "Navigation, Routing & Deep Linking",
+      "category": "06_mobile_platform",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "06-mobile-platform/STD-MOB-NAV.json",
+      "sha256": "0e7474408580adf6570bcdea8275d9ab7d6831a92bb6ee93bfc58bab5b7d3a71"
+    },
+    {
+      "code": "STD-MOB-OFF",
+      "name": "Offline, Connectivity & Sync",
+      "category": "06_mobile_platform",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "06-mobile-platform/STD-MOB-OFF.json",
+      "sha256": "6ad5caff4981168ac33863c978ace691b5d6680e73af8832c12acbf4112b37f4"
+    },
+    {
+      "code": "STD-MOB-PERF",
+      "name": "Startup, Memory & Battery Performance",
+      "category": "06_mobile_platform",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "06-mobile-platform/STD-MOB-PERF.json",
+      "sha256": "a2a71f550c4bb7f83cdd5891889686a43c8b38b4cf34a18e142a91b3f76ac20c"
+    },
+    {
+      "code": "STD-MOB-PUSH",
+      "name": "Push Notifications & Routing",
+      "category": "06_mobile_platform",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "06-mobile-platform/STD-MOB-PUSH.json",
+      "sha256": "350518edc9a503c78c438f6ddb9267b38f31c08967b0f72b1cff101a07c473e9"
+    },
+    {
+      "code": "STD-MOB-RELEASE",
+      "name": "Mobile Build, Signing & Store Release",
+      "category": "06_mobile_platform",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "06-mobile-platform/STD-MOB-RELEASE.json",
+      "sha256": "2a38ac89f60338589cdfdde9bf00dfbfbd6fb78cb2e09a8476ef41949fa0b564"
+    },
+    {
+      "code": "STD-MOB-SEC",
+      "name": "Mobile Application Security",
+      "category": "06_mobile_platform",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "06-mobile-platform/STD-MOB-SEC.json",
+      "sha256": "05209b80f70fef2a9fde03ad3dcb98b83b9189576b3c02b615441995c8090b4f"
+    },
+    {
+      "code": "STD-MOB-STORE",
+      "name": "Local Storage & Secure Persistence",
+      "category": "06_mobile_platform",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "06-mobile-platform/STD-MOB-STORE.json",
+      "sha256": "d84ebb9299adb7cedaf3f787d62541004e21e5064d384216c90d6ddfc0cddfbf"
+    },
+    {
+      "code": "STD-MOB-UI",
+      "name": "Mobile Layout, Safe Areas & Keyboard",
+      "category": "06_mobile_platform",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "06-mobile-platform/STD-MOB-UI.json",
+      "sha256": "4844e3bf4a0f29da5e1b9a9e65ec5f4552cfa4848e9dd6f6c93dc9dee18fed2f"
+    },
+    {
+      "code": "STD-BE-ARCH",
+      "name": "Backend Application Architecture",
+      "category": "07_backend_platform",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "07-backend-platform/STD-BE-ARCH.json",
+      "sha256": "6ad7763482d010432838d16b9af08008635cd32ef4268e10e96012016e747226"
+    },
+    {
+      "code": "STD-BE-AUTH",
+      "name": "Authentication & Authorization",
+      "category": "07_backend_platform",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "07-backend-platform/STD-BE-AUTH.json",
+      "sha256": "6fa75a3b15eba2d52a9331a2b3a6459b78a884e057e57a9c61bee986b7cba5be"
+    },
+    {
+      "code": "STD-BE-CONCUR",
+      "name": "Concurrency & Idempotency",
+      "category": "07_backend_platform",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "07-backend-platform/STD-BE-CONCUR.json",
+      "sha256": "b89d570728992c23588859e96ad08a8eafab85f43d3348a02c63439d712a24a7"
+    },
+    {
+      "code": "STD-BE-FILE",
+      "name": "File Processing & Object Storage",
+      "category": "07_backend_platform",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "07-backend-platform/STD-BE-FILE.json",
+      "sha256": "27b00c377c087f351a2a0ed56f9e3b29af2430560a839256d5fbb1e09e54cdd9"
+    },
+    {
+      "code": "STD-BE-HEALTH",
+      "name": "Readiness, Liveness & Health",
+      "category": "07_backend_platform",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "07-backend-platform/STD-BE-HEALTH.json",
+      "sha256": "7d565c2de2051d657af921983fc450983ee3840a57c9ec58be309005603866e8"
+    },
+    {
+      "code": "STD-BE-JOB",
+      "name": "Background Jobs & Scheduling",
+      "category": "07_backend_platform",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "07-backend-platform/STD-BE-JOB.json",
+      "sha256": "c534e8b4795262d7d3b9adef52c1c72b9a32f35e36e138a2583d1c520bf8ee45"
+    },
+    {
+      "code": "STD-BE-PERF",
+      "name": "Performance & Scalability",
+      "category": "07_backend_platform",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "07-backend-platform/STD-BE-PERF.json",
+      "sha256": "5bb2b3c9cfbddad59b3d30effcb6eabff3311092e4618483b28fa290dfd73f96"
+    },
+    {
+      "code": "STD-BE-QUEUE",
+      "name": "Queues & Event-Driven Processing",
+      "category": "07_backend_platform",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "07-backend-platform/STD-BE-QUEUE.json",
+      "sha256": "e600c79413a181a8bd88c92b2afd161b27286d4c7f730a1462cf146f73a4b604"
+    },
+    {
+      "code": "STD-BE-SEC",
+      "name": "Backend Security & Hardening",
+      "category": "07_backend_platform",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "07-backend-platform/STD-BE-SEC.json",
+      "sha256": "b0cab8ecb2fff9da0d473d7ef284cfcf1a6c135d336a2c504187e20c9863d982"
+    },
+    {
+      "code": "STD-BE-TX",
+      "name": "Transaction Management & Unit of Work",
+      "category": "07_backend_platform",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "07-backend-platform/STD-BE-TX.json",
+      "sha256": "7b6723d568e69873aae6f7f57d5680d8b35880d55df52bc69ecd2e1fe03ae722"
+    },
+    {
+      "code": "STD-BE-VALID",
+      "name": "Request & Domain Validation",
+      "category": "07_backend_platform",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "07-backend-platform/STD-BE-VALID.json",
+      "sha256": "9106f73f195b4c74b61cb00a8e49d0a5c07ec3f2c3c8b2b9abf65212069e11b7"
+    },
+    {
+      "code": "STD-NEXT",
+      "name": "Next.js Architecture",
+      "category": "08_technology",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "08-technology/08.1-web-technology/STD-NEXT.json",
+      "sha256": "3509702981a3705b9f41f559d842a04c068fd508bd42ba1784b84ada8a26a728"
+    },
+    {
+      "code": "STD-REACT-TEST",
+      "name": "React Testing, Vitest/Jest & RTL",
+      "category": "08_technology",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "08-technology/08.1-web-technology/STD-REACT-TEST.json",
+      "sha256": "54571114aa961715c341ddb0a582d3be9634825d2de21ebefa562d24f594be25"
+    },
+    {
+      "code": "STD-REACT",
+      "name": "React Components & Hooks",
+      "category": "08_technology",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "08-technology/08.1-web-technology/STD-REACT.json",
+      "sha256": "8170dc54a1faa34b2df92335285fc3fd266649ab52e1e4f0b8dd11b88b92ba41"
+    },
+    {
+      "code": "STD-RQ",
+      "name": "TanStack Query",
+      "category": "08_technology",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "08-technology/08.1-web-technology/STD-RQ.json",
+      "sha256": "cdf14a9808c3472ae2bfb3497435fcfbd714f88340b3a5ccc594f0f90c53562d"
+    },
+    {
+      "code": "STD-TS",
+      "name": "TypeScript Conventions",
+      "category": "08_technology",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "08-technology/08.1-web-technology/STD-TS.json",
+      "sha256": "c370f867d216cf24cbcecf1be5b3c14fc597bd51192472493c597ced29507fa0"
+    },
+    {
+      "code": "STD-RN-NAV",
+      "name": "Navigation & Expo Router",
+      "category": "08_technology",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "08-technology/08.2-react-native-technology/STD-RN-NAV.json",
+      "sha256": "18d497228f51052fd9b981f2cae51fd131cf238cc6d3f0f6b00c924cd23e65e2"
+    },
+    {
+      "code": "STD-RN-STATE",
+      "name": "React Native State Management",
+      "category": "08_technology",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "08-technology/08.2-react-native-technology/STD-RN-STATE.json",
+      "sha256": "229ecea45a6e8380470cd65858517af57571d0930a082744a60689903f01fa6b"
+    },
+    {
+      "code": "STD-RN-STORE",
+      "name": "Local & Secure Storage",
+      "category": "08_technology",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "08-technology/08.2-react-native-technology/STD-RN-STORE.json",
+      "sha256": "b76e7f63a74dcf2b2ad8467c58bf3327cdcafd05b2e90eca6a5ff906b2f927d3"
+    },
+    {
+      "code": "STD-RN-TEST",
+      "name": "Jest & React Native Testing Library",
+      "category": "08_technology",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "08-technology/08.2-react-native-technology/STD-RN-TEST.json",
+      "sha256": "4b1063d10709282c4540699d7fd953f8b71e3302e1dfe781195b12a1508ab10a"
+    },
+    {
+      "code": "STD-RN",
+      "name": "React Native Architecture",
+      "category": "08_technology",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "08-technology/08.2-react-native-technology/STD-RN.json",
+      "sha256": "86834b45bc63e7862eb2140de2d9a353abafa6624af030ca47803a5ac7c058b1"
+    },
+    {
+      "code": "STD-FL-BLOC",
+      "name": "Flutter BLoC & Cubit",
+      "category": "08_technology",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "08-technology/08.3-flutter-technology/STD-FL-BLOC.json",
+      "sha256": "c93f65898b170cd2c46c3d46f36d2abbd730d69bbdf3ebcf2929ca1735f2ac30"
+    },
+    {
+      "code": "STD-FL-DART",
+      "name": "Dart Conventions",
+      "category": "08_technology",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "08-technology/08.3-flutter-technology/STD-FL-DART.json",
+      "sha256": "cc6bfe66d1384fbe00ab0f32f0baac0a1ac5cf7db397b073bf41473286ef1d08"
+    },
+    {
+      "code": "STD-FL-ROUTE",
+      "name": "Flutter Navigation & go_router",
+      "category": "08_technology",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "08-technology/08.3-flutter-technology/STD-FL-ROUTE.json",
+      "sha256": "238320cab9e55b2fa377d11f855d7ba53ce33a04a8c17487b0cfbde73ab4767b"
+    },
+    {
+      "code": "STD-FL-TEST",
+      "name": "flutter_test, bloc_test & Integration",
+      "category": "08_technology",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "08-technology/08.3-flutter-technology/STD-FL-TEST.json",
+      "sha256": "b58da938e4ab75480c4874811a7f584e10983c6ebd708277a9cb34e989d1c769"
+    },
+    {
+      "code": "STD-FL-WIDGET",
+      "name": "Widget Composition & Theming",
+      "category": "08_technology",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "08-technology/08.3-flutter-technology/STD-FL-WIDGET.json",
+      "sha256": "9e09361900d9c3709e4f608218734017d3d21020a354432b1a2c2e165306a315"
+    },
+    {
+      "code": "STD-DOTNET-API",
+      "name": "API, DI & Middleware",
+      "category": "08_technology",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "08-technology/08.4-backend-technology-dotnet/STD-DOTNET-API.json",
+      "sha256": "516f637b0cd6c0b700060554790cf55df9257d90e19f9bad0f3e2b959abb9762"
+    },
+    {
+      "code": "STD-DOTNET-EF",
+      "name": "Entity Framework Core",
+      "category": "08_technology",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "08-technology/08.4-backend-technology-dotnet/STD-DOTNET-EF.json",
+      "sha256": "0a9a2862a6037990e37250d848993127bfbf7f5605a983a3117f9ada4e23b093"
+    },
+    {
+      "code": "STD-DOTNET-TEST",
+      "name": "xUnit & Integration Testing",
+      "category": "08_technology",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "08-technology/08.4-backend-technology-dotnet/STD-DOTNET-TEST.json",
+      "sha256": "7c2cfc1d5a9909ae3610566bbf91666dbc9c5c1c0596bf5e76a86950971b4c7d"
+    },
+    {
+      "code": "STD-DOTNET",
+      "name": "ASP.NET Core Architecture",
+      "category": "08_technology",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "08-technology/08.4-backend-technology-dotnet/STD-DOTNET.json",
+      "sha256": "34be73f8377a7e3dc48f3ac1fc958481885ba4ebf06db2085e9892f16e8f26ea"
+    },
+    {
+      "code": "STD-PG",
+      "name": "PostgreSQL Development & Migrations",
+      "category": "08_technology",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "08-technology/08.5-database-technology/STD-PG.json",
+      "sha256": "ec3c194ccb4d2d2f1d635472f116f9c56585c17913a476b13119b2133183d19b"
+    },
+    {
+      "code": "CAP-AUDIT",
+      "name": "Audit Trail & History",
+      "category": "09_reusable_capabilities",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "09-reusable-capabilities/CAP-AUDIT.json",
+      "sha256": "70eebb4864909a8955f97dac879e876e2f96c9f09943123c5b1d5542c80995cc"
+    },
+    {
+      "code": "CAP-AUTH",
+      "name": "Authentication & Registration",
+      "category": "09_reusable_capabilities",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "09-reusable-capabilities/CAP-AUTH.json",
+      "sha256": "774f438b2cb8555bf8191dd9fbca582c809d797a9a84f43f0ea15926e52f7ace"
+    },
+    {
+      "code": "CAP-CHAT",
+      "name": "Realtime Chat",
+      "category": "09_reusable_capabilities",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "09-reusable-capabilities/CAP-CHAT.json",
+      "sha256": "33bc2125f2cb24fdef8174c586cc3049e1ebef5e13a4c695cce04a273049061b"
+    },
+    {
+      "code": "CAP-CRUD",
+      "name": "CRUD, Listing & Pagination",
+      "category": "09_reusable_capabilities",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "09-reusable-capabilities/CAP-CRUD.json",
+      "sha256": "706b27ccb67e7545305e1b0bd9fcaeccc7c8ed84f97b2ffa4e8d796fa0d202e5"
+    },
+    {
+      "code": "CAP-NOTIFY",
+      "name": "Notification Delivery",
+      "category": "09_reusable_capabilities",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "09-reusable-capabilities/CAP-NOTIFY.json",
+      "sha256": "ed8262cca7d2f4117024542ed8b83838454e7bb6fb1d38d2f97c77a4bf8a5b47"
+    },
+    {
+      "code": "CAP-PAYMENT",
+      "name": "Payments & Billing",
+      "category": "09_reusable_capabilities",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "09-reusable-capabilities/CAP-PAYMENT.json",
+      "sha256": "00cea75714960d7ab9899b65aa9eb4c0cc244e132ce4967c7eb00659952f95b4"
+    },
+    {
+      "code": "CAP-PERM",
+      "name": "Roles & Permissions",
+      "category": "09_reusable_capabilities",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "09-reusable-capabilities/CAP-PERM.json",
+      "sha256": "e2b9e6dda09abc04c1064361ca6fe92cfbd6119d4d20dd35c44450f12e812609"
+    },
+    {
+      "code": "CAP-PROFILE",
+      "name": "User Profile & Account Management",
+      "category": "09_reusable_capabilities",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "09-reusable-capabilities/CAP-PROFILE.json",
+      "sha256": "99ac7044811bfbaf9d19daa14b1eaa1cca03f31e5a9d64ec3e01a09017012964"
+    },
+    {
+      "code": "CAP-REPORT",
+      "name": "Reporting & Dashboards",
+      "category": "09_reusable_capabilities",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "09-reusable-capabilities/CAP-REPORT.json",
+      "sha256": "0d9bd04b9b8fa2fbce1574373276c6f45fe5ce488752678c98582e9c0c833824"
+    },
+    {
+      "code": "CAP-SEARCH",
+      "name": "Search & Indexing",
+      "category": "09_reusable_capabilities",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "09-reusable-capabilities/CAP-SEARCH.json",
+      "sha256": "35b539c77a64cab439baac5d59aaa1df9f80c97f9b144e5086b6e3ca12cbb2fc"
+    },
+    {
+      "code": "CAP-SHARE",
+      "name": "Sharing, QR & Deep Links",
+      "category": "09_reusable_capabilities",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "09-reusable-capabilities/CAP-SHARE.json",
+      "sha256": "c030501bdb017b8eaa981b8fc8d62b14b27e8ebe65bc0189b54b3f50b53b157f"
+    },
+    {
+      "code": "CAP-UPLOAD",
+      "name": "File Upload & Attachments",
+      "category": "09_reusable_capabilities",
+      "version": "1.1.0",
+      "status": "active",
+      "path": "09-reusable-capabilities/CAP-UPLOAD.json",
+      "sha256": "818972168cc9284c92b5f9adb2140edd5fa17e042b34f2715595cdc8b70c6aec"
+    },
+    {
+      "code": "STD-BACKUP",
+      "name": "Backup & Restore",
+      "category": "10_operations_infrastructure",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "10-operations-infrastructure/STD-BACKUP.json",
+      "sha256": "cf36f00d92d76713e264a56d5d10d298ed5e2c05c078b94bdb404e33c2d2714e"
+    },
+    {
+      "code": "STD-COST",
+      "name": "Infrastructure & Cloud Cost Governance",
+      "category": "10_operations_infrastructure",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "10-operations-infrastructure/STD-COST.json",
+      "sha256": "a2032dfd28475c780d30da415f6b7add4810aafbce2ed3aafb58ee8c765c0793"
+    },
+    {
+      "code": "STD-DEPLOY",
+      "name": "Deployment, Rollout & Rollback",
+      "category": "10_operations_infrastructure",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "10-operations-infrastructure/STD-DEPLOY.json",
+      "sha256": "ed50c78f894e78802f01bb59aea9386cfa5f9f472d8800131c0de1590ff3cb36"
+    },
+    {
+      "code": "STD-DR",
+      "name": "Disaster Recovery",
+      "category": "10_operations_infrastructure",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "10-operations-infrastructure/STD-DR.json",
+      "sha256": "448fae27368956c9b9da4cf291be3ab7c0a32ae5f79af40197829c66c24f3f2b"
+    },
+    {
+      "code": "STD-IAC",
+      "name": "Infrastructure as Code",
+      "category": "10_operations_infrastructure",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "10-operations-infrastructure/STD-IAC.json",
+      "sha256": "1c7c885f35d2253462c82f7dc8dabfbc2001130c7b75900b22b7e4d13ff0dd58"
+    },
+    {
+      "code": "STD-INCIDENT",
+      "name": "Incident Management & Postmortems",
+      "category": "10_operations_infrastructure",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "10-operations-infrastructure/STD-INCIDENT.json",
+      "sha256": "56db2e48e8f0e360da4950bcf71c4d340524a2b5dde727ec34d1969ef7a3ee3a"
+    },
+    {
+      "code": "STD-NET",
+      "name": "Network, DNS, TLS & Infrastructure Security",
+      "category": "10_operations_infrastructure",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "10-operations-infrastructure/STD-NET.json",
+      "sha256": "9704e03a8b35846342d1dbe699454d323c07ae0998ec64e35e08e30ff416f088"
+    },
+    {
+      "code": "STD-RUNBOOK",
+      "name": "Operational Runbooks & Maintenance",
+      "category": "10_operations_infrastructure",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "10-operations-infrastructure/STD-RUNBOOK.json",
+      "sha256": "7301e71a39dbe453d5a7ef7b0ce9052e687e34e8ae574d3a13477b127f1077aa"
+    },
+    {
+      "code": "STD-SLO",
+      "name": "Service Level Objectives",
+      "category": "10_operations_infrastructure",
+      "version": "2.0.0",
+      "status": "active",
+      "path": "10-operations-infrastructure/STD-SLO.json",
+      "sha256": "440cca8b44580b266c2d458875a6664b9930ad7194e265916d443db779793ed4"
     }
   ]
 }

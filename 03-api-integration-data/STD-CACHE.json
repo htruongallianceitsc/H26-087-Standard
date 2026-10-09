@@ -3,63 +3,101 @@
   "code": "STD-CACHE",
   "name": "Caching & Cache Invalidation",
   "category": "03_api_integration_data",
-  "description": "Canonical standard for Caching & Cache Invalidation. Defines baseline rules, review expectations and adoption guidance for projects where this standard applies.",
-  "version": "1.0.0",
+  "description": "Caching & Cache Invalidation standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-CACHE applies.",
+  "version": "2.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define an explicit Caching & Cache Invalidation approach before implementation",
-      "detail": "Document scope, decisions, constraints and ownership for Caching & Cache Invalidation; link the decision to relevant requirements and implementation evidence.",
+      "title": "Define cache ownership, key, TTL and invalidation before use",
+      "detail": "Every cache has an owner, key composition, value schema, TTL and explicit invalidation/refresh strategy.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Define cache ownership, key, TTL and invalidation before use.",
+      "example_bad": "The change violates or ignores the rule: Define cache ownership, key, TTL and invalidation before use."
+    },
+    {
+      "title": "Never treat cache as the only durable source of truth",
+      "detail": "Loss or eviction of a cache must not destroy authoritative business data.",
       "layer": "db",
       "severity": "must",
-      "example_good": "The project records how Caching & Cache Invalidation applies, who owns it, and how compliance is verified.",
-      "example_bad": "Caching & Cache Invalidation is implemented ad hoc without documented rules or review evidence."
+      "example_good": "The implementation and review evidence demonstrate: Never treat cache as the only durable source of truth.",
+      "example_bad": "The change violates or ignores the rule: Never treat cache as the only durable source of truth."
     },
     {
-      "title": "Handle failure, boundary and compatibility cases explicitly",
-      "detail": "Identify relevant failure modes, edge cases, compatibility constraints and rollback/recovery expectations before release.",
-      "layer": "db",
-      "severity": "should",
-      "example_good": "Boundary and failure cases are represented in acceptance criteria, tests, checks or operational guidance.",
-      "example_bad": "Only the happy path is defined and failures are left to implementation guesswork."
+      "title": "Prevent cross-user or cross-tenant leakage",
+      "detail": "Cache keys and authorization checks must include all isolation dimensions needed to keep data scoped correctly.",
+      "layer": "security",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Prevent cross-user or cross-tenant leakage.",
+      "example_bad": "The change violates or ignores the rule: Prevent cross-user or cross-tenant leakage."
     },
     {
-      "title": "Verify adoption with repeatable evidence",
-      "detail": "Use automated checks where practical and manual review where judgement is required; record justified deviations instead of silently ignoring rules.",
+      "title": "Handle stale data deliberately",
+      "detail": "Document acceptable staleness and choose cache-aside, write-through, refresh-ahead or explicit revalidation behavior accordingly.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Handle stale data deliberately.",
+      "example_bad": "The change violates or ignores the rule: Handle stale data deliberately."
+    },
+    {
+      "title": "Bound cache size and stampede behavior",
+      "detail": "Apply size/eviction limits and use single-flight, jittered TTL or request coalescing for hot keys when needed.",
       "layer": "process",
-      "severity": "should",
-      "example_good": "Review or automated evidence shows which rules were checked and any approved exceptions.",
-      "example_bad": "The standard exists as documentation but is not referenced during delivery or review."
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Bound cache size and stampede behavior.",
+      "example_bad": "The change violates or ignores the rule: Bound cache size and stampede behavior."
+    },
+    {
+      "title": "Version cached payloads when schema can outlive deployments",
+      "detail": "Keys or payloads must remain compatible across rolling deployments or be safely invalidated.",
+      "layer": "db",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Version cached payloads when schema can outlive deployments.",
+      "example_bad": "The change violates or ignores the rule: Version cached payloads when schema can outlive deployments."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Determine whether STD-CACHE applies to the project, feature or change and record approved exclusions."
+      "title": "Resolve applicability and dependencies",
+      "description": "Confirm where STD-CACHE applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
     },
     {
       "step": 2,
-      "title": "Apply standard",
-      "description": "Apply the relevant Caching & Cache Invalidation rules during requirement, design and implementation work."
+      "title": "Record project decisions",
+      "description": "Apply the rules of Caching & Cache Invalidation to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Run relevant automated checks and manual review, then capture evidence or approved deviations before completion."
+      "title": "Implement with evidence",
+      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
+    },
+    {
+      "step": 4,
+      "title": "Verify before completion",
+      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Caching & Cache Invalidation",
-      "cause": "The project profile does not resolve or assign the applicable standard clearly.",
-      "solution": "Reference STD-CACHE explicitly, assign ownership and include it in review/quality gates."
+      "issue": "Caching & Cache Invalidation is applied inconsistently across features",
+      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
+      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
     },
     {
-      "issue": "Rules are documented but not verifiable",
-      "cause": "No test, lint, checklist, review evidence or operational check is tied to the rule.",
-      "solution": "Pair each important rule with practical verification evidence and record exceptions."
+      "issue": "Implementation satisfies the happy path but misses Caching & Cache Invalidation failure cases",
+      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
+      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
     }
   ],
-  "depends_on": []
+  "depends_on": [
+    {
+      "code": "STD-RES",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-PERF",
+      "dependency_type": "uses"
+    }
+  ]
 }

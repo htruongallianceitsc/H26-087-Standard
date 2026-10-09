@@ -3,62 +3,91 @@
   "code": "STD-DEPLOY",
   "name": "Deployment, Rollout & Rollback",
   "category": "10_operations_infrastructure",
-  "description": "Canonical standard for Deployment, Rollout & Rollback. Defines baseline rules, review expectations and adoption guidance for projects where this standard applies.",
-  "version": "1.0.0",
+  "description": "Deployment, Rollout & Rollback standard. Defines enforceable rules, implementation boundaries, failure handling and review evidence expected when STD-DEPLOY applies.",
+  "version": "2.0.0",
   "status": "active",
   "rules": [
     {
-      "title": "Define an explicit Deployment, Rollout & Rollback approach before implementation",
-      "detail": "Document scope, decisions, constraints and ownership for Deployment, Rollout & Rollback; link the decision to relevant requirements and implementation evidence.",
+      "title": "Produce immutable versioned artifacts",
+      "detail": "Build once and promote the same identifiable artifact across environments; do not rebuild production from a moving branch.",
       "layer": "process",
       "severity": "must",
-      "example_good": "The project records how Deployment, Rollout & Rollback applies, who owns it, and how compliance is verified.",
-      "example_bad": "Deployment, Rollout & Rollback is implemented ad hoc without documented rules or review evidence."
+      "example_good": "The implementation and review evidence demonstrate: Produce immutable versioned artifacts.",
+      "example_bad": "The change violates or ignores the rule: Produce immutable versioned artifacts."
     },
     {
-      "title": "Handle failure, boundary and compatibility cases explicitly",
-      "detail": "Identify relevant failure modes, edge cases, compatibility constraints and rollback/recovery expectations before release.",
+      "title": "Automate pre-deployment quality gates",
+      "detail": "Required tests, security checks, configuration validation and migration readiness must pass before production rollout.",
       "layer": "process",
-      "severity": "should",
-      "example_good": "Boundary and failure cases are represented in acceptance criteria, tests, checks or operational guidance.",
-      "example_bad": "Only the happy path is defined and failures are left to implementation guesswork."
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Automate pre-deployment quality gates.",
+      "example_bad": "The change violates or ignores the rule: Automate pre-deployment quality gates."
     },
     {
-      "title": "Verify adoption with repeatable evidence",
-      "detail": "Use automated checks where practical and manual review where judgement is required; record justified deviations instead of silently ignoring rules.",
+      "title": "Use progressive or controlled rollout for material risk",
+      "detail": "Choose rolling, blue/green, canary or phased mobile/store rollout according to failure impact and rollback capability.",
       "layer": "process",
-      "severity": "should",
-      "example_good": "Review or automated evidence shows which rules were checked and any approved exceptions.",
-      "example_bad": "The standard exists as documentation but is not referenced during delivery or review."
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Use progressive or controlled rollout for material risk.",
+      "example_bad": "The change violates or ignores the rule: Use progressive or controlled rollout for material risk."
+    },
+    {
+      "title": "Define rollback and forward-fix before deployment",
+      "detail": "Know whether code, configuration and database changes can be safely rolled back together; breaking migrations require staged compatibility.",
+      "layer": "db",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Define rollback and forward-fix before deployment.",
+      "example_bad": "The change violates or ignores the rule: Define rollback and forward-fix before deployment."
+    },
+    {
+      "title": "Run post-deployment verification",
+      "detail": "Check health, key SLI/SLO signals and critical smoke flows and stop/rollback rollout on defined failure thresholds.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Run post-deployment verification.",
+      "example_bad": "The change violates or ignores the rule: Run post-deployment verification."
+    },
+    {
+      "title": "Record deployment evidence",
+      "detail": "Capture artifact/version, source revision, approver/actor, environment, migration/config changes and result.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "The implementation and review evidence demonstrate: Record deployment evidence.",
+      "example_bad": "The change violates or ignores the rule: Record deployment evidence."
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Assess applicability",
-      "description": "Determine whether STD-DEPLOY applies to the project, feature or change and record approved exclusions."
+      "title": "Resolve applicability and dependencies",
+      "description": "Confirm where STD-DEPLOY applies and resolve its extends/implements/uses/aligns_with dependencies in the project standard profile."
     },
     {
       "step": 2,
-      "title": "Apply standard",
-      "description": "Apply the relevant Deployment, Rollout & Rollback rules during requirement, design and implementation work."
+      "title": "Record project decisions",
+      "description": "Apply the rules of Deployment, Rollout & Rollback to requirements/design/ADRs and record any project-specific thresholds, providers or justified exceptions."
     },
     {
       "step": 3,
-      "title": "Verify compliance",
-      "description": "Run relevant automated checks and manual review, then capture evidence or approved deviations before completion."
+      "title": "Implement with evidence",
+      "description": "Implement the applicable MUST/SHOULD rules and link code, configuration, tests or review evidence to the change."
+    },
+    {
+      "step": 4,
+      "title": "Verify before completion",
+      "description": "Run automated checks where possible and manual review for judgement-based rules; close or approve documented deviations."
     }
   ],
   "common_issues": [
     {
-      "issue": "Inconsistent adoption of Deployment, Rollout & Rollback",
-      "cause": "The project profile does not resolve or assign the applicable standard clearly.",
-      "solution": "Reference STD-DEPLOY explicitly, assign ownership and include it in review/quality gates."
+      "issue": "Deployment, Rollout & Rollback is applied inconsistently across features",
+      "cause": "The project references the standard but does not resolve concrete ownership, thresholds or verification evidence.",
+      "solution": "Resolve dependencies, record project-specific decisions and include applicable rules in implementation/review checks."
     },
     {
-      "issue": "Rules are documented but not verifiable",
-      "cause": "No test, lint, checklist, review evidence or operational check is tied to the rule.",
-      "solution": "Pair each important rule with practical verification evidence and record exceptions."
+      "issue": "Implementation satisfies the happy path but misses Deployment, Rollout & Rollback failure cases",
+      "cause": "Boundary, retry, security or recovery scenarios were not included in acceptance/test planning.",
+      "solution": "Use the standard rules to add explicit failure/recovery scenarios and verify them before release."
     }
   ],
   "depends_on": [
