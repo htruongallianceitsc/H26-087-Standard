@@ -9,50 +9,50 @@
   "rules": [
     {
       "title": "Chỉ yêu cầu runtime permission tối thiểu cần thiết và giải thích mục đích sử dụng",
-      "detail": "Chỉ yêu cầu runtime permission tối thiểu cần thiết và giải thích mục đích sử dụng. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Chỉ yêu cầu runtime permission tối thiểu cần thiết và giải thích mục đích sử dụng. Phạm vi áp dụng: các thay đổi thuộc Quyền thiết bị & Khả năng nền tảng có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Request camera permission khi bắt đầu scan QR, kèm rationale ngay tại màn hình. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": [
         "process",
         "security"
       ],
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Chỉ yêu cầu runtime permission tối thiểu cần thiết và giải thích mục đích sử dụng.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Request camera permission khi bắt đầu scan QR, kèm rationale ngay tại màn hình. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Chỉ yêu cầu runtime permission tối thiểu cần thiết và giải thích mục đích sử dụng' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: request camera permission khi bắt đầu scan QR, kèm rationale ngay tại màn hình.",
       "id": "R001"
     },
     {
       "title": "Xử lý các trạng thái quyền bị từ chối, bị giới hạn và bị từ chối vĩnh viễn",
-      "detail": "Xử lý các trạng thái quyền bị từ chối, bị giới hạn và bị từ chối vĩnh viễn. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Xử lý các trạng thái quyền bị từ chối, bị giới hạn và bị từ chối vĩnh viễn. Phạm vi áp dụng: các thay đổi thuộc Quyền thiết bị & Khả năng nền tảng có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Denied hiển thị đường dẫn Settings; restricted chuyển sang nhập mã tay. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": [
         "process",
         "security"
       ],
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Xử lý các trạng thái quyền bị từ chối, bị giới hạn và bị từ chối vĩnh viễn.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Denied hiển thị đường dẫn Settings; restricted chuyển sang nhập mã tay. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Xử lý các trạng thái quyền bị từ chối, bị giới hạn và bị từ chối vĩnh viễn' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: denied hiển thị đường dẫn Settings; restricted chuyển sang nhập mã tay.",
       "id": "R002"
     },
     {
       "title": "Chặn các capability không được nền tảng hỗ trợ và cung cấp phương án thay thế",
-      "detail": "Chặn các capability không được nền tảng hỗ trợ và cung cấp phương án thay thế. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Chặn các capability không được nền tảng hỗ trợ và cung cấp phương án thay thế. Phạm vi áp dụng: các thay đổi thuộc Quyền thiết bị & Khả năng nền tảng có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: NFC không hỗ trợ ẩn chức năng và hiển thị phương án nhập số. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": [
         "process",
         "security"
       ],
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Chặn các capability không được nền tảng hỗ trợ và cung cấp phương án thay thế.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "NFC không hỗ trợ ẩn chức năng và hiển thị phương án nhập số. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Chặn các capability không được nền tảng hỗ trợ và cung cấp phương án thay thế' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: nFC không hỗ trợ ẩn chức năng và hiển thị phương án nhập số.",
       "id": "R003"
     },
     {
       "title": "Giải phóng tài nguyên thiết bị khi cancel, chuyển background hoặc thoát",
-      "detail": "Giải phóng tài nguyên thiết bị khi cancel, chuyển background hoặc thoát. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Giải phóng tài nguyên thiết bị khi cancel, chuyển background hoặc thoát. Phạm vi áp dụng: các thay đổi thuộc Quyền thiết bị & Khả năng nền tảng có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Camera stream dispose khi thoát scan hoặc app vào background. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": [
         "process",
         "security"
       ],
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Giải phóng tài nguyên thiết bị khi cancel, chuyển background hoặc thoát.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Camera stream dispose khi thoát scan hoặc app vào background. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Giải phóng tài nguyên thiết bị khi cancel, chuyển background hoặc thoát' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: camera stream dispose khi thoát scan hoặc app vào background.",
       "id": "R004"
     }
   ],

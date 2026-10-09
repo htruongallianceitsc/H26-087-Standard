@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Validation quyền truy cập resource dùng chung và quy tắc hết hạn",
-      "detail": "Validation quyền truy cập resource dùng chung và quy tắc hết hạn. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Validation quyền truy cập resource dùng chung và quy tắc hết hạn. Phạm vi áp dụng: các thay đổi thuộc Chia sẻ, QR & Deep Link có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Share token check resource ACL và expiresAt trước redirect. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Validation quyền truy cập resource dùng chung và quy tắc hết hạn.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Share token check resource ACL và expiresAt trước redirect. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Validation quyền truy cập resource dùng chung và quy tắc hết hạn' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: share token check resource ACL và expiresAt trước redirect.",
       "id": "R001"
     },
     {
       "title": "Xử lý điều hướng khi app đã cài/chưa cài với fallback an toàn",
-      "detail": "Xử lý điều hướng khi app đã cài/chưa cài với fallback an toàn. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Xử lý điều hướng khi app đã cài/chưa cài với fallback an toàn. Phạm vi áp dụng: các thay đổi thuộc Chia sẻ, QR & Deep Link có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Installed app dùng verified link, không có app chuyển web fallback/store. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Xử lý điều hướng khi app đã cài/chưa cài với fallback an toàn.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Installed app dùng verified link, không có app chuyển web fallback/store. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Xử lý điều hướng khi app đã cài/chưa cài với fallback an toàn' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: installed app dùng verified link, không có app chuyển web fallback/store.",
       "id": "R002"
     },
     {
       "title": "Xem deferred attribution là best-effort và không cam kết tuyệt đối giữa các store",
-      "detail": "Xem deferred attribution là best-effort và không cam kết tuyệt đối giữa các store. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Xem deferred attribution là best-effort và không cam kết tuyệt đối giữa các store. Phạm vi áp dụng: các thay đổi thuộc Chia sẻ, QR & Deep Link có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Deferred install không có attribution thì mở home, không gán referral bừa. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Xem deferred attribution là best-effort và không cam kết tuyệt đối giữa các store.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Deferred install không có attribution thì mở home, không gán referral bừa. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Xem deferred attribution là best-effort và không cam kết tuyệt đối giữa các store' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: deferred install không có attribution thì mở home, không gán referral bừa.",
       "id": "R003"
     },
     {
       "title": "Ngăn open redirect và log an toàn các lỗi resolve link",
-      "detail": "Ngăn open redirect và log an toàn các lỗi resolve link. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Ngăn open redirect và log an toàn các lỗi resolve link. Phạm vi áp dụng: các thay đổi thuộc Chia sẻ, QR & Deep Link có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Chỉ cho redirect tới allowlist domain; log invalid link không ghi token. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Ngăn open redirect và log an toàn các lỗi resolve link.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Chỉ cho redirect tới allowlist domain; log invalid link không ghi token. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Ngăn open redirect và log an toàn các lỗi resolve link' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: chỉ cho redirect tới allowlist domain; log invalid link không ghi token.",
       "id": "R004"
     }
   ],

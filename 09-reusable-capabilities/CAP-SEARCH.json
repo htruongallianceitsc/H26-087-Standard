@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Xác định toán tử lọc, các field có thể tìm kiếm và thứ tự sắp xếp mặc định",
-      "detail": "Xác định toán tử lọc, các field có thể tìm kiếm và thứ tự sắp xếp mặc định. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Xác định toán tử lọc, các field có thể tìm kiếm và thứ tự sắp xếp mặc định. Phạm vi áp dụng: các thay đổi thuộc Tìm kiếm & Lập chỉ mục có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Search whitelist filter status/category và sort createdAt DESC. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Xác định toán tử lọc, các field có thể tìm kiếm và thứ tự sắp xếp mặc định.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Search whitelist filter status/category và sort createdAt DESC. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Xác định toán tử lọc, các field có thể tìm kiếm và thứ tự sắp xếp mặc định' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: search whitelist filter status/category và sort createdAt DESC.",
       "id": "R001"
     },
     {
       "title": "Lưu trạng thái filter có thể chia sẻ khi nền tảng cho phép",
-      "detail": "Lưu trạng thái filter có thể chia sẻ khi nền tảng cho phép. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Lưu trạng thái filter có thể chia sẻ khi nền tảng cho phép. Phạm vi áp dụng: các thay đổi thuộc Tìm kiếm & Lập chỉ mục có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Link ?q=phone&status=active khôi phục filter khi reload. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Lưu trạng thái filter có thể chia sẻ khi nền tảng cho phép.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Link ?q=phone&status=active khôi phục filter khi reload. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Lưu trạng thái filter có thể chia sẻ khi nền tảng cho phép' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: link ?q=phone&status=active khôi phục filter khi reload.",
       "id": "R002"
     },
     {
       "title": "Debounce input phía client và hủy các request đã lỗi thời",
-      "detail": "Debounce input phía client và hủy các request đã lỗi thời. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Debounce input phía client và hủy các request đã lỗi thời. Phạm vi áp dụng: các thay đổi thuộc Tìm kiếm & Lập chỉ mục có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Debounce 300ms và AbortController hủy request cũ. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Debounce input phía client và hủy các request đã lỗi thời.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Debounce 300ms và AbortController hủy request cũ. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Debounce input phía client và hủy các request đã lỗi thời' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: debounce 300ms và AbortController hủy request cũ.",
       "id": "R003"
     },
     {
       "title": "Xử lý trường hợp không có kết quả, response chậm và tập dữ liệu phân trang",
-      "detail": "Xử lý trường hợp không có kết quả, response chậm và tập dữ liệu phân trang. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Xử lý trường hợp không có kết quả, response chậm và tập dữ liệu phân trang. Phạm vi áp dụng: các thay đổi thuộc Tìm kiếm & Lập chỉ mục có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Response 0 results hiển thị reset filter; server cursor paging. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Xử lý trường hợp không có kết quả, response chậm và tập dữ liệu phân trang.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Response 0 results hiển thị reset filter; server cursor paging. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Xử lý trường hợp không có kết quả, response chậm và tập dữ liệu phân trang' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: response 0 results hiển thị reset filter; server cursor paging.",
       "id": "R004"
     }
   ],

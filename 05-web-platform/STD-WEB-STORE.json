@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Phân loại dữ liệu trước khi sử dụng cookie, localStorage, sessionStorage hoặc IndexedDB",
-      "detail": "Phân loại dữ liệu trước khi sử dụng cookie, localStorage, sessionStorage hoặc IndexedDB. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Phân loại dữ liệu trước khi sử dụng cookie, localStorage, sessionStorage hoặc IndexedDB. Phạm vi áp dụng: các thay đổi thuộc Lưu trữ trình duyệt & Persistence có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Session cookie HttpOnly Secure SameSite; preference theme lưu localStorage. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Phân loại dữ liệu trước khi sử dụng cookie, localStorage, sessionStorage hoặc IndexedDB.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Session cookie HttpOnly Secure SameSite; preference theme lưu localStorage. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Phân loại dữ liệu trước khi sử dụng cookie, localStorage, sessionStorage hoặc IndexedDB' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: session cookie HttpOnly Secure SameSite; preference theme lưu localStorage.",
       "id": "R001"
     },
     {
       "title": "Tránh lưu bearer secret trong web storage khi có phương án an toàn hơn",
-      "detail": "Tránh lưu bearer secret trong web storage khi có phương án an toàn hơn. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Tránh lưu bearer secret trong web storage khi có phương án an toàn hơn. Phạm vi áp dụng: các thay đổi thuộc Lưu trữ trình duyệt & Persistence có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Access token không ghi localStorage; session xử lý ở server. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tránh lưu bearer secret trong web storage khi có phương án an toàn hơn.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Access token không ghi localStorage; session xử lý ở server. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Tránh lưu bearer secret trong web storage khi có phương án an toàn hơn' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: access token không ghi localStorage; session xử lý ở server.",
       "id": "R002"
     },
     {
       "title": "Áp dụng thời hạn hết hiệu lực và cơ chế vô hiệu hóa cho response từ server được cache",
-      "detail": "Áp dụng thời hạn hết hiệu lực và cơ chế vô hiệu hóa cho response từ server được cache. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Áp dụng thời hạn hết hiệu lực và cơ chế vô hiệu hóa cho response từ server được cache. Phạm vi áp dụng: các thay đổi thuộc Lưu trữ trình duyệt & Persistence có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: TanStack query sử dụng staleTime phù hợp và invalidate sau mutation. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Áp dụng thời hạn hết hiệu lực và cơ chế vô hiệu hóa cho response từ server được cache.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "TanStack query sử dụng staleTime phù hợp và invalidate sau mutation. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Áp dụng thời hạn hết hiệu lực và cơ chế vô hiệu hóa cho response từ server được cache' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: tanStack query sử dụng staleTime phù hợp và invalidate sau mutation.",
       "id": "R003"
     },
     {
       "title": "Dọn dẹp cache cũ và cô lập dữ liệu client theo từng tài khoản",
-      "detail": "Dọn dẹp cache cũ và cô lập dữ liệu client theo từng tài khoản. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Dọn dẹp cache cũ và cô lập dữ liệu client theo từng tài khoản. Phạm vi áp dụng: các thay đổi thuộc Lưu trữ trình duyệt & Persistence có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Logout xóa persisted cache theo userId, không dùng dữ liệu người trước. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Dọn dẹp cache cũ và cô lập dữ liệu client theo từng tài khoản.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Logout xóa persisted cache theo userId, không dùng dữ liệu người trước. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Dọn dẹp cache cũ và cô lập dữ liệu client theo từng tài khoản' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: logout xóa persisted cache theo userId, không dùng dữ liệu người trước.",
       "id": "R004"
     }
   ],

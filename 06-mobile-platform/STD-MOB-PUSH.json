@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Xử lý riêng message ở trạng thái foreground, background và terminated",
-      "detail": "Xử lý riêng message ở trạng thái foreground, background và terminated. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Xử lý riêng message ở trạng thái foreground, background và terminated. Phạm vi áp dụng: các thay đổi thuộc Push Notification & Routing có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Notification xử lý riêng foreground display và terminated initial message. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Xử lý riêng message ở trạng thái foreground, background và terminated.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Notification xử lý riêng foreground display và terminated initial message. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Xử lý riêng message ở trạng thái foreground, background và terminated' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: notification xử lý riêng foreground display và terminated initial message.",
       "id": "R001"
     },
     {
       "title": "Yêu cầu quyền thông báo tại thời điểm phù hợp với ngữ cảnh và xử lý được trường hợp người dùng từ chối",
-      "detail": "Yêu cầu quyền thông báo tại thời điểm phù hợp với ngữ cảnh và xử lý được trường hợp người dùng từ chối. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Yêu cầu quyền thông báo tại thời điểm phù hợp với ngữ cảnh và xử lý được trường hợp người dùng từ chối. Phạm vi áp dụng: các thay đổi thuộc Push Notification & Routing có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Chỉ yêu cầu notification permission sau khi user bật nhắc việc. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Yêu cầu quyền thông báo tại thời điểm phù hợp với ngữ cảnh và xử lý được trường hợp người dùng từ chối.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Chỉ yêu cầu notification permission sau khi user bật nhắc việc. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Yêu cầu quyền thông báo tại thời điểm phù hợp với ngữ cảnh và xử lý được trường hợp người dùng từ chối' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: chỉ yêu cầu notification permission sau khi user bật nhắc việc.",
       "id": "R002"
     },
     {
       "title": "Khử trùng lặp action từ notification và xác thực route payload",
-      "detail": "Khử trùng lặp action từ notification và xác thực route payload. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Khử trùng lặp action từ notification và xác thực route payload. Phạm vi áp dụng: các thay đổi thuộc Push Notification & Routing có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: messageId được dedup và route payload chỉ dùng ID đã validate. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Khử trùng lặp action từ notification và xác thực route payload.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "messageId được dedup và route payload chỉ dùng ID đã validate. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Khử trùng lặp action từ notification và xác thực route payload' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: messageId được dedup và route payload chỉ dùng ID đã validate.",
       "id": "R003"
     },
     {
       "title": "Tránh đưa nội dung nhạy cảm vào push payload không đáng tin cậy",
-      "detail": "Tránh đưa nội dung nhạy cảm vào push payload không đáng tin cậy. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Tránh đưa nội dung nhạy cảm vào push payload không đáng tin cậy. Phạm vi áp dụng: các thay đổi thuộc Push Notification & Routing có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Push gửi orderId thay vì địa chỉ, token hoặc thông tin bệnh án. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tránh đưa nội dung nhạy cảm vào push payload không đáng tin cậy.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Push gửi orderId thay vì địa chỉ, token hoặc thông tin bệnh án. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Tránh đưa nội dung nhạy cảm vào push payload không đáng tin cậy' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: push gửi orderId thay vì địa chỉ, token hoặc thông tin bệnh án.",
       "id": "R004"
     }
   ],

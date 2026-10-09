@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Nêu rõ mục đích feature, actor, hành vi trong phạm vi và ngoài phạm vi",
-      "detail": "Nêu rõ mục đích feature, actor, hành vi trong phạm vi và ngoài phạm vi. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Nêu rõ mục đích feature, actor, hành vi trong phạm vi và ngoài phạm vi. Phạm vi áp dụng: các thay đổi thuộc Đặc tả & Phân rã Feature có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: FEAT-REFERRAL xác định actor user, hành vi nhập mã và không bao gồm tính hoa hồng. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Nêu rõ mục đích feature, actor, hành vi trong phạm vi và ngoài phạm vi.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "FEAT-REFERRAL xác định actor user, hành vi nhập mã và không bao gồm tính hoa hồng. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Nêu rõ mục đích feature, actor, hành vi trong phạm vi và ngoài phạm vi' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: fEAT-REFERRAL xác định actor user, hành vi nhập mã và không bao gồm tính hoa hồng.",
       "id": "R001"
     },
     {
       "title": "Liên kết từng feature với requirement nguồn thay vì tự tạo thêm requirement",
-      "detail": "Liên kết từng feature với requirement nguồn thay vì tự tạo thêm requirement. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Liên kết từng feature với requirement nguồn thay vì tự tạo thêm requirement. Phạm vi áp dụng: các thay đổi thuộc Đặc tả & Phân rã Feature có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: FEAT-REFERRAL tham chiếu REQ-22 và REQ-23 với nguồn yêu cầu. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Liên kết từng feature với requirement nguồn thay vì tự tạo thêm requirement.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "FEAT-REFERRAL tham chiếu REQ-22 và REQ-23 với nguồn yêu cầu. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Liên kết từng feature với requirement nguồn thay vì tự tạo thêm requirement' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: fEAT-REFERRAL tham chiếu REQ-22 và REQ-23 với nguồn yêu cầu.",
       "id": "R002"
     },
     {
       "title": "Mô tả happy path, luồng thay thế, trạng thái rỗng và trạng thái lỗi",
-      "detail": "Mô tả happy path, luồng thay thế, trạng thái rỗng và trạng thái lỗi. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Mô tả happy path, luồng thay thế, trạng thái rỗng và trạng thái lỗi. Phạm vi áp dụng: các thay đổi thuộc Đặc tả & Phân rã Feature có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Flow có nhánh mã sai, hết hạn, mất mạng và state empty. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Mô tả happy path, luồng thay thế, trạng thái rỗng và trạng thái lỗi.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Flow có nhánh mã sai, hết hạn, mất mạng và state empty. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Mô tả happy path, luồng thay thế, trạng thái rỗng và trạng thái lỗi' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: flow có nhánh mã sai, hết hạn, mất mạng và state empty.",
       "id": "R003"
     },
     {
       "title": "Xác định điều kiện hoàn thành có thể kiểm thử trước khi triển khai",
-      "detail": "Xác định điều kiện hoàn thành có thể kiểm thử trước khi triển khai. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Xác định điều kiện hoàn thành có thể kiểm thử trước khi triển khai. Phạm vi áp dụng: các thay đổi thuộc Đặc tả & Phân rã Feature có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: AC yêu cầu mã sai hiển thị inline error và không gửi tạo tài khoản. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Xác định điều kiện hoàn thành có thể kiểm thử trước khi triển khai.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "AC yêu cầu mã sai hiển thị inline error và không gửi tạo tài khoản. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Xác định điều kiện hoàn thành có thể kiểm thử trước khi triển khai' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: aC yêu cầu mã sai hiển thị inline error và không gửi tạo tài khoản.",
       "id": "R004"
     }
   ],

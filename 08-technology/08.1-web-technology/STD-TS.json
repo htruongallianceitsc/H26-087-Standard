@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Bật strict mode và tránh ép kiểu `any` khi chưa được review",
-      "detail": "Bật strict mode và tránh ép kiểu `any` khi chưa được review. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Bật strict mode và tránh ép kiểu `any` khi chưa được review. Phạm vi áp dụng: các thay đổi thuộc Quy ước TypeScript có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: tsconfig strict=true; code review fail khi thêm any không có lý do. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Bật strict mode và tránh ép kiểu `any` khi chưa được review.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "tsconfig strict=true; code review fail khi thêm any không có lý do. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Bật strict mode và tránh ép kiểu `any` khi chưa được review' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: tsconfig strict=true; code review fail khi thêm any không có lý do.",
       "id": "R001"
     },
     {
       "title": "Tách API DTO khỏi domain model và view model",
-      "detail": "Tách API DTO khỏi domain model và view model. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Tách API DTO khỏi domain model và view model. Phạm vi áp dụng: các thay đổi thuộc Quy ước TypeScript có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: type ApiOrderDTO và Order domain riêng, map ở adapter. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tách API DTO khỏi domain model và view model.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "type ApiOrderDTO và Order domain riêng, map ở adapter. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Tách API DTO khỏi domain model và view model' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: type ApiOrderDTO và Order domain riêng, map ở adapter.",
       "id": "R002"
     },
     {
       "title": "Validation runtime input không đáng tin cậy tại ranh giới hệ thống",
-      "detail": "Validation runtime input không đáng tin cậy tại ranh giới hệ thống. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Validation runtime input không đáng tin cậy tại ranh giới hệ thống. Phạm vi áp dụng: các thay đổi thuộc Quy ước TypeScript có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: zod.safeParse kiểm tra payload fetch trước khi map DTO. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Validation runtime input không đáng tin cậy tại ranh giới hệ thống.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "zod.safeParse kiểm tra payload fetch trước khi map DTO. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Validation runtime input không đáng tin cậy tại ranh giới hệ thống' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: zod.safeParse kiểm tra payload fetch trước khi map DTO.",
       "id": "R003"
     },
     {
       "title": "Sử dụng discriminated union cho các biến thể result và state",
-      "detail": "Sử dụng discriminated union cho các biến thể result và state. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Sử dụng discriminated union cho các biến thể result và state. Phạm vi áp dụng: các thay đổi thuộc Quy ước TypeScript có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Result union {ok:true,data} hoặc {ok:false,error} được narrow bằng ok. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Sử dụng discriminated union cho các biến thể result và state.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Result union {ok:true,data} hoặc {ok:false,error} được narrow bằng ok. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Sử dụng discriminated union cho các biến thể result và state' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: result union {ok:true,data} hoặc {ok:false,error} được narrow bằng ok.",
       "id": "R004"
     }
   ],

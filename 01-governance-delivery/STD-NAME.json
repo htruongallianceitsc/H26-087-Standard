@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Chọn một quy ước đặt tên cho từng ngôn ngữ lập trình và từng loại artifact",
-      "detail": "Chọn một quy ước đặt tên cho từng ngôn ngữ lập trình và từng loại artifact. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Chọn một quy ước đặt tên cho từng ngôn ngữ lập trình và từng loại artifact. Phạm vi áp dụng: các thay đổi thuộc Đặt tên & Tổ chức mã nguồn có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: C# dùng PascalCase cho public members; Dart dùng lowerCamelCase cho local. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Chọn một quy ước đặt tên cho từng ngôn ngữ lập trình và từng loại artifact.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "C# dùng PascalCase cho public members; Dart dùng lowerCamelCase cho local. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Chọn một quy ước đặt tên cho từng ngôn ngữ lập trình và từng loại artifact' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: c# dùng PascalCase cho public members; Dart dùng lowerCamelCase cho local.",
       "id": "R001"
     },
     {
       "title": "Sử dụng semantic ID ổn định cho feature, requirement, rule và test",
-      "detail": "Sử dụng semantic ID ổn định cho feature, requirement, rule và test. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Sử dụng semantic ID ổn định cho feature, requirement, rule và test. Phạm vi áp dụng: các thay đổi thuộc Đặt tên & Tổ chức mã nguồn có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: REQ-009, STD-API#R004 và TC-009 có ID cố định không phụ thuộc tên file. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Sử dụng semantic ID ổn định cho feature, requirement, rule và test.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "REQ-009, STD-API#R004 và TC-009 có ID cố định không phụ thuộc tên file. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Sử dụng semantic ID ổn định cho feature, requirement, rule và test' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: rEQ-009, STD-API#R004 và TC-009 có ID cố định không phụ thuộc tên file.",
       "id": "R002"
     },
     {
       "title": "Tránh viết tắt làm mất ý nghĩa domain; công bố rõ các ngoại lệ",
-      "detail": "Tránh viết tắt làm mất ý nghĩa domain; công bố rõ các ngoại lệ. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Tránh viết tắt làm mất ý nghĩa domain; công bố rõ các ngoại lệ. Phạm vi áp dụng: các thay đổi thuộc Đặt tên & Tổ chức mã nguồn có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Tên CalculateWithdrawalInterest rõ domain thay vì CalcWI. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tránh viết tắt làm mất ý nghĩa domain; công bố rõ các ngoại lệ.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Tên CalculateWithdrawalInterest rõ domain thay vì CalcWI. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Tránh viết tắt làm mất ý nghĩa domain; công bố rõ các ngoại lệ' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: tên CalculateWithdrawalInterest rõ domain thay vì CalcWI.",
       "id": "R003"
     },
     {
       "title": "Tránh đổi tên contract công khai khi chưa đánh giá tính tương thích",
-      "detail": "Tránh đổi tên contract công khai khi chưa đánh giá tính tương thích. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Tránh đổi tên contract công khai khi chưa đánh giá tính tương thích. Phạm vi áp dụng: các thay đổi thuộc Đặt tên & Tổ chức mã nguồn có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Rename JSON field customerId có migration/compatibility plan trước deploy. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tránh đổi tên contract công khai khi chưa đánh giá tính tương thích.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Rename JSON field customerId có migration/compatibility plan trước deploy. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Tránh đổi tên contract công khai khi chưa đánh giá tính tương thích' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: rename JSON field customerId có migration/compatibility plan trước deploy.",
       "id": "R004"
     }
   ],

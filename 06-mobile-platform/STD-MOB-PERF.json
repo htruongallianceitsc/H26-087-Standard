@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Tránh các request khởi động chạy đồng thời không cần thiết và công việc nặng trên main thread",
-      "detail": "Tránh các request khởi động chạy đồng thời không cần thiết và công việc nặng trên main thread. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Tránh các request khởi động chạy đồng thời không cần thiết và công việc nặng trên main thread. Phạm vi áp dụng: các thay đổi thuộc Hiệu năng khởi động, Bộ nhớ & Pin có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Splash chỉ tải auth state và config tối thiểu, deferred feed requests. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tránh các request khởi động chạy đồng thời không cần thiết và công việc nặng trên main thread.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Splash chỉ tải auth state và config tối thiểu, deferred feed requests. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Tránh các request khởi động chạy đồng thời không cần thiết và công việc nặng trên main thread' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: splash chỉ tải auth state và config tối thiểu, deferred feed requests.",
       "id": "R001"
     },
     {
       "title": "Đo thời gian khởi động, frame timing, mức sử dụng mạng và bộ nhớ trên thiết bị thật",
-      "detail": "Đo thời gian khởi động, frame timing, mức sử dụng mạng và bộ nhớ trên thiết bị thật. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Đo thời gian khởi động, frame timing, mức sử dụng mạng và bộ nhớ trên thiết bị thật. Phạm vi áp dụng: các thay đổi thuộc Hiệu năng khởi động, Bộ nhớ & Pin có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Perf trace đo cold-start, frame >16ms và RAM trên thiết bị thấp. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Đo thời gian khởi động, frame timing, mức sử dụng mạng và bộ nhớ trên thiết bị thật.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Perf trace đo cold-start, frame >16ms và RAM trên thiết bị thấp. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Đo thời gian khởi động, frame timing, mức sử dụng mạng và bộ nhớ trên thiết bị thật' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: perf trace đo cold-start, frame >16ms và RAM trên thiết bị thấp.",
       "id": "R002"
     },
     {
       "title": "Giới hạn tần suất background polling, location và vòng lặp reconnect",
-      "detail": "Giới hạn tần suất background polling, location và vòng lặp reconnect. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Giới hạn tần suất background polling, location và vòng lặp reconnect. Phạm vi áp dụng: các thay đổi thuộc Hiệu năng khởi động, Bộ nhớ & Pin có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Background polling 15 phút hoặc chuyển push; reconnect có jitter. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Giới hạn tần suất background polling, location và vòng lặp reconnect.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Background polling 15 phút hoặc chuyển push; reconnect có jitter. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Giới hạn tần suất background polling, location và vòng lặp reconnect' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: background polling 15 phút hoặc chuyển push; reconnect có jitter.",
       "id": "R003"
     },
     {
       "title": "Dispose image, stream và controller để ngăn rò rỉ tài nguyên",
-      "detail": "Dispose image, stream và controller để ngăn rò rỉ tài nguyên. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Dispose image, stream và controller để ngăn rò rỉ tài nguyên. Phạm vi áp dụng: các thay đổi thuộc Hiệu năng khởi động, Bộ nhớ & Pin có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Đóng image stream và timer khi thoát room, heap không tăng liên tục. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Dispose image, stream và controller để ngăn rò rỉ tài nguyên.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Đóng image stream và timer khi thoát room, heap không tăng liên tục. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Dispose image, stream và controller để ngăn rò rỉ tài nguyên' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: đóng image stream và timer khi thoát room, heap không tăng liên tục.",
       "id": "R004"
     }
   ],

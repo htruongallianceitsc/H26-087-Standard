@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Sử dụng structured log với timestamp, severity, operation và correlation ID",
-      "detail": "Sử dụng structured log với timestamp, severity, operation và correlation ID. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Sử dụng structured log với timestamp, severity, operation và correlation ID. Phạm vi áp dụng: các thay đổi thuộc Logging & Observability có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Mỗi request log JSON có trace_id, severity, service, duration_ms và UTC timestamp. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Sử dụng structured log với timestamp, severity, operation và correlation ID.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Mỗi request log JSON có trace_id, severity, service, duration_ms và UTC timestamp. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Sử dụng structured log với timestamp, severity, operation và correlation ID' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: mỗi request log JSON có trace_id, severity, service, duration_ms và UTC timestamp.",
       "id": "R001"
     },
     {
       "title": "Không log mật khẩu, access token hoặc payload nhạy cảm",
-      "detail": "Không log mật khẩu, access token hoặc payload nhạy cảm. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Không log mật khẩu, access token hoặc payload nhạy cảm. Phạm vi áp dụng: các thay đổi thuộc Logging & Observability có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Bộ lọc logger loại password, refresh_token và Authorization trước sink. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Không log mật khẩu, access token hoặc payload nhạy cảm.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Bộ lọc logger loại password, refresh_token và Authorization trước sink. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Không log mật khẩu, access token hoặc payload nhạy cảm' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: bộ lọc logger loại password, refresh_token và Authorization trước sink.",
       "id": "R002"
     },
     {
       "title": "Gắn instrumentation cho các hành trình người dùng quan trọng với metric thành công, thất bại và độ trễ",
-      "detail": "Gắn instrumentation cho các hành trình người dùng quan trọng với metric thành công, thất bại và độ trễ. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Gắn instrumentation cho các hành trình người dùng quan trọng với metric thành công, thất bại và độ trễ. Phạm vi áp dụng: các thay đổi thuộc Logging & Observability có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Dashboard theo dõi login success rate và p95 latency theo deployment version. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Gắn instrumentation cho các hành trình người dùng quan trọng với metric thành công, thất bại và độ trễ.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Dashboard theo dõi login success rate và p95 latency theo deployment version. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Gắn instrumentation cho các hành trình người dùng quan trọng với metric thành công, thất bại và độ trễ' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: dashboard theo dõi login success rate và p95 latency theo deployment version.",
       "id": "R003"
     },
     {
       "title": "Xác định ngưỡng cảnh báo và owner cho sự cố production",
-      "detail": "Xác định ngưỡng cảnh báo và owner cho sự cố production. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Xác định ngưỡng cảnh báo và owner cho sự cố production. Phạm vi áp dụng: các thay đổi thuộc Logging & Observability có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Cảnh báo error rate >2% trong 10 phút chuyển đến on-call chính. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Xác định ngưỡng cảnh báo và owner cho sự cố production.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Cảnh báo error rate >2% trong 10 phút chuyển đến on-call chính. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Xác định ngưỡng cảnh báo và owner cho sự cố production' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: cảnh báo error rate >2% trong 10 phút chuyển đến on-call chính.",
       "id": "R004"
     }
   ],

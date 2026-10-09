@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Sử dụng responsive breakpoint dựa trên nội dung layout thay vì chỉ dựa vào loại thiết bị",
-      "detail": "Sử dụng responsive breakpoint dựa trên nội dung layout thay vì chỉ dựa vào loại thiết bị. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Sử dụng responsive breakpoint dựa trên nội dung layout thay vì chỉ dựa vào loại thiết bị. Phạm vi áp dụng: các thay đổi thuộc Layout Responsive có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Layout 320px chuyển bảng sang card mà không tạo horizontal overflow. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Sử dụng responsive breakpoint dựa trên nội dung layout thay vì chỉ dựa vào loại thiết bị.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Layout 320px chuyển bảng sang card mà không tạo horizontal overflow. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Sử dụng responsive breakpoint dựa trên nội dung layout thay vì chỉ dựa vào loại thiết bị' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: layout 320px chuyển bảng sang card mà không tạo horizontal overflow.",
       "id": "R001"
     },
     {
       "title": "Đảm bảo điều hướng bằng bàn phím, hiển thị focus và semantic labeling",
-      "detail": "Đảm bảo điều hướng bằng bàn phím, hiển thị focus và semantic labeling. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Đảm bảo điều hướng bằng bàn phím, hiển thị focus và semantic labeling. Phạm vi áp dụng: các thay đổi thuộc Layout Responsive có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Focus ring xuất hiện khi tab tới menu và biểu mẫu có accessible name. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Đảm bảo điều hướng bằng bàn phím, hiển thị focus và semantic labeling.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Focus ring xuất hiện khi tab tới menu và biểu mẫu có accessible name. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Đảm bảo điều hướng bằng bàn phím, hiển thị focus và semantic labeling' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: focus ring xuất hiện khi tab tới menu và biểu mẫu có accessible name.",
       "id": "R002"
     },
     {
       "title": "Xác minh độ tương phản, thay đổi cỡ chữ và tương tác reduced-motion",
-      "detail": "Xác minh độ tương phản, thay đổi cỡ chữ và tương tác reduced-motion. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Xác minh độ tương phản, thay đổi cỡ chữ và tương tác reduced-motion. Phạm vi áp dụng: các thay đổi thuộc Layout Responsive có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Text zoom 200% không mất nút Submit; reduced-motion tắt animation. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Xác minh độ tương phản, thay đổi cỡ chữ và tương tác reduced-motion.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Text zoom 200% không mất nút Submit; reduced-motion tắt animation. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Xác minh độ tương phản, thay đổi cỡ chữ và tương tác reduced-motion' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: text zoom 200% không mất nút Submit; reduced-motion tắt animation.",
       "id": "R003"
     },
     {
       "title": "Kiểm thử layout chính trên viewport hẹp và rộng",
-      "detail": "Kiểm thử layout chính trên viewport hẹp và rộng. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Kiểm thử layout chính trên viewport hẹp và rộng. Phạm vi áp dụng: các thay đổi thuộc Layout Responsive có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Test viewport 320, 768 và 1440px cùng orientation nếu hỗ trợ. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Kiểm thử layout chính trên viewport hẹp và rộng.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Test viewport 320, 768 và 1440px cùng orientation nếu hỗ trợ. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Kiểm thử layout chính trên viewport hẹp và rộng' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: test viewport 320, 768 và 1440px cùng orientation nếu hỗ trợ.",
       "id": "R004"
     }
   ],

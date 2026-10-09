@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Lưu signing key và credential trong vùng lưu trữ được bảo vệ",
-      "detail": "Lưu signing key và credential trong vùng lưu trữ được bảo vệ. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Lưu signing key và credential trong vùng lưu trữ được bảo vệ. Phạm vi áp dụng: các thay đổi thuộc Build Mobile, Ký ứng dụng & Phát hành Store có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Keystore/Apple signing certificate lưu trong vault với quyền giới hạn. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Lưu signing key và credential trong vùng lưu trữ được bảo vệ.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Keystore/Apple signing certificate lưu trong vault với quyền giới hạn. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Lưu signing key và credential trong vùng lưu trữ được bảo vệ' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: keystore/Apple signing certificate lưu trong vault với quyền giới hạn.",
       "id": "R001"
     },
     {
       "title": "Tách application ID, môi trường và build flavor khi cần",
-      "detail": "Tách application ID, môi trường và build flavor khi cần. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Tách application ID, môi trường và build flavor khi cần. Phạm vi áp dụng: các thay đổi thuộc Build Mobile, Ký ứng dụng & Phát hành Store có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: dev/staging/prod có applicationId và API URL riêng. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tách application ID, môi trường và build flavor khi cần.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "dev/staging/prod có applicationId và API URL riêng. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Tách application ID, môi trường và build flavor khi cần' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: dev/staging/prod có applicationId và API URL riêng.",
       "id": "R002"
     },
     {
       "title": "Duy trì version/build number, khai báo quyền riêng tư và credential phục vụ review",
-      "detail": "Duy trì version/build number, khai báo quyền riêng tư và credential phục vụ review. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Duy trì version/build number, khai báo quyền riêng tư và credential phục vụ review. Phạm vi áp dụng: các thay đổi thuộc Build Mobile, Ký ứng dụng & Phát hành Store có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Build number tăng; privacy label phản ánh analytics/tracking thực tế. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Duy trì version/build number, khai báo quyền riêng tư và credential phục vụ review.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Build number tăng; privacy label phản ánh analytics/tracking thực tế. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Duy trì version/build number, khai báo quyền riêng tư và credential phục vụ review' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: build number tăng; privacy label phản ánh analytics/tracking thực tế.",
       "id": "R003"
     },
     {
       "title": "Kiểm thử release build trên thiết bị iOS/Android thật",
-      "detail": "Kiểm thử release build trên thiết bị iOS/Android thật. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Kiểm thử release build trên thiết bị iOS/Android thật. Phạm vi áp dụng: các thay đổi thuộc Build Mobile, Ký ứng dụng & Phát hành Store có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Smoke test bản release trên iOS và Android thật gồm deep link/OTP. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Kiểm thử release build trên thiết bị iOS/Android thật.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Smoke test bản release trên iOS và Android thật gồm deep link/OTP. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Kiểm thử release build trên thiết bị iOS/Android thật' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: smoke test bản release trên iOS và Android thật gồm deep link/OTP.",
       "id": "R004"
     }
   ],

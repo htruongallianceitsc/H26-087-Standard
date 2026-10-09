@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Xác định route chuẩn, parameter và hành vi khi route không tồn tại",
-      "detail": "Xác định route chuẩn, parameter và hành vi khi route không tồn tại. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Xác định route chuẩn, parameter và hành vi khi route không tồn tại. Phạm vi áp dụng: các thay đổi thuộc Routing, Điều hướng & Trạng thái URL có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: /orders/:orderId validate ID; route không tồn tại trả 404 UI. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Xác định route chuẩn, parameter và hành vi khi route không tồn tại.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "/orders/:orderId validate ID; route không tồn tại trả 404 UI. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Xác định route chuẩn, parameter và hành vi khi route không tồn tại' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: /orders/:orderId validate ID; route không tồn tại trả 404 UI.",
       "id": "R001"
     },
     {
       "title": "Giữ trạng thái filter/query có thể điều hướng trong URL khi phù hợp để chia sẻ",
-      "detail": "Giữ trạng thái filter/query có thể điều hướng trong URL khi phù hợp để chia sẻ. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Giữ trạng thái filter/query có thể điều hướng trong URL khi phù hợp để chia sẻ. Phạm vi áp dụng: các thay đổi thuộc Routing, Điều hướng & Trạng thái URL có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Filter status=paid được đồng bộ vào ?status=paid&sort=createdAt. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Giữ trạng thái filter/query có thể điều hướng trong URL khi phù hợp để chia sẻ.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Filter status=paid được đồng bộ vào ?status=paid&sort=createdAt. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Giữ trạng thái filter/query có thể điều hướng trong URL khi phù hợp để chia sẻ' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: filter status=paid được đồng bộ vào ?status=paid&sort=createdAt.",
       "id": "R002"
     },
     {
       "title": "Bảo vệ trang bị giới hạn bằng UI guard nhưng vẫn dựa vào authorization phía server",
-      "detail": "Bảo vệ trang bị giới hạn bằng UI guard nhưng vẫn dựa vào authorization phía server. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Bảo vệ trang bị giới hạn bằng UI guard nhưng vẫn dựa vào authorization phía server. Phạm vi áp dụng: các thay đổi thuộc Routing, Điều hướng & Trạng thái URL có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Protected route redirect login nhưng API vẫn trả 403 nếu không có quyền. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Bảo vệ trang bị giới hạn bằng UI guard nhưng vẫn dựa vào authorization phía server.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Protected route redirect login nhưng API vẫn trả 403 nếu không có quyền. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Bảo vệ trang bị giới hạn bằng UI guard nhưng vẫn dựa vào authorization phía server' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: protected route redirect login nhưng API vẫn trả 403 nếu không có quyền.",
       "id": "R003"
     },
     {
       "title": "Xử lý reload sâu và điều hướng trực tiếp bằng quy tắc fallback của hosting",
-      "detail": "Xử lý reload sâu và điều hướng trực tiếp bằng quy tắc fallback của hosting. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Xử lý reload sâu và điều hướng trực tiếp bằng quy tắc fallback của hosting. Phạm vi áp dụng: các thay đổi thuộc Routing, Điều hướng & Trạng thái URL có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Truy cập thẳng /orders/123 trên CDN trả app shell rồi route xử lý. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Xử lý reload sâu và điều hướng trực tiếp bằng quy tắc fallback của hosting.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Truy cập thẳng /orders/123 trên CDN trả app shell rồi route xử lý. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Xử lý reload sâu và điều hướng trực tiếp bằng quy tắc fallback của hosting' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: truy cập thẳng /orders/123 trên CDN trả app shell rồi route xử lý.",
       "id": "R004"
     }
   ],

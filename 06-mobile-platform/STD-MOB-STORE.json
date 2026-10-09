@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Lưu secret trong secure storage do OS bảo vệ thay vì preference thông thường",
-      "detail": "Lưu secret trong secure storage do OS bảo vệ thay vì preference thông thường. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Lưu secret trong secure storage do OS bảo vệ thay vì preference thông thường. Phạm vi áp dụng: các thay đổi thuộc Lưu trữ cục bộ & Lưu trữ an toàn có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Refresh token lưu Keychain/Keystore, không dùng SharedPreferences thuần. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Lưu secret trong secure storage do OS bảo vệ thay vì preference thông thường.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Refresh token lưu Keychain/Keystore, không dùng SharedPreferences thuần. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Lưu secret trong secure storage do OS bảo vệ thay vì preference thông thường' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: refresh token lưu Keychain/Keystore, không dùng SharedPreferences thuần.",
       "id": "R001"
     },
     {
       "title": "Đặt chính sách lưu giữ, cleanup khi logout và cô lập khi chuyển tài khoản",
-      "detail": "Đặt chính sách lưu giữ, cleanup khi logout và cô lập khi chuyển tài khoản. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Đặt chính sách lưu giữ, cleanup khi logout và cô lập khi chuyển tài khoản. Phạm vi áp dụng: các thay đổi thuộc Lưu trữ cục bộ & Lưu trữ an toàn có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Logout clear storage theo account namespace và xóa cached profile. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Đặt chính sách lưu giữ, cleanup khi logout và cô lập khi chuyển tài khoản.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Logout clear storage theo account namespace và xóa cached profile. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Đặt chính sách lưu giữ, cleanup khi logout và cô lập khi chuyển tài khoản' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: logout clear storage theo account namespace và xóa cached profile.",
       "id": "R002"
     },
     {
       "title": "Mã hóa dữ liệu offline nhạy cảm khi threat model yêu cầu",
-      "detail": "Mã hóa dữ liệu offline nhạy cảm khi threat model yêu cầu. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Mã hóa dữ liệu offline nhạy cảm khi threat model yêu cầu. Phạm vi áp dụng: các thay đổi thuộc Lưu trữ cục bộ & Lưu trữ an toàn có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Database offline chứa PII được mã hóa key quản lý bởi OS. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Mã hóa dữ liệu offline nhạy cảm khi threat model yêu cầu.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Database offline chứa PII được mã hóa key quản lý bởi OS. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Mã hóa dữ liệu offline nhạy cảm khi threat model yêu cầu' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: database offline chứa PII được mã hóa key quản lý bởi OS.",
       "id": "R003"
     },
     {
       "title": "Hỗ trợ migration storage và phục hồi khi state bị hỏng",
-      "detail": "Hỗ trợ migration storage và phục hồi khi state bị hỏng. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Hỗ trợ migration storage và phục hồi khi state bị hỏng. Phạm vi áp dụng: các thay đổi thuộc Lưu trữ cục bộ & Lưu trữ an toàn có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Migration v3->v4 có test dữ liệu cũ và fallback cho JSON hỏng. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Hỗ trợ migration storage và phục hồi khi state bị hỏng.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Migration v3->v4 có test dữ liệu cũ và fallback cho JSON hỏng. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Hỗ trợ migration storage và phục hồi khi state bị hỏng' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: migration v3->v4 có test dữ liệu cũ và fallback cho JSON hỏng.",
       "id": "R004"
     }
   ],

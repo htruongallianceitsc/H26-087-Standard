@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Tách controller/endpoint khỏi application/domain rule và persistence",
-      "detail": "Tách controller/endpoint khỏi application/domain rule và persistence. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Tách controller/endpoint khỏi application/domain rule và persistence. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc ASP.NET Core có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Minimal API chỉ nhận DTO rồi gọi application service; EF ở infrastructure. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tách controller/endpoint khỏi application/domain rule và persistence.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Minimal API chỉ nhận DTO rồi gọi application service; EF ở infrastructure. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Tách controller/endpoint khỏi application/domain rule và persistence' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: minimal API chỉ nhận DTO rồi gọi application service; EF ở infrastructure.",
       "id": "R001"
     },
     {
       "title": "Sử dụng dependency injection với vòng đời resource theo scope",
-      "detail": "Sử dụng dependency injection với vòng đời resource theo scope. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Sử dụng dependency injection với vòng đời resource theo scope. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc ASP.NET Core có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Scoped DbContext không inject vào singleton background service. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Sử dụng dependency injection với vòng đời resource theo scope.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Scoped DbContext không inject vào singleton background service. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Sử dụng dependency injection với vòng đời resource theo scope' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: scoped DbContext không inject vào singleton background service.",
       "id": "R002"
     },
     {
       "title": "Validation DTO đầu vào và triển khai error contract tập trung",
-      "detail": "Validation DTO đầu vào và triển khai error contract tập trung. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Validation DTO đầu vào và triển khai error contract tập trung. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc ASP.NET Core có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: FluentValidation trả ProblemDetails theo error contract. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Validation DTO đầu vào và triển khai error contract tập trung.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "FluentValidation trả ProblemDetails theo error contract. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Validation DTO đầu vào và triển khai error contract tập trung' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: fluentValidation trả ProblemDetails theo error contract.",
       "id": "R003"
     },
     {
       "title": "Bảo vệ endpoint bằng authorization theo policy và integration test",
-      "detail": "Bảo vệ endpoint bằng authorization theo policy và integration test. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Bảo vệ endpoint bằng authorization theo policy và integration test. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc ASP.NET Core có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: [Authorize(Policy=\"CanEditOrder\")] + integration test role viewer 403. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Bảo vệ endpoint bằng authorization theo policy và integration test.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "[Authorize(Policy=\"CanEditOrder\")] + integration test role viewer 403. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Bảo vệ endpoint bằng authorization theo policy và integration test' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: [Authorize(Policy=\"CanEditOrder\")] + integration test role viewer 403.",
       "id": "R004"
     }
   ],

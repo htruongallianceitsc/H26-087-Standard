@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Tách biệt message event, tùy chọn phân phối và cách trình bày",
-      "detail": "Tách biệt message event, tùy chọn phân phối và cách trình bày. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Tách biệt message event, tùy chọn phân phối và cách trình bày. Phạm vi áp dụng: các thay đổi thuộc Phân phối thông báo có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Domain event OrderPaid tách khỏi PushTemplate và EmailTemplate. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tách biệt message event, tùy chọn phân phối và cách trình bày.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Domain event OrderPaid tách khỏi PushTemplate và EmailTemplate. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Tách biệt message event, tùy chọn phân phối và cách trình bày' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: domain event OrderPaid tách khỏi PushTemplate và EmailTemplate.",
       "id": "R001"
     },
     {
       "title": "Tránh gửi dữ liệu riêng tư tới người nhận không được phép",
-      "detail": "Tránh gửi dữ liệu riêng tư tới người nhận không được phép. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Tránh gửi dữ liệu riêng tư tới người nhận không được phép. Phạm vi áp dụng: các thay đổi thuộc Phân phối thông báo có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Push recipient được resolve server-side theo tenant membership. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tránh gửi dữ liệu riêng tư tới người nhận không được phép.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Push recipient được resolve server-side theo tenant membership. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Tránh gửi dữ liệu riêng tư tới người nhận không được phép' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: push recipient được resolve server-side theo tenant membership.",
       "id": "R002"
     },
     {
       "title": "Đảm bảo action từ notification có tính idempotent và validation destination",
-      "detail": "Đảm bảo action từ notification có tính idempotent và validation destination. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Đảm bảo action từ notification có tính idempotent và validation destination. Phạm vi áp dụng: các thay đổi thuộc Phân phối thông báo có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Notification actionId được dedup khi app nhận nhiều callback. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Đảm bảo action từ notification có tính idempotent và validation destination.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Notification actionId được dedup khi app nhận nhiều callback. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Đảm bảo action từ notification có tính idempotent và validation destination' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: notification actionId được dedup khi app nhận nhiều callback.",
       "id": "R003"
     },
     {
       "title": "Kiểm thử phân phối trùng, bộ đếm chưa đọc và trạng thái dismissal",
-      "detail": "Kiểm thử phân phối trùng, bộ đếm chưa đọc và trạng thái dismissal. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Kiểm thử phân phối trùng, bộ đếm chưa đọc và trạng thái dismissal. Phạm vi áp dụng: các thay đổi thuộc Phân phối thông báo có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Unread count dựa trạng thái readAt và dismissal sync mọi thiết bị. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Kiểm thử phân phối trùng, bộ đếm chưa đọc và trạng thái dismissal.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Unread count dựa trạng thái readAt và dismissal sync mọi thiết bị. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Kiểm thử phân phối trùng, bộ đếm chưa đọc và trạng thái dismissal' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: unread count dựa trạng thái readAt và dismissal sync mọi thiết bị.",
       "id": "R004"
     }
   ],

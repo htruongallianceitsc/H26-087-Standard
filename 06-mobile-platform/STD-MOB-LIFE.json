@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Mô hình hóa foreground, background, resume và process recreation thành các trường hợp riêng biệt",
-      "detail": "Mô hình hóa foreground, background, resume và process recreation thành các trường hợp riêng biệt. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Mô hình hóa foreground, background, resume và process recreation thành các trường hợp riêng biệt. Phạm vi áp dụng: các thay đổi thuộc Vòng đời & Thực thi nền có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: AppLifecycleState phân biệt inactive, paused, resumed, detached. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Mô hình hóa foreground, background, resume và process recreation thành các trường hợp riêng biệt.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "AppLifecycleState phân biệt inactive, paused, resumed, detached. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Mô hình hóa foreground, background, resume và process recreation thành các trường hợp riêng biệt' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: appLifecycleState phân biệt inactive, paused, resumed, detached.",
       "id": "R001"
     },
     {
       "title": "Reconnect socket và refresh state đã stale bằng logic có giới hạn và idempotent",
-      "detail": "Reconnect socket và refresh state đã stale bằng logic có giới hạn và idempotent. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Reconnect socket và refresh state đã stale bằng logic có giới hạn và idempotent. Phạm vi áp dụng: các thay đổi thuộc Vòng đời & Thực thi nền có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Socket reconnect một lần cho mỗi resume và rejoin room sau handshake. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Reconnect socket và refresh state đã stale bằng logic có giới hạn và idempotent.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Socket reconnect một lần cho mỗi resume và rejoin room sau handshake. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Reconnect socket và refresh state đã stale bằng logic có giới hạn và idempotent' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: socket reconnect một lần cho mỗi resume và rejoin room sau handshake.",
       "id": "R002"
     },
     {
       "title": "Dispose listener/controller và hủy các thao tác đã không còn cần thiết",
-      "detail": "Dispose listener/controller và hủy các thao tác đã không còn cần thiết. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Dispose listener/controller và hủy các thao tác đã không còn cần thiết. Phạm vi áp dụng: các thay đổi thuộc Vòng đời & Thực thi nền có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Bloc close hủy StreamSubscription; không emit sau dispose. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Dispose listener/controller và hủy các thao tác đã không còn cần thiết.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Bloc close hủy StreamSubscription; không emit sau dispose. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Dispose listener/controller và hủy các thao tác đã không còn cần thiết' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: bloc close hủy StreamSubscription; không emit sau dispose.",
       "id": "R003"
     },
     {
       "title": "Kiểm thử việc app bị gián đoạn trong quá trình login, upload, notification và realtime session",
-      "detail": "Kiểm thử việc app bị gián đoạn trong quá trình login, upload, notification và realtime session. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Kiểm thử việc app bị gián đoạn trong quá trình login, upload, notification và realtime session. Phạm vi áp dụng: các thay đổi thuộc Vòng đời & Thực thi nền có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Test kill app khi OTP, upload và notification navigation rồi mở lại. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Kiểm thử việc app bị gián đoạn trong quá trình login, upload, notification và realtime session.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Test kill app khi OTP, upload và notification navigation rồi mở lại. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Kiểm thử việc app bị gián đoạn trong quá trình login, upload, notification và realtime session' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: test kill app khi OTP, upload và notification navigation rồi mở lại.",
       "id": "R004"
     }
   ],

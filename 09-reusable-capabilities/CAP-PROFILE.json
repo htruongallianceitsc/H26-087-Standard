@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Giới hạn update cho đúng subject được ủy quyền và các field được phép",
-      "detail": "Giới hạn update cho đúng subject được ủy quyền và các field được phép. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Giới hạn update cho đúng subject được ủy quyền và các field được phép. Phạm vi áp dụng: các thay đổi thuộc Hồ sơ người dùng & Quản lý tài khoản có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: PATCH /me chỉ sửa displayName, avatarUrl; không cho client đổi role. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Giới hạn update cho đúng subject được ủy quyền và các field được phép.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "PATCH /me chỉ sửa displayName, avatarUrl; không cho client đổi role. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Giới hạn update cho đúng subject được ủy quyền và các field được phép' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: pATCH /me chỉ sửa displayName, avatarUrl; không cho client đổi role.",
       "id": "R001"
     },
     {
       "title": "Validation các field thay đổi và giữ nguyên giá trị hiện có của field không đổi",
-      "detail": "Validation các field thay đổi và giữ nguyên giá trị hiện có của field không đổi. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Validation các field thay đổi và giữ nguyên giá trị hiện có của field không đổi. Phạm vi áp dụng: các thay đổi thuộc Hồ sơ người dùng & Quản lý tài khoản có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Schema validate phone + normalize; omitted property không bị reset. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Validation các field thay đổi và giữ nguyên giá trị hiện có của field không đổi.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Schema validate phone + normalize; omitted property không bị reset. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Validation các field thay đổi và giữ nguyên giá trị hiện có của field không đổi' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: schema validate phone + normalize; omitted property không bị reset.",
       "id": "R002"
     },
     {
       "title": "Xử lý lỗi avatar/media và response xung đột",
-      "detail": "Xử lý lỗi avatar/media và response xung đột. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Xử lý lỗi avatar/media và response xung đột. Phạm vi áp dụng: các thay đổi thuộc Hồ sơ người dùng & Quản lý tài khoản có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Upload avatar timeout trả retry option, 409 hiển thị conflict. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Xử lý lỗi avatar/media và response xung đột.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Upload avatar timeout trả retry option, 409 hiển thị conflict. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Xử lý lỗi avatar/media và response xung đột' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: upload avatar timeout trả retry option, 409 hiển thị conflict.",
       "id": "R003"
     },
     {
       "title": "Ghi audit cho các thay đổi hồ sơ nhạy cảm mà không làm lộ dữ liệu riêng tư",
-      "detail": "Ghi audit cho các thay đổi hồ sơ nhạy cảm mà không làm lộ dữ liệu riêng tư. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Ghi audit cho các thay đổi hồ sơ nhạy cảm mà không làm lộ dữ liệu riêng tư. Phạm vi áp dụng: các thay đổi thuộc Hồ sơ người dùng & Quản lý tài khoản có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Đổi email phát audit event masked và yêu cầu xác thực bổ sung. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Ghi audit cho các thay đổi hồ sơ nhạy cảm mà không làm lộ dữ liệu riêng tư.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Đổi email phát audit event masked và yêu cầu xác thực bổ sung. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Ghi audit cho các thay đổi hồ sơ nhạy cảm mà không làm lộ dữ liệu riêng tư' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: đổi email phát audit event masked và yêu cầu xác thực bổ sung.",
       "id": "R004"
     }
   ],

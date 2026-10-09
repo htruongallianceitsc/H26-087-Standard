@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Kiểm thử màn hình chính trong điều kiện loading, error và offline",
-      "detail": "Kiểm thử màn hình chính trong điều kiện loading, error và offline. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Kiểm thử màn hình chính trong điều kiện loading, error và offline. Phạm vi áp dụng: các thay đổi thuộc Jest & React Native Testing Library có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Jest test loading/empty/offline của OrderScreen. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Kiểm thử màn hình chính trong điều kiện loading, error và offline.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Jest test loading/empty/offline của OrderScreen. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Kiểm thử màn hình chính trong điều kiện loading, error và offline' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: jest test loading/empty/offline của OrderScreen.",
       "id": "R001"
     },
     {
       "title": "Kiểm thử navigation và deep link destination trên thiết bị",
-      "detail": "Kiểm thử navigation và deep link destination trên thiết bị. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Kiểm thử navigation và deep link destination trên thiết bị. Phạm vi áp dụng: các thay đổi thuộc Jest & React Native Testing Library có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Detox kiểm tra link mở OrderDetail từ ứng dụng đóng hoàn toàn. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Kiểm thử navigation và deep link destination trên thiết bị.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Detox kiểm tra link mở OrderDetail từ ứng dụng đóng hoàn toàn. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Kiểm thử navigation và deep link destination trên thiết bị' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: detox kiểm tra link mở OrderDetail từ ứng dụng đóng hoàn toàn.",
       "id": "R002"
     },
     {
       "title": "Mock native adapter trong unit test và xác minh tích hợp thực tế riêng biệt",
-      "detail": "Mock native adapter trong unit test và xác minh tích hợp thực tế riêng biệt. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Mock native adapter trong unit test và xác minh tích hợp thực tế riêng biệt. Phạm vi áp dụng: các thay đổi thuộc Jest & React Native Testing Library có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Native camera mock trong unit test, scan thật trong device test. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Mock native adapter trong unit test và xác minh tích hợp thực tế riêng biệt.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Native camera mock trong unit test, scan thật trong device test. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Mock native adapter trong unit test và xác minh tích hợp thực tế riêng biệt' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: native camera mock trong unit test, scan thật trong device test.",
       "id": "R003"
     },
     {
       "title": "Kiểm thử khác biệt nền tảng trong test matrix CI/device",
-      "detail": "Kiểm thử khác biệt nền tảng trong test matrix CI/device. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Kiểm thử khác biệt nền tảng trong test matrix CI/device. Phạm vi áp dụng: các thay đổi thuộc Jest & React Native Testing Library có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: CI chạy cả iOS và Android với permission granted/denied. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Kiểm thử khác biệt nền tảng trong test matrix CI/device.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "CI chạy cả iOS và Android với permission granted/denied. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Kiểm thử khác biệt nền tảng trong test matrix CI/device' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: cI chạy cả iOS và Android với permission granted/denied.",
       "id": "R004"
     }
   ],

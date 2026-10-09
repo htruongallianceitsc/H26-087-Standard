@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Bọc các lời gọi native module và xử lý lỗi permission hoặc OS",
-      "detail": "Bọc các lời gọi native module và xử lý lỗi permission hoặc OS. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Bọc các lời gọi native module và xử lý lỗi permission hoặc OS. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc React Native có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: NativeCameraAdapter bắt permission denied và trả Result typed. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Bọc các lời gọi native module và xử lý lỗi permission hoặc OS.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "NativeCameraAdapter bắt permission denied và trả Result typed. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Bọc các lời gọi native module và xử lý lỗi permission hoặc OS' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: nativeCameraAdapter bắt permission denied và trả Result typed.",
       "id": "R001"
     },
     {
       "title": "Không chặn JS thread bằng các thao tác đồng bộ tốn tài nguyên",
-      "detail": "Không chặn JS thread bằng các thao tác đồng bộ tốn tài nguyên. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Không chặn JS thread bằng các thao tác đồng bộ tốn tài nguyên. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc React Native có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Danh sách lớn dùng FlatList không blocking JS bằng JSON parse nặng. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Không chặn JS thread bằng các thao tác đồng bộ tốn tài nguyên.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Danh sách lớn dùng FlatList không blocking JS bằng JSON parse nặng. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Không chặn JS thread bằng các thao tác đồng bộ tốn tài nguyên' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: danh sách lớn dùng FlatList không blocking JS bằng JSON parse nặng.",
       "id": "R002"
     },
     {
       "title": "Tài liệu hóa các giả định về Expo so với bare workflow cho từng project",
-      "detail": "Tài liệu hóa các giả định về Expo so với bare workflow cho từng project. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Tài liệu hóa các giả định về Expo so với bare workflow cho từng project. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc React Native có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Expo plugin requirements và bare native modules ghi trong ADR. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tài liệu hóa các giả định về Expo so với bare workflow cho từng project.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Expo plugin requirements và bare native modules ghi trong ADR. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Tài liệu hóa các giả định về Expo so với bare workflow cho từng project' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: expo plugin requirements và bare native modules ghi trong ADR.",
       "id": "R003"
     },
     {
       "title": "Kiểm thử phần triển khai đặc thù nền tảng trên thiết bị thật được hỗ trợ",
-      "detail": "Kiểm thử phần triển khai đặc thù nền tảng trên thiết bị thật được hỗ trợ. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Kiểm thử phần triển khai đặc thù nền tảng trên thiết bị thật được hỗ trợ. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc React Native có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Kiểm thử background push và link trên iOS/Android thực. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Kiểm thử phần triển khai đặc thù nền tảng trên thiết bị thật được hỗ trợ.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Kiểm thử background push và link trên iOS/Android thực. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Kiểm thử phần triển khai đặc thù nền tảng trên thiết bị thật được hỗ trợ' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: kiểm thử background push và link trên iOS/Android thực.",
       "id": "R004"
     }
   ],

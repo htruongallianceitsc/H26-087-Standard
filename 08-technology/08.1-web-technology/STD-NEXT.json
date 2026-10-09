@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Ưu tiên server component mặc định cho các trường hợp hiển thị dữ liệu phù hợp",
-      "detail": "Ưu tiên server component mặc định cho các trường hợp hiển thị dữ liệu phù hợp. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Ưu tiên server component mặc định cho các trường hợp hiển thị dữ liệu phù hợp. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc Next.js có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Trang catalog render dữ liệu bằng server component khi không cần browser state. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Ưu tiên server component mặc định cho các trường hợp hiển thị dữ liệu phù hợp.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Trang catalog render dữ liệu bằng server component khi không cần browser state. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Ưu tiên server component mặc định cho các trường hợp hiển thị dữ liệu phù hợp' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: trang catalog render dữ liệu bằng server component khi không cần browser state.",
       "id": "R001"
     },
     {
       "title": "Chỉ khai báo ranh giới client ở nơi thực sự cần tương tác trình duyệt",
-      "detail": "Chỉ khai báo ranh giới client ở nơi thực sự cần tương tác trình duyệt. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Chỉ khai báo ranh giới client ở nơi thực sự cần tương tác trình duyệt. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc Next.js có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Chỉ search input client component dùng useState; page vẫn server-render. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Chỉ khai báo ranh giới client ở nơi thực sự cần tương tác trình duyệt.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Chỉ search input client component dùng useState; page vẫn server-render. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Chỉ khai báo ranh giới client ở nơi thực sự cần tương tác trình duyệt' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: chỉ search input client component dùng useState; page vẫn server-render.",
       "id": "R002"
     },
     {
       "title": "Bảo vệ server action và route handler bằng authorization và validation",
-      "detail": "Bảo vệ server action và route handler bằng authorization và validation. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Bảo vệ server action và route handler bằng authorization và validation. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc Next.js có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Server Action updateOrder kiểm tra session và quyền trước mutation. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Bảo vệ server action và route handler bằng authorization và validation.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Server Action updateOrder kiểm tra session và quyền trước mutation. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Bảo vệ server action và route handler bằng authorization và validation' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: server Action updateOrder kiểm tra session và quyền trước mutation.",
       "id": "R003"
     },
     {
       "title": "Cấu hình cache, dynamic rendering và revalidation một cách chủ đích",
-      "detail": "Cấu hình cache, dynamic rendering và revalidation một cách chủ đích. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Cấu hình cache, dynamic rendering và revalidation một cách chủ đích. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc Next.js có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: fetch product public có revalidate=60; account response no-store. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Cấu hình cache, dynamic rendering và revalidation một cách chủ đích.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "fetch product public có revalidate=60; account response no-store. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Cấu hình cache, dynamic rendering và revalidation một cách chủ đích' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: fetch product public có revalidate=60; account response no-store.",
       "id": "R004"
     }
   ],

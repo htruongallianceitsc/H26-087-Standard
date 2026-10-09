@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Tài liệu hóa định nghĩa metric, bộ lọc và múi giờ báo cáo",
-      "detail": "Tài liệu hóa định nghĩa metric, bộ lọc và múi giờ báo cáo. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Tài liệu hóa định nghĩa metric, bộ lọc và múi giờ báo cáo. Phạm vi áp dụng: các thay đổi thuộc Báo cáo & Dashboard có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Revenue metric loại cancelled orders và dùng timezone Asia/Ho_Chi_Minh. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tài liệu hóa định nghĩa metric, bộ lọc và múi giờ báo cáo.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Revenue metric loại cancelled orders và dùng timezone Asia/Ho_Chi_Minh. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Tài liệu hóa định nghĩa metric, bộ lọc và múi giờ báo cáo' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: revenue metric loại cancelled orders và dùng timezone Asia/Ho_Chi_Minh.",
       "id": "R001"
     },
     {
       "title": "Đảm bảo dữ liệu tổng hợp tuân thủ quyền của tenant và người dùng",
-      "detail": "Đảm bảo dữ liệu tổng hợp tuân thủ quyền của tenant và người dùng. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Đảm bảo dữ liệu tổng hợp tuân thủ quyền của tenant và người dùng. Phạm vi áp dụng: các thay đổi thuộc Báo cáo & Dashboard có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: SQL filter tenant_id trên mọi aggregation, kể cả export. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Đảm bảo dữ liệu tổng hợp tuân thủ quyền của tenant và người dùng.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "SQL filter tenant_id trên mọi aggregation, kể cả export. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Đảm bảo dữ liệu tổng hợp tuân thủ quyền của tenant và người dùng' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: sQL filter tenant_id trên mọi aggregation, kể cả export.",
       "id": "R002"
     },
     {
       "title": "Cung cấp chỉ báo trạng thái loading, empty và dữ liệu một phần",
-      "detail": "Cung cấp chỉ báo trạng thái loading, empty và dữ liệu một phần. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Cung cấp chỉ báo trạng thái loading, empty và dữ liệu một phần. Phạm vi áp dụng: các thay đổi thuộc Báo cáo & Dashboard có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Report hiển thị lastUpdated, empty chart và partial data warning. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Cung cấp chỉ báo trạng thái loading, empty và dữ liệu một phần.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Report hiển thị lastUpdated, empty chart và partial data warning. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Cung cấp chỉ báo trạng thái loading, empty và dữ liệu một phần' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: report hiển thị lastUpdated, empty chart và partial data warning.",
       "id": "R003"
     },
     {
       "title": "Giới hạn query tốn tài nguyên và áp dụng cache theo yêu cầu về độ mới dữ liệu",
-      "detail": "Giới hạn query tốn tài nguyên và áp dụng cache theo yêu cầu về độ mới dữ liệu. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Giới hạn query tốn tài nguyên và áp dụng cache theo yêu cầu về độ mới dữ liệu. Phạm vi áp dụng: các thay đổi thuộc Báo cáo & Dashboard có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Query timeout 15s, materialized result cache TTL theo SLA. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Giới hạn query tốn tài nguyên và áp dụng cache theo yêu cầu về độ mới dữ liệu.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Query timeout 15s, materialized result cache TTL theo SLA. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Giới hạn query tốn tài nguyên và áp dụng cache theo yêu cầu về độ mới dữ liệu' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: query timeout 15s, materialized result cache TTL theo SLA.",
       "id": "R004"
     }
   ],

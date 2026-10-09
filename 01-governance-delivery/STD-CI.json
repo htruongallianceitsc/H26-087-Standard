@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Sử dụng lockfile và build có thể tái lập trong CI",
-      "detail": "Sử dụng lockfile và build có thể tái lập trong CI. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Sử dụng lockfile và build có thể tái lập trong CI. Phạm vi áp dụng: các thay đổi thuộc Tích hợp liên tục & Pipeline Build có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: npm ci dùng package-lock và chạy trên image Node pin theo digest. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Sử dụng lockfile và build có thể tái lập trong CI.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "npm ci dùng package-lock và chạy trên image Node pin theo digest. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Sử dụng lockfile và build có thể tái lập trong CI' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: npm ci dùng package-lock và chạy trên image Node pin theo digest.",
       "id": "R001"
     },
     {
       "title": "Tách biệt môi trường và inject secret tại runtime hoặc qua build setting an toàn",
-      "detail": "Tách biệt môi trường và inject secret tại runtime hoặc qua build setting an toàn. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Tách biệt môi trường và inject secret tại runtime hoặc qua build setting an toàn. Phạm vi áp dụng: các thay đổi thuộc Tích hợp liên tục & Pipeline Build có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Secret lấy từ secret manager, không nằm trong build args hay artifact. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tách biệt môi trường và inject secret tại runtime hoặc qua build setting an toàn.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Secret lấy từ secret manager, không nằm trong build args hay artifact. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Tách biệt môi trường và inject secret tại runtime hoặc qua build setting an toàn' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: secret lấy từ secret manager, không nằm trong build args hay artifact.",
       "id": "R002"
     },
     {
       "title": "Promote artifact đã được kiểm thử và duy trì tài liệu quy trình release/rollback",
-      "detail": "Promote artifact đã được kiểm thử và duy trì tài liệu quy trình release/rollback. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Promote artifact đã được kiểm thử và duy trì tài liệu quy trình release/rollback. Phạm vi áp dụng: các thay đổi thuộc Tích hợp liên tục & Pipeline Build có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Staging và production dùng cùng container digest sha256 đã pass smoke test. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Promote artifact đã được kiểm thử và duy trì tài liệu quy trình release/rollback.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Staging và production dùng cùng container digest sha256 đã pass smoke test. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Promote artifact đã được kiểm thử và duy trì tài liệu quy trình release/rollback' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: staging và production dùng cùng container digest sha256 đã pass smoke test.",
       "id": "R003"
     },
     {
       "title": "Bắt buộc các phê duyệt cần thiết trước khi deploy production",
-      "detail": "Bắt buộc các phê duyệt cần thiết trước khi deploy production. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Bắt buộc các phê duyệt cần thiết trước khi deploy production. Phạm vi áp dụng: các thay đổi thuộc Tích hợp liên tục & Pipeline Build có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Production deploy yêu cầu reviewer ngoài người tạo PR và lưu approval log. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Bắt buộc các phê duyệt cần thiết trước khi deploy production.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Production deploy yêu cầu reviewer ngoài người tạo PR và lưu approval log. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Bắt buộc các phê duyệt cần thiết trước khi deploy production' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: production deploy yêu cầu reviewer ngoài người tạo PR và lưu approval log.",
       "id": "R004"
     }
   ],

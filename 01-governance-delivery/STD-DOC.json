@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Đảm bảo yêu cầu, screen, API và data contract có thể truy vết bằng tham chiếu ổn định",
-      "detail": "Đảm bảo yêu cầu, screen, API và data contract có thể truy vết bằng tham chiếu ổn định. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Đảm bảo yêu cầu, screen, API và data contract có thể truy vết bằng tham chiếu ổn định. Phạm vi áp dụng: các thay đổi thuộc Tài liệu hóa & Truy vết có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: REQ-104 -> FEAT-LOGIN -> API-AUTH-01 -> TC-LOGIN-07 có liên kết hai chiều. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Đảm bảo yêu cầu, screen, API và data contract có thể truy vết bằng tham chiếu ổn định.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "REQ-104 -> FEAT-LOGIN -> API-AUTH-01 -> TC-LOGIN-07 có liên kết hai chiều. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Đảm bảo yêu cầu, screen, API và data contract có thể truy vết bằng tham chiếu ổn định' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: rEQ-104 -> FEAT-LOGIN -> API-AUTH-01 -> TC-LOGIN-07 có liên kết hai chiều.",
       "id": "R001"
     },
     {
       "title": "Ghi nhận quyết định đã được chấp thuận, lý do thay đổi và các artifact bị ảnh hưởng",
-      "detail": "Ghi nhận quyết định đã được chấp thuận, lý do thay đổi và các artifact bị ảnh hưởng. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Ghi nhận quyết định đã được chấp thuận, lý do thay đổi và các artifact bị ảnh hưởng. Phạm vi áp dụng: các thay đổi thuộc Tài liệu hóa & Truy vết có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: ADR-011 ghi quyết định dùng BLoC và liệt kê màn hình bị ảnh hưởng. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Ghi nhận quyết định đã được chấp thuận, lý do thay đổi và các artifact bị ảnh hưởng.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "ADR-011 ghi quyết định dùng BLoC và liệt kê màn hình bị ảnh hưởng. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Ghi nhận quyết định đã được chấp thuận, lý do thay đổi và các artifact bị ảnh hưởng' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: aDR-011 ghi quyết định dùng BLoC và liệt kê màn hình bị ảnh hưởng.",
       "id": "R002"
     },
     {
       "title": "Cập nhật spec trước khi triển khai thay đổi và đối soát tài liệu sau đó",
-      "detail": "Cập nhật spec trước khi triển khai thay đổi và đối soát tài liệu sau đó. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Cập nhật spec trước khi triển khai thay đổi và đối soát tài liệu sau đó. Phạm vi áp dụng: các thay đổi thuộc Tài liệu hóa & Truy vết có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Đổi response 401 được cập nhật API contract rồi mới triển khai client. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Cập nhật spec trước khi triển khai thay đổi và đối soát tài liệu sau đó.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Đổi response 401 được cập nhật API contract rồi mới triển khai client. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Cập nhật spec trước khi triển khai thay đổi và đối soát tài liệu sau đó' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: đổi response 401 được cập nhật API contract rồi mới triển khai client.",
       "id": "R003"
     },
     {
       "title": "Sinh index từ tài liệu nguồn chuẩn thay vì chỉnh sửa file được sinh tự động",
-      "detail": "Sinh index từ tài liệu nguồn chuẩn thay vì chỉnh sửa file được sinh tự động. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Sinh index từ tài liệu nguồn chuẩn thay vì chỉnh sửa file được sinh tự động. Phạm vi áp dụng: các thay đổi thuộc Tài liệu hóa & Truy vết có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Chạy docs generate --check xác nhận cây tài liệu không bị chỉnh bằng tay. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Sinh index từ tài liệu nguồn chuẩn thay vì chỉnh sửa file được sinh tự động.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Chạy docs generate --check xác nhận cây tài liệu không bị chỉnh bằng tay. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Sinh index từ tài liệu nguồn chuẩn thay vì chỉnh sửa file được sinh tự động' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: chạy docs generate --check xác nhận cây tài liệu không bị chỉnh bằng tay.",
       "id": "R004"
     }
   ],

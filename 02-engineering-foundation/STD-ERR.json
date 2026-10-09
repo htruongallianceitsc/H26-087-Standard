@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Phân biệt lỗi validation, authentication, authorization, network và lỗi ngoài dự kiến",
-      "detail": "Phân biệt lỗi validation, authentication, authorization, network và lỗi ngoài dự kiến. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Phân biệt lỗi validation, authentication, authorization, network và lỗi ngoài dự kiến. Phạm vi áp dụng: các thay đổi thuộc Xử lý & Phân loại lỗi có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: API phân biệt 400 validation, 401 unauthenticated, 403 unauthorized và 503 transient. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Phân biệt lỗi validation, authentication, authorization, network và lỗi ngoài dự kiến.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "API phân biệt 400 validation, 401 unauthenticated, 403 unauthorized và 503 transient. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Phân biệt lỗi validation, authentication, authorization, network và lỗi ngoài dự kiến' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: aPI phân biệt 400 validation, 401 unauthenticated, 403 unauthorized và 503 transient.",
       "id": "R001"
     },
     {
       "title": "Sử dụng error/result có kiểu dữ liệu và message an toàn cho người dùng, không làm lộ chi tiết nhạy cảm",
-      "detail": "Sử dụng error/result có kiểu dữ liệu và message an toàn cho người dùng, không làm lộ chi tiết nhạy cảm. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Sử dụng error/result có kiểu dữ liệu và message an toàn cho người dùng, không làm lộ chi tiết nhạy cảm. Phạm vi áp dụng: các thay đổi thuộc Xử lý & Phân loại lỗi có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Client map error.code=PHONE_INVALID thành inline text; 500 hiển thị thông báo chung. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Sử dụng error/result có kiểu dữ liệu và message an toàn cho người dùng, không làm lộ chi tiết nhạy cảm.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Client map error.code=PHONE_INVALID thành inline text; 500 hiển thị thông báo chung. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Sử dụng error/result có kiểu dữ liệu và message an toàn cho người dùng, không làm lộ chi tiết nhạy cảm' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: client map error.code=PHONE_INVALID thành inline text; 500 hiển thị thông báo chung.",
       "id": "R002"
     },
     {
       "title": "Chỉ cung cấp thao tác retry cho các operation tạm thời và an toàn để thử lại",
-      "detail": "Chỉ cung cấp thao tác retry cho các operation tạm thời và an toàn để thử lại. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Chỉ cung cấp thao tác retry cho các operation tạm thời và an toàn để thử lại. Phạm vi áp dụng: các thay đổi thuộc Xử lý & Phân loại lỗi có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Retry GET /orders sau 503 với exponential backoff; POST payment dùng idempotency key. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Chỉ cung cấp thao tác retry cho các operation tạm thời và an toàn để thử lại.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Retry GET /orders sau 503 với exponential backoff; POST payment dùng idempotency key. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Chỉ cung cấp thao tác retry cho các operation tạm thời và an toàn để thử lại' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: retry GET /orders sau 503 với exponential backoff; POST payment dùng idempotency key.",
       "id": "R003"
     },
     {
       "title": "Log ngữ cảnh chẩn đoán nhưng phải ngăn rò rỉ secret và dữ liệu cá nhân",
-      "detail": "Log ngữ cảnh chẩn đoán nhưng phải ngăn rò rỉ secret và dữ liệu cá nhân. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Log ngữ cảnh chẩn đoán nhưng phải ngăn rò rỉ secret và dữ liệu cá nhân. Phạm vi áp dụng: các thay đổi thuộc Xử lý & Phân loại lỗi có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Log exception_type, request_id, endpoint nhưng redact Authorization và OTP. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Log ngữ cảnh chẩn đoán nhưng phải ngăn rò rỉ secret và dữ liệu cá nhân.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Log exception_type, request_id, endpoint nhưng redact Authorization và OTP. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Log ngữ cảnh chẩn đoán nhưng phải ngăn rò rỉ secret và dữ liệu cá nhân' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: log exception_type, request_id, endpoint nhưng redact Authorization và OTP.",
       "id": "R004"
     }
   ],

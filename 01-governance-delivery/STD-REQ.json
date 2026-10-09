@@ -9,38 +9,38 @@
   "rules": [
     {
       "title": "Ghi nhận yêu cầu thô kèm nguồn, owner và các câu hỏi chưa được giải quyết trước khi phân loại",
-      "detail": "Ghi nhận yêu cầu thô kèm nguồn, owner và các câu hỏi chưa được giải quyết trước khi phân loại. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Ghi nhận yêu cầu thô kèm nguồn, owner và các câu hỏi chưa được giải quyết trước khi phân loại. Phạm vi áp dụng: các thay đổi thuộc Yêu cầu & Tiêu chí chấp nhận có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: REQ-043 lưu email nguồn, requestor và trạng thái open question. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Ghi nhận yêu cầu thô kèm nguồn, owner và các câu hỏi chưa được giải quyết trước khi phân loại.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "REQ-043 lưu email nguồn, requestor và trạng thái open question. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Ghi nhận yêu cầu thô kèm nguồn, owner và các câu hỏi chưa được giải quyết trước khi phân loại' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: rEQ-043 lưu email nguồn, requestor và trạng thái open question.",
       "id": "R001"
     },
     {
       "title": "Tách functional requirement có thể kiểm thử khỏi giả định và ràng buộc phi chức năng",
-      "detail": "Tách functional requirement có thể kiểm thử khỏi giả định và ràng buộc phi chức năng. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Tách functional requirement có thể kiểm thử khỏi giả định và ràng buộc phi chức năng. Phạm vi áp dụng: các thay đổi thuộc Yêu cầu & Tiêu chí chấp nhận có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: NFR-P95-01 nêu thời gian đáp ứng 95th percentile và tách khỏi đăng nhập. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tách functional requirement có thể kiểm thử khỏi giả định và ràng buộc phi chức năng.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "NFR-P95-01 nêu thời gian đáp ứng 95th percentile và tách khỏi đăng nhập. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Tách functional requirement có thể kiểm thử khỏi giả định và ràng buộc phi chức năng' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: nFR-P95-01 nêu thời gian đáp ứng 95th percentile và tách khỏi đăng nhập.",
       "id": "R002"
     },
     {
       "title": "Viết acceptance criteria theo Given-When-Then có thể quan sát, bao gồm trường hợp lỗi và biên",
-      "detail": "Viết acceptance criteria theo Given-When-Then có thể quan sát, bao gồm trường hợp lỗi và biên. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Viết acceptance criteria theo Given-When-Then có thể quan sát, bao gồm trường hợp lỗi và biên. Phạm vi áp dụng: các thay đổi thuộc Yêu cầu & Tiêu chí chấp nhận có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: AC: Given token hết hạn, When gọi API, Then trả 401 không tiết lộ thông tin. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Viết acceptance criteria theo Given-When-Then có thể quan sát, bao gồm trường hợp lỗi và biên.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "AC: Given token hết hạn, When gọi API, Then trả 401 không tiết lộ thông tin. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Viết acceptance criteria theo Given-When-Then có thể quan sát, bao gồm trường hợp lỗi và biên' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: aC: Given token hết hạn, When gọi API, Then trả 401 không tiết lộ thông tin.",
       "id": "R003"
     },
     {
       "title": "Liên kết requirement đã được duyệt với feature và bằng chứng kiểm thử",
-      "detail": "Liên kết requirement đã được duyệt với feature và bằng chứng kiểm thử. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Yêu cầu: Liên kết requirement đã được duyệt với feature và bằng chứng kiểm thử. Phạm vi áp dụng: các thay đổi thuộc Yêu cầu & Tiêu chí chấp nhận có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: REQ-043 link FEAT-AUTH và TC-AUTH-401 với kết quả kiểm thử. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Liên kết requirement đã được duyệt với feature và bằng chứng kiểm thử.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "REQ-043 link FEAT-AUTH và TC-AUTH-401 với kết quả kiểm thử. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
+      "example_bad": "Chỉ ghi 'Liên kết requirement đã được duyệt với feature và bằng chứng kiểm thử' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: rEQ-043 link FEAT-AUTH và TC-AUTH-401 với kết quả kiểm thử.",
       "id": "R004"
     }
   ],
