@@ -3,65 +3,74 @@
   "code": "STD-FEEDBACK",
   "name": "Phản hồi, Thông báo & Messaging",
   "category": "04_experience_ui_ux",
-  "description": "Tiêu chuẩn chuẩn hóa cho Phản hồi, Thông báo & Messaging. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "description": "Phản hồi, Thông báo & Messaging: quy định các yêu cầu triển khai và bằng chứng kiểm tra cụ thể; chỉ áp dụng khi phạm vi project liên quan.",
   "version": "1.1.0",
   "status": "active",
   "rules": [
     {
-      "title": "Xác định rõ cách tiếp cận cho phản hồi, thông báo & messaging trước khi triển khai",
-      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Phản hồi, Thông báo & Messaging; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
+      "title": "Thông báo tương ứng tác động thao tác",
+      "detail": "Success nhẹ dùng toast ngắn; lỗi field chỉ ở field; tác vụ dài dùng progress; lỗi ngăn tiếp tục phải hiện inline hoặc dialog. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Project ghi nhận rõ cách Phản hồi, Thông báo & Messaging được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
-      "example_bad": "Phản hồi, Thông báo & Messaging được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review.",
+      "example_good": "Lỗi email hiện dưới field; upload dài hiển thị tiến độ.",
+      "example_bad": "Mọi HTTP 200/400 đều bật toast giống nhau.",
       "id": "R001"
     },
     {
-      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
-      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
+      "title": "Thông báo không lộ dữ liệu kỹ thuật",
+      "detail": "Message hướng dẫn người dùng xử lý, không in stack trace, SQL hay token; log lưu correlation ID nội bộ. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
       "layer": "process",
-      "severity": "should",
-      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
-      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán.",
+      "severity": "must",
+      "example_good": "Hiển thị “Không lưu được, thử lại” và mã tham chiếu hỗ trợ.",
+      "example_bad": "Toast nguyên exception có connection string.",
       "id": "R002"
     },
     {
-      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
-      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
+      "title": "Ngăn spam thông báo lặp",
+      "detail": "Các lần retry/re-render của cùng operation không tạo nhiều toast; lỗi nền không được cướp focus liên tục. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
-      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review.",
+      "example_good": "Chỉ một thông báo cho một request thất bại dù retry hai lần.",
+      "example_bad": "Mỗi vòng polling báo lỗi giống nhau.",
       "id": "R003"
+    },
+    {
+      "title": "Phản hồi trạng thái thành công đúng thời điểm",
+      "detail": "Chỉ xác nhận hoàn tất khi backend hoặc hàng đợi đã xác nhận mức bảo đảm được nêu; phân biệt “đã nhận” và “đã xử lý”. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Sau HTTP 202 hiển thị “Đã tiếp nhận, đang xử lý”.",
+      "example_bad": "Nói “Đã thanh toán” khi mới gửi request.",
+      "id": "R004"
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Đánh giá phạm vi áp dụng",
-      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Phản hồi, Thông báo & Messaging; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
+      "title": "Xác định phạm vi và rủi ro",
+      "description": "Liệt kê các luồng phản hồi, thông báo & messaging đang dùng, nguồn dữ liệu/thiết kế và mức độ rủi ro để chọn rule áp dụng."
     },
     {
       "step": 2,
-      "title": "Áp dụng quy tắc",
-      "description": "Đưa các quy tắc Phản hồi, Thông báo & Messaging áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
+      "title": "Triển khai và review",
+      "description": "Ánh xạ từng rule với requirement, tài liệu kiến trúc, PR và người chịu trách nhiệm; review các cấu hình và failure path."
     },
     {
       "step": 3,
-      "title": "Xác minh tuân thủ",
-      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
+      "title": "Kiểm chứng và ghi nhận",
+      "description": "Chạy test cho trường hợp chuẩn và tình huống sai như example_bad; lưu kết quả pass/fail theo mã rule, ghi lý do exception nếu có."
     }
   ],
   "common_issues": [
     {
-      "issue": "Áp dụng Phản hồi, Thông báo & Messaging không nhất quán",
-      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
-      "solution": "Tham chiếu rõ STD-FEEDBACK trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
+      "issue": "Bỏ sót kiểm thử tình huống lỗi của phản hồi, thông báo & messaging",
+      "cause": "Chỉ kiểm thử luồng thành công, chưa đưa example_bad vào bộ regression.",
+      "solution": "Tạo test case từ STD-FEEDBACK#R001..R004, chạy cả negative case trước release."
     },
     {
-      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
-      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
-      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
+      "issue": "Không có bằng chứng thực thi",
+      "cause": "Checklist không liên kết với cấu hình hoặc kết quả đo thực tế.",
+      "solution": "Đính kèm liên kết commit, test report, dashboard hoặc biên bản review theo mã rule."
     }
   ],
   "depends_on": [],

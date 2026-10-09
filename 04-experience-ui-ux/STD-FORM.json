@@ -3,65 +3,74 @@
   "code": "STD-FORM",
   "name": "Trải nghiệm Form & Validation",
   "category": "04_experience_ui_ux",
-  "description": "Tiêu chuẩn chuẩn hóa cho Trải nghiệm Form & Validation. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "description": "Trải nghiệm Form & Validation: quy định các yêu cầu triển khai và bằng chứng kiểm tra cụ thể; chỉ áp dụng khi phạm vi project liên quan.",
   "version": "1.1.0",
   "status": "active",
   "rules": [
     {
-      "title": "Xác định rõ cách tiếp cận cho trải nghiệm form & validation trước khi triển khai",
-      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Trải nghiệm Form & Validation; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
+      "title": "Xác thực đúng lớp và thời điểm",
+      "detail": "Ràng buộc ở UI để hỗ trợ, luôn xác thực lại ở server; lỗi hiện cạnh field và sau submit phải dẫn focus đến lỗi đầu. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
       "layer": "ui",
       "severity": "must",
-      "example_good": "Project ghi nhận rõ cách Trải nghiệm Form & Validation được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
-      "example_bad": "Trải nghiệm Form & Validation được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review.",
+      "example_good": "API trả lỗi field phone; form đánh dấu đúng phone, focus vào đó.",
+      "example_bad": "Chỉ validate ở trình duyệt và tin request có thể sửa.",
       "id": "R001"
     },
     {
-      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
-      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
+      "title": "Giữ dữ liệu khi gửi lỗi",
+      "detail": "Input hợp lệ không bị xóa sau 422, timeout hay failed submit; giữ cả lựa chọn của người dùng. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
       "layer": "ui",
-      "severity": "should",
-      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
-      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán.",
+      "severity": "must",
+      "example_good": "API lỗi địa chỉ, họ tên vẫn ở form.",
+      "example_bad": "Lỗi submit làm form reset tất cả.",
       "id": "R002"
     },
     {
-      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
-      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
-      "layer": "process",
+      "title": "Ngăn submit trùng và yêu cầu không cần thiết",
+      "detail": "Trong khi gửi, chặn thao tác lặp hoặc dùng idempotency với operation nhạy cảm; phân biệt double click và retry mạng. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
+      "layer": "ui",
       "severity": "should",
-      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
-      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review.",
+      "example_good": "Submit đơn hàng có idempotency key và trạng thái pending.",
+      "example_bad": "Double click tạo hai đơn hàng.",
       "id": "R003"
+    },
+    {
+      "title": "Input truy cập được bằng bàn phím",
+      "detail": "Mỗi input có label, hint và error được liên kết; thứ tự Tab tự nhiên; nhóm radio dùng fieldset/legend tương đương. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
+      "layer": "ui",
+      "severity": "should",
+      "example_good": "Input có label for và aria-describedby đến lỗi.",
+      "example_bad": "Placeholder thay thế label, lỗi chỉ có màu đỏ.",
+      "id": "R004"
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Đánh giá phạm vi áp dụng",
-      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Trải nghiệm Form & Validation; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
+      "title": "Xác định phạm vi và rủi ro",
+      "description": "Liệt kê các luồng trải nghiệm form & validation đang dùng, nguồn dữ liệu/thiết kế và mức độ rủi ro để chọn rule áp dụng."
     },
     {
       "step": 2,
-      "title": "Áp dụng quy tắc",
-      "description": "Đưa các quy tắc Trải nghiệm Form & Validation áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
+      "title": "Triển khai và review",
+      "description": "Ánh xạ từng rule với requirement, tài liệu kiến trúc, PR và người chịu trách nhiệm; review các cấu hình và failure path."
     },
     {
       "step": 3,
-      "title": "Xác minh tuân thủ",
-      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
+      "title": "Kiểm chứng và ghi nhận",
+      "description": "Chạy test cho trường hợp chuẩn và tình huống sai như example_bad; lưu kết quả pass/fail theo mã rule, ghi lý do exception nếu có."
     }
   ],
   "common_issues": [
     {
-      "issue": "Áp dụng Trải nghiệm Form & Validation không nhất quán",
-      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
-      "solution": "Tham chiếu rõ STD-FORM trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
+      "issue": "Bỏ sót kiểm thử tình huống lỗi của trải nghiệm form & validation",
+      "cause": "Chỉ kiểm thử luồng thành công, chưa đưa example_bad vào bộ regression.",
+      "solution": "Tạo test case từ STD-FORM#R001..R004, chạy cả negative case trước release."
     },
     {
-      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
-      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
-      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
+      "issue": "Không có bằng chứng thực thi",
+      "cause": "Checklist không liên kết với cấu hình hoặc kết quả đo thực tế.",
+      "solution": "Đính kèm liên kết commit, test report, dashboard hoặc biên bản review theo mã rule."
     }
   ],
   "depends_on": [],

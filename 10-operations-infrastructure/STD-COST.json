@@ -3,65 +3,74 @@
   "code": "STD-COST",
   "name": "Quản trị chi phí hạ tầng & Cloud",
   "category": "10_operations_infrastructure",
-  "description": "Tiêu chuẩn chuẩn hóa cho Quản trị chi phí hạ tầng & Cloud. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "description": "Quản trị chi phí hạ tầng & Cloud: quy định các yêu cầu triển khai và bằng chứng kiểm tra cụ thể; chỉ áp dụng khi phạm vi project liên quan.",
   "version": "1.1.0",
   "status": "active",
   "rules": [
     {
-      "title": "Xác định rõ cách tiếp cận cho quản trị chi phí hạ tầng & cloud trước khi triển khai",
-      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Quản trị chi phí hạ tầng & Cloud; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
+      "title": "Gắn tag chi phí theo nguồn sử dụng",
+      "detail": "Mọi tài nguyên chịu phí có project, environment, owner, cost-center khi provider hỗ trợ. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Project ghi nhận rõ cách Quản trị chi phí hạ tầng & Cloud được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
-      "example_bad": "Quản trị chi phí hạ tầng & Cloud được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review.",
+      "example_good": "Cloud bill nhóm được chi phí staging/prod theo team.",
+      "example_bad": "Tài nguyên không tag không rõ ai chịu phí.",
       "id": "R001"
     },
     {
-      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
-      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
+      "title": "Ngân sách và cảnh báo xu hướng",
+      "detail": "Đặt monthly budget và alert tại ngưỡng thỏa thuận; phát hiện tăng đột biến dựa trên baseline. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
       "layer": "process",
-      "severity": "should",
-      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
-      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán.",
+      "severity": "must",
+      "example_good": "Alert khi forecast vượt ngân sách 20%.",
+      "example_bad": "Phát hiện chi phí tăng sau khi nhận hóa đơn.",
       "id": "R002"
     },
     {
-      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
-      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
+      "title": "Giới hạn tài nguyên không kiểm soát",
+      "detail": "Thiết lập TTL cho preview env, quotas và autoscaling max theo tải/ưu tiên business. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
-      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review.",
+      "example_good": "Preview environment tự xóa sau 72 giờ không dùng.",
+      "example_bad": "Mỗi PR tạo DB lớn và không dọn.",
       "id": "R003"
+    },
+    {
+      "title": "Tối ưu dựa trên usage đo được",
+      "detail": "Right-size compute/storage theo p95 sử dụng và SLO; kiểm tác động chi phí trước thay đổi lớn. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Giảm instance sau khi so sánh p95 CPU và latency.",
+      "example_bad": "Giảm chi phí bằng cách tắt log bảo mật.",
+      "id": "R004"
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Đánh giá phạm vi áp dụng",
-      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Quản trị chi phí hạ tầng & Cloud; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
+      "title": "Xác định phạm vi và rủi ro",
+      "description": "Liệt kê các luồng quản trị chi phí hạ tầng & cloud đang dùng, nguồn dữ liệu/thiết kế và mức độ rủi ro để chọn rule áp dụng."
     },
     {
       "step": 2,
-      "title": "Áp dụng quy tắc",
-      "description": "Đưa các quy tắc Quản trị chi phí hạ tầng & Cloud áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
+      "title": "Triển khai và review",
+      "description": "Ánh xạ từng rule với requirement, tài liệu kiến trúc, PR và người chịu trách nhiệm; review các cấu hình và failure path."
     },
     {
       "step": 3,
-      "title": "Xác minh tuân thủ",
-      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
+      "title": "Kiểm chứng và ghi nhận",
+      "description": "Chạy test cho trường hợp chuẩn và tình huống sai như example_bad; lưu kết quả pass/fail theo mã rule, ghi lý do exception nếu có."
     }
   ],
   "common_issues": [
     {
-      "issue": "Áp dụng Quản trị chi phí hạ tầng & Cloud không nhất quán",
-      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
-      "solution": "Tham chiếu rõ STD-COST trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
+      "issue": "Bỏ sót kiểm thử tình huống lỗi của quản trị chi phí hạ tầng & cloud",
+      "cause": "Chỉ kiểm thử luồng thành công, chưa đưa example_bad vào bộ regression.",
+      "solution": "Tạo test case từ STD-COST#R001..R004, chạy cả negative case trước release."
     },
     {
-      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
-      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
-      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
+      "issue": "Không có bằng chứng thực thi",
+      "cause": "Checklist không liên kết với cấu hình hoặc kết quả đo thực tế.",
+      "solution": "Đính kèm liên kết commit, test report, dashboard hoặc biên bản review theo mã rule."
     }
   ],
   "depends_on": [

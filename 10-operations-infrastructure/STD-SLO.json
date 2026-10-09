@@ -3,65 +3,74 @@
   "code": "STD-SLO",
   "name": "Mục tiêu mức dịch vụ (SLO)",
   "category": "10_operations_infrastructure",
-  "description": "Tiêu chuẩn chuẩn hóa cho Mục tiêu mức dịch vụ (SLO). Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "description": "Mục tiêu mức dịch vụ (SLO): quy định các yêu cầu triển khai và bằng chứng kiểm tra cụ thể; chỉ áp dụng khi phạm vi project liên quan.",
   "version": "1.1.0",
   "status": "active",
   "rules": [
     {
-      "title": "Xác định rõ cách tiếp cận cho Mục tiêu mức dịch vụ (SLO) trước khi triển khai",
-      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Mục tiêu mức dịch vụ (SLO); liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
+      "title": "SLI đo từ trải nghiệm thực",
+      "detail": "Định nghĩa SLI theo success requests, latency, freshness hoặc processing delay gắn journey; loại health probe khi phù hợp. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Project ghi nhận rõ cách Mục tiêu mức dịch vụ (SLO) được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
-      "example_bad": "Mục tiêu mức dịch vụ (SLO) được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review.",
+      "example_good": "Checkout success ratio đo response hợp lệ sau payment confirmation.",
+      "example_bad": "Dùng CPU% làm chỉ số duy nhất cho trải nghiệm user.",
       "id": "R001"
     },
     {
-      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
-      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
+      "title": "SLO có cửa sổ và phép tính rõ",
+      "detail": "SLO cần đối tượng, target, rolling window, event exclusions và nguồn dữ liệu đo. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
       "layer": "process",
-      "severity": "should",
-      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
-      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán.",
+      "severity": "must",
+      "example_good": "99.9% successful checkout trong rolling 30 ngày.",
+      "example_bad": "Tuyên bố uptime “cao” không có mẫu số.",
       "id": "R002"
     },
     {
-      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
-      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
+      "title": "Alert dựa trên burn rate",
+      "detail": "Page theo multi-window burn rate để tránh spam; cảnh báo chậm cho xu hướng; xác nhận mức tác động thực. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
-      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review.",
+      "example_good": "Alert khi 1h/5m burn vượt ngưỡng policy đã chọn.",
+      "example_bad": "Page với mọi request 500 đơn lẻ.",
       "id": "R003"
+    },
+    {
+      "title": "Error budget tác động quyết định release",
+      "detail": "Theo dõi budget còn lại và đưa vào release gate/ưu tiên reliability; exception có owner. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Budget hết -> dừng rollout tính năng rủi ro đến khi phục hồi.",
+      "example_bad": "SLO chỉ nằm trên slide, release không chịu ảnh hưởng.",
+      "id": "R004"
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Đánh giá phạm vi áp dụng",
-      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Mục tiêu mức dịch vụ (SLO); ghi nhận trường hợp loại trừ và override đã được phê duyệt."
+      "title": "Xác định phạm vi và rủi ro",
+      "description": "Liệt kê các luồng mục tiêu mức dịch vụ (slo) đang dùng, nguồn dữ liệu/thiết kế và mức độ rủi ro để chọn rule áp dụng."
     },
     {
       "step": 2,
-      "title": "Áp dụng quy tắc",
-      "description": "Đưa các quy tắc Mục tiêu mức dịch vụ (SLO) áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
+      "title": "Triển khai và review",
+      "description": "Ánh xạ từng rule với requirement, tài liệu kiến trúc, PR và người chịu trách nhiệm; review các cấu hình và failure path."
     },
     {
       "step": 3,
-      "title": "Xác minh tuân thủ",
-      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
+      "title": "Kiểm chứng và ghi nhận",
+      "description": "Chạy test cho trường hợp chuẩn và tình huống sai như example_bad; lưu kết quả pass/fail theo mã rule, ghi lý do exception nếu có."
     }
   ],
   "common_issues": [
     {
-      "issue": "Áp dụng Mục tiêu mức dịch vụ (SLO) không nhất quán",
-      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
-      "solution": "Tham chiếu rõ STD-SLO trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
+      "issue": "Bỏ sót kiểm thử tình huống lỗi của mục tiêu mức dịch vụ (slo)",
+      "cause": "Chỉ kiểm thử luồng thành công, chưa đưa example_bad vào bộ regression.",
+      "solution": "Tạo test case từ STD-SLO#R001..R004, chạy cả negative case trước release."
     },
     {
-      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
-      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
-      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
+      "issue": "Không có bằng chứng thực thi",
+      "cause": "Checklist không liên kết với cấu hình hoặc kết quả đo thực tế.",
+      "solution": "Đính kèm liên kết commit, test report, dashboard hoặc biên bản review theo mã rule."
     }
   ],
   "depends_on": [],

@@ -3,65 +3,74 @@
   "code": "STD-RUNBOOK",
   "name": "Runbook vận hành & Bảo trì",
   "category": "10_operations_infrastructure",
-  "description": "Tiêu chuẩn chuẩn hóa cho Runbook vận hành & Bảo trì. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "description": "Runbook vận hành & Bảo trì: quy định các yêu cầu triển khai và bằng chứng kiểm tra cụ thể; chỉ áp dụng khi phạm vi project liên quan.",
   "version": "1.1.0",
   "status": "active",
   "rules": [
     {
-      "title": "Xác định rõ cách tiếp cận cho runbook vận hành & bảo trì trước khi triển khai",
-      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Runbook vận hành & Bảo trì; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
+      "title": "Hướng dẫn thao tác có điều kiện kích hoạt",
+      "detail": "Mỗi runbook ghi dấu hiệu, prerequisite, quyền, lệnh, kết quả kỳ vọng và cách dừng an toàn. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Project ghi nhận rõ cách Runbook vận hành & Bảo trì được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
-      "example_bad": "Runbook vận hành & Bảo trì được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review.",
+      "example_good": "Runbook reconnect queue chỉ chạy khi lag threshold vượt.",
+      "example_bad": "Chỉ ghi “restart service nếu cần”.",
       "id": "R001"
     },
     {
-      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
-      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
+      "title": "Lệnh có phạm vi và khả năng rollback",
+      "detail": "Các bước thay đổi prod ghi target environment/namespace, dry-run, impact và rollback; lệnh xóa cần cảnh báo. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
       "layer": "process",
-      "severity": "should",
-      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
-      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán.",
+      "severity": "must",
+      "example_good": "kubectl rollout undo deployment/app -n prod có điều kiện rõ.",
+      "example_bad": "Dán lệnh DELETE không nêu môi trường.",
       "id": "R002"
     },
     {
-      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
-      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
+      "title": "Runbook được diễn tập",
+      "detail": "Thử hướng dẫn trên staging hoặc drill, sửa lệnh lỗi, ghi ngày xác minh và người phụ trách. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
-      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review.",
+      "example_good": "On-call mới theo runbook xử lý thử failover thành công.",
+      "example_bad": "Runbook 2 năm không cập nhật sau đổi hạ tầng.",
       "id": "R003"
+    },
+    {
+      "title": "Tham chiếu telemetry và escalation",
+      "detail": "Nêu link dashboard/log/query và tiêu chí nâng severity/chuyển tuyến khi thao tác không hiệu quả. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Nếu error rate không giảm sau 5 phút thì page backend lead.",
+      "example_bad": "Không có tiêu chí khi nào dừng retry và gọi người khác.",
+      "id": "R004"
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Đánh giá phạm vi áp dụng",
-      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Runbook vận hành & Bảo trì; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
+      "title": "Xác định phạm vi và rủi ro",
+      "description": "Liệt kê các luồng runbook vận hành & bảo trì đang dùng, nguồn dữ liệu/thiết kế và mức độ rủi ro để chọn rule áp dụng."
     },
     {
       "step": 2,
-      "title": "Áp dụng quy tắc",
-      "description": "Đưa các quy tắc Runbook vận hành & Bảo trì áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
+      "title": "Triển khai và review",
+      "description": "Ánh xạ từng rule với requirement, tài liệu kiến trúc, PR và người chịu trách nhiệm; review các cấu hình và failure path."
     },
     {
       "step": 3,
-      "title": "Xác minh tuân thủ",
-      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
+      "title": "Kiểm chứng và ghi nhận",
+      "description": "Chạy test cho trường hợp chuẩn và tình huống sai như example_bad; lưu kết quả pass/fail theo mã rule, ghi lý do exception nếu có."
     }
   ],
   "common_issues": [
     {
-      "issue": "Áp dụng Runbook vận hành & Bảo trì không nhất quán",
-      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
-      "solution": "Tham chiếu rõ STD-RUNBOOK trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
+      "issue": "Bỏ sót kiểm thử tình huống lỗi của runbook vận hành & bảo trì",
+      "cause": "Chỉ kiểm thử luồng thành công, chưa đưa example_bad vào bộ regression.",
+      "solution": "Tạo test case từ STD-RUNBOOK#R001..R004, chạy cả negative case trước release."
     },
     {
-      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
-      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
-      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
+      "issue": "Không có bằng chứng thực thi",
+      "cause": "Checklist không liên kết với cấu hình hoặc kết quả đo thực tế.",
+      "solution": "Đính kèm liên kết commit, test report, dashboard hoặc biên bản review theo mã rule."
     }
   ],
   "depends_on": [],

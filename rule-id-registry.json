@@ -693,6 +693,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Quản lý thay đổi phiên bản thiết kế"
       }
     ],
     "STD-DS": [
@@ -707,6 +711,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Version và migration token/component"
       }
     ],
     "STD-FEEDBACK": [
@@ -721,6 +729,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Phản hồi trạng thái thành công đúng thời điểm"
       }
     ],
     "STD-FORM": [
@@ -735,6 +747,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Input truy cập được bằng bàn phím"
       }
     ],
     "STD-UI-STATE": [
@@ -749,6 +765,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Làm rõ optimistic update và rollback"
       }
     ],
     "STD-UX": [
@@ -763,6 +783,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Nội dung hành động cụ thể"
       }
     ],
     "STD-WEB-ARCH": [
@@ -1203,6 +1227,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Hợp đồng module rõ và có test"
       }
     ],
     "STD-BE-AUTH": [
@@ -1285,6 +1313,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm soát tải xuống và vòng đời"
       }
     ],
     "STD-BE-HEALTH": [
@@ -1299,6 +1331,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Test hoạt động khi dependency gián đoạn"
       }
     ],
     "STD-BE-JOB": [
@@ -1313,6 +1349,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Quan sát lịch sử thực thi và kết quả"
       }
     ],
     "STD-BE-PERF": [
@@ -1327,6 +1367,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Đo hiệu suất trên dữ liệu đại diện"
       }
     ],
     "STD-BE-QUEUE": [
@@ -1341,6 +1385,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Giám sát độ trễ hàng đợi"
       }
     ],
     "STD-BE-SEC": [
@@ -1389,6 +1437,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm tra rollback qua fault injection"
       }
     ],
     "STD-BE-VALID": [
@@ -1403,6 +1455,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Không thay authorization bằng validation"
       }
     ],
     "STD-NEXT": [
@@ -2025,6 +2081,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm tra retention và xóa hợp lệ"
       }
     ],
     "STD-COST": [
@@ -2039,6 +2099,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Tối ưu dựa trên usage đo được"
       }
     ],
     "STD-DEPLOY": [
@@ -2053,6 +2117,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Audit quyền triển khai và thời điểm"
       }
     ],
     "STD-DR": [
@@ -2067,6 +2135,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Phân vai điều phối khi sự cố lớn"
       }
     ],
     "STD-IAC": [
@@ -2081,6 +2153,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Môi trường tạo lại được"
       }
     ],
     "STD-INCIDENT": [
@@ -2095,6 +2171,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Postmortem không quy lỗi cá nhân"
       }
     ],
     "STD-NET": [
@@ -2109,6 +2189,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Quan sát mạng theo luồng"
       }
     ],
     "STD-RUNBOOK": [
@@ -2123,6 +2207,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Tham chiếu telemetry và escalation"
       }
     ],
     "STD-SLO": [
@@ -2137,6 +2225,10 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Error budget tác động quyết định release"
       }
     ],
     "STD-PERF-TEST": [

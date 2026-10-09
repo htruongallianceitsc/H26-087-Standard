@@ -3,65 +3,74 @@
   "code": "STD-NET",
   "name": "Mạng, DNS, TLS & Bảo mật hạ tầng",
   "category": "10_operations_infrastructure",
-  "description": "Tiêu chuẩn chuẩn hóa cho Mạng, DNS, TLS & Bảo mật hạ tầng. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "description": "Mạng, DNS, TLS & Bảo mật hạ tầng: quy định các yêu cầu triển khai và bằng chứng kiểm tra cụ thể; chỉ áp dụng khi phạm vi project liên quan.",
   "version": "1.1.0",
   "status": "active",
   "rules": [
     {
-      "title": "Xác định rõ cách tiếp cận cho mạng, DNS, TLS & bảo mật hạ tầng trước khi triển khai",
-      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Mạng, DNS, TLS & Bảo mật hạ tầng; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
+      "title": "Mặc định giới hạn truy cập mạng",
+      "detail": "Deny-by-default ingress/egress theo service/port; DB/cache chỉ private network; public endpoint qua gateway. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Project ghi nhận rõ cách Mạng, DNS, TLS & Bảo mật hạ tầng được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
-      "example_bad": "Mạng, DNS, TLS & Bảo mật hạ tầng được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review.",
+      "example_good": "PostgreSQL chỉ cho app subnet trên port 5432.",
+      "example_bad": "DB mở 0.0.0.0/0 để tiện debug.",
       "id": "R001"
     },
     {
-      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
-      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
+      "title": "Mã hóa kết nối và quản lý chứng chỉ",
+      "detail": "TLS cho traffic không tin cậy, xác minh certificate, rotation trước hết hạn và HSTS khi áp dụng. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
       "layer": "process",
-      "severity": "should",
-      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
-      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán.",
+      "severity": "must",
+      "example_good": "Gateway TLS1.2+ với cảnh báo certificate expiry.",
+      "example_bad": "Disable certificate verification trong production.",
       "id": "R002"
     },
     {
-      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
-      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
+      "title": "Bảo vệ dịch vụ trước lạm dụng",
+      "detail": "Rate limiting, request size, connection timeout, WAF/DDoS theo threat model và đo false positive. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
-      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review.",
+      "example_good": "Limit login per IP/account, có 429 và Retry-After.",
+      "example_bad": "API public nhận body vô hạn không giới hạn tốc độ.",
       "id": "R003"
+    },
+    {
+      "title": "Quan sát mạng theo luồng",
+      "detail": "Log luồng bị chặn và latency/error ở edge; định nghĩa security group và DNS change traceable. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Dashboard theo dõi 5xx gateway và connection reset.",
+      "example_bad": "Không phân biệt lỗi mạng với lỗi ứng dụng.",
+      "id": "R004"
     }
   ],
   "integration_guide": [
     {
       "step": 1,
-      "title": "Đánh giá phạm vi áp dụng",
-      "description": "Kiểm tra nền tảng project, requirement, kiến trúc và các điều kiện áp dụng của Mạng, DNS, TLS & Bảo mật hạ tầng; ghi nhận trường hợp loại trừ và override đã được phê duyệt."
+      "title": "Xác định phạm vi và rủi ro",
+      "description": "Liệt kê các luồng mạng, dns, tls & bảo mật hạ tầng đang dùng, nguồn dữ liệu/thiết kế và mức độ rủi ro để chọn rule áp dụng."
     },
     {
       "step": 2,
-      "title": "Áp dụng quy tắc",
-      "description": "Đưa các quy tắc Mạng, DNS, TLS & Bảo mật hạ tầng áp dụng vào requirement, thiết kế, triển khai và checklist review; liên kết requirement và code liên quan khi phù hợp."
+      "title": "Triển khai và review",
+      "description": "Ánh xạ từng rule với requirement, tài liệu kiến trúc, PR và người chịu trách nhiệm; review các cấu hình và failure path."
     },
     {
       "step": 3,
-      "title": "Xác minh tuân thủ",
-      "description": "Review bằng chứng, chạy các kiểm tra tự động/thủ công liên quan, ghi nhận lỗi, ngoại lệ được phê duyệt và công việc theo dõi trước khi hoàn tất."
+      "title": "Kiểm chứng và ghi nhận",
+      "description": "Chạy test cho trường hợp chuẩn và tình huống sai như example_bad; lưu kết quả pass/fail theo mã rule, ghi lý do exception nếu có."
     }
   ],
   "common_issues": [
     {
-      "issue": "Áp dụng Mạng, DNS, TLS & Bảo mật hạ tầng không nhất quán",
-      "cause": "Project profile chưa tham chiếu rõ standard/capability áp dụng hoặc chưa chỉ định owner.",
-      "solution": "Tham chiếu rõ STD-NET trong project profile, chỉ định owner và kiểm tra tuân thủ trước khi phê duyệt thay đổi."
+      "issue": "Bỏ sót kiểm thử tình huống lỗi của mạng, dns, tls & bảo mật hạ tầng",
+      "cause": "Chỉ kiểm thử luồng thành công, chưa đưa example_bad vào bộ regression.",
+      "solution": "Tạo test case từ STD-NET#R001..R004, chạy cả negative case trước release."
     },
     {
-      "issue": "Quy tắc đã được tài liệu hóa nhưng chưa có cơ chế xác minh",
-      "cause": "Chưa có test, lint, checklist, bằng chứng review hoặc kiểm tra vận hành gắn với quy tắc.",
-      "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
+      "issue": "Không có bằng chứng thực thi",
+      "cause": "Checklist không liên kết với cấu hình hoặc kết quả đo thực tế.",
+      "solution": "Đính kèm liên kết commit, test report, dashboard hoặc biên bản review theo mã rule."
     }
   ],
   "depends_on": [],
