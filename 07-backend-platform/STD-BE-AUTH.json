@@ -3,36 +3,91 @@
   "code": "STD-BE-AUTH",
   "name": "Xác thực & Phân quyền",
   "category": "07_backend_platform",
-  "description": "Tiêu chuẩn chuẩn hóa cho Xác thực & Phân quyền. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "description": "Tiêu chuẩn chuẩn hóa cho Xác thực & Phân quyền. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này. Nội dung được cụ thể hóa bằng quy tắc kiểm chứng được, negative test và ví dụ triển khai.",
   "version": "1.1.0",
   "status": "active",
   "rules": [
     {
-      "title": "Xác định rõ cách tiếp cận cho xác thực & phân quyền trước khi triển khai",
-      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Xác thực & Phân quyền; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
+      "title": "Xác thực access token/session theo issuer và audience",
+      "detail": "Mỗi request xác thực chữ ký, thuật toán allowlist, issuer, audience, nbf, exp và clock skew nhỏ được cấu hình; không tin claim chưa xác minh.",
       "layer": "security",
       "severity": "must",
-      "example_good": "Project ghi nhận rõ cách Xác thực & Phân quyền được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
-      "example_bad": "Xác thực & Phân quyền được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review.",
+      "example_good": "JWT bearer middleware từ chối token sai aud và hết hạn.",
+      "example_bad": "Chỉ decode base64 JWT rồi tin role claim.",
       "id": "R001"
     },
     {
-      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
-      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
+      "title": "Ủy quyền trên resource và tenant",
+      "detail": "Kiểm tra permission + owner/tenant trong service/query, mặc định từ chối; route guard client không thay thế kiểm tra này.",
       "layer": "security",
       "severity": "should",
-      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
-      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán.",
+      "example_good": "GET /documents/{id} buộc tenantId từ principal trùng bản ghi.",
+      "example_bad": "Bất kỳ user login đều đọc được document ID khác.",
       "id": "R002"
     },
     {
-      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
-      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
+      "title": "Lưu mật khẩu bằng KDF chuyên dụng",
+      "detail": "Với mật khẩu nội bộ dùng Argon2id hoặc lựa chọn KDF được phê duyệt, salt riêng, tham số cost phù hợp và chính sách rehash; không dùng MD5/SHA256 đơn thuần.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
-      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review.",
+      "example_good": "PasswordHash được tạo bằng Argon2id và nâng tham số khi login.",
+      "example_bad": "SHA256(password) lưu vào DB.",
       "id": "R003"
+    },
+    {
+      "id": "R004",
+      "layer": [
+        "security"
+      ],
+      "severity": "must",
+      "title": "Giới hạn đăng nhập và tránh enumeration",
+      "detail": "Rate limit theo nhiều chiều, backoff/lockout cân bằng chống DoS; response quên mật khẩu không tiết lộ tài khoản tồn tại; log sự kiện rủi ro.",
+      "example_good": "Reset password luôn trả phản hồi chung, email chỉ gửi nếu tồn tại.",
+      "example_bad": "Trả “email không đăng ký” tại API reset."
+    },
+    {
+      "id": "R005",
+      "layer": [
+        "security"
+      ],
+      "severity": "must",
+      "title": "Quản lý refresh/session và thu hồi",
+      "detail": "Refresh token cần random mạnh, lưu hash tại server khi dùng opaque token, có rotation/reuse detection theo kiến trúc; logout/revoke phải vô hiệu hóa refresh; kiểm thử concurrent refresh.",
+      "example_good": "Refresh lần 2 bằng token cũ bị từ chối và được ghi nhận.",
+      "example_bad": "Refresh token không hạn dùng và không thể thu hồi."
+    },
+    {
+      "id": "R006",
+      "layer": [
+        "security"
+      ],
+      "severity": "should",
+      "title": "Áp dụng MFA cho hành động nhạy cảm",
+      "detail": "Với thao tác tăng quyền, đổi phương thức xác thực hoặc thanh toán rủi ro cao, xác thực bổ sung theo risk model; OTP có TTL, one-time và rate limit.",
+      "example_good": "Đổi email yêu cầu step-up, mã OTP chỉ dùng một lần.",
+      "example_bad": "OTP 6 số dùng lại vô hạn trong ngày."
+    },
+    {
+      "id": "R007",
+      "layer": [
+        "security"
+      ],
+      "severity": "should",
+      "title": "Không trả credential/secret trong lỗi và log",
+      "detail": "Response auth dùng code ổn định; không ghi password, OTP, token; audit đăng nhập/thu hồi với thời điểm, actor và requestId.",
+      "example_good": "Auth log chứa outcome và userId giả danh, không có Authorization header.",
+      "example_bad": "Log toàn bộ request body đăng nhập."
+    },
+    {
+      "id": "R008",
+      "layer": [
+        "security"
+      ],
+      "severity": "should",
+      "title": "Ma trận kiểm thử auth/permission",
+      "detail": "Test invalid signature, wrong aud, expired, revoked, concurrent refresh, tenant mismatch và privilege escalation ở boundary server.",
+      "example_good": "Contract test user thường POST /admin/roles nhận 403.",
+      "example_bad": "Chỉ test login đúng mật khẩu."
     }
   ],
   "integration_guide": [

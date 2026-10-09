@@ -347,6 +347,26 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm soát truy cập PII theo mục đích"
+      },
+      {
+        "id": "R005",
+        "original_title": "Ẩn PII trong log và môi trường thử nghiệm"
+      },
+      {
+        "id": "R006",
+        "original_title": "Minh bạch và lựa chọn người dùng"
+      },
+      {
+        "id": "R007",
+        "original_title": "Đánh giá bên thứ ba và chuyển dữ liệu"
+      },
+      {
+        "id": "R008",
+        "original_title": "Xử lý sự cố và yêu cầu chủ thể dữ liệu"
       }
     ],
     "STD-RES": [
@@ -379,6 +399,22 @@
       {
         "id": "R004",
         "original_title": "Thực hiện threat model cho luồng nhạy cảm và review các phát hiện về dependency/security"
+      },
+      {
+        "id": "R005",
+        "original_title": "Mặc định từ chối và phân quyền tối thiểu"
+      },
+      {
+        "id": "R006",
+        "original_title": "Bảo vệ dữ liệu khi truyền và lưu"
+      },
+      {
+        "id": "R007",
+        "original_title": "Không tiết lộ nội bộ khi thất bại"
+      },
+      {
+        "id": "R008",
+        "original_title": "Kiểm thử abuse-case theo ranh giới tin cậy"
       }
     ],
     "STD-API-HTTP": [
@@ -491,6 +527,26 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Mọi thay đổi nguy hiểm có kế hoạch rollback/forward-fix"
+      },
+      {
+        "id": "R005",
+        "original_title": "Kiểm soát lock và giao dịch DDL"
+      },
+      {
+        "id": "R006",
+        "original_title": "Đảm bảo tương thích API và code version cũ"
+      },
+      {
+        "id": "R007",
+        "original_title": "Đối soát dữ liệu sau migration"
+      },
+      {
+        "id": "R008",
+        "original_title": "Quan sát và cảnh báo trong rollout"
       }
     ],
     "STD-DATA-TX": [
@@ -603,6 +659,26 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Thông báo lỗi và trạng thái dễ tiếp cận"
+      },
+      {
+        "id": "R005",
+        "original_title": "Đảm bảo tương phản và trạng thái focus"
+      },
+      {
+        "id": "R006",
+        "original_title": "Tôn trọng resize và chuyển động giảm"
+      },
+      {
+        "id": "R007",
+        "original_title": "Hỗ trợ touch target và thời hạn tương tác"
+      },
+      {
+        "id": "R008",
+        "original_title": "Kiểm thử với assistive technology và người dùng"
       }
     ],
     "STD-DESIGN": [
@@ -723,6 +799,22 @@
       {
         "id": "R004",
         "original_title": "Phân quyền mọi thao tác được bảo vệ ở phía server; route guard chỉ phục vụ UX"
+      },
+      {
+        "id": "R005",
+        "original_title": "Không leak trạng thái phiên qua URL"
+      },
+      {
+        "id": "R006",
+        "original_title": "Logout và đổi tài khoản làm sạch state"
+      },
+      {
+        "id": "R007",
+        "original_title": "Xử lý lỗi thân thiện, không lộ chi tiết"
+      },
+      {
+        "id": "R008",
+        "original_title": "Kiểm thử session đa tab và cạnh tranh"
       }
     ],
     "STD-WEB-FORM": [
@@ -827,6 +919,26 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Bảo vệ cookie và token trình duyệt"
+      },
+      {
+        "id": "R005",
+        "original_title": "Cấu hình CORS và nhúng trang"
+      },
+      {
+        "id": "R006",
+        "original_title": "Không lộ dữ liệu qua cache/URL"
+      },
+      {
+        "id": "R007",
+        "original_title": "Bảo vệ dependency frontend"
+      },
+      {
+        "id": "R008",
+        "original_title": "Kiểm thử bảo mật browser"
       }
     ],
     "STD-WEB-SEO": [
@@ -1021,6 +1133,26 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm tra deep link và app link"
+      },
+      {
+        "id": "R005",
+        "original_title": "Bảo vệ dữ liệu nhạy cảm khi background"
+      },
+      {
+        "id": "R006",
+        "original_title": "Giới hạn dữ liệu lưu offline"
+      },
+      {
+        "id": "R007",
+        "original_title": "Bảo vệ release và cấu hình debug"
+      },
+      {
+        "id": "R008",
+        "original_title": "Kiểm thử threat mobile thực tế"
       }
     ],
     "STD-MOB-STORE": [
@@ -1085,6 +1217,26 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Giới hạn đăng nhập và tránh enumeration"
+      },
+      {
+        "id": "R005",
+        "original_title": "Quản lý refresh/session và thu hồi"
+      },
+      {
+        "id": "R006",
+        "original_title": "Áp dụng MFA cho hành động nhạy cảm"
+      },
+      {
+        "id": "R007",
+        "original_title": "Không trả credential/secret trong lỗi và log"
+      },
+      {
+        "id": "R008",
+        "original_title": "Ma trận kiểm thử auth/permission"
       }
     ],
     "STD-BE-CONCUR": [
@@ -1099,6 +1251,26 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Bảo đảm không xử lý trùng consumer"
+      },
+      {
+        "id": "R005",
+        "original_title": "Outbox cho giao dịch DB và event"
+      },
+      {
+        "id": "R006",
+        "original_title": "Giới hạn concurrency và timeout"
+      },
+      {
+        "id": "R007",
+        "original_title": "Định nghĩa thứ tự và ownership khi bắt buộc"
+      },
+      {
+        "id": "R008",
+        "original_title": "Stress-test race condition theo invariant"
       }
     ],
     "STD-BE-FILE": [
@@ -1183,6 +1355,26 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "An toàn với truy vấn và dữ liệu"
+      },
+      {
+        "id": "R005",
+        "original_title": "Bảo vệ outbound request và SSRF"
+      },
+      {
+        "id": "R006",
+        "original_title": "Quản lý secret và khóa"
+      },
+      {
+        "id": "R007",
+        "original_title": "Cấu hình CORS, header và transport"
+      },
+      {
+        "id": "R008",
+        "original_title": "Kiểm thử endpoint khi không có quyền"
       }
     ],
     "STD-BE-TX": [
@@ -1591,6 +1783,22 @@
       {
         "id": "R004",
         "original_title": "Tách điều hướng phía client khỏi quyết định xác thực có thẩm quyền ở server"
+      },
+      {
+        "id": "R005",
+        "original_title": "Đăng ký và xác minh danh tính theo chính sách"
+      },
+      {
+        "id": "R006",
+        "original_title": "Quản lý thiết bị, logout và revoke"
+      },
+      {
+        "id": "R007",
+        "original_title": "Bảo vệ luồng khôi phục tài khoản"
+      },
+      {
+        "id": "R008",
+        "original_title": "Ràng buộc kết quả test với AC"
       }
     ],
     "CAP-CHAT": [
@@ -1659,6 +1867,26 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Đối soát ledger và provider"
+      },
+      {
+        "id": "R005",
+        "original_title": "Bảo vệ dữ liệu thẻ và thông tin nhạy cảm"
+      },
+      {
+        "id": "R006",
+        "original_title": "Ràng buộc tiền tệ và chống sửa số tiền"
+      },
+      {
+        "id": "R007",
+        "original_title": "Quy trình hoàn tiền và tranh chấp có kiểm soát"
+      },
+      {
+        "id": "R008",
+        "original_title": "Thử nghiệm lỗi tích hợp và kịch bản khôi phục"
       }
     ],
     "CAP-PERM": [
@@ -1677,6 +1905,22 @@
       {
         "id": "R004",
         "original_title": "Theo dõi thay đổi role nhạy cảm trong audit log"
+      },
+      {
+        "id": "R005",
+        "original_title": "Ngăn tự nâng đặc quyền"
+      },
+      {
+        "id": "R006",
+        "original_title": "Chuẩn hóa mã quyền giữa backend và UI"
+      },
+      {
+        "id": "R007",
+        "original_title": "Phân tách trách nhiệm cho tác vụ quan trọng"
+      },
+      {
+        "id": "R008",
+        "original_title": "Kiểm thử ma trận vai trò và đối tượng"
       }
     ],
     "CAP-PROFILE": [

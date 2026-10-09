@@ -3,36 +3,91 @@
   "code": "CAP-PAYMENT",
   "name": "Thanh toán & Lập hóa đơn",
   "category": "09_reusable_capabilities",
-  "description": "Tiêu chuẩn chuẩn hóa cho Thanh toán & Lập hóa đơn. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "description": "Tiêu chuẩn chuẩn hóa cho Thanh toán & Lập hóa đơn. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này. Nội dung được cụ thể hóa bằng quy tắc kiểm chứng được, negative test và ví dụ triển khai.",
   "version": "1.1.0",
   "status": "active",
   "rules": [
     {
-      "title": "Xác định rõ cách tiếp cận cho thanh toán & lập hóa đơn trước khi triển khai",
-      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Thanh toán & Lập hóa đơn; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
+      "title": "Bảo vệ lệnh thanh toán khỏi xử lý trùng",
+      "detail": "Mỗi yêu cầu tạo/thu tiền có idempotency key và khóa duy nhất phía server; retry cùng payload phải trả kết quả nhất quán, không phát sinh thêm giao dịch.",
       "layer": "process",
       "severity": "must",
-      "example_good": "Project ghi nhận rõ cách Thanh toán & Lập hóa đơn được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
-      "example_bad": "Thanh toán & Lập hóa đơn được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review.",
+      "example_good": "POST /payments với cùng key chỉ có 1 charge record.",
+      "example_bad": "Double-click Pay tạo 2 khoản thu.",
       "id": "R001"
     },
     {
-      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
-      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
+      "title": "Xác minh webhook bằng chữ ký và chống replay",
+      "detail": "Xác thực signature trên raw body, timestamp/window và event ID; từ chối signature sai; lưu event ID unique trước xử lý; không tin trạng thái trong redirect URL.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
-      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán.",
+      "example_good": "Webhook signed hợp lệ cập nhật order đúng một lần.",
+      "example_bad": "Return URL ?status=success đánh dấu đã trả tiền.",
       "id": "R002"
     },
     {
-      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
-      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
+      "title": "Mô hình trạng thái thanh toán tường minh",
+      "detail": "Trạng thái pending/authorized/captured/failed/refunded phải có transition table; xử lý event trễ/out-of-order và xác minh trạng thái từ provider khi cần.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
-      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review.",
+      "example_good": "Refund chỉ được tạo từ captured theo rule nghiệp vụ.",
+      "example_bad": "Event pending muộn ghi đè trạng thái paid.",
       "id": "R003"
+    },
+    {
+      "id": "R004",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "title": "Đối soát ledger và provider",
+      "detail": "Lưu provider transaction ID, amount, currency, fee, thời gian và status; chạy đối soát kỳ và phát hiện mismatch/duplicate; không dùng chỉ front-end làm nguồn số tiền.",
+      "example_good": "Daily reconciliation phát hiện captured ở PSP nhưng order vẫn pending.",
+      "example_bad": "Chỉ dựa vào callback trình duyệt."
+    },
+    {
+      "id": "R005",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "title": "Bảo vệ dữ liệu thẻ và thông tin nhạy cảm",
+      "detail": "Ưu tiên hosted checkout/tokenization của PSP; không ghi PAN/CVV vào API/log/DB; đánh giá phạm vi PCI DSS theo mô hình tích hợp.",
+      "example_good": "UI redirect sang hosted checkout và chỉ lưu PSP token.",
+      "example_bad": "API tự nhận và log CVV thẻ."
+    },
+    {
+      "id": "R006",
+      "layer": [
+        "process"
+      ],
+      "severity": "should",
+      "title": "Ràng buộc tiền tệ và chống sửa số tiền",
+      "detail": "Server tính amount từ đơn đã khóa giá, lưu tiền ở đơn vị nhỏ nhất hoặc decimal theo currency; client chỉ gửi orderId, không quyết định amount phải thu.",
+      "example_good": "Charge amount lấy từ order snapshot lưu server.",
+      "example_bad": "POST {amount:1000} do client tùy chỉnh."
+    },
+    {
+      "id": "R007",
+      "layer": [
+        "process"
+      ],
+      "severity": "should",
+      "title": "Quy trình hoàn tiền và tranh chấp có kiểm soát",
+      "detail": "Refund có permission, trạng thái, giới hạn tổng đã capture, chống trùng và audit actor; ghi nhận chargeback/dispute và cập nhật theo webhook được xác minh.",
+      "example_good": "Hai refund đồng thời không vượt captured_amount.",
+      "example_bad": "API hoàn tiền nhận bất kỳ số tiền do user gửi."
+    },
+    {
+      "id": "R008",
+      "layer": [
+        "process"
+      ],
+      "severity": "should",
+      "title": "Thử nghiệm lỗi tích hợp và kịch bản khôi phục",
+      "detail": "QA mô phỏng timeout sau charge, webhook retry/out-of-order, PSP 5xx, duplicate clicks, reversal và reconciliation; kiểm tra eventual consistency.",
+      "example_good": "Test timeout rồi retry cùng key, ledger vẫn có một payment.",
+      "example_bad": "Chỉ kiểm thử thanh toán thành công."
     }
   ],
   "integration_guide": [

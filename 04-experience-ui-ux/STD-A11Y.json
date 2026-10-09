@@ -3,36 +3,91 @@
   "code": "STD-A11Y",
   "name": "Khả năng tiếp cận & Thiết kế hòa nhập",
   "category": "04_experience_ui_ux",
-  "description": "Tiêu chuẩn chuẩn hóa cho Khả năng tiếp cận & Thiết kế hòa nhập. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "description": "Tiêu chuẩn chuẩn hóa cho Khả năng tiếp cận & Thiết kế hòa nhập. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này. Nội dung được cụ thể hóa bằng quy tắc kiểm chứng được, negative test và ví dụ triển khai.",
   "version": "1.1.0",
   "status": "active",
   "rules": [
     {
-      "title": "Xác định rõ cách tiếp cận cho khả năng tiếp cận & thiết kế hòa nhập trước khi triển khai",
-      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Khả năng tiếp cận & Thiết kế hòa nhập; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
+      "title": "Đáp ứng WCAG 2.2 AA theo phạm vi đã chọn",
+      "detail": "Xác định mục tiêu WCAG 2.2 AA cho web/UI tương ứng và lập ma trận success criteria; kiểm thử tự động kết hợp kiểm thử thủ công vì scanner không chứng minh toàn bộ tuân thủ.",
       "layer": "ui",
       "severity": "must",
-      "example_good": "Project ghi nhận rõ cách Khả năng tiếp cận & Thiết kế hòa nhập được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
-      "example_bad": "Khả năng tiếp cận & Thiết kế hòa nhập được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review.",
+      "example_good": "Checklist 2.4.7 Focus Visible và 2.5.8 Target Size theo phiên bản áp dụng.",
+      "example_bad": "Coi điểm Lighthouse cao là chứng nhận WCAG.",
       "id": "R001"
     },
     {
-      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
-      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
+      "title": "Điều hướng bàn phím đầy đủ",
+      "detail": "Mọi chức năng có thể sử dụng bằng keyboard, focus order logic, không keyboard trap; modal giữ focus hợp lý và trả focus khi đóng.",
       "layer": "ui",
       "severity": "should",
-      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
-      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán.",
+      "example_good": "Tab qua form, Enter kích hoạt, Esc đóng dialog và trả focus.",
+      "example_bad": "Modal không thể thoát nếu không dùng chuột.",
       "id": "R002"
     },
     {
-      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
-      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
+      "title": "Tên và vai trò được đọc bởi assistive technology",
+      "detail": "Form có label gắn với input; icon button có accessible name; thành phần động khai báo role/state đúng; dùng HTML semantic trước ARIA.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
-      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review.",
+      "example_good": "<button aria-label=\"Đóng\">×</button>.",
+      "example_bad": "<div onclick> không role, tabindex hay name.",
       "id": "R003"
+    },
+    {
+      "id": "R004",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "title": "Thông báo lỗi và trạng thái dễ tiếp cận",
+      "detail": "Field lỗi gắn aria-describedby/invalid; thay đổi trạng thái quan trọng dùng live region không spam; focus tới heading/lỗi đầu tiên khi thích hợp.",
+      "example_good": "Lỗi email được screen reader đọc cùng trường email.",
+      "example_bad": "Toast tự biến mất nhưng screen reader không biết."
+    },
+    {
+      "id": "R005",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "title": "Đảm bảo tương phản và trạng thái focus",
+      "detail": "Văn bản thường tối thiểu 4.5:1, chữ lớn 3:1 theo WCAG AA; focus indicator nhìn thấy, không chỉ dùng màu truyền tải lỗi.",
+      "example_good": "Label có contrast 4.8:1 và lỗi kèm icon/chữ.",
+      "example_bad": "Placeholder contrast 2:1 là thông tin duy nhất."
+    },
+    {
+      "id": "R006",
+      "layer": [
+        "process"
+      ],
+      "severity": "should",
+      "title": "Tôn trọng resize và chuyển động giảm",
+      "detail": "Giao diện hỗ trợ zoom/reflow theo tiêu chí áp dụng, không mất chức năng khi tăng cỡ chữ; animations nhạy cảm có prefers-reduced-motion.",
+      "example_good": "@media (prefers-reduced-motion: reduce) tắt chuyển động không cần thiết.",
+      "example_bad": "Cố định height làm cắt nội dung khi zoom 200%."
+    },
+    {
+      "id": "R007",
+      "layer": [
+        "process"
+      ],
+      "severity": "should",
+      "title": "Hỗ trợ touch target và thời hạn tương tác",
+      "detail": "Với các control phù hợp áp dụng WCAG 2.2 2.5.8: kích thước tối thiểu 24×24 CSS px hoặc ngoại lệ khoảng cách; người dùng có cách kéo dài timeout khi cần.",
+      "example_good": "Nút icon 32×32 CSS px với vùng chạm rõ.",
+      "example_bad": "Nút đóng dialog chỉ 12×12 px sát cạnh nút khác."
+    },
+    {
+      "id": "R008",
+      "layer": [
+        "process"
+      ],
+      "severity": "should",
+      "title": "Kiểm thử với assistive technology và người dùng",
+      "detail": "Smoke test keyboard, screen reader (NVDA/VoiceOver/TalkBack phù hợp platform), zoom và thiết bị cảm ứng; liên kết lỗi với screen/component, mức ưu tiên và bằng chứng fix.",
+      "example_good": "QA test tạo đơn bằng keyboard và NVDA, lưu build + kết quả.",
+      "example_bad": "Không bao giờ thử bằng screen reader."
     }
   ],
   "integration_guide": [

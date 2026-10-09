@@ -3,36 +3,91 @@
   "code": "STD-MOB-SEC",
   "name": "Bảo mật ứng dụng Mobile",
   "category": "06_mobile_platform",
-  "description": "Tiêu chuẩn chuẩn hóa cho Bảo mật ứng dụng Mobile. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "description": "Tiêu chuẩn chuẩn hóa cho Bảo mật ứng dụng Mobile. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này. Nội dung được cụ thể hóa bằng quy tắc kiểm chứng được, negative test và ví dụ triển khai.",
   "version": "1.1.0",
   "status": "active",
   "rules": [
     {
-      "title": "Xác định rõ cách tiếp cận cho bảo mật ứng dụng Mobile trước khi triển khai",
-      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Bảo mật ứng dụng Mobile; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
+      "title": "Lưu token nhạy cảm vào kho bảo mật của OS",
+      "detail": "Với iOS dùng Keychain, Android dùng Keystore-backed storage; không lưu refresh token trong SharedPreferences plaintext hoặc log; kiểm thử reinstall/logout.",
       "layer": "security",
       "severity": "must",
-      "example_good": "Project ghi nhận rõ cách Bảo mật ứng dụng Mobile được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
-      "example_bad": "Bảo mật ứng dụng Mobile được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review.",
+      "example_good": "Flutter secure storage dùng Keychain/Keystore cho refresh token.",
+      "example_bad": "Lưu refreshToken vào SharedPreferences dạng JSON.",
       "id": "R001"
     },
     {
-      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
-      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
+      "title": "Xác minh TLS và endpoint",
+      "detail": "Chỉ gọi HTTPS production, không bỏ qua certificate validation; certificate pinning chỉ khi có kế hoạch xoay khóa và recovery.",
       "layer": "security",
       "severity": "should",
-      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
-      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán.",
+      "example_good": "HttpClient dùng TLS mặc định và build release cấm badCertificateCallback.",
+      "example_bad": "badCertificateCallback luôn return true.",
       "id": "R002"
     },
     {
-      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
-      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
+      "title": "Không hardcode bí mật máy chủ vào ứng dụng",
+      "detail": "Mobile binary được xem là public; không chứa API secret đặc quyền; backend cấp token scoped sau auth; scan string trong APK/IPA.",
       "layer": "process",
       "severity": "should",
-      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
-      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review.",
+      "example_good": "App dùng public client ID và backend giữ secret.",
+      "example_bad": "Service account JSON private key đóng vào assets.",
       "id": "R003"
+    },
+    {
+      "id": "R004",
+      "layer": [
+        "security"
+      ],
+      "severity": "must",
+      "title": "Kiểm tra deep link và app link",
+      "detail": "Chỉ xử lý scheme/host/path allowlist, validate tham số, không coi URL callback là bằng chứng login; verify Android App Links/iOS Universal Links bằng domain association.",
+      "example_good": "Link /order/123 mở app và server kiểm tra quyền với 123.",
+      "example_bad": "Link custom scheme bất kỳ cấp session từ query token."
+    },
+    {
+      "id": "R005",
+      "layer": [
+        "security"
+      ],
+      "severity": "must",
+      "title": "Bảo vệ dữ liệu nhạy cảm khi background",
+      "detail": "Ẩn thông tin nhạy cảm khỏi app switcher khi cần, tránh push chứa PII, xóa cache sau logout và khi chuyển account; kiểm thử resume/offline.",
+      "example_good": "Notification chỉ ghi “Bạn có thông báo mới” với tài liệu nhạy cảm.",
+      "example_bad": "Push hiện toàn bộ thông tin giấy tờ trên lock screen."
+    },
+    {
+      "id": "R006",
+      "layer": [
+        "security"
+      ],
+      "severity": "should",
+      "title": "Giới hạn dữ liệu lưu offline",
+      "detail": "Mã hóa DB/cache có PII nếu lưu offline; xác định TTL, scope account và cleanup; không tự log toàn bộ response API khi debug production.",
+      "example_good": "Xóa SQLite cache theo userId sau logout.",
+      "example_bad": "Account B dùng lại dữ liệu offline account A."
+    },
+    {
+      "id": "R007",
+      "layer": [
+        "security"
+      ],
+      "severity": "should",
+      "title": "Bảo vệ release và cấu hình debug",
+      "detail": "Release vô hiệu debug/test bypass, network inspector và thông tin môi trường nội bộ; bật các cơ chế hardening phù hợp stack, review quyền app.",
+      "example_good": "Build pipeline từ chối android:debuggable=true ở release.",
+      "example_bad": "Production trỏ staging với cờ bỏ qua OTP."
+    },
+    {
+      "id": "R008",
+      "layer": [
+        "security"
+      ],
+      "severity": "should",
+      "title": "Kiểm thử threat mobile thực tế",
+      "detail": "Test deep-link spoofing, thiết bị offline, restore backup, token expired, mất thiết bị và notification preview theo threat model.",
+      "example_good": "QA chứng minh URL độc hại không mở trang đặc quyền.",
+      "example_bad": "Chỉ test điều hướng happy path."
     }
   ],
   "integration_guide": [

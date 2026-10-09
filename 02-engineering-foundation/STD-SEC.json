@@ -3,57 +3,101 @@
   "code": "STD-SEC",
   "name": "Nguyên tắc bảo mật ứng dụng",
   "category": "02_engineering_foundation",
-  "description": "Áp dụng nguyên tắc đặc quyền tối thiểu và secure-by-default.",
+  "description": "Áp dụng nguyên tắc đặc quyền tối thiểu và secure-by-default. Nội dung được cụ thể hóa bằng quy tắc kiểm chứng được, negative test và ví dụ triển khai.",
   "version": "1.1.0",
   "status": "active",
   "rules": [
     {
       "title": "Thực thi authentication và authorization tại ranh giới server đáng tin cậy",
-      "detail": "Thực thi authentication và authorization tại ranh giới server đáng tin cậy. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Mỗi request tới dữ liệu được bảo vệ phải xác thực danh tính và kiểm tra quyền theo hành động + tài nguyên tại server; thử truy cập ID thuộc tenant/người khác phải bị từ chối, kể cả khi UI ẩn nút.",
       "layer": [
         "process",
         "security"
       ],
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Thực thi authentication và authorization tại ranh giới server đáng tin cậy.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "GET /orders/42 kiểm tra ownerId hoặc quyền đọc tenant trước khi trả 200.",
+      "example_bad": "GET /orders/42 chỉ kiểm tra token hợp lệ rồi trả đơn của người khác.",
       "id": "R001"
     },
     {
       "title": "Bảo vệ credential và secret bằng hệ thống quản lý secret chuyên dụng",
-      "detail": "Bảo vệ credential và secret bằng hệ thống quản lý secret chuyên dụng. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Secret, private key và connection string phải lấy từ secret store hoặc biến môi trường được bảo vệ; bật secret scanning trong CI; không log Authorization, OTP hay refresh token.",
       "layer": [
         "process",
         "security"
       ],
       "severity": "must",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Bảo vệ credential và secret bằng hệ thống quản lý secret chuyên dụng.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Pipeline quét secret và chặn commit chứa API key mẫu kiểm thử.",
+      "example_bad": "Đưa API key vào appsettings.json và commit lên Git.",
       "id": "R002"
     },
     {
       "title": "Validation input không đáng tin cậy và encode output theo đúng ngữ cảnh đích",
-      "detail": "Validation input không đáng tin cậy và encode output theo đúng ngữ cảnh đích. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Validate kiểu, độ dài, miền giá trị và giới hạn payload tại trust boundary; dùng query tham số hóa và encode output khi render HTML; có test SQLi/XSS.",
       "layer": [
         "process",
         "security"
       ],
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Validation input không đáng tin cậy và encode output theo đúng ngữ cảnh đích.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "Truy vấn bằng parameter $1; UI render text bằng textContent.",
+      "example_bad": "Nối chuỗi input vào SQL hoặc innerHTML trực tiếp.",
       "id": "R003"
     },
     {
       "title": "Thực hiện threat model cho luồng nhạy cảm và review các phát hiện về dependency/security",
-      "detail": "Thực hiện threat model cho luồng nhạy cảm và review các phát hiện về dependency/security. Xác minh: kiểm tra requirement, phần triển khai hoặc kiểm tra tự động liên quan; ghi nhận bằng chứng tuân thủ và giải thích các sai lệch có lý do chính đáng.",
+      "detail": "Với thay đổi auth, payment, upload và dữ liệu nhạy cảm, ghi nhận tài sản, ranh giới tin cậy, lạm dụng, biện pháp giảm thiểu; CI quét dependency và xử lý phát hiện nghiêm trọng trước phát hành.",
       "layer": [
         "process",
         "security"
       ],
       "severity": "should",
-      "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Thực hiện threat model cho luồng nhạy cảm và review các phát hiện về dependency/security.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "example_good": "PR thanh toán có sơ đồ luồng dữ liệu và checklist abuse-case.",
+      "example_bad": "Bỏ qua cảnh báo lỗ hổng mức critical mà không có đánh giá rủi ro.",
       "id": "R004"
+    },
+    {
+      "id": "R005",
+      "layer": [
+        "security"
+      ],
+      "severity": "must",
+      "title": "Mặc định từ chối và phân quyền tối thiểu",
+      "detail": "Endpoint, service account, database role mặc định không có quyền trừ quyền được cấp; tránh wildcard permission; test cả allow và deny.",
+      "example_good": "Worker chỉ có SELECT trên bảng cần thiết.",
+      "example_bad": "Account API được GRANT ALL trên toàn database."
+    },
+    {
+      "id": "R006",
+      "layer": [
+        "security"
+      ],
+      "severity": "should",
+      "title": "Bảo vệ dữ liệu khi truyền và lưu",
+      "detail": "Bắt buộc TLS trên kết nối ngoài trust boundary; dữ liệu nhạy cảm lưu cần mã hóa theo phân loại, khóa tách khỏi dữ liệu; test cấu hình production không chấp nhận HTTP plaintext.",
+      "example_good": "API HTTPS và khóa mã hóa được quản lý qua KMS.",
+      "example_bad": "Truyền access token qua URL query trên HTTP."
+    },
+    {
+      "id": "R007",
+      "layer": [
+        "security"
+      ],
+      "severity": "should",
+      "title": "Không tiết lộ nội bộ khi thất bại",
+      "detail": "Lỗi trả mã ổn định + requestId, không trả stack trace, query SQL hay cấu hình; log server được hạn chế truy cập và lọc PII.",
+      "example_good": "HTTP 500 trả code=INTERNAL_ERROR cùng requestId.",
+      "example_bad": "Response trả exception.ConnectionString nguyên văn."
+    },
+    {
+      "id": "R008",
+      "layer": [
+        "security"
+      ],
+      "severity": "should",
+      "title": "Kiểm thử abuse-case theo ranh giới tin cậy",
+      "detail": "Trong CI hoặc kiểm thử bảo mật trước release phải có ca thiếu token, token sai, IDOR, input nguy hiểm, escalation và rate-limit; lưu bằng chứng cùng phiên bản build.",
+      "example_good": "Integration test user A không đọc/sửa resource của user B.",
+      "example_bad": "Chỉ thử happy path đăng nhập thành công."
     }
   ],
   "integration_guide": [
