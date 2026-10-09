@@ -4,7 +4,7 @@
   "name": "Vòng đời & Thực thi nền",
   "category": "06_mobile_platform",
   "description": "Chuẩn xử lý lifecycle và phục hồi tài nguyên ứng dụng.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -73,16 +73,7 @@
       "solution": "Kết hợp lint/test tự động với review thủ công và bằng chứng chấp nhận được ghi nhận."
     }
   ],
-  "depends_on": [
-    {
-      "code": "STD-REQ",
-      "dependency_type": "requires"
-    },
-    {
-      "code": "STD-TEST",
-      "dependency_type": "requires"
-    }
-  ],
+  "depends_on": [],
   "diagrams": [],
   "applicability": {
     "scope": "conditional",

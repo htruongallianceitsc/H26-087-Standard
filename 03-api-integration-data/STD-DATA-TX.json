@@ -4,7 +4,7 @@
   "name": "Giao dịch, Đồng thời & Tính nhất quán",
   "category": "03_api_integration_data",
   "description": "Tiêu chuẩn chuẩn hóa cho Giao dịch, Đồng thời & Tính nhất quán. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

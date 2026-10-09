@@ -4,7 +4,7 @@
   "name": "Quy ước HTTP Status Code & Phản hồi lỗi API",
   "category": "03_api_integration_data",
   "description": "Chuẩn hóa việc chọn mã trạng thái HTTP, response body, phân loại lỗi, hành vi retry và cách hiển thị lỗi trên client. Áp dụng thống nhất cho API REST, frontend web và mobile; không thay thế mã lỗi nghiệp vụ ổn định.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

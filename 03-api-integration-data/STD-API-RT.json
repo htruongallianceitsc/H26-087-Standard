@@ -4,7 +4,7 @@
   "name": "API thời gian thực & WebSocket/SSE",
   "category": "03_api_integration_data",
   "description": "Tiêu chuẩn chuẩn hóa cho API thời gian thực & WebSocket/SSE. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

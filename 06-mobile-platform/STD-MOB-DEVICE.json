@@ -4,7 +4,7 @@
   "name": "Quyền thiết bị & Khả năng nền tảng",
   "category": "06_mobile_platform",
   "description": "Chuẩn truy cập camera, media, vị trí và các capability của hệ điều hành.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -85,16 +85,7 @@
       "solution": "Kết hợp lint/test tự động với review thủ công và bằng chứng chấp nhận được ghi nhận."
     }
   ],
-  "depends_on": [
-    {
-      "code": "STD-REQ",
-      "dependency_type": "requires"
-    },
-    {
-      "code": "STD-TEST",
-      "dependency_type": "requires"
-    }
-  ],
+  "depends_on": [],
   "diagrams": [],
   "applicability": {
     "scope": "conditional",

@@ -4,7 +4,7 @@
   "name": "Kiểm thử luồng End-to-End",
   "category": "11_quality_assurance_testing",
   "description": "Kiểm tra hành trình nghiệp vụ qua nhiều màn hình và dịch vụ.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

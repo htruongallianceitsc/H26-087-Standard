@@ -4,7 +4,7 @@
   "name": "Quản lý môi trường kiểm thử",
   "category": "11_quality_assurance_testing",
   "description": "Quản lý test environment, cấu hình, tài khoản và dependency.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

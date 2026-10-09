@@ -4,7 +4,7 @@
   "name": "Offline, Kết nối & Đồng bộ",
   "category": "06_mobile_platform",
   "description": "Chuẩn networking Mobile có khả năng phục hồi khi offline/kết nối không ổn định.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -74,14 +74,6 @@
     }
   ],
   "depends_on": [
-    {
-      "code": "STD-REQ",
-      "dependency_type": "requires"
-    },
-    {
-      "code": "STD-TEST",
-      "dependency_type": "requires"
-    },
     {
       "code": "STD-RES",
       "dependency_type": "uses"

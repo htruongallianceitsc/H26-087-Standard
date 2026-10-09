@@ -4,7 +4,7 @@
   "name": "Độ tin cậy, Khả năng phục hồi & Chịu lỗi",
   "category": "02_engineering_foundation",
   "description": "Tiêu chuẩn chuẩn hóa cho Độ tin cậy, Khả năng phục hồi & Chịu lỗi. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

@@ -4,7 +4,7 @@
   "name": "Kiến trúc ứng dụng Web",
   "category": "05_web_platform",
   "description": "Chuẩn ranh giới phía client và tính module hóa của ứng dụng Web.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -82,14 +82,6 @@
   ],
   "depends_on": [
     {
-      "code": "STD-REQ",
-      "dependency_type": "requires"
-    },
-    {
-      "code": "STD-TEST",
-      "dependency_type": "requires"
-    },
-    {
       "code": "STD-ARCH",
       "dependency_type": "extends"
     }
@@ -102,9 +94,6 @@
     ],
     "platforms": [
       "web"
-    ],
-    "technologies": [
-      "react"
     ]
   },
   "dependency_policy": {

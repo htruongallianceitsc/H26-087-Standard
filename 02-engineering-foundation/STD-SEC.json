@@ -4,7 +4,7 @@
   "name": "Nguyên tắc bảo mật ứng dụng",
   "category": "02_engineering_foundation",
   "description": "Áp dụng nguyên tắc đặc quyền tối thiểu và secure-by-default.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

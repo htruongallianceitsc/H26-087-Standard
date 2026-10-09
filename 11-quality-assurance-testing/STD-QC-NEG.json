@@ -4,7 +4,7 @@
   "name": "Kiểm thử trường hợp âm & Biên",
   "category": "11_quality_assurance_testing",
   "description": "Thiết kế kịch bản lỗi, điều kiện biên và hành vi phục hồi.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

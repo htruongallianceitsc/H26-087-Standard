@@ -4,7 +4,7 @@
   "name": "Hồ sơ người dùng & Quản lý tài khoản",
   "category": "09_reusable_capabilities",
   "description": "Capability tái sử dụng chuẩn cho Hồ sơ người dùng & Quản lý tài khoản. Được chuyển từ STD-PROFILE và căn chỉnh theo STRUCTURE.txt.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -104,14 +104,6 @@
   ],
   "depends_on": [
     {
-      "code": "STD-REQ",
-      "dependency_type": "requires"
-    },
-    {
-      "code": "STD-TEST",
-      "dependency_type": "requires"
-    },
-    {
       "code": "STD-FEAT",
       "dependency_type": "requires"
     },
@@ -122,7 +114,14 @@
   ],
   "diagrams": [],
   "applicability": {
-    "scope": "all"
+    "scope": "conditional",
+    "conditions": [
+      {
+        "key": "features.profile",
+        "operator": "eq",
+        "value": true
+      }
+    ]
   },
   "dependency_policy": {
     "inheritance": "explicit_extends_only",

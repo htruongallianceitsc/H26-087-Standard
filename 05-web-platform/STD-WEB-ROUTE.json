@@ -4,7 +4,7 @@
   "name": "Routing, Điều hướng & Trạng thái URL",
   "category": "05_web_platform",
   "description": "Chuẩn điều hướng dựa trên URL và kiểm soát truy cập.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -75,14 +75,6 @@
   ],
   "depends_on": [
     {
-      "code": "STD-REQ",
-      "dependency_type": "requires"
-    },
-    {
-      "code": "STD-TEST",
-      "dependency_type": "requires"
-    },
-    {
       "code": "STD-UX",
       "dependency_type": "aligns_with"
     }
@@ -96,9 +88,6 @@
     ],
     "platforms": [
       "web"
-    ],
-    "technologies": [
-      "react"
     ]
   },
   "dependency_policy": {

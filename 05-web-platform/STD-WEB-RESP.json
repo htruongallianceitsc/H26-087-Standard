@@ -4,7 +4,7 @@
   "name": "Layout Responsive",
   "category": "05_web_platform",
   "description": "Chuẩn responsive design và tương tác hòa nhập.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -75,14 +75,6 @@
   ],
   "depends_on": [
     {
-      "code": "STD-REQ",
-      "dependency_type": "requires"
-    },
-    {
-      "code": "STD-TEST",
-      "dependency_type": "requires"
-    },
-    {
       "code": "STD-DS",
       "dependency_type": "uses"
     },
@@ -100,9 +92,6 @@
     ],
     "platforms": [
       "web"
-    ],
-    "technologies": [
-      "react"
     ]
   },
   "dependency_policy": {

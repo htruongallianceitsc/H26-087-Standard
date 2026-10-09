@@ -4,7 +4,7 @@
   "name": "Yêu cầu & Tiêu chí chấp nhận",
   "category": "01_governance_delivery",
   "description": "Chuẩn tiếp nhận requirement theo hướng requirement-driven và tiêu chí chấp nhận có thể xác minh.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

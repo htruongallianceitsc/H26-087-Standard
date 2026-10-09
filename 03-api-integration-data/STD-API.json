@@ -4,7 +4,7 @@
   "name": "Hợp đồng API & Quản lý phiên bản",
   "category": "03_api_integration_data",
   "description": "Hợp đồng dịch vụ nhất quán và có quản lý phiên bản.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -86,14 +86,6 @@
     }
   ],
   "depends_on": [
-    {
-      "code": "STD-REQ",
-      "dependency_type": "requires"
-    },
-    {
-      "code": "STD-TEST",
-      "dependency_type": "requires"
-    },
     {
       "code": "STD-SEC",
       "dependency_type": "requires"

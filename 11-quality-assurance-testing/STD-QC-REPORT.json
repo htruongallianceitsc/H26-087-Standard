@@ -4,7 +4,7 @@
   "name": "Báo cáo kiểm thử & Chỉ số chất lượng",
   "category": "11_quality_assurance_testing",
   "description": "Báo cáo tiến độ, coverage, defect và rủi ro còn lại.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

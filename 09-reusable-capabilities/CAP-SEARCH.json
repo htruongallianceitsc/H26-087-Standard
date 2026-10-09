@@ -4,7 +4,7 @@
   "name": "Tìm kiếm & Lập chỉ mục",
   "category": "09_reusable_capabilities",
   "description": "Capability tái sử dụng chuẩn cho Tìm kiếm & Lập chỉ mục. Được chuyển từ STD-SEARCH và căn chỉnh theo STRUCTURE.txt.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -111,14 +111,6 @@
   ],
   "depends_on": [
     {
-      "code": "STD-REQ",
-      "dependency_type": "requires"
-    },
-    {
-      "code": "STD-TEST",
-      "dependency_type": "requires"
-    },
-    {
       "code": "STD-FEAT",
       "dependency_type": "requires"
     },
@@ -128,7 +120,14 @@
     }
   ],
   "applicability": {
-    "scope": "all"
+    "scope": "conditional",
+    "conditions": [
+      {
+        "key": "features.search",
+        "operator": "eq",
+        "value": true
+      }
+    ]
   },
   "dependency_policy": {
     "inheritance": "explicit_extends_only",

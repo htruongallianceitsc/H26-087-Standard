@@ -4,7 +4,7 @@
   "name": "Thanh toán & Lập hóa đơn",
   "category": "09_reusable_capabilities",
   "description": "Tiêu chuẩn chuẩn hóa cho Thanh toán & Lập hóa đơn. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -67,7 +67,14 @@
   "depends_on": [],
   "diagrams": [],
   "applicability": {
-    "scope": "all"
+    "scope": "conditional",
+    "conditions": [
+      {
+        "key": "features.payment",
+        "operator": "eq",
+        "value": true
+      }
+    ]
   },
   "dependency_policy": {
     "inheritance": "explicit_extends_only",

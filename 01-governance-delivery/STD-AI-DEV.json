@@ -4,7 +4,7 @@
   "name": "Phát triển hỗ trợ bởi AI & Quy trình Agent",
   "category": "01_governance_delivery",
   "description": "Capability tái sử dụng chuẩn cho Phát triển hỗ trợ bởi AI & Quy trình Agent. Được chuyển từ STD-AI và căn chỉnh theo STRUCTURE.txt.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -83,10 +83,6 @@
   "depends_on": [
     {
       "code": "STD-DOC",
-      "dependency_type": "requires"
-    },
-    {
-      "code": "STD-TEST",
       "dependency_type": "requires"
     }
   ],

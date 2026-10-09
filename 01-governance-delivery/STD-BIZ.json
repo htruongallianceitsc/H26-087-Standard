@@ -4,7 +4,7 @@
   "name": "Quy tắc nghiệp vụ & Quy trình nghiệp vụ",
   "category": "01_governance_delivery",
   "description": "Chuẩn hóa quyết định nghiệp vụ và các quy trình vận hành.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

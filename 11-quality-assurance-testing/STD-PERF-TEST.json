@@ -4,7 +4,7 @@
   "name": "Kiểm thử hiệu năng, tải & stress",
   "category": "11_quality_assurance_testing",
   "description": "Tiêu chuẩn chuẩn hóa cho Kiểm thử hiệu năng, tải & stress. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

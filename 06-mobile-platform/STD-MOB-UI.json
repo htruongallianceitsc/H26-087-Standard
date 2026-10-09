@@ -4,7 +4,7 @@
   "name": "Layout Mobile, Safe Area & Bàn phím",
   "category": "06_mobile_platform",
   "description": "Chuẩn hành vi hiển thị thích ứng trên Mobile.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -86,14 +86,6 @@
     }
   ],
   "depends_on": [
-    {
-      "code": "STD-REQ",
-      "dependency_type": "requires"
-    },
-    {
-      "code": "STD-TEST",
-      "dependency_type": "requires"
-    },
     {
       "code": "STD-UX",
       "dependency_type": "uses"

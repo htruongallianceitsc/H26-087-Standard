@@ -4,7 +4,7 @@
   "name": "Logging & Observability",
   "category": "02_engineering_foundation",
   "description": "Chuẩn correlation sự kiện, logging và chẩn đoán runtime.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

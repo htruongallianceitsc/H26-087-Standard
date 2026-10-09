@@ -4,7 +4,7 @@
   "name": "Kiểm thử giao diện & Trải nghiệm người dùng",
   "category": "11_quality_assurance_testing",
   "description": "Kiểm tra thiết kế, trạng thái UI, thông báo và tương tác.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

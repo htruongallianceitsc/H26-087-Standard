@@ -4,7 +4,7 @@
   "name": "Build Mobile, Ký ứng dụng & Phát hành Store",
   "category": "06_mobile_platform",
   "description": "Chuẩn quản trị build, ký ứng dụng và phát hành Mobile.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -74,14 +74,6 @@
     }
   ],
   "depends_on": [
-    {
-      "code": "STD-REQ",
-      "dependency_type": "requires"
-    },
-    {
-      "code": "STD-TEST",
-      "dependency_type": "requires"
-    },
     {
       "code": "STD-VERSIONING",
       "dependency_type": "uses"

@@ -4,7 +4,7 @@
   "name": "Tích hợp liên tục & Pipeline Build",
   "category": "01_governance_delivery",
   "description": "Đảm bảo quy trình build và triển khai có thể tái lập.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -73,12 +73,7 @@
       "solution": "Kết hợp lint/test tự động với review thủ công và bằng chứng chấp nhận được ghi nhận."
     }
   ],
-  "depends_on": [
-    {
-      "code": "STD-TEST",
-      "dependency_type": "requires"
-    }
-  ],
+  "depends_on": [],
   "diagrams": [],
   "applicability": {
     "scope": "all"

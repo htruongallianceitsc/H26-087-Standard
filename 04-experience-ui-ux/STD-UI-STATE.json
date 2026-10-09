@@ -4,7 +4,7 @@
   "name": "Trạng thái UI & Cách trình bày trạng thái",
   "category": "04_experience_ui_ux",
   "description": "Tiêu chuẩn chuẩn hóa cho Trạng thái UI & Cách trình bày trạng thái. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

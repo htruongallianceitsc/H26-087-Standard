@@ -4,7 +4,7 @@
   "name": "Xác minh tiêu chí chấp nhận",
   "category": "11_quality_assurance_testing",
   "description": "Kiểm tra khả năng kiểm chứng và tính đầy đủ của acceptance criteria.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

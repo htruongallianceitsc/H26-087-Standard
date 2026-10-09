@@ -1,0 +1,19 @@
+{
+  "project": "Ví dụ ứng dụng ReactJS + ASP.NET Core",
+  "project_type": "hybrid",
+  "platforms": [
+    "web"
+  ],
+  "technologies": [
+    "react",
+    "aspnet-core",
+    "postgresql"
+  ],
+  "features": {
+    "deep_link": false,
+    "push_notification": false,
+    "auth": true,
+    "crud": true,
+    "search": true
+  }
+}

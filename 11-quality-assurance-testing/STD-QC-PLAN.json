@@ -4,7 +4,7 @@
   "name": "Lập kế hoạch & Phạm vi kiểm thử",
   "category": "11_quality_assurance_testing",
   "description": "Quản lý phạm vi, rủi ro, nguồn lực và lịch kiểm thử.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

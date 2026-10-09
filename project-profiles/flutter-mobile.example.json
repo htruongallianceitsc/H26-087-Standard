@@ -1,8 +1,25 @@
 {
-  "project": "Ví dụ ứng dụng Flutter",
-  "project_type": "mobile",
-  "platforms": ["android", "ios"],
-  "technologies": ["flutter", "aspnet-core", "postgresql"],
-  "features": {"deep_link": true, "push_notification": true, "offline_mode": true},
-  "selected_standards": ["STD-DEEP-LINK", "STD-API-HTTP", "STD-REQ"]
+  "project": "Ví dụ ứng dụng Flutter + ASP.NET Core",
+  "project_type": "hybrid",
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "technologies": [
+    "flutter",
+    "aspnet-core",
+    "postgresql"
+  ],
+  "features": {
+    "deep_link": true,
+    "push_notification": true,
+    "offline_mode": true,
+    "auth": true,
+    "notification": true
+  },
+  "selected_standards": [
+    "STD-DEEP-LINK",
+    "STD-API-HTTP",
+    "STD-REQ"
+  ]
 }

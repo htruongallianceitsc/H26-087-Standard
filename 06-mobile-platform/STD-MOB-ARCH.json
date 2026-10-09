@@ -4,7 +4,7 @@
   "name": "Kiến trúc ứng dụng Mobile",
   "category": "06_mobile_platform",
   "description": "Chuẩn ranh giới feature trên Mobile và tích hợp với hệ điều hành.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -81,14 +81,6 @@
     }
   ],
   "depends_on": [
-    {
-      "code": "STD-REQ",
-      "dependency_type": "requires"
-    },
-    {
-      "code": "STD-TEST",
-      "dependency_type": "requires"
-    },
     {
       "code": "STD-ARCH",
       "dependency_type": "extends"

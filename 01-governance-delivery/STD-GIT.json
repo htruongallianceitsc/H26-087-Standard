@@ -4,7 +4,7 @@
   "name": "Quy trình Git & Chiến lược Branch",
   "category": "01_governance_delivery",
   "description": "Chuẩn quản lý version control, branch và quy trình review.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

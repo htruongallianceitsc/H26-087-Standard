@@ -4,7 +4,7 @@
   "name": "Tài liệu hóa & Truy vết",
   "category": "01_governance_delivery",
   "description": "Quản lý tài liệu project theo hướng documentation-first và có khả năng truy vết.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -73,12 +73,7 @@
       "solution": "Kết hợp lint/test tự động với review thủ công và bằng chứng chấp nhận được ghi nhận."
     }
   ],
-  "depends_on": [
-    {
-      "code": "STD-REQ",
-      "dependency_type": "requires"
-    }
-  ],
+  "depends_on": [],
   "diagrams": [],
   "applicability": {
     "scope": "all"

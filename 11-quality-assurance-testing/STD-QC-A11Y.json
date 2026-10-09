@@ -4,7 +4,7 @@
   "name": "Kiểm thử khả năng tiếp cận",
   "category": "11_quality_assurance_testing",
   "description": "Kiểm tra accessibility cho web và mobile.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

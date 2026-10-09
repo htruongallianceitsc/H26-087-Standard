@@ -4,7 +4,7 @@
   "name": "Kiểm thử hồi quy theo thay đổi",
   "category": "11_quality_assurance_testing",
   "description": "Lựa chọn regression suite theo rủi ro và phạm vi tác động.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

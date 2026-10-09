@@ -1,263 +1,249 @@
-STANDARD CATALOG
-│
-├── 01. QUẢN TRỊ & BÀN GIAO
-│   │
-│   ├── STD-REQ ............ Yêu cầu & Tiêu chí chấp nhận
-│   ├── STD-BIZ ............ Quy tắc nghiệp vụ & Quy trình nghiệp vụ
-│   ├── STD-FEAT ........... Đặc tả & Phân rã Feature
-│   ├── STD-ARCH ........... Nguyên tắc kiến trúc & ADR
-│   ├── STD-DOC ............ Tài liệu hóa & Truy vết
-│   ├── STD-NAME ........... Đặt tên & Tổ chức mã nguồn
-│   ├── STD-GIT ............ Quy trình Git & Chiến lược Branch
-│   │
-│   │
-│   ├── STD-CODE-REVIEW .... Code Review & Quản trị Pull Request     [MỚI]
-│   │                         ↳ Sử dụng STD-GIT, STD-TEST, STD-SEC
-│   │
-│   ├── STD-VERSIONING ..... Quản lý phiên bản, Tương thích & Ngừng hỗ trợ   [MỚI]
-│   │                         ↳ Được sử dụng bởi STD-API, STD-CI, STD-DEPLOY
-│   │
-│   ├── STD-COMPLIANCE ..... Tuân thủ quy định & Bằng chứng          [MỚI]
-│   │                         ↳ Sử dụng STD-SEC, STD-PRIV, STD-DOC
-│   │
-│   ├── STD-MONOREPO ...... Quản lý Monorepo & Workspace            [MỚI/TÙY CHỌN]
-│   │                         ↳ Sử dụng STD-GIT, STD-DEP, STD-CI
-│   │
-│   ├── STD-CI ............. Tích hợp liên tục & Pipeline Build
-│   └── STD-AI-DEV ......... Phát triển hỗ trợ bởi AI & Quy trình Agent
-│
-├── 02. NỀN TẢNG KỸ THUẬT
-│   │
-│   ├── STD-ERR ............ Xử lý & Phân loại lỗi
-│   ├── STD-LOG ............ Logging & Observability
-│   ├── STD-SEC ............ Nguyên tắc bảo mật ứng dụng
-│   ├── STD-PRIV ........... Quyền riêng tư, PII & Lưu giữ dữ liệu
-│   ├── STD-ENV ............ Môi trường, Cấu hình & Secret
-│   ├── STD-I18N ........... Quốc tế hóa & Bản địa hóa
-│   ├── STD-ANALYTICS ...... Phân tích sản phẩm & Theo dõi sự kiện
-│   ├── STD-PERF ........... Nguyên tắc kỹ thuật hiệu năng
-│   ├── STD-RES ............ Độ tin cậy, Khả năng phục hồi & Chịu lỗi
-│   │                         ↳ Bao gồm các nguyên tắc chaos testing
-│   │
-│   ├── STD-DEP ............ Quản lý dependency & Package
-│   └── STD-FLAG ........... Feature Flag & Rollout tăng dần
-│
-├── 03. API, TÍCH HỢP & DỮ LIỆU
-│   │
-│   ├── STD-API ............ Hợp đồng API & Quản lý phiên bản
-│   │                         ↳ Sử dụng STD-VERSIONING
-│   │
-│   ├── STD-API-REST ....... Thiết kế RESTful API
-│   ├── STD-API-HTTP ....... Quy ước HTTP Status Code & Phản hồi lỗi API      [MỚI]
-│   │                         ↳ Mở rộng STD-API; sử dụng STD-API-REST, STD-ERR, STD-FEEDBACK, STD-LOG, STD-SEC
-│   ├── STD-API-RT ......... API thời gian thực & WebSocket/SSE
-│   ├── STD-DEEP-LINK ...... Deep Link, Universal Links & App Links          [MỚI]
-│   │                         ↳ Sử dụng STD-MOB-NAV, STD-WEB-ROUTE, STD-SEC, STD-PRIV, STD-INTEGRATION, STD-MOB-RELEASE
-│   ├── STD-INTEGRATION .... Tích hợp bên thứ ba
-│   ├── STD-WEBHOOK ........ Webhook & Hợp đồng sự kiện
-│   ├── STD-DATA ........... Mô hình dữ liệu & Thiết kế Schema
-│   ├── STD-DATA-TX ........ Giao dịch, Đồng thời & Tính nhất quán
-│   ├── STD-DATA-MIG ....... Tiến hóa Schema & Migration cơ sở dữ liệu
-│   │                         ↳ Sử dụng STD-VERSIONING
-│   │
-│   └── STD-CACHE .......... Bộ nhớ đệm & Vô hiệu hóa Cache
-│
-├── 04. TRẢI NGHIỆM — UI / UX
-│   │
-│   ├── STD-UX ............. Nguyên tắc UX & Tương tác
-│   ├── STD-UI-STATE ....... Trạng thái UI & Cách trình bày trạng thái
-│   ├── STD-FEEDBACK ....... Phản hồi, Thông báo & Messaging
-│   ├── STD-FORM ........... Trải nghiệm Form & Validation
-│   ├── STD-A11Y ........... Khả năng tiếp cận & Thiết kế hòa nhập
-│   ├── STD-DESIGN ......... Bàn giao thiết kế & Độ trung thực
-│   └── STD-DS ............. Design System & Component dùng chung
-│
-├── 05. NỀN TẢNG WEB
-│   │
-│   ├── STD-WEB-ARCH ....... Kiến trúc ứng dụng Web
-│   │                         ↳ Mở rộng STD-ARCH
-│   │
-│   ├── STD-WEB-ROUTE ...... Routing, Điều hướng & Trạng thái URL
-│   │                         ↳ Căn chỉnh với STD-UX
-│   │
-│   ├── STD-WEB-RESP ....... Layout Responsive
-│   │                         ↳ Sử dụng STD-DS, STD-A11Y
-│   │
-│   ├── STD-WEB-FORM ....... Form trình duyệt & Validation
-│   │                         ↳ Mở rộng STD-FORM
-│   │
-│   ├── STD-WEB-AUTH ....... Xác thực trình duyệt & Session
-│   │                         ↳ Sử dụng STD-SEC, STD-WEB-SEC
-│   │
-│   ├── STD-WEB-STORE ...... Lưu trữ trình duyệt & Persistence
-│   │                         ↳ Sử dụng STD-CACHE, STD-WEB-SEC
-│   │
-│   ├── STD-WEB-SEC ........ Bảo mật trình duyệt & Ứng dụng Web
-│   │                         ↳ Mở rộng STD-SEC
-│   │
-│   ├── STD-WEB-PERF ....... Hiệu năng Render Web & Bộ nhớ
-│   │                         ↳ Mở rộng STD-PERF
-│   │
-│   ├── STD-WEB-SEO ........ SEO & Chiến lược Rendering
-│   └── STD-WEB-PWA ........ Progressive Web App (PWA)
-│
-├── 06. NỀN TẢNG MOBILE
-│   │
-│   ├── STD-MOB-ARCH ....... Kiến trúc ứng dụng Mobile
-│   │                         ↳ Mở rộng STD-ARCH
-│   │
-│   ├── STD-MOB-NAV ........ Điều hướng, Routing & Deep Linking
-│   │                         ↳ Căn chỉnh với STD-UX
-│   │
-│   ├── STD-MOB-LIFE ....... Vòng đời & Thực thi nền
-│   ├── STD-MOB-STORE ...... Lưu trữ cục bộ & Lưu trữ an toàn
-│   │                         ↳ Sử dụng STD-CACHE, STD-MOB-SEC
-│   │
-│   ├── STD-MOB-OFF ........ Offline, Kết nối & Đồng bộ
-│   │                         ↳ Sử dụng STD-RES, STD-CACHE
-│   │
-│   ├── STD-MOB-PUSH ....... Push Notification & Routing
-│   ├── STD-MOB-DEVICE ..... Quyền thiết bị & Khả năng nền tảng
-│   ├── STD-MOB-UI ......... Layout Mobile, Safe Area & Bàn phím
-│   │                         ↳ Sử dụng STD-UX, STD-DS, STD-A11Y,
-│   │                           STD-FORM, STD-UI-STATE
-│   │
-│   ├── STD-MOB-SEC ........ Bảo mật ứng dụng Mobile
-│   │                         ↳ Mở rộng STD-SEC
-│   │
-│   ├── STD-MOB-RELEASE .... Build Mobile, Ký ứng dụng & Phát hành Store
-│   │                         ↳ Sử dụng STD-VERSIONING
-│   │
-│   └── STD-MOB-PERF ....... Hiệu năng khởi động, Bộ nhớ & Pin
-│                             ↳ Mở rộng STD-PERF
-│
-├── 07. NỀN TẢNG BACKEND
-│   │
-│   ├── STD-BE-ARCH ........ Kiến trúc ứng dụng Backend
-│   │                         ↳ Mở rộng STD-ARCH
-│   │
-│   ├── STD-BE-AUTH ........ Xác thực & Phân quyền
-│   ├── STD-BE-VALID ....... Xác thực Request & Domain
-│   ├── STD-BE-SEC ......... Bảo mật & Hardening Backend
-│   │                         ↳ Mở rộng STD-SEC
-│   │
-│   ├── STD-BE-TX .......... Quản lý giao dịch & Unit of Work
-│   │                         ↳ Mở rộng STD-DATA-TX
-│   │
-│   ├── STD-BE-CONCUR ...... Xử lý đồng thời & Tính idempotent
-│   │                         ↳ Sử dụng STD-DATA-TX, STD-RES
-│   │
-│   ├── STD-BE-JOB ......... Tác vụ nền & Lập lịch
-│   ├── STD-BE-QUEUE ....... Hàng đợi & Xử lý hướng sự kiện
-│   ├── STD-BE-FILE ........ Xử lý tệp & Object Storage
-│   ├── STD-BE-HEALTH ...... Readiness, Liveness & Health Check
-│   └── STD-BE-PERF ........ Hiệu năng & Khả năng mở rộng
-│                             ↳ Mở rộng STD-PERF
-│
-├── 08. CÔNG NGHỆ
-│   │
-│   ├── 08.1. CÔNG NGHỆ WEB
-│   │   ├── STD-REACT ...... React Component & Hook
-│   │   ├── STD-TS ......... Quy ước TypeScript
-│   │   ├── STD-RQ ......... TanStack Query
-│   │   ├── STD-NEXT ....... Kiến trúc Next.js
-│   │   └── STD-REACT-TEST . Kiểm thử React, Vitest/Jest & RTL
-│   │                         ↳ Hiện thực STD-TEST
-│   │
-│   ├── 08.2. CÔNG NGHỆ REACT NATIVE
-│   │   ├── STD-RN ......... Kiến trúc React Native
-│   │   ├── STD-RN-NAV ..... Điều hướng & Expo Router
-│   │   ├── STD-RN-STATE ... Quản lý State React Native
-│   │   ├── STD-RN-STORE ... Lưu trữ cục bộ & An toàn
-│   │   │                     ↳ Hiện thực STD-MOB-STORE
-│   │   └── STD-RN-TEST .... Jest & React Native Testing Library
-│   │                         ↳ Hiện thực STD-TEST
-│   │
-│   ├── 08.3. CÔNG NGHỆ FLUTTER
-│   │   ├── STD-FL-DART .... Quy ước Dart
-│   │   ├── STD-FL-BLOC .... Flutter BLoC & Cubit
-│   │   ├── STD-FL-WIDGET .. Tổ hợp Widget & Theming
-│   │   ├── STD-FL-ROUTE ... Điều hướng Flutter & go_router
-│   │   └── STD-FL-TEST .... flutter_test, bloc_test & Kiểm thử tích hợp
-│   │                         ↳ Hiện thực STD-TEST
-│   │
-│   ├── 08.4. CÔNG NGHỆ BACKEND — .NET
-│   │   ├── STD-DOTNET ..... Kiến trúc ASP.NET Core
-│   │   ├── STD-DOTNET-API . API, Dependency Injection & Middleware
-│   │   ├── STD-DOTNET-EF .. Entity Framework Core
-│   │   │                     ↳ Hiện thực STD-DATA,
-│   │   │                       STD-DATA-TX, STD-DATA-MIG
-│   │   │                     ↳ Sử dụng STD-BE-TX
-│   │   │
-│   │   └── STD-DOTNET-TEST  xUnit & Integration Testing
-│   │                         ↳ Hiện thực STD-TEST
-│   │
-│   └── 08.5. CÔNG NGHỆ CƠ SỞ DỮ LIỆU
-│       └── STD-PG ......... Phát triển PostgreSQL & Migration
-│                             ↳ Hiện thực STD-DATA,
-│                               STD-DATA-TX, STD-DATA-MIG
-│                             ↳ Sử dụng STD-PERF
-│
-├── 09. CAPABILITY TÁI SỬ DỤNG
-│   │
-│   ├── CAP-AUTH ........... Xác thực & Đăng ký
-│   ├── CAP-PROFILE ........ Hồ sơ người dùng & Quản lý tài khoản
-│   ├── CAP-CRUD ........... CRUD, Danh sách & Phân trang
-│   ├── CAP-UPLOAD ......... Tải tệp lên & Tệp đính kèm
-│   ├── CAP-NOTIFY ......... Phân phối thông báo
-│   ├── CAP-CHAT ........... Trò chuyện thời gian thực
-│   ├── CAP-SHARE .......... Chia sẻ, QR & Deep Link
-│   ├── CAP-AUDIT .......... Nhật ký kiểm toán & Lịch sử thay đổi
-│   ├── CAP-PERM ........... Vai trò & Quyền hạn
-│   ├── CAP-SEARCH ......... Tìm kiếm & Lập chỉ mục
-│   ├── CAP-PAYMENT ........ Thanh toán & Lập hóa đơn
-│   └── CAP-REPORT ......... Báo cáo & Dashboard
-│
-├── 10. VẬN HÀNH & HẠ TẦNG
-    │
-    ├── STD-DEPLOY ......... Triển khai, Rollout & Rollback
-    │                         ↳ Sử dụng STD-CI, STD-FLAG,
-    │                           STD-VERSIONING
-    │
-    ├── STD-IAC ............ Hạ tầng dưới dạng mã nguồn
-    ├── STD-NET ............ Mạng, DNS, TLS & Bảo mật hạ tầng
-    ├── STD-BACKUP ......... Sao lưu & Khôi phục
-    ├── STD-DR ............. Khôi phục sau thảm họa
-    ├── STD-SLO ............ Mục tiêu mức dịch vụ (SLO)
-    ├── STD-COST ........... Quản trị chi phí hạ tầng & Cloud [MỚI]
-    │                         ↳ Sử dụng STD-LOG, STD-PERF, STD-SLO
-    │
-    ├── STD-INCIDENT ....... Quản lý sự cố & Postmortem
-    └── STD-RUNBOOK ........ Runbook vận hành & Bảo trì
+STANDARD CATALOG — GENERATED FROM JSON
+Nguồn sự thật: các file STD-*.json / CAP-*.json; không sửa file này thủ công.
 
-└── 11. QC & TESTING — ĐẢM BẢO CHẤT LƯỢNG & KIỂM THỬ
-    │
-    ├── STD-TEST........... Chiến lược kiểm thử & Quality Gate
-    ├── STD-QC-PLAN........ Lập kế hoạch & Phạm vi kiểm thử
-    ├── STD-QC-AC.......... Xác minh tiêu chí chấp nhận
-    ├── STD-QC-TRACE....... Truy vết kiểm thử & Độ bao phủ
-    ├── STD-QC-CASE........ Thiết kế & Quản lý Test Case
-    ├── STD-QC-DATA........ Quản lý dữ liệu kiểm thử
-    ├── STD-QC-NEG......... Kiểm thử trường hợp âm & Biên
-    ├── STD-QC-REG......... Kiểm thử hồi quy theo thay đổi
-    ├── STD-QC-EXEC........ Thực thi kiểm thử & Bằng chứng
-    ├── STD-QC-BUG......... Quản lý lỗi & Vòng đời Defect
-    ├── STD-QC-AUTO........ Tự động hóa kiểm thử
-    ├── STD-QC-ENV......... Quản lý môi trường kiểm thử
-    ├── STD-QC-API......... Kiểm thử API & Hợp đồng
-    ├── STD-QC-UI.......... Kiểm thử giao diện & Trải nghiệm người dùng
-    ├── STD-QC-E2E......... Kiểm thử luồng End-to-End
-    ├── STD-QC-SEC......... Kiểm thử bảo mật ứng dụng
-    ├── STD-PERF-TEST...... Kiểm thử hiệu năng, tải & stress
-    ├── STD-QC-MOB......... Kiểm thử ứng dụng Mobile & Deep Link
-    ├── STD-QC-A11Y........ Kiểm thử khả năng tiếp cận
-    ├── STD-QC-GATE........ Cổng kiểm soát chất lượng
-    ├── STD-QC-UAT......... Kiểm thử chấp nhận người dùng
-    └── STD-QC-REPORT...... Báo cáo kiểm thử & Chỉ số chất lượng
+01-governance-delivery — Governance & Delivery
+  - STD-AI-DEV — Phát triển hỗ trợ bởi AI & Quy trình Agent
+    ↳ requires STD-DOC
+  - STD-ARCH — Nguyên tắc kiến trúc & ADR
+  - STD-BIZ — Quy tắc nghiệp vụ & Quy trình nghiệp vụ
+  - STD-CI — Tích hợp liên tục & Pipeline Build
+  - STD-CODE-REVIEW — Code Review & Quản trị Pull Request
+    ↳ uses STD-GIT; uses STD-TEST; uses STD-SEC
+  - STD-COMPLIANCE — Tuân thủ quy định & Bằng chứng
+    ↳ uses STD-SEC; uses STD-PRIV; uses STD-DOC
+  - STD-DOC — Tài liệu hóa & Truy vết
+  - STD-FEAT — Đặc tả & Phân rã Feature
+  - STD-GIT — Quy trình Git & Chiến lược Branch
+  - STD-MONOREPO — Quản lý Monorepo & Workspace
+    ↳ uses STD-GIT; uses STD-DEP; uses STD-CI
+  - STD-NAME — Đặt tên & Tổ chức mã nguồn
+  - STD-REQ — Yêu cầu & Tiêu chí chấp nhận
+  - STD-VERSIONING — Quản lý phiên bản, Tương thích & Ngừng hỗ trợ
 
+02-engineering-foundation — Engineering Foundation
+  - STD-ANALYTICS — Phân tích sản phẩm & Theo dõi sự kiện
+  - STD-DEP — Quản lý dependency & Package
+  - STD-ENV — Môi trường, Cấu hình & Secret
+  - STD-ERR — Xử lý & Phân loại lỗi
+  - STD-FLAG — Feature Flag & Rollout tăng dần
+  - STD-I18N — Quốc tế hóa & Bản địa hóa
+  - STD-LOG — Logging & Observability
+  - STD-PERF — Nguyên tắc kỹ thuật hiệu năng
+  - STD-PRIV — Quyền riêng tư, PII & Lưu giữ dữ liệu
+  - STD-RES — Độ tin cậy, Khả năng phục hồi & Chịu lỗi
+  - STD-SEC — Nguyên tắc bảo mật ứng dụng
 
-SCHEMA V2 (metadata mở rộng):
-- standard-import-v2.schema.json: rule ID, applicability, dependency_policy.
-- project-profiles/: Project Profile mẫu; rule-id-registry.json: danh mục định danh rule.
-- tools/standard_tool.py: validate, resolve và export-v1 tương thích importer cũ.
-- Xem SCHEMA-V2-UPGRADE-GUIDE.md trước khi import; code và vị trí các standard không đổi.
+03-api-integration-data — API, Integration & Data
+  - STD-API — Hợp đồng API & Quản lý phiên bản
+    ↳ requires STD-SEC; uses STD-VERSIONING
+  - STD-API-HTTP — Quy ước HTTP Status Code & Phản hồi lỗi API
+    ↳ extends STD-API; uses STD-API-REST; uses STD-ERR; uses STD-FEEDBACK; uses STD-LOG; uses STD-SEC
+  - STD-API-REST — Thiết kế RESTful API
+  - STD-API-RT — API thời gian thực & WebSocket/SSE
+  - STD-CACHE — Bộ nhớ đệm & Vô hiệu hóa Cache
+  - STD-DATA — Mô hình dữ liệu & Thiết kế Schema
+  - STD-DATA-MIG — Tiến hóa Schema & Migration cơ sở dữ liệu
+    ↳ uses STD-VERSIONING
+  - STD-DATA-TX — Giao dịch, Đồng thời & Tính nhất quán
+  - STD-DEEP-LINK — Deep Link, Universal Links & App Links
+    ↳ uses STD-MOB-NAV; uses STD-WEB-ROUTE; uses STD-SEC; uses STD-PRIV; uses STD-INTEGRATION; uses STD-MOB-RELEASE
+  - STD-INTEGRATION — Tích hợp bên thứ ba
+  - STD-WEBHOOK — Webhook & Hợp đồng sự kiện
+
+04-experience-ui-ux — Experience / UI / UX
+  - STD-A11Y — Khả năng tiếp cận & Thiết kế hòa nhập
+  - STD-DESIGN — Bàn giao thiết kế & Độ trung thực
+  - STD-DS — Design System & Component dùng chung
+  - STD-FEEDBACK — Phản hồi, Thông báo & Messaging
+  - STD-FORM — Trải nghiệm Form & Validation
+  - STD-UI-STATE — Trạng thái UI & Cách trình bày trạng thái
+  - STD-UX — Nguyên tắc UX & Tương tác
+
+05-web-platform — Web Platform
+  - STD-WEB-ARCH — Kiến trúc ứng dụng Web
+    ↳ extends STD-ARCH
+  - STD-WEB-AUTH — Xác thực trình duyệt & Session
+    ↳ uses STD-SEC; uses STD-WEB-SEC
+  - STD-WEB-FORM — Form trình duyệt & Validation
+    ↳ extends STD-FORM
+  - STD-WEB-PERF — Hiệu năng Render Web & Bộ nhớ
+    ↳ extends STD-PERF
+  - STD-WEB-PWA — Progressive Web App (PWA)
+  - STD-WEB-RESP — Layout Responsive
+    ↳ uses STD-DS; uses STD-A11Y
+  - STD-WEB-ROUTE — Routing, Điều hướng & Trạng thái URL
+    ↳ aligns_with STD-UX
+  - STD-WEB-SEC — Bảo mật trình duyệt & Ứng dụng Web
+    ↳ extends STD-SEC
+  - STD-WEB-SEO — SEO & Chiến lược Rendering
+  - STD-WEB-STORE — Lưu trữ trình duyệt & Persistence
+    ↳ uses STD-CACHE; uses STD-WEB-SEC
+
+06-mobile-platform — Mobile Platform
+  - STD-MOB-ARCH — Kiến trúc ứng dụng Mobile
+    ↳ extends STD-ARCH
+  - STD-MOB-DEVICE — Quyền thiết bị & Khả năng nền tảng
+  - STD-MOB-LIFE — Vòng đời & Thực thi nền
+  - STD-MOB-NAV — Điều hướng, Routing & Deep Linking
+    ↳ aligns_with STD-UX
+  - STD-MOB-OFF — Offline, Kết nối & Đồng bộ
+    ↳ uses STD-RES; uses STD-CACHE
+  - STD-MOB-PERF — Hiệu năng khởi động, Bộ nhớ & Pin
+    ↳ extends STD-PERF
+  - STD-MOB-PUSH — Push Notification & Routing
+  - STD-MOB-RELEASE — Build Mobile, Ký ứng dụng & Phát hành Store
+    ↳ uses STD-VERSIONING
+  - STD-MOB-SEC — Bảo mật ứng dụng Mobile
+    ↳ extends STD-SEC
+  - STD-MOB-STORE — Lưu trữ cục bộ & Lưu trữ an toàn
+    ↳ uses STD-CACHE; uses STD-MOB-SEC
+  - STD-MOB-UI — Layout Mobile, Safe Area & Bàn phím
+    ↳ uses STD-UX; uses STD-DS; uses STD-A11Y; uses STD-FORM; uses STD-UI-STATE
+
+07-backend-platform — Backend Platform
+  - STD-BE-ARCH — Kiến trúc ứng dụng Backend
+    ↳ extends STD-ARCH
+  - STD-BE-AUTH — Xác thực & Phân quyền
+  - STD-BE-CONCUR — Xử lý đồng thời & Tính idempotent
+    ↳ uses STD-DATA-TX; uses STD-RES
+  - STD-BE-FILE — Xử lý tệp & Object Storage
+  - STD-BE-HEALTH — Readiness, Liveness & Health Check
+  - STD-BE-JOB — Tác vụ nền & Lập lịch
+  - STD-BE-PERF — Hiệu năng & Khả năng mở rộng
+    ↳ extends STD-PERF
+  - STD-BE-QUEUE — Hàng đợi & Xử lý hướng sự kiện
+  - STD-BE-SEC — Bảo mật & Hardening Backend
+    ↳ extends STD-SEC
+  - STD-BE-TX — Quản lý giao dịch & Unit of Work
+    ↳ extends STD-DATA-TX
+  - STD-BE-VALID — Xác thực Request & Domain
+
+08-technology — Technology
+  08.1-web-technology
+    - STD-NEXT — Kiến trúc Next.js
+      ↳ requires STD-WEB-ARCH
+    - STD-REACT — React Component & Hook
+      ↳ requires STD-WEB-ARCH
+    - STD-REACT-TEST — Kiểm thử React, Vitest/Jest & RTL
+      ↳ requires STD-WEB-ARCH; implements STD-TEST
+    - STD-RQ — TanStack Query
+      ↳ requires STD-WEB-ARCH
+    - STD-TS — Quy ước TypeScript
+      ↳ requires STD-WEB-ARCH
+  08.2-react-native-technology
+    - STD-RN — Kiến trúc React Native
+      ↳ requires STD-MOB-ARCH
+    - STD-RN-NAV — Điều hướng & Expo Router
+      ↳ requires STD-MOB-ARCH
+    - STD-RN-STATE — Quản lý State React Native
+      ↳ requires STD-MOB-ARCH
+    - STD-RN-STORE — Lưu trữ cục bộ & An toàn
+      ↳ implements STD-MOB-STORE
+    - STD-RN-TEST — Jest & React Native Testing Library
+      ↳ requires STD-MOB-ARCH; implements STD-TEST
+  08.3-flutter-technology
+    - STD-FL-BLOC — Flutter BLoC & Cubit
+      ↳ requires STD-MOB-ARCH
+    - STD-FL-DART — Quy ước Dart
+      ↳ requires STD-MOB-ARCH
+    - STD-FL-ROUTE — Điều hướng Flutter & go_router
+      ↳ requires STD-MOB-ARCH
+    - STD-FL-TEST — flutter_test, bloc_test & Kiểm thử tích hợp
+      ↳ requires STD-MOB-ARCH; implements STD-TEST
+    - STD-FL-WIDGET — Tổ hợp Widget & Theming
+      ↳ requires STD-MOB-ARCH
+  08.4-backend-technology-dotnet
+    - STD-DOTNET — Kiến trúc ASP.NET Core
+      ↳ requires STD-SEC
+    - STD-DOTNET-API — API, Dependency Injection & Middleware
+    - STD-DOTNET-EF — Entity Framework Core
+      ↳ implements STD-DATA; implements STD-DATA-TX; implements STD-DATA-MIG; uses STD-BE-TX
+    - STD-DOTNET-TEST — xUnit & Kiểm thử tích hợp
+      ↳ implements STD-TEST
+  08.5-database-technology
+    - STD-PG — Phát triển PostgreSQL & Migration
+      ↳ requires STD-SEC; implements STD-DATA; implements STD-DATA-TX; implements STD-DATA-MIG; uses STD-PERF
+
+09-reusable-capabilities — Reusable Capabilities
+  - CAP-AUDIT — Nhật ký kiểm toán & Lịch sử thay đổi
+    ↳ requires STD-FEAT; requires STD-BIZ
+  - CAP-AUTH — Xác thực & Đăng ký
+    ↳ requires STD-FEAT; requires STD-BIZ
+  - CAP-CHAT — Trò chuyện thời gian thực
+    ↳ requires STD-FEAT; requires STD-BIZ
+  - CAP-CRUD — CRUD, Danh sách & Phân trang
+    ↳ requires STD-FEAT; requires STD-BIZ
+  - CAP-NOTIFY — Phân phối thông báo
+    ↳ requires STD-FEAT; requires STD-BIZ
+  - CAP-PAYMENT — Thanh toán & Lập hóa đơn
+  - CAP-PERM — Vai trò & Quyền hạn
+    ↳ requires STD-FEAT; requires STD-BIZ
+  - CAP-PROFILE — Hồ sơ người dùng & Quản lý tài khoản
+    ↳ requires STD-FEAT; requires STD-BIZ
+  - CAP-REPORT — Báo cáo & Dashboard
+    ↳ requires STD-FEAT; requires STD-BIZ
+  - CAP-SEARCH — Tìm kiếm & Lập chỉ mục
+    ↳ requires STD-FEAT; requires STD-BIZ
+  - CAP-SHARE — Chia sẻ, QR & Deep Link
+    ↳ requires STD-FEAT; requires STD-BIZ
+  - CAP-UPLOAD — Tải tệp lên & Tệp đính kèm
+    ↳ requires STD-FEAT; requires STD-BIZ
+
+10-operations-infrastructure — Operations & Infrastructure
+  - STD-BACKUP — Sao lưu & Khôi phục
+  - STD-COST — Quản trị chi phí hạ tầng & Cloud
+    ↳ uses STD-LOG; uses STD-PERF; uses STD-SLO
+  - STD-DEPLOY — Triển khai, Rollout & Rollback
+    ↳ uses STD-CI; uses STD-FLAG; uses STD-VERSIONING
+  - STD-DR — Khôi phục sau thảm họa
+  - STD-IAC — Hạ tầng dưới dạng mã nguồn
+  - STD-INCIDENT — Quản lý sự cố & Postmortem
+  - STD-NET — Mạng, DNS, TLS & Bảo mật hạ tầng
+  - STD-RUNBOOK — Runbook vận hành & Bảo trì
+  - STD-SLO — Mục tiêu mức dịch vụ (SLO)
+
+11-quality-assurance-testing — Quality Assurance & Testing
+  - STD-PERF-TEST — Kiểm thử hiệu năng, tải & stress
+    ↳ extends STD-TEST; uses STD-PERF; uses STD-SLO
+  - STD-QC-A11Y — Kiểm thử khả năng tiếp cận
+    ↳ uses STD-A11Y; uses STD-QC-UI
+  - STD-QC-AC — Xác minh tiêu chí chấp nhận
+    ↳ uses STD-REQ; uses STD-BIZ; uses STD-TEST
+  - STD-QC-API — Kiểm thử API & Hợp đồng
+    ↳ uses STD-API; uses STD-API-REST; uses STD-API-HTTP; uses STD-SEC
+  - STD-QC-AUTO — Tự động hóa kiểm thử
+    ↳ uses STD-TEST; uses STD-CI; uses STD-QC-DATA
+  - STD-QC-BUG — Quản lý lỗi & Vòng đời Defect
+    ↳ uses STD-ERR; uses STD-QC-EXEC; uses STD-QC-REG
+  - STD-QC-CASE — Thiết kế & Quản lý Test Case
+    ↳ uses STD-TEST; uses STD-QC-AC
+  - STD-QC-DATA — Quản lý dữ liệu kiểm thử
+    ↳ uses STD-PRIV; uses STD-SEC; uses STD-ENV
+  - STD-QC-E2E — Kiểm thử luồng End-to-End
+    ↳ uses STD-FEAT; uses STD-QC-CASE; uses STD-QC-AUTO
+  - STD-QC-ENV — Quản lý môi trường kiểm thử
+    ↳ uses STD-ENV; uses STD-SEC; uses STD-QC-DATA
+  - STD-QC-EXEC — Thực thi kiểm thử & Bằng chứng
+    ↳ uses STD-QC-CASE; uses STD-QC-ENV; uses STD-QC-BUG
+  - STD-QC-GATE — Cổng kiểm soát chất lượng
+    ↳ uses STD-TEST; uses STD-QC-TRACE; uses STD-QC-REPORT; uses STD-CI
+  - STD-QC-MOB — Kiểm thử ứng dụng Mobile & Deep Link
+    ↳ uses STD-MOB-LIFE; uses STD-MOB-OFF; uses STD-MOB-NAV; uses STD-DEEP-LINK
+  - STD-QC-NEG — Kiểm thử trường hợp âm & Biên
+    ↳ uses STD-ERR; uses STD-QC-CASE; uses STD-API-HTTP
+  - STD-QC-PLAN — Lập kế hoạch & Phạm vi kiểm thử
+    ↳ uses STD-TEST; uses STD-REQ; uses STD-FEAT
+  - STD-QC-REG — Kiểm thử hồi quy theo thay đổi
+    ↳ uses STD-QC-TRACE; uses STD-QC-CASE; uses STD-GIT
+  - STD-QC-REPORT — Báo cáo kiểm thử & Chỉ số chất lượng
+    ↳ uses STD-QC-EXEC; uses STD-QC-TRACE; uses STD-QC-BUG
+  - STD-QC-SEC — Kiểm thử bảo mật ứng dụng
+    ↳ uses STD-SEC; uses STD-PRIV; uses STD-QC-API
+  - STD-QC-TRACE — Truy vết kiểm thử & Độ bao phủ
+    ↳ uses STD-DOC; uses STD-REQ; uses STD-QC-CASE
+  - STD-QC-UAT — Kiểm thử chấp nhận người dùng
+    ↳ uses STD-BIZ; uses STD-QC-AC; uses STD-QC-EXEC
+  - STD-QC-UI — Kiểm thử giao diện & Trải nghiệm người dùng
+    ↳ uses STD-DESIGN; uses STD-UI-STATE; uses STD-FEEDBACK; uses STD-A11Y
+  - STD-TEST — Chiến lược kiểm thử & Quality Gate
+    ↳ requires STD-REQ

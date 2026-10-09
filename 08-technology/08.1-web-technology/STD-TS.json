@@ -4,7 +4,7 @@
   "name": "Quy ước TypeScript",
   "category": "08_technology",
   "description": "Chuẩn JavaScript có kiểu dữ liệu tĩnh an toàn bằng TypeScript.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -75,21 +75,23 @@
   ],
   "depends_on": [
     {
-      "code": "STD-REQ",
-      "dependency_type": "requires"
-    },
-    {
-      "code": "STD-TEST",
-      "dependency_type": "requires"
-    },
-    {
       "code": "STD-WEB-ARCH",
       "dependency_type": "requires"
     }
   ],
   "diagrams": [],
   "applicability": {
-    "scope": "all"
+    "scope": "conditional",
+    "project_types": [
+      "web",
+      "hybrid"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "technologies": [
+      "react"
+    ]
   },
   "dependency_policy": {
     "inheritance": "explicit_extends_only",

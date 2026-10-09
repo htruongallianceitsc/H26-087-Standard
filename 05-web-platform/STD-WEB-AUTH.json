@@ -4,7 +4,7 @@
   "name": "Xác thực trình duyệt & Session",
   "category": "05_web_platform",
   "description": "Chuẩn bảo vệ credential và tính toàn vẹn của session trên Web.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -87,14 +87,6 @@
   ],
   "depends_on": [
     {
-      "code": "STD-REQ",
-      "dependency_type": "requires"
-    },
-    {
-      "code": "STD-TEST",
-      "dependency_type": "requires"
-    },
-    {
       "code": "STD-SEC",
       "dependency_type": "uses"
     },
@@ -112,9 +104,6 @@
     ],
     "platforms": [
       "web"
-    ],
-    "technologies": [
-      "react"
     ]
   },
   "dependency_policy": {

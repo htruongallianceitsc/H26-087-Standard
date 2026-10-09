@@ -4,7 +4,7 @@
   "name": "Thực thi kiểm thử & Bằng chứng",
   "category": "11_quality_assurance_testing",
   "description": "Quy ước test run, kết quả, bằng chứng và khả năng tái hiện.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

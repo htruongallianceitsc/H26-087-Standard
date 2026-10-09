@@ -4,7 +4,7 @@
   "name": "Cổng kiểm soát chất lượng",
   "category": "11_quality_assurance_testing",
   "description": "Điều kiện quyết định cho phép bàn giao hoặc phát hành.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

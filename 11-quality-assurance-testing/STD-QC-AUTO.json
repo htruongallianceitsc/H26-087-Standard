@@ -4,7 +4,7 @@
   "name": "Tự động hóa kiểm thử",
   "category": "11_quality_assurance_testing",
   "description": "Chiến lược automation, độ ổn định và bảo trì test.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

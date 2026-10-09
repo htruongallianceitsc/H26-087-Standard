@@ -4,7 +4,7 @@
   "name": "Chiến lược kiểm thử & Quality Gate",
   "category": "11_quality_assurance_testing",
   "description": "Chuẩn kiểm chứng tự động, phạm vi kiểm thử và quality gate.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

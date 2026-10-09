@@ -4,7 +4,7 @@
   "name": "Kiểm thử bảo mật ứng dụng",
   "category": "11_quality_assurance_testing",
   "description": "Kiểm tra thực tế các kiểm soát bảo mật đã quy định.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {

@@ -4,7 +4,7 @@
   "name": "Hiệu năng khởi động, Bộ nhớ & Pin",
   "category": "06_mobile_platform",
   "description": "Chuẩn kỹ thuật hiệu năng trực tiếp trên thiết bị.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
@@ -74,14 +74,6 @@
     }
   ],
   "depends_on": [
-    {
-      "code": "STD-REQ",
-      "dependency_type": "requires"
-    },
-    {
-      "code": "STD-TEST",
-      "dependency_type": "requires"
-    },
     {
       "code": "STD-PERF",
       "dependency_type": "extends"

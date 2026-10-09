@@ -4,7 +4,7 @@
   "name": "Deep Link, Universal Links & App Links",
   "category": "03_api_integration_data",
   "description": "Tiêu chuẩn thiết kế, xác minh, bảo mật và kiểm thử đường dẫn mở app từ web, QR, tin nhắn và push; hỗ trợ Android App Links, iOS Universal Links, hành vi chưa cài app và theo dõi nguồn giới thiệu, không cam kết deferred deep link khi nền tảng không bảo đảm.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "rules": [
     {
