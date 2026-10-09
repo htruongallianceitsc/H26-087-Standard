@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "code": "STD-QC-REPORT",
+  "name": "Báo cáo kiểm thử & Chỉ số chất lượng",
+  "category": "11_quality_assurance_testing",
+  "description": "Báo cáo tiến độ, coverage, defect và rủi ro còn lại.",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "title": "Báo cáo số testcase Passed, Failed, Blocked, Not Run theo build và phạm vi",
+      "detail": "Báo cáo số testcase Passed, Failed, Blocked, Not Run theo build và phạm vi. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Báo cáo số testcase Passed, Failed, Blocked, Not Run theo build và phạm vi.",
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Báo cáo số testcase Passed, Failed, Blocked, Not Run theo build và phạm vi."
+    },
+    {
+      "title": "Báo cáo defect theo severity, tuổi lỗi, reopen và xu hướng giải quyết",
+      "detail": "Báo cáo defect theo severity, tuổi lỗi, reopen và xu hướng giải quyết. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Báo cáo defect theo severity, tuổi lỗi, reopen và xu hướng giải quyết.",
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Báo cáo defect theo severity, tuổi lỗi, reopen và xu hướng giải quyết."
+    },
+    {
+      "title": "Trình bày requirement/AC coverage và rủi ro chưa được kiểm thử",
+      "detail": "Trình bày requirement/AC coverage và rủi ro chưa được kiểm thử. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Trình bày requirement/AC coverage và rủi ro chưa được kiểm thử.",
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Trình bày requirement/AC coverage và rủi ro chưa được kiểm thử."
+    },
+    {
+      "title": "Không coi số testcase nhiều hoặc tỷ lệ pass cao là bằng chứng chất lượng duy nhất",
+      "detail": "Không coi số testcase nhiều hoặc tỷ lệ pass cao là bằng chứng chất lượng duy nhất. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Không coi số testcase nhiều hoặc tỷ lệ pass cao là bằng chứng chất lượng duy nhất.",
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Không coi số testcase nhiều hoặc tỷ lệ pass cao là bằng chứng chất lượng duy nhất."
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-QC-EXEC",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-QC-TRACE",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-QC-BUG",
+      "dependency_type": "uses"
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Đánh giá phạm vi và rủi ro",
+      "description": "Đối chiếu báo cáo kiểm thử & chỉ số chất lượng với requirement, các luồng và độ ưu tiên kiểm thử."
+    },
+    {
+      "step": 2,
+      "title": "Triển khai và thu thập bằng chứng",
+      "description": "Chuẩn bị checklist, testcase hoặc automation phù hợp; chỉ định trách nhiệm và ghi lại bằng chứng."
+    },
+    {
+      "step": 3,
+      "title": "Xác nhận và cập nhật",
+      "description": "Review kết quả, ghi nhận defect/ngoại lệ và đồng bộ traceability trước khi qua quality gate."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Thiếu bằng chứng hoặc phạm vi chưa rõ",
+      "cause": "Không liên kết requirement, testcase và người chịu trách nhiệm.",
+      "solution": "Thiết lập liên kết, xác định phạm vi áp dụng và yêu cầu bằng chứng trước khi hoàn tất."
+    }
+  ]
+}

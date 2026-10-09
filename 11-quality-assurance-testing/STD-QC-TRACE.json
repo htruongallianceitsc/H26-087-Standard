@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "code": "STD-QC-TRACE",
+  "name": "Truy vết kiểm thử & Độ bao phủ",
+  "category": "11_quality_assurance_testing",
+  "description": "Truy vết Requirement → AC → Test Case → Execution → Defect.",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "title": "Mỗi testcase liên kết tới requirement, AC hoặc rủi ro mà nó kiểm chứng",
+      "detail": "Mỗi testcase liên kết tới requirement, AC hoặc rủi ro mà nó kiểm chứng. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Mỗi testcase liên kết tới requirement, AC hoặc rủi ro mà nó kiểm chứng.",
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Mỗi testcase liên kết tới requirement, AC hoặc rủi ro mà nó kiểm chứng."
+    },
+    {
+      "title": "Ghi nhận trạng thái coverage theo AC, phân biệt chưa thiết kế và chưa thực thi",
+      "detail": "Ghi nhận trạng thái coverage theo AC, phân biệt chưa thiết kế và chưa thực thi. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Ghi nhận trạng thái coverage theo AC, phân biệt chưa thiết kế và chưa thực thi.",
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Ghi nhận trạng thái coverage theo AC, phân biệt chưa thiết kế và chưa thực thi."
+    },
+    {
+      "title": "Theo dõi tác động thay đổi requirement tới testcase và bộ regression",
+      "detail": "Theo dõi tác động thay đổi requirement tới testcase và bộ regression. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Theo dõi tác động thay đổi requirement tới testcase và bộ regression.",
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Theo dõi tác động thay đổi requirement tới testcase và bộ regression."
+    },
+    {
+      "title": "Báo cáo khoảng trống coverage và ngoại lệ được phê duyệt",
+      "detail": "Báo cáo khoảng trống coverage và ngoại lệ được phê duyệt. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
+      "layer": "process",
+      "severity": "should",
+      "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Báo cáo khoảng trống coverage và ngoại lệ được phê duyệt.",
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Báo cáo khoảng trống coverage và ngoại lệ được phê duyệt."
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-DOC",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-REQ",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-QC-CASE",
+      "dependency_type": "uses"
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Đánh giá phạm vi và rủi ro",
+      "description": "Đối chiếu truy vết kiểm thử & độ bao phủ với requirement, các luồng và độ ưu tiên kiểm thử."
+    },
+    {
+      "step": 2,
+      "title": "Triển khai và thu thập bằng chứng",
+      "description": "Chuẩn bị checklist, testcase hoặc automation phù hợp; chỉ định trách nhiệm và ghi lại bằng chứng."
+    },
+    {
+      "step": 3,
+      "title": "Xác nhận và cập nhật",
+      "description": "Review kết quả, ghi nhận defect/ngoại lệ và đồng bộ traceability trước khi qua quality gate."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Thiếu bằng chứng hoặc phạm vi chưa rõ",
+      "cause": "Không liên kết requirement, testcase và người chịu trách nhiệm.",
+      "solution": "Thiết lập liên kết, xác định phạm vi áp dụng và yêu cầu bằng chứng trước khi hoàn tất."
+    }
+  ]
+}

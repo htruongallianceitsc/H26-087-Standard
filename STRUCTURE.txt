@@ -9,11 +9,7 @@ STANDARD CATALOG
 │   ├── STD-DOC ............ Tài liệu hóa & Truy vết
 │   ├── STD-NAME ........... Đặt tên & Tổ chức mã nguồn
 │   ├── STD-GIT ............ Quy trình Git & Chiến lược Branch
-│   ├── STD-TEST ........... Chiến lược kiểm thử & Quality Gate
 │   │
-│   ├── STD-PERF-TEST ...... Kiểm thử hiệu năng, tải & stress         [MỚI]
-│   │                         ↳ Mở rộng STD-TEST
-│   │                         ↳ Sử dụng STD-PERF, STD-SLO
 │   │
 │   ├── STD-CODE-REVIEW .... Code Review & Quản trị Pull Request     [MỚI]
 │   │                         ↳ Sử dụng STD-GIT, STD-TEST, STD-SEC
@@ -217,7 +213,7 @@ STANDARD CATALOG
 │   ├── CAP-PAYMENT ........ Thanh toán & Lập hóa đơn
 │   └── CAP-REPORT ......... Báo cáo & Dashboard
 │
-└── 10. VẬN HÀNH & HẠ TẦNG
+├── 10. VẬN HÀNH & HẠ TẦNG
     │
     ├── STD-DEPLOY ......... Triển khai, Rollout & Rollback
     │                         ↳ Sử dụng STD-CI, STD-FLAG,
@@ -233,3 +229,28 @@ STANDARD CATALOG
     │
     ├── STD-INCIDENT ....... Quản lý sự cố & Postmortem
     └── STD-RUNBOOK ........ Runbook vận hành & Bảo trì
+
+└── 11. QC & TESTING — ĐẢM BẢO CHẤT LƯỢNG & KIỂM THỬ
+    │
+    ├── STD-TEST........... Chiến lược kiểm thử & Quality Gate
+    ├── STD-QC-PLAN........ Lập kế hoạch & Phạm vi kiểm thử
+    ├── STD-QC-AC.......... Xác minh tiêu chí chấp nhận
+    ├── STD-QC-TRACE....... Truy vết kiểm thử & Độ bao phủ
+    ├── STD-QC-CASE........ Thiết kế & Quản lý Test Case
+    ├── STD-QC-DATA........ Quản lý dữ liệu kiểm thử
+    ├── STD-QC-NEG......... Kiểm thử trường hợp âm & Biên
+    ├── STD-QC-REG......... Kiểm thử hồi quy theo thay đổi
+    ├── STD-QC-EXEC........ Thực thi kiểm thử & Bằng chứng
+    ├── STD-QC-BUG......... Quản lý lỗi & Vòng đời Defect
+    ├── STD-QC-AUTO........ Tự động hóa kiểm thử
+    ├── STD-QC-ENV......... Quản lý môi trường kiểm thử
+    ├── STD-QC-API......... Kiểm thử API & Hợp đồng
+    ├── STD-QC-UI.......... Kiểm thử giao diện & Trải nghiệm người dùng
+    ├── STD-QC-E2E......... Kiểm thử luồng End-to-End
+    ├── STD-QC-SEC......... Kiểm thử bảo mật ứng dụng
+    ├── STD-PERF-TEST...... Kiểm thử hiệu năng, tải & stress
+    ├── STD-QC-MOB......... Kiểm thử ứng dụng Mobile & Deep Link
+    ├── STD-QC-A11Y........ Kiểm thử khả năng tiếp cận
+    ├── STD-QC-GATE........ Cổng kiểm soát chất lượng
+    ├── STD-QC-UAT......... Kiểm thử chấp nhận người dùng
+    └── STD-QC-REPORT...... Báo cáo kiểm thử & Chỉ số chất lượng

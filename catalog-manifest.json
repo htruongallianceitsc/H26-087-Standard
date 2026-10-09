@@ -1,7 +1,7 @@
 {
   "sourceOfTruth": "STRUCTURE.txt",
   "schema": "standard-import.schema.json",
-  "count": 117,
+  "count": 137,
   "groups": [
     {
       "folder": "01-governance-delivery",
@@ -13,8 +13,6 @@
         "STD-DOC.json",
         "STD-NAME.json",
         "STD-GIT.json",
-        "STD-TEST.json",
-        "STD-PERF-TEST.json",
         "STD-CODE-REVIEW.json",
         "STD-VERSIONING.json",
         "STD-COMPLIANCE.json",
@@ -188,6 +186,33 @@
         "STD-COST.json",
         "STD-INCIDENT.json",
         "STD-RUNBOOK.json"
+      ]
+    },
+    {
+      "folder": "11-quality-assurance-testing",
+      "files": [
+        "STD-TEST.json",
+        "STD-QC-PLAN.json",
+        "STD-QC-AC.json",
+        "STD-QC-TRACE.json",
+        "STD-QC-CASE.json",
+        "STD-QC-DATA.json",
+        "STD-QC-NEG.json",
+        "STD-QC-REG.json",
+        "STD-QC-EXEC.json",
+        "STD-QC-BUG.json",
+        "STD-QC-AUTO.json",
+        "STD-QC-ENV.json",
+        "STD-QC-API.json",
+        "STD-QC-UI.json",
+        "STD-QC-E2E.json",
+        "STD-QC-SEC.json",
+        "STD-PERF-TEST.json",
+        "STD-QC-MOB.json",
+        "STD-QC-A11Y.json",
+        "STD-QC-GATE.json",
+        "STD-QC-UAT.json",
+        "STD-QC-REPORT.json"
       ]
     }
   ]
