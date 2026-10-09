@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "CAP-NOTIFY",
   "name": "Phân phối thông báo",
   "category": "09_reusable_capabilities",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tách biệt message event, tùy chọn phân phối và cách trình bày.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R001"
     },
     {
       "title": "Tránh gửi dữ liệu riêng tư tới người nhận không được phép",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tránh gửi dữ liệu riêng tư tới người nhận không được phép.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R002"
     },
     {
       "title": "Đảm bảo action từ notification có tính idempotent và validation destination",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Đảm bảo action từ notification có tính idempotent và validation destination.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R003"
     },
     {
       "title": "Kiểm thử phân phối trùng, bộ đếm chưa đọc và trạng thái dismissal",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Kiểm thử phân phối trùng, bộ đếm chưa đọc và trạng thái dismissal.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R004"
     }
   ],
   "integration_guide": [
@@ -116,5 +120,13 @@
       "dependency_type": "requires"
     }
   ],
-  "diagrams": []
+  "diagrams": [],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

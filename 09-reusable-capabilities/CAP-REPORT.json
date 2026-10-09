@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "CAP-REPORT",
   "name": "Báo cáo & Dashboard",
   "category": "09_reusable_capabilities",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tài liệu hóa định nghĩa metric, bộ lọc và múi giờ báo cáo.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R001"
     },
     {
       "title": "Đảm bảo dữ liệu tổng hợp tuân thủ quyền của tenant và người dùng",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Đảm bảo dữ liệu tổng hợp tuân thủ quyền của tenant và người dùng.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R002"
     },
     {
       "title": "Cung cấp chỉ báo trạng thái loading, empty và dữ liệu một phần",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Cung cấp chỉ báo trạng thái loading, empty và dữ liệu một phần.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R003"
     },
     {
       "title": "Giới hạn query tốn tài nguyên và áp dụng cache theo yêu cầu về độ mới dữ liệu",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Giới hạn query tốn tài nguyên và áp dụng cache theo yêu cầu về độ mới dữ liệu.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R004"
     }
   ],
   "integration_guide": [
@@ -116,5 +120,13 @@
       "dependency_type": "requires"
     }
   ],
-  "diagrams": []
+  "diagrams": [],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

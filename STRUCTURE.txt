@@ -254,3 +254,10 @@ STANDARD CATALOG
     ├── STD-QC-GATE........ Cổng kiểm soát chất lượng
     ├── STD-QC-UAT......... Kiểm thử chấp nhận người dùng
     └── STD-QC-REPORT...... Báo cáo kiểm thử & Chỉ số chất lượng
+
+
+SCHEMA V2 (metadata mở rộng):
+- standard-import-v2.schema.json: rule ID, applicability, dependency_policy.
+- project-profiles/: Project Profile mẫu; rule-id-registry.json: danh mục định danh rule.
+- tools/standard_tool.py: validate, resolve và export-v1 tương thích importer cũ.
+- Xem SCHEMA-V2-UPGRADE-GUIDE.md trước khi import; code và vị trí các standard không đổi.

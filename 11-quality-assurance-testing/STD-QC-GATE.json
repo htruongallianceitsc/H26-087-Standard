@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-QC-GATE",
   "name": "Cổng kiểm soát chất lượng",
   "category": "11_quality_assurance_testing",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Định nghĩa trước điều kiện pass theo coverage, severity lỗi, regression và rủi ro.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Định nghĩa trước điều kiện pass theo coverage, severity lỗi, regression và rủi ro."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Định nghĩa trước điều kiện pass theo coverage, severity lỗi, regression và rủi ro.",
+      "id": "R001"
     },
     {
       "title": "Không cho qua gate nếu còn blocker/critical chưa xử lý hoặc chưa có quyết định waiver hợp lệ",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Không cho qua gate nếu còn blocker/critical chưa xử lý hoặc chưa có quyết định waiver hợp lệ.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Không cho qua gate nếu còn blocker/critical chưa xử lý hoặc chưa có quyết định waiver hợp lệ."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Không cho qua gate nếu còn blocker/critical chưa xử lý hoặc chưa có quyết định waiver hợp lệ.",
+      "id": "R002"
     },
     {
       "title": "Ghi lại người phê duyệt, bằng chứng, ngoại lệ, thời hạn và trách nhiệm follow-up",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Ghi lại người phê duyệt, bằng chứng, ngoại lệ, thời hạn và trách nhiệm follow-up.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Ghi lại người phê duyệt, bằng chứng, ngoại lệ, thời hạn và trách nhiệm follow-up."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Ghi lại người phê duyệt, bằng chứng, ngoại lệ, thời hạn và trách nhiệm follow-up.",
+      "id": "R003"
     },
     {
       "title": "Đánh giá lại gate khi build, phạm vi hoặc mức rủi ro thay đổi",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Đánh giá lại gate khi build, phạm vi hoặc mức rủi ro thay đổi.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Đánh giá lại gate khi build, phạm vi hoặc mức rủi ro thay đổi."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Đánh giá lại gate khi build, phạm vi hoặc mức rủi ro thay đổi.",
+      "id": "R004"
     }
   ],
   "depends_on": [
@@ -81,5 +85,13 @@
       "cause": "Không liên kết requirement, testcase và người chịu trách nhiệm.",
       "solution": "Thiết lập liên kết, xác định phạm vi áp dụng và yêu cầu bằng chứng trước khi hoàn tất."
     }
-  ]
+  ],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

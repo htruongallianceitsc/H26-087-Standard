@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-NET",
   "name": "Mạng, DNS, TLS & Bảo mật hạ tầng",
   "category": "10_operations_infrastructure",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Project ghi nhận rõ cách Mạng, DNS, TLS & Bảo mật hạ tầng được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
-      "example_bad": "Mạng, DNS, TLS & Bảo mật hạ tầng được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review."
+      "example_bad": "Mạng, DNS, TLS & Bảo mật hạ tầng được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review.",
+      "id": "R001"
     },
     {
       "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
-      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán."
+      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán.",
+      "id": "R002"
     },
     {
       "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
-      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review."
+      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review.",
+      "id": "R003"
     }
   ],
   "integration_guide": [
@@ -62,5 +65,13 @@
     }
   ],
   "depends_on": [],
-  "diagrams": []
+  "diagrams": [],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

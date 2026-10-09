@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-QC-AC",
   "name": "Xác minh tiêu chí chấp nhận",
   "category": "11_quality_assurance_testing",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Mỗi acceptance criterion phải quan sát được, kiểm thử được và có kết quả kỳ vọng rõ ràng.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Mỗi acceptance criterion phải quan sát được, kiểm thử được và có kết quả kỳ vọng rõ ràng."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Mỗi acceptance criterion phải quan sát được, kiểm thử được và có kết quả kỳ vọng rõ ràng.",
+      "id": "R001"
     },
     {
       "title": "Làm rõ điều kiện trước, hành vi, đầu ra và quy tắc nghiệp vụ trước khi chốt testcase",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Làm rõ điều kiện trước, hành vi, đầu ra và quy tắc nghiệp vụ trước khi chốt testcase.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Làm rõ điều kiện trước, hành vi, đầu ra và quy tắc nghiệp vụ trước khi chốt testcase."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Làm rõ điều kiện trước, hành vi, đầu ra và quy tắc nghiệp vụ trước khi chốt testcase.",
+      "id": "R002"
     },
     {
       "title": "Phân biệt acceptance criteria với chi tiết triển khai không bắt buộc",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Phân biệt acceptance criteria với chi tiết triển khai không bắt buộc.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Phân biệt acceptance criteria với chi tiết triển khai không bắt buộc."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Phân biệt acceptance criteria với chi tiết triển khai không bắt buộc.",
+      "id": "R003"
     },
     {
       "title": "Ghi lại AC mơ hồ hoặc mâu thuẫn thành câu hỏi trước khi kiểm thử",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Ghi lại AC mơ hồ hoặc mâu thuẫn thành câu hỏi trước khi kiểm thử.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Ghi lại AC mơ hồ hoặc mâu thuẫn thành câu hỏi trước khi kiểm thử."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Ghi lại AC mơ hồ hoặc mâu thuẫn thành câu hỏi trước khi kiểm thử.",
+      "id": "R004"
     }
   ],
   "depends_on": [
@@ -77,5 +81,13 @@
       "cause": "Không liên kết requirement, testcase và người chịu trách nhiệm.",
       "solution": "Thiết lập liên kết, xác định phạm vi áp dụng và yêu cầu bằng chứng trước khi hoàn tất."
     }
-  ]
+  ],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

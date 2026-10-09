@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-QC-BUG",
   "name": "Quản lý lỗi & Vòng đời Defect",
   "category": "11_quality_assurance_testing",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Defect phải ghi expected/actual, bước tái hiện, môi trường, phiên bản và bằng chứng.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Defect phải ghi expected/actual, bước tái hiện, môi trường, phiên bản và bằng chứng."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Defect phải ghi expected/actual, bước tái hiện, môi trường, phiên bản và bằng chứng.",
+      "id": "R001"
     },
     {
       "title": "Phân biệt severity (mức tác động) với priority (thứ tự xử lý)",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Phân biệt severity (mức tác động) với priority (thứ tự xử lý).",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Phân biệt severity (mức tác động) với priority (thứ tự xử lý)."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Phân biệt severity (mức tác động) với priority (thứ tự xử lý).",
+      "id": "R002"
     },
     {
       "title": "Theo dõi trạng thái New, Triaged, In Progress, Ready for Retest, Closed hoặc Reopened theo workflow dự án",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Theo dõi trạng thái New, Triaged, In Progress, Ready for Retest, Closed hoặc Reopened theo workflow dự án.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Theo dõi trạng thái New, Triaged, In Progress, Ready for Retest, Closed hoặc Reopened theo workflow dự án."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Theo dõi trạng thái New, Triaged, In Progress, Ready for Retest, Closed hoặc Reopened theo workflow dự án.",
+      "id": "R003"
     },
     {
       "title": "Kiểm tra lại bug fix và thực hiện regression vùng liên quan trước khi đóng",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Kiểm tra lại bug fix và thực hiện regression vùng liên quan trước khi đóng.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra lại bug fix và thực hiện regression vùng liên quan trước khi đóng."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra lại bug fix và thực hiện regression vùng liên quan trước khi đóng.",
+      "id": "R004"
     }
   ],
   "depends_on": [
@@ -77,5 +81,13 @@
       "cause": "Không liên kết requirement, testcase và người chịu trách nhiệm.",
       "solution": "Thiết lập liên kết, xác định phạm vi áp dụng và yêu cầu bằng chứng trước khi hoàn tất."
     }
-  ]
+  ],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

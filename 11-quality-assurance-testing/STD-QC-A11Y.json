@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-QC-A11Y",
   "name": "Kiểm thử khả năng tiếp cận",
   "category": "11_quality_assurance_testing",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Kiểm tra điều hướng bằng bàn phím, focus và thông báo dành cho screen reader.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra điều hướng bằng bàn phím, focus và thông báo dành cho screen reader."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra điều hướng bằng bàn phím, focus và thông báo dành cho screen reader.",
+      "id": "R001"
     },
     {
       "title": "Kiểm tra label/role, nội dung thay thế, contrast và vùng chạm",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Kiểm tra label/role, nội dung thay thế, contrast và vùng chạm.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra label/role, nội dung thay thế, contrast và vùng chạm."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra label/role, nội dung thay thế, contrast và vùng chạm.",
+      "id": "R002"
     },
     {
       "title": "Kiểm tra lỗi form có thông báo rõ và liên kết với trường nhập",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Kiểm tra lỗi form có thông báo rõ và liên kết với trường nhập.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra lỗi form có thông báo rõ và liên kết với trường nhập."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra lỗi form có thông báo rõ và liên kết với trường nhập.",
+      "id": "R003"
     },
     {
       "title": "Kết hợp kiểm thử tự động với thao tác thực tế bằng công cụ trợ năng",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Kết hợp kiểm thử tự động với thao tác thực tế bằng công cụ trợ năng.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kết hợp kiểm thử tự động với thao tác thực tế bằng công cụ trợ năng."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kết hợp kiểm thử tự động với thao tác thực tế bằng công cụ trợ năng.",
+      "id": "R004"
     }
   ],
   "depends_on": [
@@ -73,5 +77,13 @@
       "cause": "Không liên kết requirement, testcase và người chịu trách nhiệm.",
       "solution": "Thiết lập liên kết, xác định phạm vi áp dụng và yêu cầu bằng chứng trước khi hoàn tất."
     }
-  ]
+  ],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-QC-CASE",
   "name": "Thiết kế & Quản lý Test Case",
   "category": "11_quality_assurance_testing",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Testcase có ID ổn định, mục đích, điều kiện trước, dữ liệu và các bước tái hiện.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Testcase có ID ổn định, mục đích, điều kiện trước, dữ liệu và các bước tái hiện."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Testcase có ID ổn định, mục đích, điều kiện trước, dữ liệu và các bước tái hiện.",
+      "id": "R001"
     },
     {
       "title": "Mỗi bước kiểm tra có kết quả kỳ vọng đủ rõ để đánh giá pass/fail",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Mỗi bước kiểm tra có kết quả kỳ vọng đủ rõ để đánh giá pass/fail.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Mỗi bước kiểm tra có kết quả kỳ vọng đủ rõ để đánh giá pass/fail."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Mỗi bước kiểm tra có kết quả kỳ vọng đủ rõ để đánh giá pass/fail.",
+      "id": "R002"
     },
     {
       "title": "Tách happy path, nhánh nghiệp vụ, điều kiện biên và lỗi phù hợp rủi ro",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Tách happy path, nhánh nghiệp vụ, điều kiện biên và lỗi phù hợp rủi ro.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Tách happy path, nhánh nghiệp vụ, điều kiện biên và lỗi phù hợp rủi ro."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Tách happy path, nhánh nghiệp vụ, điều kiện biên và lỗi phù hợp rủi ro.",
+      "id": "R003"
     },
     {
       "title": "Tránh testcase phụ thuộc thứ tự thực thi; ưu tiên khả năng chạy lại độc lập",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Tránh testcase phụ thuộc thứ tự thực thi; ưu tiên khả năng chạy lại độc lập.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Tránh testcase phụ thuộc thứ tự thực thi; ưu tiên khả năng chạy lại độc lập."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Tránh testcase phụ thuộc thứ tự thực thi; ưu tiên khả năng chạy lại độc lập.",
+      "id": "R004"
     }
   ],
   "depends_on": [
@@ -73,5 +77,13 @@
       "cause": "Không liên kết requirement, testcase và người chịu trách nhiệm.",
       "solution": "Thiết lập liên kết, xác định phạm vi áp dụng và yêu cầu bằng chứng trước khi hoàn tất."
     }
-  ]
+  ],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

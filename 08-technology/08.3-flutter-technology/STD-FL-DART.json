@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-FL-DART",
   "name": "Quy ước Dart",
   "category": "08_technology",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Bật analyzer lint nghiêm ngặt và format code nhất quán.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R001"
     },
     {
       "title": "Sử dụng model immutable và kiểu null-safe khi phù hợp",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Sử dụng model immutable và kiểu null-safe khi phù hợp.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R002"
     },
     {
       "title": "Giữ xử lý lỗi async có kiểu dữ liệu rõ ràng và tránh nuốt exception",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Giữ xử lý lỗi async có kiểu dữ liệu rõ ràng và tránh nuốt exception.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R003"
     },
     {
       "title": "Tổ chức import thư viện và trách nhiệm file theo cách nhất quán, dễ dự đoán",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tổ chức import thư viện và trách nhiệm file theo cách nhất quán, dễ dự đoán.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R004"
     }
   ],
   "integration_guide": [
@@ -83,5 +87,13 @@
       "dependency_type": "requires"
     }
   ],
-  "diagrams": []
+  "diagrams": [],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

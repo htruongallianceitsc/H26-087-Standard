@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "CAP-PROFILE",
   "name": "Hồ sơ người dùng & Quản lý tài khoản",
   "category": "09_reusable_capabilities",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Giới hạn update cho đúng subject được ủy quyền và các field được phép.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R001"
     },
     {
       "title": "Validation các field thay đổi và giữ nguyên giá trị hiện có của field không đổi",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Validation các field thay đổi và giữ nguyên giá trị hiện có của field không đổi.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R002"
     },
     {
       "title": "Xử lý lỗi avatar/media và response xung đột",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Xử lý lỗi avatar/media và response xung đột.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R003"
     },
     {
       "title": "Ghi audit cho các thay đổi hồ sơ nhạy cảm mà không làm lộ dữ liệu riêng tư",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Ghi audit cho các thay đổi hồ sơ nhạy cảm mà không làm lộ dữ liệu riêng tư.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R004"
     }
   ],
   "integration_guide": [
@@ -116,5 +120,13 @@
       "dependency_type": "requires"
     }
   ],
-  "diagrams": []
+  "diagrams": [],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

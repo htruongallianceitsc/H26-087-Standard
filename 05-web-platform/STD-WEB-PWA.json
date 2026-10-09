@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-WEB-PWA",
   "name": "Progressive Web App (PWA)",
   "category": "05_web_platform",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Chỉ sử dụng service worker cho các kịch bản cache/offline được xác định rõ.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R001"
     },
     {
       "title": "Đánh version cho cache entry và tránh cache response riêng tư một cách tùy tiện",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Đánh version cho cache entry và tránh cache response riêng tư một cách tùy tiện.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R002"
     },
     {
       "title": "Cung cấp fallback hợp lý khi push, install prompt hoặc offline API không được hỗ trợ",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Cung cấp fallback hợp lý khi push, install prompt hoặc offline API không được hỗ trợ.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R003"
     },
     {
       "title": "Kiểm thử update, asset cũ và thay đổi session xuyên suốt vòng đời PWA",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Kiểm thử update, asset cũ và thay đổi session xuyên suốt vòng đời PWA.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R004"
     }
   ],
   "integration_guide": [
@@ -79,5 +83,23 @@
       "dependency_type": "requires"
     }
   ],
-  "diagrams": []
+  "diagrams": [],
+  "applicability": {
+    "scope": "conditional",
+    "project_types": [
+      "web",
+      "hybrid"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "technologies": [
+      "react"
+    ]
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

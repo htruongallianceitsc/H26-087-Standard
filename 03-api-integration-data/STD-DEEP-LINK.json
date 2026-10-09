@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-DEEP-LINK",
   "name": "Deep Link, Universal Links & App Links",
   "category": "03_api_integration_data",
@@ -13,7 +13,8 @@
       "layer": "ui",
       "severity": "must",
       "example_good": "https://go.example.com/p/abc123 mở đúng nội dung trên web hoặc app.",
-      "example_bad": "Chỉ gửi myapp://item/123 khiến người chưa cài app không truy cập được."
+      "example_bad": "Chỉ gửi myapp://item/123 khiến người chưa cài app không truy cập được.",
+      "id": "R001"
     },
     {
       "title": "Cấu hình iOS Universal Links đúng xác thực domain",
@@ -21,7 +22,8 @@
       "layer": "ui",
       "severity": "must",
       "example_good": "AASA trả HTTP 200 trên HTTPS, có appIDs hợp lệ và entitlement tương ứng.",
-      "example_bad": "File AASA trả 302 hoặc không khớp Bundle ID."
+      "example_bad": "File AASA trả 302 hoặc không khớp Bundle ID.",
+      "id": "R002"
     },
     {
       "title": "Cấu hình Android App Links bằng Digital Asset Links",
@@ -29,7 +31,8 @@
       "layer": "ui",
       "severity": "must",
       "example_good": "assetlinks.json được xác thực và adb kiểm tra app-links domain thành công.",
-      "example_bad": "Dùng fingerprint của keystore debug cho bản production mà không khai báo certificate production."
+      "example_bad": "Dùng fingerprint của keystore debug cho bản production mà không khai báo certificate production.",
+      "id": "R003"
     },
     {
       "title": "Đảm bảo fallback khi chưa cài app và mở web an toàn",
@@ -37,7 +40,8 @@
       "layer": "ui",
       "severity": "must",
       "example_good": "Người chưa cài app thấy landing page và nút mở App Store/Google Play.",
-      "example_bad": "JavaScript tự chuyển qua scheme rồi store liên tục, khiến người dùng mắc vòng lặp."
+      "example_bad": "JavaScript tự chuyển qua scheme rồi store liên tục, khiến người dùng mắc vòng lặp.",
+      "id": "R004"
     },
     {
       "title": "Điều hướng đúng theo trạng thái đăng nhập và vòng đời",
@@ -45,7 +49,8 @@
       "layer": "ui",
       "severity": "must",
       "example_good": "Link tới đơn hàng yêu cầu login; sau login chuyển đúng đơn mà người dùng có quyền.",
-      "example_bad": "Link tới màn hình cần auth được mở khi chưa nạp session rồi crash."
+      "example_bad": "Link tới màn hình cần auth được mở khi chưa nạp session rồi crash.",
+      "id": "R005"
     },
     {
       "title": "Chống open redirect, giả mạo và lộ dữ liệu",
@@ -53,7 +58,8 @@
       "layer": "security",
       "severity": "must",
       "example_good": "Router từ chối https://evil.example/ và chỉ mở tài nguyên sau check quyền.",
-      "example_bad": "Tham số ?next=https://attacker.test được redirect tùy ý."
+      "example_bad": "Tham số ?next=https://attacker.test được redirect tùy ý.",
+      "id": "R006"
     },
     {
       "title": "Xác định rõ giới hạn deferred deep linking",
@@ -61,7 +67,8 @@
       "layer": "ui",
       "severity": "must",
       "example_good": "Người dùng có thể nhập referral code nếu nguồn sau cài không khôi phục được.",
-      "example_bad": "Cam kết 100% giữ mã giới thiệu sau mọi lần cài từ App Store."
+      "example_bad": "Cam kết 100% giữ mã giới thiệu sau mọi lần cài từ App Store.",
+      "id": "R007"
     },
     {
       "title": "Chuẩn hóa attribution, query và canonical URL",
@@ -69,7 +76,8 @@
       "layer": "api",
       "severity": "must",
       "example_good": "referral_code được kiểm chứng backend và gắn một lần theo rule đăng ký.",
-      "example_bad": "Mỗi lần mở link đều ghi đè referrer đã xác nhận."
+      "example_bad": "Mỗi lần mở link đều ghi đè referrer đã xác nhận.",
+      "id": "R008"
     },
     {
       "title": "Kiểm thử toàn bộ ma trận thiết bị và kênh mở",
@@ -77,7 +85,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Test matrix ghi kết quả mở từ Zalo, Chrome, Safari, QR và notification trên bản release thật.",
-      "example_bad": "Chỉ kiểm thử scheme thủ công trên simulator debug."
+      "example_bad": "Chỉ kiểm thử scheme thủ công trên simulator debug.",
+      "id": "R009"
     },
     {
       "title": "Thiết lập giám sát link và phương án khôi phục",
@@ -85,7 +94,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có dashboard lỗi association và route not found; đường dẫn cũ vẫn tương thích.",
-      "example_bad": "Thay đổi route làm toàn bộ QR cũ mất hiệu lực."
+      "example_bad": "Thay đổi route làm toàn bộ QR cũ mất hiệu lực.",
+      "id": "R010"
     }
   ],
   "depends_on": [
@@ -158,5 +168,30 @@
       "solution": "Luôn kiểm tra quyền ở backend và trả 403/404 theo chính sách."
     }
   ],
-  "diagrams": []
+  "diagrams": [],
+  "applicability": {
+    "scope": "conditional",
+    "project_types": [
+      "web",
+      "mobile",
+      "hybrid"
+    ],
+    "platforms": [
+      "web",
+      "android",
+      "ios"
+    ],
+    "conditions": [
+      {
+        "key": "features.deep_link",
+        "operator": "eq",
+        "value": true
+      }
+    ]
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

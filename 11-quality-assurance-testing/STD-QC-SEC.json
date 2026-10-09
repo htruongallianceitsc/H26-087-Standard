@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-QC-SEC",
   "name": "Kiểm thử bảo mật ứng dụng",
   "category": "11_quality_assurance_testing",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Kiểm tra xác thực, phân quyền theo vai trò, IDOR và session hết hạn.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra xác thực, phân quyền theo vai trò, IDOR và session hết hạn."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra xác thực, phân quyền theo vai trò, IDOR và session hết hạn.",
+      "id": "R001"
     },
     {
       "title": "Xác minh validate đầu vào, bảo vệ dữ liệu và không lộ secret trong log/error",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Xác minh validate đầu vào, bảo vệ dữ liệu và không lộ secret trong log/error.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Xác minh validate đầu vào, bảo vệ dữ liệu và không lộ secret trong log/error."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Xác minh validate đầu vào, bảo vệ dữ liệu và không lộ secret trong log/error.",
+      "id": "R002"
     },
     {
       "title": "Kiểm tra cấu hình bảo mật và dependency có rủi ro theo phạm vi dự án",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Kiểm tra cấu hình bảo mật và dependency có rủi ro theo phạm vi dự án.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra cấu hình bảo mật và dependency có rủi ro theo phạm vi dự án."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra cấu hình bảo mật và dependency có rủi ro theo phạm vi dự án.",
+      "id": "R003"
     },
     {
       "title": "Chỉ thử nghiệm xâm nhập trên môi trường và hệ thống được cho phép",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Chỉ thử nghiệm xâm nhập trên môi trường và hệ thống được cho phép.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Chỉ thử nghiệm xâm nhập trên môi trường và hệ thống được cho phép."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Chỉ thử nghiệm xâm nhập trên môi trường và hệ thống được cho phép.",
+      "id": "R004"
     }
   ],
   "depends_on": [
@@ -77,5 +81,13 @@
       "cause": "Không liên kết requirement, testcase và người chịu trách nhiệm.",
       "solution": "Thiết lập liên kết, xác định phạm vi áp dụng và yêu cầu bằng chứng trước khi hoàn tất."
     }
-  ]
+  ],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

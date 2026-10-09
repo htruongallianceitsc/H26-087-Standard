@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-QC-REPORT",
   "name": "Báo cáo kiểm thử & Chỉ số chất lượng",
   "category": "11_quality_assurance_testing",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Báo cáo số testcase Passed, Failed, Blocked, Not Run theo build và phạm vi.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Báo cáo số testcase Passed, Failed, Blocked, Not Run theo build và phạm vi."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Báo cáo số testcase Passed, Failed, Blocked, Not Run theo build và phạm vi.",
+      "id": "R001"
     },
     {
       "title": "Báo cáo defect theo severity, tuổi lỗi, reopen và xu hướng giải quyết",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Báo cáo defect theo severity, tuổi lỗi, reopen và xu hướng giải quyết.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Báo cáo defect theo severity, tuổi lỗi, reopen và xu hướng giải quyết."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Báo cáo defect theo severity, tuổi lỗi, reopen và xu hướng giải quyết.",
+      "id": "R002"
     },
     {
       "title": "Trình bày requirement/AC coverage và rủi ro chưa được kiểm thử",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Trình bày requirement/AC coverage và rủi ro chưa được kiểm thử.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Trình bày requirement/AC coverage và rủi ro chưa được kiểm thử."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Trình bày requirement/AC coverage và rủi ro chưa được kiểm thử.",
+      "id": "R003"
     },
     {
       "title": "Không coi số testcase nhiều hoặc tỷ lệ pass cao là bằng chứng chất lượng duy nhất",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Không coi số testcase nhiều hoặc tỷ lệ pass cao là bằng chứng chất lượng duy nhất.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Không coi số testcase nhiều hoặc tỷ lệ pass cao là bằng chứng chất lượng duy nhất."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Không coi số testcase nhiều hoặc tỷ lệ pass cao là bằng chứng chất lượng duy nhất.",
+      "id": "R004"
     }
   ],
   "depends_on": [
@@ -77,5 +81,13 @@
       "cause": "Không liên kết requirement, testcase và người chịu trách nhiệm.",
       "solution": "Thiết lập liên kết, xác định phạm vi áp dụng và yêu cầu bằng chứng trước khi hoàn tất."
     }
-  ]
+  ],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

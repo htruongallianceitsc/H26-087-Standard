@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-BIZ",
   "name": "Quy tắc nghiệp vụ & Quy trình nghiệp vụ",
   "category": "01_governance_delivery",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Gán mã định danh rõ ràng và owner cho từng quy tắc nghiệp vụ.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R001"
     },
     {
       "title": "Tài liệu hóa trigger, điều kiện, kết quả, ngoại lệ và thứ tự ưu tiên",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Tài liệu hóa trigger, điều kiện, kết quả, ngoại lệ và thứ tự ưu tiên.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R002"
     },
     {
       "title": "Mô hình hóa nhánh quyết định và thay đổi trạng thái khi kết quả phụ thuộc vào ngữ cảnh",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Mô hình hóa nhánh quyết định và thay đổi trạng thái khi kết quả phụ thuộc vào ngữ cảnh.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R003"
     },
     {
       "title": "Xác nhận các quy tắc nghiệp vụ xung đột với người chịu trách nhiệm quyết định trước khi triển khai",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Bằng chứng triển khai/review thể hiện rõ việc tuân thủ: Xác nhận các quy tắc nghiệp vụ xung đột với người chịu trách nhiệm quyết định trước khi triển khai.",
-      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận."
+      "example_bad": "Một thay đổi bị ảnh hưởng đã bỏ qua quy tắc này mà không có review hoặc ngoại lệ được ghi nhận.",
+      "id": "R004"
     }
   ],
   "integration_guide": [
@@ -76,5 +80,13 @@
       "content": "flowchart TD\n  A[Tiếp nhận requirement] --> B[Xác định standard áp dụng]\n  B --> C[Thiết kế và triển khai]\n  C --> D[Validation và review]\n  D --> E[Ghi nhận bằng chứng]"
     }
   ],
-  "depends_on": []
+  "depends_on": [],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-QC-UI",
   "name": "Kiểm thử giao diện & Trải nghiệm người dùng",
   "category": "11_quality_assurance_testing",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Đối chiếu UI với design và các trạng thái loading, empty, error, success.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Đối chiếu UI với design và các trạng thái loading, empty, error, success."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Đối chiếu UI với design và các trạng thái loading, empty, error, success.",
+      "id": "R001"
     },
     {
       "title": "Kiểm tra validation field, toast/dialog, focus, navigation và keyboard",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Kiểm tra validation field, toast/dialog, focus, navigation và keyboard.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra validation field, toast/dialog, focus, navigation và keyboard."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra validation field, toast/dialog, focus, navigation và keyboard.",
+      "id": "R002"
     },
     {
       "title": "Kiểm tra responsive, nội dung dài, ngôn ngữ và tính nhất quán component",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Kiểm tra responsive, nội dung dài, ngôn ngữ và tính nhất quán component.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra responsive, nội dung dài, ngôn ngữ và tính nhất quán component."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra responsive, nội dung dài, ngôn ngữ và tính nhất quán component.",
+      "id": "R003"
     },
     {
       "title": "Không chỉ so ảnh; kiểm tra hành vi và phản hồi đúng acceptance criteria",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Không chỉ so ảnh; kiểm tra hành vi và phản hồi đúng acceptance criteria.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Không chỉ so ảnh; kiểm tra hành vi và phản hồi đúng acceptance criteria."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Không chỉ so ảnh; kiểm tra hành vi và phản hồi đúng acceptance criteria.",
+      "id": "R004"
     }
   ],
   "depends_on": [
@@ -81,5 +85,13 @@
       "cause": "Không liên kết requirement, testcase và người chịu trách nhiệm.",
       "solution": "Thiết lập liên kết, xác định phạm vi áp dụng và yêu cầu bằng chứng trước khi hoàn tất."
     }
-  ]
+  ],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

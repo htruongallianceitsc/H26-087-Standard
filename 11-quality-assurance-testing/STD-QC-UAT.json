@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-QC-UAT",
   "name": "Kiểm thử chấp nhận người dùng",
   "category": "11_quality_assurance_testing",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Xây dựng kịch bản UAT từ business flow và AC đã được chốt.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Xây dựng kịch bản UAT từ business flow và AC đã được chốt."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Xây dựng kịch bản UAT từ business flow và AC đã được chốt.",
+      "id": "R001"
     },
     {
       "title": "Xác định người dùng nghiệp vụ chịu trách nhiệm nghiệm thu và tiêu chí hoàn thành",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Xác định người dùng nghiệp vụ chịu trách nhiệm nghiệm thu và tiêu chí hoàn thành.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Xác định người dùng nghiệp vụ chịu trách nhiệm nghiệm thu và tiêu chí hoàn thành."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Xác định người dùng nghiệp vụ chịu trách nhiệm nghiệm thu và tiêu chí hoàn thành.",
+      "id": "R002"
     },
     {
       "title": "Lưu kết quả UAT, lỗi, ngoại lệ và quyết định sign-off",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Lưu kết quả UAT, lỗi, ngoại lệ và quyết định sign-off.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Lưu kết quả UAT, lỗi, ngoại lệ và quyết định sign-off."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Lưu kết quả UAT, lỗi, ngoại lệ và quyết định sign-off.",
+      "id": "R003"
     },
     {
       "title": "Không đồng nhất kết quả UAT với việc hoàn tất toàn bộ regression hay kiểm thử kỹ thuật",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Không đồng nhất kết quả UAT với việc hoàn tất toàn bộ regression hay kiểm thử kỹ thuật.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Không đồng nhất kết quả UAT với việc hoàn tất toàn bộ regression hay kiểm thử kỹ thuật."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Không đồng nhất kết quả UAT với việc hoàn tất toàn bộ regression hay kiểm thử kỹ thuật.",
+      "id": "R004"
     }
   ],
   "depends_on": [
@@ -77,5 +81,13 @@
       "cause": "Không liên kết requirement, testcase và người chịu trách nhiệm.",
       "solution": "Thiết lập liên kết, xác định phạm vi áp dụng và yêu cầu bằng chứng trước khi hoàn tất."
     }
-  ]
+  ],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

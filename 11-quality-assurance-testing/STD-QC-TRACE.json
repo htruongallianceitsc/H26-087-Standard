@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-QC-TRACE",
   "name": "Truy vết kiểm thử & Độ bao phủ",
   "category": "11_quality_assurance_testing",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Mỗi testcase liên kết tới requirement, AC hoặc rủi ro mà nó kiểm chứng.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Mỗi testcase liên kết tới requirement, AC hoặc rủi ro mà nó kiểm chứng."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Mỗi testcase liên kết tới requirement, AC hoặc rủi ro mà nó kiểm chứng.",
+      "id": "R001"
     },
     {
       "title": "Ghi nhận trạng thái coverage theo AC, phân biệt chưa thiết kế và chưa thực thi",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Ghi nhận trạng thái coverage theo AC, phân biệt chưa thiết kế và chưa thực thi.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Ghi nhận trạng thái coverage theo AC, phân biệt chưa thiết kế và chưa thực thi."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Ghi nhận trạng thái coverage theo AC, phân biệt chưa thiết kế và chưa thực thi.",
+      "id": "R002"
     },
     {
       "title": "Theo dõi tác động thay đổi requirement tới testcase và bộ regression",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Theo dõi tác động thay đổi requirement tới testcase và bộ regression.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Theo dõi tác động thay đổi requirement tới testcase và bộ regression."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Theo dõi tác động thay đổi requirement tới testcase và bộ regression.",
+      "id": "R003"
     },
     {
       "title": "Báo cáo khoảng trống coverage và ngoại lệ được phê duyệt",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Báo cáo khoảng trống coverage và ngoại lệ được phê duyệt.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Báo cáo khoảng trống coverage và ngoại lệ được phê duyệt."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Báo cáo khoảng trống coverage và ngoại lệ được phê duyệt.",
+      "id": "R004"
     }
   ],
   "depends_on": [
@@ -77,5 +81,13 @@
       "cause": "Không liên kết requirement, testcase và người chịu trách nhiệm.",
       "solution": "Thiết lập liên kết, xác định phạm vi áp dụng và yêu cầu bằng chứng trước khi hoàn tất."
     }
-  ]
+  ],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

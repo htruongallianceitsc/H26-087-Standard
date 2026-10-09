@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-API-HTTP",
   "name": "Quy ước HTTP Status Code & Phản hồi lỗi API",
   "category": "03_api_integration_data",
@@ -13,7 +13,8 @@
       "layer": "api",
       "severity": "must",
       "example_good": "POST /orders tạo đơn: HTTP 201, Location: /orders/123 và body đơn mới.",
-      "example_bad": "Tạo thành công trả 200 nhưng nội dung {success:false} khi gặp lỗi."
+      "example_bad": "Tạo thành công trả 200 nhưng nội dung {success:false} khi gặp lỗi.",
+      "id": "R001"
     },
     {
       "title": "Phân biệt xác thực và phân quyền",
@@ -21,7 +22,8 @@
       "layer": "api",
       "severity": "must",
       "example_good": "Token hết hạn → 401; token hợp lệ nhưng thiếu quyền quản trị → 403.",
-      "example_bad": "Mọi trường hợp từ chối đều trả 401 và xóa phiên người dùng."
+      "example_bad": "Mọi trường hợp từ chối đều trả 401 và xóa phiên người dùng.",
+      "id": "R002"
     },
     {
       "title": "Chuẩn hóa 400, 404, 405, 409 và 422",
@@ -29,7 +31,8 @@
       "layer": "api",
       "severity": "must",
       "example_good": "Đổi trạng thái đơn không hợp lệ → 409; email sai định dạng theo contract → 422 kèm fieldErrors.",
-      "example_bad": "Bất kể validation, not found hay conflict đều trả 400."
+      "example_bad": "Bất kể validation, not found hay conflict đều trả 400.",
+      "id": "R003"
     },
     {
       "title": "Áp dụng chính xác 429 và nhóm 5xx",
@@ -37,7 +40,8 @@
       "layer": "api",
       "severity": "must",
       "example_good": "Rate limit → 429 + Retry-After: 60; sự cố tạm thời → 503.",
-      "example_bad": "Timeout gọi upstream luôn trả 400 và kèm stack trace."
+      "example_bad": "Timeout gọi upstream luôn trả 400 và kèm stack trace.",
+      "id": "R004"
     },
     {
       "title": "Phản hồi lỗi có cấu trúc ổn định",
@@ -45,7 +49,8 @@
       "layer": "api",
       "severity": "must",
       "example_good": "HTTP 422, Content-Type: application/problem+json; {\"type\":\"about:blank\",\"title\":\"Dữ liệu không hợp lệ\",\"status\":422,\"code\":\"VALIDATION_FAILED\",\"errors\":{\"email\":[\"Định dạng chưa đúng\"]}}.",
-      "example_bad": "HTTP 200 + {\"message\":\"Lỗi không hợp lệ\"} khiến client phải so chuỗi tiếng Việt."
+      "example_bad": "HTTP 200 + {\"message\":\"Lỗi không hợp lệ\"} khiến client phải so chuỗi tiếng Việt.",
+      "id": "R005"
     },
     {
       "title": "Phân biệt lỗi cần hiển thị và lỗi nội bộ",
@@ -53,7 +58,8 @@
       "layer": "ui",
       "severity": "must",
       "example_good": "HTTP 422 với errors.email → hiện lỗi tại trường email, không phát toast trùng.",
-      "example_bad": "Toast nguyên văn lỗi SQL hoặc exception cho người dùng."
+      "example_bad": "Toast nguyên văn lỗi SQL hoặc exception cho người dùng.",
+      "id": "R006"
     },
     {
       "title": "Retry có giới hạn và bảo vệ thao tác không idempotent",
@@ -61,7 +67,8 @@
       "layer": "api",
       "severity": "must",
       "example_good": "POST /payments dùng Idempotency-Key; retry 503 tối đa 3 lần có backoff.",
-      "example_bad": "Mỗi HTTP 500 đều retry vô hạn và tạo đơn trùng."
+      "example_bad": "Mỗi HTTP 500 đều retry vô hạn và tạo đơn trùng.",
+      "id": "R007"
     },
     {
       "title": "Định nghĩa contract và test theo method",
@@ -69,7 +76,8 @@
       "layer": "api",
       "severity": "must",
       "example_good": "OpenAPI khai báo 200, 401, 403, 404, 409, 422, 500 và có contract test.",
-      "example_bad": "Tài liệu chỉ khai báo 200 dù thực tế client gặp 401/422/500."
+      "example_bad": "Tài liệu chỉ khai báo 200 dù thực tế client gặp 401/422/500.",
+      "id": "R008"
     },
     {
       "title": "Gắn correlation ID và quan sát lỗi an toàn",
@@ -77,7 +85,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Response 500 chứa mã lỗi chung và requestId, log nội bộ lưu chi tiết theo requestId.",
-      "example_bad": "Trả đường dẫn máy chủ, access token và raw exception ra ngoài."
+      "example_bad": "Trả đường dẫn máy chủ, access token và raw exception ra ngoài.",
+      "id": "R009"
     }
   ],
   "depends_on": [
@@ -150,5 +159,13 @@
       "solution": "Dùng idempotency key, retry giới hạn và kiểm thử timeout sau khi server đã commit."
     }
   ],
-  "diagrams": []
+  "diagrams": [],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

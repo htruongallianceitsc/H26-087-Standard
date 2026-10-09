@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Project Standard Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["project", "project_type", "platforms", "technologies", "features"],
+  "properties": {
+    "project": {"type": "string", "minLength": 1},
+    "project_type": {"enum": ["web", "mobile", "api", "backend", "hybrid", "desktop", "other"]},
+    "platforms": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "technologies": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "features": {"type": "object", "additionalProperties": {"type": ["boolean", "string", "number"]}},
+    "selected_standards": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-QC-DATA",
   "name": "Quản lý dữ liệu kiểm thử",
   "category": "11_quality_assurance_testing",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Không dùng dữ liệu sản xuất có thông tin cá nhân chưa được phép và bảo vệ.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Không dùng dữ liệu sản xuất có thông tin cá nhân chưa được phép và bảo vệ."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Không dùng dữ liệu sản xuất có thông tin cá nhân chưa được phép và bảo vệ.",
+      "id": "R001"
     },
     {
       "title": "Tổ chức fixture theo kịch bản, có phiên bản, có quy tắc reset/cleanup",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Tổ chức fixture theo kịch bản, có phiên bản, có quy tắc reset/cleanup.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Tổ chức fixture theo kịch bản, có phiên bản, có quy tắc reset/cleanup."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Tổ chức fixture theo kịch bản, có phiên bản, có quy tắc reset/cleanup.",
+      "id": "R002"
     },
     {
       "title": "Kiểm thử dữ liệu trống, sai định dạng, giới hạn, trùng lặp và trạng thái nghiệp vụ",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Kiểm thử dữ liệu trống, sai định dạng, giới hạn, trùng lặp và trạng thái nghiệp vụ.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm thử dữ liệu trống, sai định dạng, giới hạn, trùng lặp và trạng thái nghiệp vụ."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm thử dữ liệu trống, sai định dạng, giới hạn, trùng lặp và trạng thái nghiệp vụ.",
+      "id": "R003"
     },
     {
       "title": "Bảo đảm dữ liệu test có thể tái tạo và không gây xung đột giữa các lần chạy",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Bảo đảm dữ liệu test có thể tái tạo và không gây xung đột giữa các lần chạy.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Bảo đảm dữ liệu test có thể tái tạo và không gây xung đột giữa các lần chạy."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Bảo đảm dữ liệu test có thể tái tạo và không gây xung đột giữa các lần chạy.",
+      "id": "R004"
     }
   ],
   "depends_on": [
@@ -77,5 +81,13 @@
       "cause": "Không liên kết requirement, testcase và người chịu trách nhiệm.",
       "solution": "Thiết lập liên kết, xác định phạm vi áp dụng và yêu cầu bằng chứng trước khi hoàn tất."
     }
-  ]
+  ],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

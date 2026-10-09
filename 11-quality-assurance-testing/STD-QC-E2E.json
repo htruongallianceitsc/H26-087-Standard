@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-QC-E2E",
   "name": "Kiểm thử luồng End-to-End",
   "category": "11_quality_assurance_testing",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Xác định luồng người dùng đầu-cuối theo outcome nghiệp vụ chứ không chỉ theo màn hình.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Xác định luồng người dùng đầu-cuối theo outcome nghiệp vụ chứ không chỉ theo màn hình."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Xác định luồng người dùng đầu-cuối theo outcome nghiệp vụ chứ không chỉ theo màn hình.",
+      "id": "R001"
     },
     {
       "title": "Kiểm tra trạng thái xuyên tầng UI, API và DB ở các điểm quan trọng",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Kiểm tra trạng thái xuyên tầng UI, API và DB ở các điểm quan trọng.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra trạng thái xuyên tầng UI, API và DB ở các điểm quan trọng."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra trạng thái xuyên tầng UI, API và DB ở các điểm quan trọng.",
+      "id": "R002"
     },
     {
       "title": "Giữ E2E suite tinh gọn; tách kiểm tra chi tiết xuống API/unit/widget khi phù hợp",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Giữ E2E suite tinh gọn; tách kiểm tra chi tiết xuống API/unit/widget khi phù hợp.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Giữ E2E suite tinh gọn; tách kiểm tra chi tiết xuống API/unit/widget khi phù hợp."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Giữ E2E suite tinh gọn; tách kiểm tra chi tiết xuống API/unit/widget khi phù hợp.",
+      "id": "R003"
     },
     {
       "title": "Thiết kế cách cleanup và chống race condition để E2E chạy lặp lại được",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Thiết kế cách cleanup và chống race condition để E2E chạy lặp lại được.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Thiết kế cách cleanup và chống race condition để E2E chạy lặp lại được."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Thiết kế cách cleanup và chống race condition để E2E chạy lặp lại được.",
+      "id": "R004"
     }
   ],
   "depends_on": [
@@ -77,5 +81,13 @@
       "cause": "Không liên kết requirement, testcase và người chịu trách nhiệm.",
       "solution": "Thiết lập liên kết, xác định phạm vi áp dụng và yêu cầu bằng chứng trước khi hoàn tất."
     }
-  ]
+  ],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

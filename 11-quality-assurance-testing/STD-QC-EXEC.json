@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-QC-EXEC",
   "name": "Thực thi kiểm thử & Bằng chứng",
   "category": "11_quality_assurance_testing",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Lưu build/version, môi trường, thiết bị, dữ liệu và thời gian mỗi test run.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Lưu build/version, môi trường, thiết bị, dữ liệu và thời gian mỗi test run."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Lưu build/version, môi trường, thiết bị, dữ liệu và thời gian mỗi test run.",
+      "id": "R001"
     },
     {
       "title": "Chỉ đánh dấu Passed khi actual result phù hợp expected result và có đủ bằng chứng khi cần",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Chỉ đánh dấu Passed khi actual result phù hợp expected result và có đủ bằng chứng khi cần.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Chỉ đánh dấu Passed khi actual result phù hợp expected result và có đủ bằng chứng khi cần."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Chỉ đánh dấu Passed khi actual result phù hợp expected result và có đủ bằng chứng khi cần.",
+      "id": "R002"
     },
     {
       "title": "Phân biệt Failed, Blocked, Not Run và Not Applicable; không gộp thành Passed",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Phân biệt Failed, Blocked, Not Run và Not Applicable; không gộp thành Passed.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Phân biệt Failed, Blocked, Not Run và Not Applicable; không gộp thành Passed."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Phân biệt Failed, Blocked, Not Run và Not Applicable; không gộp thành Passed.",
+      "id": "R003"
     },
     {
       "title": "Gắn kết quả Fail với defect hoặc nguyên nhân đã được phân loại",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Gắn kết quả Fail với defect hoặc nguyên nhân đã được phân loại.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Gắn kết quả Fail với defect hoặc nguyên nhân đã được phân loại."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Gắn kết quả Fail với defect hoặc nguyên nhân đã được phân loại.",
+      "id": "R004"
     }
   ],
   "depends_on": [
@@ -77,5 +81,13 @@
       "cause": "Không liên kết requirement, testcase và người chịu trách nhiệm.",
       "solution": "Thiết lập liên kết, xác định phạm vi áp dụng và yêu cầu bằng chứng trước khi hoàn tất."
     }
-  ]
+  ],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

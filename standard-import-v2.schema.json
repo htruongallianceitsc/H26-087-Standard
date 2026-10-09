@@ -1,0 +1,505 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://h26-087.example/schema/standard-import-v2.schema.json",
+  "title": "Standard Import Schema v2 - định danh rule, điều kiện áp dụng, ngữ nghĩa quan hệ",
+  "description": "Payload chuẩn v2; không thể import vào API chỉ chấp nhận schemaVersion=1. Dùng công cụ xuất v1 khi cần.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "code",
+    "name",
+    "rules",
+    "applicability",
+    "dependency_policy"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 2,
+      "description": "V2. Importer phải hỗ trợ schemaVersion=2; không tương thích trực tiếp với API v1."
+    },
+    "code": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Mã định danh duy nhất, dễ đọc cho standard. Import sẽ bị từ chối nếu target system đã tồn tại standard cùng code."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "category": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 50
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "version": {
+      "type": "string",
+      "maxLength": 20
+    },
+    "status": {
+      "$ref": "#/$defs/status"
+    },
+    "depends_on": {
+      "type": "array",
+      "description": "Các quan hệ tham chiếu code; v2 yêu cầu requires/extends có đích tồn tại. uses/implements/aligns_with chỉ tham chiếu, không được tự kế thừa.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "dependency_type"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "dependency_type": {
+            "enum": [
+              "requires",
+              "extends",
+              "uses",
+              "implements",
+              "aligns_with"
+            ]
+          }
+        }
+      }
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ruleItem"
+      }
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/componentItem"
+      }
+    },
+    "user_stories": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/userStoryItem"
+      }
+    },
+    "integration_guide": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/integrationGuideItem"
+      }
+    },
+    "common_issues": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/commonIssueItem"
+      }
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/featureItem"
+      }
+    },
+    "diagrams": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/diagramItem"
+      }
+    },
+    "applicability": {
+      "$ref": "#/$defs/applicability"
+    },
+    "dependency_policy": {
+      "$ref": "#/$defs/dependencyPolicy"
+    }
+  },
+  "$defs": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "active",
+        "inactive"
+      ]
+    },
+    "layerValue": {
+      "type": "string",
+      "enum": [
+        "ui",
+        "api",
+        "db",
+        "process",
+        "security"
+      ]
+    },
+    "layer": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/layerValue"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/layerValue"
+          }
+        }
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "must",
+        "should",
+        "may"
+      ]
+    },
+    "ruleItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "layer",
+        "severity"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "detail": {
+          "type": "string"
+        },
+        "layer": {
+          "$ref": "#/$defs/layer"
+        },
+        "severity": {
+          "$ref": "#/$defs/severity"
+        },
+        "example_good": {
+          "type": "string"
+        },
+        "example_bad": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^R[0-9]{3,5}$"
+        },
+        "traceability": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "related_rules": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string"
+              }
+            },
+            "requirement_tags": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "componentItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "type",
+        "severity"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "$ref": "#/$defs/layer"
+        },
+        "severity": {
+          "$ref": "#/$defs/severity"
+        }
+      }
+    },
+    "acceptanceCriterion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "given",
+        "when",
+        "then"
+      ],
+      "properties": {
+        "given": {
+          "type": "string",
+          "minLength": 1
+        },
+        "when": {
+          "type": "string",
+          "minLength": 1
+        },
+        "then": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "userStoryItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "as_a",
+        "i_want",
+        "so_that",
+        "acceptance_criteria"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "as_a": {
+          "type": "string",
+          "minLength": 1
+        },
+        "i_want": {
+          "type": "string",
+          "minLength": 1
+        },
+        "so_that": {
+          "type": "string",
+          "minLength": 1
+        },
+        "acceptance_criteria": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/acceptanceCriterion"
+          }
+        },
+        "related_rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "integrationGuideItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "step",
+        "title",
+        "description"
+      ],
+      "properties": {
+        "step": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "commonIssueItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "issue",
+        "cause",
+        "solution"
+      ],
+      "properties": {
+        "issue": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cause": {
+          "type": "string",
+          "minLength": 1
+        },
+        "solution": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "featureItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "description"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "diagramItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "type",
+        "content"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "usecase",
+            "flow",
+            "erd",
+            "state",
+            "sequence",
+            "class",
+            "component",
+            "other"
+          ]
+        },
+        "content": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "applicability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope"
+      ],
+      "properties": {
+        "scope": {
+          "enum": [
+            "all",
+            "conditional"
+          ]
+        },
+        "project_types": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "platforms": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "technologies": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "key",
+              "operator",
+              "value"
+            ],
+            "properties": {
+              "key": {
+                "type": "string",
+                "pattern": "^features\\.[a-z][a-z0-9_]*$"
+              },
+              "operator": {
+                "enum": [
+                  "eq",
+                  "ne"
+                ]
+              },
+              "value": {
+                "type": [
+                  "boolean",
+                  "string",
+                  "number"
+                ]
+              }
+            }
+          }
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "dependencyPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "inheritance",
+        "missing_required",
+        "conflict_resolution"
+      ],
+      "properties": {
+        "inheritance": {
+          "enum": [
+            "explicit_extends_only"
+          ]
+        },
+        "missing_required": {
+          "enum": [
+            "error"
+          ]
+        },
+        "conflict_resolution": {
+          "enum": [
+            "fail_on_duplicate_rule_ref"
+          ]
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

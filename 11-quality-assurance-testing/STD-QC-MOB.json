@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-QC-MOB",
   "name": "Kiểm thử ứng dụng Mobile & Deep Link",
   "category": "11_quality_assurance_testing",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Kiểm tra startup, background/resume, killed/relaunch và restore state.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra startup, background/resume, killed/relaunch và restore state."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra startup, background/resume, killed/relaunch và restore state.",
+      "id": "R001"
     },
     {
       "title": "Kiểm tra offline/reconnect, timeout, quyền thiết bị và push notification",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Kiểm tra offline/reconnect, timeout, quyền thiết bị và push notification.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra offline/reconnect, timeout, quyền thiết bị và push notification."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra offline/reconnect, timeout, quyền thiết bị và push notification.",
+      "id": "R002"
     },
     {
       "title": "Kiểm tra Universal Links/App Links, app chưa cài, đã cài, fallback và referral nếu có",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Kiểm tra Universal Links/App Links, app chưa cài, đã cài, fallback và referral nếu có.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra Universal Links/App Links, app chưa cài, đã cài, fallback và referral nếu có."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra Universal Links/App Links, app chưa cài, đã cài, fallback và referral nếu có.",
+      "id": "R003"
     },
     {
       "title": "Lập ma trận thiết bị/OS thực tế, kiểm tra keyboard, safe area và phiên bản cũ",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Lập ma trận thiết bị/OS thực tế, kiểm tra keyboard, safe area và phiên bản cũ.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Lập ma trận thiết bị/OS thực tế, kiểm tra keyboard, safe area và phiên bản cũ."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Lập ma trận thiết bị/OS thực tế, kiểm tra keyboard, safe area và phiên bản cũ.",
+      "id": "R004"
     }
   ],
   "depends_on": [
@@ -81,5 +85,21 @@
       "cause": "Không liên kết requirement, testcase và người chịu trách nhiệm.",
       "solution": "Thiết lập liên kết, xác định phạm vi áp dụng và yêu cầu bằng chứng trước khi hoàn tất."
     }
-  ]
+  ],
+  "applicability": {
+    "scope": "conditional",
+    "project_types": [
+      "mobile",
+      "hybrid"
+    ],
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

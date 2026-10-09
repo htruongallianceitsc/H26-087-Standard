@@ -1,3 +1,4 @@
+/** Catalog v2: giữ nguyên cây và code; metadata mới nằm trong JSON của từng standard. */
 /** Catalog standards & capabilities — danh mục tiếng Việt. */
 const STANDARD_CATALOG = [
     {

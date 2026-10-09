@@ -1,0 +1,2291 @@
+{
+  "description": "Snapshot ID bất biến khi di chuyển/đổi tên rule; bổ sung rule mới với ID tiếp theo, không đánh số lại.",
+  "standards": {
+    "STD-AI-DEV": [
+      {
+        "id": "R001",
+        "original_title": "Đọc requirement, các standard áp dụng và tài liệu tham chiếu thiết kế trước khi code"
+      },
+      {
+        "id": "R002",
+        "original_title": "Lập kế hoạch có xét đến phạm vi ảnh hưởng và ánh xạ thay đổi tới tiêu chí chấp nhận"
+      },
+      {
+        "id": "R003",
+        "original_title": "Triển khai trong phạm vi kiến trúc đã được duyệt và tránh refactor không liên quan"
+      },
+      {
+        "id": "R004",
+        "original_title": "Chạy kiểm tra, so sánh UI bàn giao với design và báo cáo bằng chứng/khoảng lệch"
+      }
+    ],
+    "STD-ARCH": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho nguyên tắc kiến trúc & ADR trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-BIZ": [
+      {
+        "id": "R001",
+        "original_title": "Gán mã định danh rõ ràng và owner cho từng quy tắc nghiệp vụ"
+      },
+      {
+        "id": "R002",
+        "original_title": "Tài liệu hóa trigger, điều kiện, kết quả, ngoại lệ và thứ tự ưu tiên"
+      },
+      {
+        "id": "R003",
+        "original_title": "Mô hình hóa nhánh quyết định và thay đổi trạng thái khi kết quả phụ thuộc vào ngữ cảnh"
+      },
+      {
+        "id": "R004",
+        "original_title": "Xác nhận các quy tắc nghiệp vụ xung đột với người chịu trách nhiệm quyết định trước khi triển khai"
+      }
+    ],
+    "STD-CI": [
+      {
+        "id": "R001",
+        "original_title": "Sử dụng lockfile và build có thể tái lập trong CI"
+      },
+      {
+        "id": "R002",
+        "original_title": "Tách biệt môi trường và inject secret tại runtime hoặc qua build setting an toàn"
+      },
+      {
+        "id": "R003",
+        "original_title": "Promote artifact đã được kiểm thử và duy trì tài liệu quy trình release/rollback"
+      },
+      {
+        "id": "R004",
+        "original_title": "Bắt buộc các phê duyệt cần thiết trước khi deploy production"
+      }
+    ],
+    "STD-CODE-REVIEW": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho Code Review & quản trị Pull Request trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-COMPLIANCE": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho tuân thủ quy định & bằng chứng trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-DOC": [
+      {
+        "id": "R001",
+        "original_title": "Đảm bảo yêu cầu, screen, API và data contract có thể truy vết bằng tham chiếu ổn định"
+      },
+      {
+        "id": "R002",
+        "original_title": "Ghi nhận quyết định đã được chấp thuận, lý do thay đổi và các artifact bị ảnh hưởng"
+      },
+      {
+        "id": "R003",
+        "original_title": "Cập nhật spec trước khi triển khai thay đổi và đối soát tài liệu sau đó"
+      },
+      {
+        "id": "R004",
+        "original_title": "Sinh index từ tài liệu nguồn chuẩn thay vì chỉnh sửa file được sinh tự động"
+      }
+    ],
+    "STD-FEAT": [
+      {
+        "id": "R001",
+        "original_title": "Nêu rõ mục đích feature, actor, hành vi trong phạm vi và ngoài phạm vi"
+      },
+      {
+        "id": "R002",
+        "original_title": "Liên kết từng feature với requirement nguồn thay vì tự tạo thêm requirement"
+      },
+      {
+        "id": "R003",
+        "original_title": "Mô tả happy path, luồng thay thế, trạng thái rỗng và trạng thái lỗi"
+      },
+      {
+        "id": "R004",
+        "original_title": "Xác định điều kiện hoàn thành có thể kiểm thử trước khi triển khai"
+      }
+    ],
+    "STD-GIT": [
+      {
+        "id": "R001",
+        "original_title": "Giữ thay đổi nhỏ gọn, có tham chiếu issue và commit mô tả rõ ràng"
+      },
+      {
+        "id": "R002",
+        "original_title": "Yêu cầu review và pass các quality check trước khi tích hợp"
+      },
+      {
+        "id": "R003",
+        "original_title": "Không commit credential, cache của máy hoặc build output được sinh ra nếu không cần thiết"
+      },
+      {
+        "id": "R004",
+        "original_title": "Duy trì release tag, tham chiếu migration và ghi chú rollback"
+      }
+    ],
+    "STD-MONOREPO": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho quản lý Monorepo & Workspace trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-NAME": [
+      {
+        "id": "R001",
+        "original_title": "Chọn một quy ước đặt tên cho từng ngôn ngữ lập trình và từng loại artifact"
+      },
+      {
+        "id": "R002",
+        "original_title": "Sử dụng semantic ID ổn định cho feature, requirement, rule và test"
+      },
+      {
+        "id": "R003",
+        "original_title": "Tránh viết tắt làm mất ý nghĩa domain; công bố rõ các ngoại lệ"
+      },
+      {
+        "id": "R004",
+        "original_title": "Tránh đổi tên contract công khai khi chưa đánh giá tính tương thích"
+      }
+    ],
+    "STD-REQ": [
+      {
+        "id": "R001",
+        "original_title": "Ghi nhận yêu cầu thô kèm nguồn, owner và các câu hỏi chưa được giải quyết trước khi phân loại"
+      },
+      {
+        "id": "R002",
+        "original_title": "Tách functional requirement có thể kiểm thử khỏi giả định và ràng buộc phi chức năng"
+      },
+      {
+        "id": "R003",
+        "original_title": "Viết acceptance criteria theo Given-When-Then có thể quan sát, bao gồm trường hợp lỗi và biên"
+      },
+      {
+        "id": "R004",
+        "original_title": "Liên kết requirement đã được duyệt với feature và bằng chứng kiểm thử"
+      }
+    ],
+    "STD-VERSIONING": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho quản lý phiên bản, tương thích & ngừng hỗ trợ trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-ANALYTICS": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho phân tích sản phẩm & theo dõi sự kiện trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-DEP": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho quản lý dependency & package trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-ENV": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho môi trường, cấu hình & secret trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-ERR": [
+      {
+        "id": "R001",
+        "original_title": "Phân biệt lỗi validation, authentication, authorization, network và lỗi ngoài dự kiến"
+      },
+      {
+        "id": "R002",
+        "original_title": "Sử dụng error/result có kiểu dữ liệu và message an toàn cho người dùng, không làm lộ chi tiết nhạy cảm"
+      },
+      {
+        "id": "R003",
+        "original_title": "Chỉ cung cấp thao tác retry cho các operation tạm thời và an toàn để thử lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Log ngữ cảnh chẩn đoán nhưng phải ngăn rò rỉ secret và dữ liệu cá nhân"
+      }
+    ],
+    "STD-FLAG": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho Feature Flag & rollout tăng dần trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-I18N": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho quốc tế hóa & bản địa hóa trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-LOG": [
+      {
+        "id": "R001",
+        "original_title": "Sử dụng structured log với timestamp, severity, operation và correlation ID"
+      },
+      {
+        "id": "R002",
+        "original_title": "Không log mật khẩu, access token hoặc payload nhạy cảm"
+      },
+      {
+        "id": "R003",
+        "original_title": "Gắn instrumentation cho các hành trình người dùng quan trọng với metric thành công, thất bại và độ trễ"
+      },
+      {
+        "id": "R004",
+        "original_title": "Xác định ngưỡng cảnh báo và owner cho sự cố production"
+      }
+    ],
+    "STD-PERF": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho các nguyên tắc kỹ thuật hiệu năng trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-PRIV": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho quyền riêng tư, PII & lưu giữ dữ liệu trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-RES": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho độ tin cậy, khả năng phục hồi & chịu lỗi trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-SEC": [
+      {
+        "id": "R001",
+        "original_title": "Thực thi authentication và authorization tại ranh giới server đáng tin cậy"
+      },
+      {
+        "id": "R002",
+        "original_title": "Bảo vệ credential và secret bằng hệ thống quản lý secret chuyên dụng"
+      },
+      {
+        "id": "R003",
+        "original_title": "Validation input không đáng tin cậy và encode output theo đúng ngữ cảnh đích"
+      },
+      {
+        "id": "R004",
+        "original_title": "Thực hiện threat model cho luồng nhạy cảm và review các phát hiện về dependency/security"
+      }
+    ],
+    "STD-API-HTTP": [
+      {
+        "id": "R001",
+        "original_title": "Dùng mã 2xx đúng theo ý nghĩa thao tác"
+      },
+      {
+        "id": "R002",
+        "original_title": "Phân biệt xác thực và phân quyền"
+      },
+      {
+        "id": "R003",
+        "original_title": "Chuẩn hóa 400, 404, 405, 409 và 422"
+      },
+      {
+        "id": "R004",
+        "original_title": "Áp dụng chính xác 429 và nhóm 5xx"
+      },
+      {
+        "id": "R005",
+        "original_title": "Phản hồi lỗi có cấu trúc ổn định"
+      },
+      {
+        "id": "R006",
+        "original_title": "Phân biệt lỗi cần hiển thị và lỗi nội bộ"
+      },
+      {
+        "id": "R007",
+        "original_title": "Retry có giới hạn và bảo vệ thao tác không idempotent"
+      },
+      {
+        "id": "R008",
+        "original_title": "Định nghĩa contract và test theo method"
+      },
+      {
+        "id": "R009",
+        "original_title": "Gắn correlation ID và quan sát lỗi an toàn"
+      }
+    ],
+    "STD-API-REST": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho thiết kế RESTful API trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-API-RT": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho API thời gian thực & WebSocket/SSE trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-API": [
+      {
+        "id": "R001",
+        "original_title": "Sử dụng endpoint contract có version với cấu trúc request/response được tài liệu hóa"
+      },
+      {
+        "id": "R002",
+        "original_title": "Áp dụng nhất quán xác thực, phân quyền, phân trang và validation"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác định mã lỗi chuẩn và correlation ID"
+      },
+      {
+        "id": "R004",
+        "original_title": "Công bố OpenAPI và chạy kiểm tra contract đối với phần triển khai"
+      }
+    ],
+    "STD-CACHE": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho caching & cache invalidation trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-DATA-MIG": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho tiến hóa schema & migration cơ sở dữ liệu trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-DATA-TX": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho giao dịch, đồng thời & tính nhất quán trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-DATA": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho mô hình dữ liệu & thiết kế schema trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-DEEP-LINK": [
+      {
+        "id": "R001",
+        "original_title": "Dùng HTTPS link làm địa chỉ chia sẻ chuẩn"
+      },
+      {
+        "id": "R002",
+        "original_title": "Cấu hình iOS Universal Links đúng xác thực domain"
+      },
+      {
+        "id": "R003",
+        "original_title": "Cấu hình Android App Links bằng Digital Asset Links"
+      },
+      {
+        "id": "R004",
+        "original_title": "Đảm bảo fallback khi chưa cài app và mở web an toàn"
+      },
+      {
+        "id": "R005",
+        "original_title": "Điều hướng đúng theo trạng thái đăng nhập và vòng đời"
+      },
+      {
+        "id": "R006",
+        "original_title": "Chống open redirect, giả mạo và lộ dữ liệu"
+      },
+      {
+        "id": "R007",
+        "original_title": "Xác định rõ giới hạn deferred deep linking"
+      },
+      {
+        "id": "R008",
+        "original_title": "Chuẩn hóa attribution, query và canonical URL"
+      },
+      {
+        "id": "R009",
+        "original_title": "Kiểm thử toàn bộ ma trận thiết bị và kênh mở"
+      },
+      {
+        "id": "R010",
+        "original_title": "Thiết lập giám sát link và phương án khôi phục"
+      }
+    ],
+    "STD-INTEGRATION": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho tích hợp bên thứ ba trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-WEBHOOK": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho Webhook & hợp đồng sự kiện trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-A11Y": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho khả năng tiếp cận & thiết kế hòa nhập trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-DESIGN": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho bàn giao thiết kế & độ trung thực trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-DS": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho Design System & component dùng chung trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-FEEDBACK": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho phản hồi, thông báo & messaging trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-FORM": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho trải nghiệm form & validation trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-UI-STATE": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho trạng thái UI & cách trình bày trạng thái trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-UX": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho nguyên tắc UX & tương tác trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-WEB-ARCH": [
+      {
+        "id": "R001",
+        "original_title": "Tách route/page, feature, shared component và infrastructure adapter"
+      },
+      {
+        "id": "R002",
+        "original_title": "Không đặt quy tắc nghiệp vụ trong logic rendering và browser event handler"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác định ranh giới tin cậy giữa browser/server và ownership của API contract"
+      },
+      {
+        "id": "R004",
+        "original_title": "Tránh dependency vòng giữa các feature và module utility dùng chung không có ranh giới rõ ràng"
+      }
+    ],
+    "STD-WEB-AUTH": [
+      {
+        "id": "R001",
+        "original_title": "Ưu tiên cookie HttpOnly an toàn khi kiến trúc session hỗ trợ"
+      },
+      {
+        "id": "R002",
+        "original_title": "Bảo vệ các endpoint thay đổi trạng thái dùng xác thực bằng cookie khỏi CSRF"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xử lý hết hạn và refresh mà không làm lộ credential cho UI component"
+      },
+      {
+        "id": "R004",
+        "original_title": "Phân quyền mọi thao tác được bảo vệ ở phía server; route guard chỉ phục vụ UX"
+      }
+    ],
+    "STD-WEB-FORM": [
+      {
+        "id": "R001",
+        "original_title": "Giữ validation phía client đồng bộ với server contract nhưng không tin cậy kiểm tra từ client"
+      },
+      {
+        "id": "R002",
+        "original_title": "Hiển thị lỗi theo field, lỗi server và lỗi cấp form theo cách hỗ trợ accessibility"
+      },
+      {
+        "id": "R003",
+        "original_title": "Ngăn submit hai lần ngoài ý muốn và lưu draft an toàn khi phù hợp"
+      },
+      {
+        "id": "R004",
+        "original_title": "Hỗ trợ luồng submit bằng bàn phím và screen reader"
+      }
+    ],
+    "STD-WEB-PERF": [
+      {
+        "id": "R001",
+        "original_title": "Đặt budget có thể đo lường cho bundle size, LCP, INP và error rate"
+      },
+      {
+        "id": "R002",
+        "original_title": "Phân trang hoặc virtualize danh sách dài và tránh API payload không giới hạn"
+      },
+      {
+        "id": "R003",
+        "original_title": "Profile rerender, event listener và bộ nhớ trước khi bổ sung tối ưu hóa"
+      },
+      {
+        "id": "R004",
+        "original_title": "Trì hoãn công việc không quan trọng và cung cấp các trạng thái loading/empty/error"
+      }
+    ],
+    "STD-WEB-PWA": [
+      {
+        "id": "R001",
+        "original_title": "Chỉ sử dụng service worker cho các kịch bản cache/offline được xác định rõ"
+      },
+      {
+        "id": "R002",
+        "original_title": "Đánh version cho cache entry và tránh cache response riêng tư một cách tùy tiện"
+      },
+      {
+        "id": "R003",
+        "original_title": "Cung cấp fallback hợp lý khi push, install prompt hoặc offline API không được hỗ trợ"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm thử update, asset cũ và thay đổi session xuyên suốt vòng đời PWA"
+      }
+    ],
+    "STD-WEB-RESP": [
+      {
+        "id": "R001",
+        "original_title": "Sử dụng responsive breakpoint dựa trên nội dung layout thay vì chỉ dựa vào loại thiết bị"
+      },
+      {
+        "id": "R002",
+        "original_title": "Đảm bảo điều hướng bằng bàn phím, hiển thị focus và semantic labeling"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh độ tương phản, thay đổi cỡ chữ và tương tác reduced-motion"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm thử layout chính trên viewport hẹp và rộng"
+      }
+    ],
+    "STD-WEB-ROUTE": [
+      {
+        "id": "R001",
+        "original_title": "Xác định route chuẩn, parameter và hành vi khi route không tồn tại"
+      },
+      {
+        "id": "R002",
+        "original_title": "Giữ trạng thái filter/query có thể điều hướng trong URL khi phù hợp để chia sẻ"
+      },
+      {
+        "id": "R003",
+        "original_title": "Bảo vệ trang bị giới hạn bằng UI guard nhưng vẫn dựa vào authorization phía server"
+      },
+      {
+        "id": "R004",
+        "original_title": "Xử lý reload sâu và điều hướng trực tiếp bằng quy tắc fallback của hosting"
+      }
+    ],
+    "STD-WEB-SEC": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho bảo mật trình duyệt & ứng dụng Web trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-WEB-SEO": [
+      {
+        "id": "R001",
+        "original_title": "Chọn CSR, SSR hoặc static rendering dựa trên nhu cầu indexing và nội dung"
+      },
+      {
+        "id": "R002",
+        "original_title": "Cung cấp canonical URL, metadata và nội dung có thể crawl cho trang công khai"
+      },
+      {
+        "id": "R003",
+        "original_title": "Loại trừ route riêng tư/cần xác thực khỏi search indexing"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm thử nội dung render ở production và redirect theo ràng buộc crawler thực tế"
+      }
+    ],
+    "STD-WEB-STORE": [
+      {
+        "id": "R001",
+        "original_title": "Phân loại dữ liệu trước khi sử dụng cookie, localStorage, sessionStorage hoặc IndexedDB"
+      },
+      {
+        "id": "R002",
+        "original_title": "Tránh lưu bearer secret trong web storage khi có phương án an toàn hơn"
+      },
+      {
+        "id": "R003",
+        "original_title": "Áp dụng thời hạn hết hiệu lực và cơ chế vô hiệu hóa cho response từ server được cache"
+      },
+      {
+        "id": "R004",
+        "original_title": "Dọn dẹp cache cũ và cô lập dữ liệu client theo từng tài khoản"
+      }
+    ],
+    "STD-MOB-ARCH": [
+      {
+        "id": "R001",
+        "original_title": "Đặt tích hợp nền tảng phía sau interface/adapter"
+      },
+      {
+        "id": "R002",
+        "original_title": "Tách trách nhiệm presentation, application state và domain/data"
+      },
+      {
+        "id": "R003",
+        "original_title": "Thiết kế hành vi suy giảm chức năng khi mất mạng hoặc tiến trình ứng dụng bị kết thúc"
+      },
+      {
+        "id": "R004",
+        "original_title": "Xác định rõ khác biệt capability giữa iOS và Android"
+      }
+    ],
+    "STD-MOB-DEVICE": [
+      {
+        "id": "R001",
+        "original_title": "Chỉ yêu cầu runtime permission tối thiểu cần thiết và giải thích mục đích sử dụng"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý các trạng thái quyền bị từ chối, bị giới hạn và bị từ chối vĩnh viễn"
+      },
+      {
+        "id": "R003",
+        "original_title": "Chặn các capability không được nền tảng hỗ trợ và cung cấp phương án thay thế"
+      },
+      {
+        "id": "R004",
+        "original_title": "Giải phóng tài nguyên thiết bị khi cancel, chuyển background hoặc thoát"
+      }
+    ],
+    "STD-MOB-LIFE": [
+      {
+        "id": "R001",
+        "original_title": "Mô hình hóa foreground, background, resume và process recreation thành các trường hợp riêng biệt"
+      },
+      {
+        "id": "R002",
+        "original_title": "Reconnect socket và refresh state đã stale bằng logic có giới hạn và idempotent"
+      },
+      {
+        "id": "R003",
+        "original_title": "Dispose listener/controller và hủy các thao tác đã không còn cần thiết"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm thử việc app bị gián đoạn trong quá trình login, upload, notification và realtime session"
+      }
+    ],
+    "STD-MOB-NAV": [
+      {
+        "id": "R001",
+        "original_title": "Xác định route argument có kiểu dữ liệu và guard cho xác thực/điều hướng"
+      },
+      {
+        "id": "R002",
+        "original_title": "Hỗ trợ initial link, link khi app resume và destination không hợp lệ/hết hạn"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh Android App Links và iOS Universal Links bằng file association của domain"
+      },
+      {
+        "id": "R004",
+        "original_title": "Ngăn điều hướng trùng do các callback notification/link cạnh tranh nhau"
+      }
+    ],
+    "STD-MOB-OFF": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ thao tác có thể đọc và ghi khi offline"
+      },
+      {
+        "id": "R002",
+        "original_title": "Sử dụng retry có giới hạn kèm backoff và chỉ retry operation an toàn về idempotency"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác định quy tắc xử lý xung đột và đối soát các thao tác ghi đang chờ"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm thử kết nối chập chờn và submit trùng"
+      }
+    ],
+    "STD-MOB-PERF": [
+      {
+        "id": "R001",
+        "original_title": "Tránh các request khởi động chạy đồng thời không cần thiết và công việc nặng trên main thread"
+      },
+      {
+        "id": "R002",
+        "original_title": "Đo thời gian khởi động, frame timing, mức sử dụng mạng và bộ nhớ trên thiết bị thật"
+      },
+      {
+        "id": "R003",
+        "original_title": "Giới hạn tần suất background polling, location và vòng lặp reconnect"
+      },
+      {
+        "id": "R004",
+        "original_title": "Dispose image, stream và controller để ngăn rò rỉ tài nguyên"
+      }
+    ],
+    "STD-MOB-PUSH": [
+      {
+        "id": "R001",
+        "original_title": "Xử lý riêng message ở trạng thái foreground, background và terminated"
+      },
+      {
+        "id": "R002",
+        "original_title": "Yêu cầu quyền thông báo tại thời điểm phù hợp với ngữ cảnh và xử lý được trường hợp người dùng từ chối"
+      },
+      {
+        "id": "R003",
+        "original_title": "Khử trùng lặp action từ notification và xác thực route payload"
+      },
+      {
+        "id": "R004",
+        "original_title": "Tránh đưa nội dung nhạy cảm vào push payload không đáng tin cậy"
+      }
+    ],
+    "STD-MOB-RELEASE": [
+      {
+        "id": "R001",
+        "original_title": "Lưu signing key và credential trong vùng lưu trữ được bảo vệ"
+      },
+      {
+        "id": "R002",
+        "original_title": "Tách application ID, môi trường và build flavor khi cần"
+      },
+      {
+        "id": "R003",
+        "original_title": "Duy trì version/build number, khai báo quyền riêng tư và credential phục vụ review"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm thử release build trên thiết bị iOS/Android thật"
+      }
+    ],
+    "STD-MOB-SEC": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho bảo mật ứng dụng Mobile trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-MOB-STORE": [
+      {
+        "id": "R001",
+        "original_title": "Lưu secret trong secure storage do OS bảo vệ thay vì preference thông thường"
+      },
+      {
+        "id": "R002",
+        "original_title": "Đặt chính sách lưu giữ, cleanup khi logout và cô lập khi chuyển tài khoản"
+      },
+      {
+        "id": "R003",
+        "original_title": "Mã hóa dữ liệu offline nhạy cảm khi threat model yêu cầu"
+      },
+      {
+        "id": "R004",
+        "original_title": "Hỗ trợ migration storage và phục hồi khi state bị hỏng"
+      }
+    ],
+    "STD-MOB-UI": [
+      {
+        "id": "R001",
+        "original_title": "Tuân thủ safe area, text scaling và system navigation inset"
+      },
+      {
+        "id": "R002",
+        "original_title": "Giữ input đang focus luôn nhìn thấy khi bàn phím hiển thị"
+      },
+      {
+        "id": "R003",
+        "original_title": "Cung cấp các trạng thái loading, empty, error và tương tác bị gián đoạn"
+      },
+      {
+        "id": "R004",
+        "original_title": "Xác minh portrait/landscape và các mật độ màn hình khác nhau khi được hỗ trợ"
+      }
+    ],
+    "STD-BE-ARCH": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho kiến trúc ứng dụng Backend trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-BE-AUTH": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho xác thực & phân quyền trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-BE-CONCUR": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho xử lý đồng thời & tính idempotent trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-BE-FILE": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho xử lý tệp & Object Storage trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-BE-HEALTH": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho readiness, liveness & health check trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-BE-JOB": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho tác vụ nền & lập lịch trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-BE-PERF": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho hiệu năng & khả năng mở rộng trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-BE-QUEUE": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho hàng đợi & xử lý hướng sự kiện trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-BE-SEC": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho bảo mật & hardening Backend trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-BE-TX": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho quản lý giao dịch & Unit of Work trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-BE-VALID": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho validation Request & Domain trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-NEXT": [
+      {
+        "id": "R001",
+        "original_title": "Ưu tiên server component mặc định cho các trường hợp hiển thị dữ liệu phù hợp"
+      },
+      {
+        "id": "R002",
+        "original_title": "Chỉ khai báo ranh giới client ở nơi thực sự cần tương tác trình duyệt"
+      },
+      {
+        "id": "R003",
+        "original_title": "Bảo vệ server action và route handler bằng authorization và validation"
+      },
+      {
+        "id": "R004",
+        "original_title": "Cấu hình cache, dynamic rendering và revalidation một cách chủ đích"
+      }
+    ],
+    "STD-REACT-TEST": [
+      {
+        "id": "R001",
+        "original_title": "Kiểm thử kết quả người dùng có thể quan sát thay vì chi tiết triển khai nội bộ"
+      },
+      {
+        "id": "R002",
+        "original_title": "Mock ranh giới network và bao phủ các trạng thái loading/error/empty"
+      },
+      {
+        "id": "R003",
+        "original_title": "Chạy kiểm tra tương tác tập trung vào accessibility trên form và dialog"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm thử hành vi điều hướng và mutation cho các luồng quan trọng"
+      }
+    ],
+    "STD-REACT": [
+      {
+        "id": "R001",
+        "original_title": "Giữ component thuần và đặt side effect trong hook phù hợp với lifecycle"
+      },
+      {
+        "id": "R002",
+        "original_title": "Tách các hành vi nghiệp vụ lặp lại thành feature hook/service"
+      },
+      {
+        "id": "R003",
+        "original_title": "Sử dụng key ổn định và tránh sao chép derived state không cần thiết"
+      },
+      {
+        "id": "R004",
+        "original_title": "Giữ ranh giới component phù hợp với trách nhiệm và khả năng kiểm thử"
+      }
+    ],
+    "STD-RQ": [
+      {
+        "id": "R001",
+        "original_title": "Sử dụng query key bao gồm mọi parameter có ý nghĩa"
+      },
+      {
+        "id": "R002",
+        "original_title": "Invalidate hoặc cập nhật query sau mutation với ownership rõ ràng"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xử lý rõ ràng việc hủy, dữ liệu stale và retry policy"
+      },
+      {
+        "id": "R004",
+        "original_title": "Không sao chép server state vào các global store ad hoc trùng lặp"
+      }
+    ],
+    "STD-TS": [
+      {
+        "id": "R001",
+        "original_title": "Bật strict mode và tránh ép kiểu `any` khi chưa được review"
+      },
+      {
+        "id": "R002",
+        "original_title": "Tách API DTO khỏi domain model và view model"
+      },
+      {
+        "id": "R003",
+        "original_title": "Validation runtime input không đáng tin cậy tại ranh giới hệ thống"
+      },
+      {
+        "id": "R004",
+        "original_title": "Sử dụng discriminated union cho các biến thể result và state"
+      }
+    ],
+    "STD-RN-NAV": [
+      {
+        "id": "R001",
+        "original_title": "Chọn một hệ thống routing cho project và định nghĩa route parameter có kiểu dữ liệu rõ ràng"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý nhất quán back navigation, nested stack và chuyển trạng thái xác thực"
+      },
+      {
+        "id": "R003",
+        "original_title": "Khử trùng lặp điều hướng được kích hoạt bởi link, push hoặc thay đổi trạng thái ứng dụng"
+      },
+      {
+        "id": "R004",
+        "original_title": "Chỉ lưu navigation state an toàn và validation destination sau khi khôi phục"
+      }
+    ],
+    "STD-RN-STATE": [
+      {
+        "id": "R001",
+        "original_title": "Chọn và tài liệu hóa một chiến lược quản lý client state thống nhất"
+      },
+      {
+        "id": "R002",
+        "original_title": "Tách biệt remote query state khỏi local UI state"
+      },
+      {
+        "id": "R003",
+        "original_title": "Chỉ khôi phục state sau process recreation khi bảo đảm an toàn"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm thử transition sau background, resume và chuyển tài khoản"
+      }
+    ],
+    "STD-RN-STORE": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho lưu trữ cục bộ & an toàn trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-RN-TEST": [
+      {
+        "id": "R001",
+        "original_title": "Kiểm thử màn hình chính trong điều kiện loading, error và offline"
+      },
+      {
+        "id": "R002",
+        "original_title": "Kiểm thử navigation và deep link destination trên thiết bị"
+      },
+      {
+        "id": "R003",
+        "original_title": "Mock native adapter trong unit test và xác minh tích hợp thực tế riêng biệt"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm thử khác biệt nền tảng trong test matrix CI/device"
+      }
+    ],
+    "STD-RN": [
+      {
+        "id": "R001",
+        "original_title": "Bọc các lời gọi native module và xử lý lỗi permission hoặc OS"
+      },
+      {
+        "id": "R002",
+        "original_title": "Không chặn JS thread bằng các thao tác đồng bộ tốn tài nguyên"
+      },
+      {
+        "id": "R003",
+        "original_title": "Tài liệu hóa các giả định về Expo so với bare workflow cho từng project"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm thử phần triển khai đặc thù nền tảng trên thiết bị thật được hỗ trợ"
+      }
+    ],
+    "STD-FL-BLOC": [
+      {
+        "id": "R001",
+        "original_title": "Sử dụng BLoC/Cubit cho feature state và các state transition rõ ràng"
+      },
+      {
+        "id": "R002",
+        "original_title": "Widget chỉ render state và dispatch intention; không gọi Dio trực tiếp"
+      },
+      {
+        "id": "R003",
+        "original_title": "Kiểm thử các trạng thái success, loading, empty, validation và failure"
+      },
+      {
+        "id": "R004",
+        "original_title": "Đóng stream/subscription và ngăn phát sinh emission sau khi dispose"
+      }
+    ],
+    "STD-FL-DART": [
+      {
+        "id": "R001",
+        "original_title": "Bật analyzer lint nghiêm ngặt và format code nhất quán"
+      },
+      {
+        "id": "R002",
+        "original_title": "Sử dụng model immutable và kiểu null-safe khi phù hợp"
+      },
+      {
+        "id": "R003",
+        "original_title": "Giữ xử lý lỗi async có kiểu dữ liệu rõ ràng và tránh nuốt exception"
+      },
+      {
+        "id": "R004",
+        "original_title": "Tổ chức import thư viện và trách nhiệm file theo cách nhất quán, dễ dự đoán"
+      }
+    ],
+    "STD-FL-ROUTE": [
+      {
+        "id": "R001",
+        "original_title": "Xác định named route và path/query parameter đã được validation"
+      },
+      {
+        "id": "R002",
+        "original_title": "Áp dụng redirect guard cho route được bảo vệ mà không tạo vòng lặp redirect"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xử lý deep link khi cold start và khi ứng dụng resume"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm thử semantics của browser/back stack khi hỗ trợ Flutter web"
+      }
+    ],
+    "STD-FL-TEST": [
+      {
+        "id": "R001",
+        "original_title": "Kiểm thử transition của Cubit cho từng acceptance flow"
+      },
+      {
+        "id": "R002",
+        "original_title": "Sử dụng widget test cho layout, validation và accessibility"
+      },
+      {
+        "id": "R003",
+        "original_title": "Chạy end-to-end test cho auth, navigation và phục hồi offline"
+      },
+      {
+        "id": "R004",
+        "original_title": "Sử dụng fake clock/network có tính xác định khi timing quan trọng"
+      }
+    ],
+    "STD-FL-WIDGET": [
+      {
+        "id": "R001",
+        "original_title": "Tập trung quản lý màu sắc, typography, spacing và theme token"
+      },
+      {
+        "id": "R002",
+        "original_title": "Tổ hợp các widget nhỏ thay vì sử dụng build method quá lớn"
+      },
+      {
+        "id": "R003",
+        "original_title": "Tuân thủ MediaQuery, SafeArea và text scale phục vụ accessibility"
+      },
+      {
+        "id": "R004",
+        "original_title": "Render và đối chiếu widget với thiết kế màn hình đã được duyệt"
+      }
+    ],
+    "STD-DOTNET-API": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho API, DI & Middleware trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-DOTNET-EF": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho Entity Framework Core trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-DOTNET-TEST": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho xUnit & kiểm thử tích hợp trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-DOTNET": [
+      {
+        "id": "R001",
+        "original_title": "Tách controller/endpoint khỏi application/domain rule và persistence"
+      },
+      {
+        "id": "R002",
+        "original_title": "Sử dụng dependency injection với vòng đời resource theo scope"
+      },
+      {
+        "id": "R003",
+        "original_title": "Validation DTO đầu vào và triển khai error contract tập trung"
+      },
+      {
+        "id": "R004",
+        "original_title": "Bảo vệ endpoint bằng authorization theo policy và integration test"
+      }
+    ],
+    "STD-PG": [
+      {
+        "id": "R001",
+        "original_title": "Theo dõi thay đổi schema bằng migration có thể rollback hoặc an toàn theo hướng tiến tới"
+      },
+      {
+        "id": "R002",
+        "original_title": "Sử dụng constraint, foreign key và truy cập có index dựa trên query plan"
+      },
+      {
+        "id": "R003",
+        "original_title": "Parameterize query và quản lý transaction quanh các business invariant"
+      },
+      {
+        "id": "R004",
+        "original_title": "Theo dõi query chậm và áp dụng database role theo nguyên tắc đặc quyền tối thiểu"
+      }
+    ],
+    "CAP-AUDIT": [
+      {
+        "id": "R001",
+        "original_title": "Ghi nhận actor, action, target, outcome và correlation ID"
+      },
+      {
+        "id": "R002",
+        "original_title": "Bảo vệ audit log khỏi việc chỉnh sửa bởi người dùng thông thường"
+      },
+      {
+        "id": "R003",
+        "original_title": "Mask các field secret và thực thi chính sách lưu giữ cũng như truy cập"
+      },
+      {
+        "id": "R004",
+        "original_title": "Đảm bảo thao tác nghiệp vụ và việc phát audit event luôn nhất quán"
+      }
+    ],
+    "CAP-AUTH": [
+      {
+        "id": "R001",
+        "original_title": "Quy định hành vi login, logout, token/session hết hạn và phục hồi"
+      },
+      {
+        "id": "R002",
+        "original_title": "Áp dụng rate limit và thông báo lỗi chung để chống dò tìm credential"
+      },
+      {
+        "id": "R003",
+        "original_title": "Kiểm thử credential không hợp lệ, tài khoản bị khóa, session hết hạn và request đồng thời"
+      },
+      {
+        "id": "R004",
+        "original_title": "Tách điều hướng phía client khỏi quyết định xác thực có thẩm quyền ở server"
+      }
+    ],
+    "CAP-CHAT": [
+      {
+        "id": "R001",
+        "original_title": "Sử dụng message ID và deduplication để hiển thị trạng thái phân phối đáng tin cậy"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý reconnect, join lại group và phân trang lịch sử mà không tạo dữ liệu trùng"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác định thứ tự, trạng thái pending/sent/failed và quy tắc gửi lại khi offline"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm tra quyền thành viên phòng và phân quyền trên server cho từng event"
+      }
+    ],
+    "CAP-CRUD": [
+      {
+        "id": "R001",
+        "original_title": "Xác định hành vi tìm kiếm, lọc, sắp xếp, phân trang và trạng thái rỗng"
+      },
+      {
+        "id": "R002",
+        "original_title": "Phân quyền từng thao tác create/read/update/delete ở phía server"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xử lý cập nhật đồng thời, submit trùng và rollback thay đổi optimistic"
+      },
+      {
+        "id": "R004",
+        "original_title": "Quy định feedback dễ tiếp cận cho validation và kết quả thao tác"
+      }
+    ],
+    "CAP-NOTIFY": [
+      {
+        "id": "R001",
+        "original_title": "Tách biệt message event, tùy chọn phân phối và cách trình bày"
+      },
+      {
+        "id": "R002",
+        "original_title": "Tránh gửi dữ liệu riêng tư tới người nhận không được phép"
+      },
+      {
+        "id": "R003",
+        "original_title": "Đảm bảo action từ notification có tính idempotent và validation destination"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm thử phân phối trùng, bộ đếm chưa đọc và trạng thái dismissal"
+      }
+    ],
+    "CAP-PAYMENT": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho thanh toán & lập hóa đơn trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "CAP-PERM": [
+      {
+        "id": "R001",
+        "original_title": "Định nghĩa vai trò và quyền hạn thành các thao tác rõ ràng trên resource"
+      },
+      {
+        "id": "R002",
+        "original_title": "Thực thi kiểm tra quyền trong API thay vì chỉ ẩn UI"
+      },
+      {
+        "id": "R003",
+        "original_title": "Kiểm thử các trường hợp biên về đặc quyền tối thiểu, thu hồi quyền và role kế thừa"
+      },
+      {
+        "id": "R004",
+        "original_title": "Theo dõi thay đổi role nhạy cảm trong audit log"
+      }
+    ],
+    "CAP-PROFILE": [
+      {
+        "id": "R001",
+        "original_title": "Giới hạn update cho đúng subject được ủy quyền và các field được phép"
+      },
+      {
+        "id": "R002",
+        "original_title": "Validation các field thay đổi và giữ nguyên giá trị hiện có của field không đổi"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xử lý lỗi avatar/media và response xung đột"
+      },
+      {
+        "id": "R004",
+        "original_title": "Ghi audit cho các thay đổi hồ sơ nhạy cảm mà không làm lộ dữ liệu riêng tư"
+      }
+    ],
+    "CAP-REPORT": [
+      {
+        "id": "R001",
+        "original_title": "Tài liệu hóa định nghĩa metric, bộ lọc và múi giờ báo cáo"
+      },
+      {
+        "id": "R002",
+        "original_title": "Đảm bảo dữ liệu tổng hợp tuân thủ quyền của tenant và người dùng"
+      },
+      {
+        "id": "R003",
+        "original_title": "Cung cấp chỉ báo trạng thái loading, empty và dữ liệu một phần"
+      },
+      {
+        "id": "R004",
+        "original_title": "Giới hạn query tốn tài nguyên và áp dụng cache theo yêu cầu về độ mới dữ liệu"
+      }
+    ],
+    "CAP-SEARCH": [
+      {
+        "id": "R001",
+        "original_title": "Xác định toán tử lọc, các field có thể tìm kiếm và thứ tự sắp xếp mặc định"
+      },
+      {
+        "id": "R002",
+        "original_title": "Lưu trạng thái filter có thể chia sẻ khi nền tảng cho phép"
+      },
+      {
+        "id": "R003",
+        "original_title": "Debounce input phía client và hủy các request đã lỗi thời"
+      },
+      {
+        "id": "R004",
+        "original_title": "Xử lý trường hợp không có kết quả, response chậm và tập dữ liệu phân trang"
+      }
+    ],
+    "CAP-SHARE": [
+      {
+        "id": "R001",
+        "original_title": "Validation quyền truy cập resource dùng chung và quy tắc hết hạn"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý điều hướng khi app đã cài/chưa cài với fallback an toàn"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xem deferred attribution là best-effort và không cam kết tuyệt đối giữa các store"
+      },
+      {
+        "id": "R004",
+        "original_title": "Ngăn open redirect và log an toàn các lỗi resolve link"
+      }
+    ],
+    "CAP-UPLOAD": [
+      {
+        "id": "R001",
+        "original_title": "Validation kích thước, loại và nội dung file trên server đáng tin cậy"
+      },
+      {
+        "id": "R002",
+        "original_title": "Cung cấp progress, cancel, retry và cơ chế phục hồi khi lỗi"
+      },
+      {
+        "id": "R003",
+        "original_title": "Sử dụng upload credential có thời hạn ngắn và tránh để file nhạy cảm ở chế độ public"
+      },
+      {
+        "id": "R004",
+        "original_title": "Ghi nhận yêu cầu scanning và authorization trước khi chia sẻ nội dung"
+      }
+    ],
+    "STD-BACKUP": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho sao lưu & khôi phục trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-COST": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho quản trị chi phí hạ tầng & cloud trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-DEPLOY": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho triển khai, rollout & rollback trước khi triển khai thực tế"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-DR": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho khôi phục sau thảm họa trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-IAC": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận Infrastructure as Code trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-INCIDENT": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho quản lý sự cố & postmortem trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-NET": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho mạng, DNS, TLS & bảo mật hạ tầng trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-RUNBOOK": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho runbook vận hành & bảo trì trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-SLO": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho Mục tiêu mức dịch vụ (SLO) trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-PERF-TEST": [
+      {
+        "id": "R001",
+        "original_title": "Xác định rõ cách tiếp cận cho kiểm thử hiệu năng, tải & stress trước khi triển khai"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      }
+    ],
+    "STD-QC-A11Y": [
+      {
+        "id": "R001",
+        "original_title": "Kiểm tra điều hướng bằng bàn phím, focus và thông báo dành cho screen reader"
+      },
+      {
+        "id": "R002",
+        "original_title": "Kiểm tra label/role, nội dung thay thế, contrast và vùng chạm"
+      },
+      {
+        "id": "R003",
+        "original_title": "Kiểm tra lỗi form có thông báo rõ và liên kết với trường nhập"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kết hợp kiểm thử tự động với thao tác thực tế bằng công cụ trợ năng"
+      }
+    ],
+    "STD-QC-AC": [
+      {
+        "id": "R001",
+        "original_title": "Mỗi acceptance criterion phải quan sát được, kiểm thử được và có kết quả kỳ vọng rõ ràng"
+      },
+      {
+        "id": "R002",
+        "original_title": "Làm rõ điều kiện trước, hành vi, đầu ra và quy tắc nghiệp vụ trước khi chốt testcase"
+      },
+      {
+        "id": "R003",
+        "original_title": "Phân biệt acceptance criteria với chi tiết triển khai không bắt buộc"
+      },
+      {
+        "id": "R004",
+        "original_title": "Ghi lại AC mơ hồ hoặc mâu thuẫn thành câu hỏi trước khi kiểm thử"
+      }
+    ],
+    "STD-QC-API": [
+      {
+        "id": "R001",
+        "original_title": "Kiểm tra HTTP status, body, headers và error code đúng hợp đồng, kể cả 400/401/403/404/409/422/429/5xx khi áp dụng"
+      },
+      {
+        "id": "R002",
+        "original_title": "Kiểm tra schema request/response, boundary, pagination, filtering và version"
+      },
+      {
+        "id": "R003",
+        "original_title": "Kiểm tra xác thực, phân quyền và không rò rỉ dữ liệu nhạy cảm"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm tra idempotency, timeout, retry và lỗi dịch vụ phụ thuộc theo hợp đồng"
+      }
+    ],
+    "STD-QC-AUTO": [
+      {
+        "id": "R001",
+        "original_title": "Ưu tiên tự động hóa luồng có tần suất chạy cao, ổn định và có giá trị regression"
+      },
+      {
+        "id": "R002",
+        "original_title": "Test automation phải độc lập, chạy lặp lại được và không phụ thuộc dữ liệu production"
+      },
+      {
+        "id": "R003",
+        "original_title": "Dùng selector ổn định, test fixture xác định và chờ theo trạng thái thay vì sleep cố định"
+      },
+      {
+        "id": "R004",
+        "original_title": "Theo dõi flaky tests và không dùng retry để che lỗi sản phẩm"
+      }
+    ],
+    "STD-QC-BUG": [
+      {
+        "id": "R001",
+        "original_title": "Defect phải ghi expected/actual, bước tái hiện, môi trường, phiên bản và bằng chứng"
+      },
+      {
+        "id": "R002",
+        "original_title": "Phân biệt severity (mức tác động) với priority (thứ tự xử lý)"
+      },
+      {
+        "id": "R003",
+        "original_title": "Theo dõi trạng thái New, Triaged, In Progress, Ready for Retest, Closed hoặc Reopened theo workflow dự án"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm tra lại bug fix và thực hiện regression vùng liên quan trước khi đóng"
+      }
+    ],
+    "STD-QC-CASE": [
+      {
+        "id": "R001",
+        "original_title": "Testcase có ID ổn định, mục đích, điều kiện trước, dữ liệu và các bước tái hiện"
+      },
+      {
+        "id": "R002",
+        "original_title": "Mỗi bước kiểm tra có kết quả kỳ vọng đủ rõ để đánh giá pass/fail"
+      },
+      {
+        "id": "R003",
+        "original_title": "Tách happy path, nhánh nghiệp vụ, điều kiện biên và lỗi phù hợp rủi ro"
+      },
+      {
+        "id": "R004",
+        "original_title": "Tránh testcase phụ thuộc thứ tự thực thi; ưu tiên khả năng chạy lại độc lập"
+      }
+    ],
+    "STD-QC-DATA": [
+      {
+        "id": "R001",
+        "original_title": "Không dùng dữ liệu sản xuất có thông tin cá nhân chưa được phép và bảo vệ"
+      },
+      {
+        "id": "R002",
+        "original_title": "Tổ chức fixture theo kịch bản, có phiên bản, có quy tắc reset/cleanup"
+      },
+      {
+        "id": "R003",
+        "original_title": "Kiểm thử dữ liệu trống, sai định dạng, giới hạn, trùng lặp và trạng thái nghiệp vụ"
+      },
+      {
+        "id": "R004",
+        "original_title": "Bảo đảm dữ liệu test có thể tái tạo và không gây xung đột giữa các lần chạy"
+      }
+    ],
+    "STD-QC-E2E": [
+      {
+        "id": "R001",
+        "original_title": "Xác định luồng người dùng đầu-cuối theo outcome nghiệp vụ chứ không chỉ theo màn hình"
+      },
+      {
+        "id": "R002",
+        "original_title": "Kiểm tra trạng thái xuyên tầng UI, API và DB ở các điểm quan trọng"
+      },
+      {
+        "id": "R003",
+        "original_title": "Giữ E2E suite tinh gọn; tách kiểm tra chi tiết xuống API/unit/widget khi phù hợp"
+      },
+      {
+        "id": "R004",
+        "original_title": "Thiết kế cách cleanup và chống race condition để E2E chạy lặp lại được"
+      }
+    ],
+    "STD-QC-ENV": [
+      {
+        "id": "R001",
+        "original_title": "Công bố cấu hình môi trường, phiên bản dịch vụ và khác biệt so với production"
+      },
+      {
+        "id": "R002",
+        "original_title": "Phân biệt lỗi môi trường với lỗi phần mềm và ghi lại trạng thái outage"
+      },
+      {
+        "id": "R003",
+        "original_title": "Test account và secret lưu an toàn, phân quyền tối thiểu"
+      },
+      {
+        "id": "R004",
+        "original_title": "Có quy trình reset dữ liệu, seed và phục hồi dịch vụ phụ thuộc"
+      }
+    ],
+    "STD-QC-EXEC": [
+      {
+        "id": "R001",
+        "original_title": "Lưu build/version, môi trường, thiết bị, dữ liệu và thời gian mỗi test run"
+      },
+      {
+        "id": "R002",
+        "original_title": "Chỉ đánh dấu Passed khi actual result phù hợp expected result và có đủ bằng chứng khi cần"
+      },
+      {
+        "id": "R003",
+        "original_title": "Phân biệt Failed, Blocked, Not Run và Not Applicable; không gộp thành Passed"
+      },
+      {
+        "id": "R004",
+        "original_title": "Gắn kết quả Fail với defect hoặc nguyên nhân đã được phân loại"
+      }
+    ],
+    "STD-QC-GATE": [
+      {
+        "id": "R001",
+        "original_title": "Định nghĩa trước điều kiện pass theo coverage, severity lỗi, regression và rủi ro"
+      },
+      {
+        "id": "R002",
+        "original_title": "Không cho qua gate nếu còn blocker/critical chưa xử lý hoặc chưa có quyết định waiver hợp lệ"
+      },
+      {
+        "id": "R003",
+        "original_title": "Ghi lại người phê duyệt, bằng chứng, ngoại lệ, thời hạn và trách nhiệm follow-up"
+      },
+      {
+        "id": "R004",
+        "original_title": "Đánh giá lại gate khi build, phạm vi hoặc mức rủi ro thay đổi"
+      }
+    ],
+    "STD-QC-MOB": [
+      {
+        "id": "R001",
+        "original_title": "Kiểm tra startup, background/resume, killed/relaunch và restore state"
+      },
+      {
+        "id": "R002",
+        "original_title": "Kiểm tra offline/reconnect, timeout, quyền thiết bị và push notification"
+      },
+      {
+        "id": "R003",
+        "original_title": "Kiểm tra Universal Links/App Links, app chưa cài, đã cài, fallback và referral nếu có"
+      },
+      {
+        "id": "R004",
+        "original_title": "Lập ma trận thiết bị/OS thực tế, kiểm tra keyboard, safe area và phiên bản cũ"
+      }
+    ],
+    "STD-QC-NEG": [
+      {
+        "id": "R001",
+        "original_title": "Liệt kê input không hợp lệ, giới hạn độ dài, định dạng và giá trị không cho phép"
+      },
+      {
+        "id": "R002",
+        "original_title": "Kiểm tra quyền truy cập sai, phiên hết hạn, lỗi mạng và timeout"
+      },
+      {
+        "id": "R003",
+        "original_title": "Đối chiếu kết quả lỗi với hợp đồng API và thông báo thân thiện cho người dùng"
+      },
+      {
+        "id": "R004",
+        "original_title": "Không chỉ xác minh lỗi được hiển thị mà còn xác minh dữ liệu không bị ghi sai"
+      }
+    ],
+    "STD-QC-PLAN": [
+      {
+        "id": "R001",
+        "original_title": "Xác định phạm vi kiểm thử theo requirement, feature, thay đổi và rủi ro"
+      },
+      {
+        "id": "R002",
+        "original_title": "Ghi rõ loại kiểm thử, mức ưu tiên, người phụ trách và điều kiện bắt đầu/kết thúc"
+      },
+      {
+        "id": "R003",
+        "original_title": "Ghi nhận trường hợp ngoài phạm vi và giả định đã được phê duyệt"
+      },
+      {
+        "id": "R004",
+        "original_title": "Cập nhật kế hoạch khi phạm vi hoặc mức độ rủi ro thay đổi"
+      }
+    ],
+    "STD-QC-REG": [
+      {
+        "id": "R001",
+        "original_title": "Duy trì bộ regression cốt lõi cho luồng nghiệp vụ trọng yếu"
+      },
+      {
+        "id": "R002",
+        "original_title": "Ưu tiên testcase theo ảnh hưởng trực tiếp, phụ thuộc và lịch sử lỗi"
+      },
+      {
+        "id": "R003",
+        "original_title": "Gắn testcase hồi quy với bản sửa lỗi để tránh tái phát"
+      },
+      {
+        "id": "R004",
+        "original_title": "Định kỳ loại bỏ testcase trùng lặp, lỗi thời hoặc không ổn định"
+      }
+    ],
+    "STD-QC-REPORT": [
+      {
+        "id": "R001",
+        "original_title": "Báo cáo số testcase Passed, Failed, Blocked, Not Run theo build và phạm vi"
+      },
+      {
+        "id": "R002",
+        "original_title": "Báo cáo defect theo severity, tuổi lỗi, reopen và xu hướng giải quyết"
+      },
+      {
+        "id": "R003",
+        "original_title": "Trình bày requirement/AC coverage và rủi ro chưa được kiểm thử"
+      },
+      {
+        "id": "R004",
+        "original_title": "Không coi số testcase nhiều hoặc tỷ lệ pass cao là bằng chứng chất lượng duy nhất"
+      }
+    ],
+    "STD-QC-SEC": [
+      {
+        "id": "R001",
+        "original_title": "Kiểm tra xác thực, phân quyền theo vai trò, IDOR và session hết hạn"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xác minh validate đầu vào, bảo vệ dữ liệu và không lộ secret trong log/error"
+      },
+      {
+        "id": "R003",
+        "original_title": "Kiểm tra cấu hình bảo mật và dependency có rủi ro theo phạm vi dự án"
+      },
+      {
+        "id": "R004",
+        "original_title": "Chỉ thử nghiệm xâm nhập trên môi trường và hệ thống được cho phép"
+      }
+    ],
+    "STD-QC-TRACE": [
+      {
+        "id": "R001",
+        "original_title": "Mỗi testcase liên kết tới requirement, AC hoặc rủi ro mà nó kiểm chứng"
+      },
+      {
+        "id": "R002",
+        "original_title": "Ghi nhận trạng thái coverage theo AC, phân biệt chưa thiết kế và chưa thực thi"
+      },
+      {
+        "id": "R003",
+        "original_title": "Theo dõi tác động thay đổi requirement tới testcase và bộ regression"
+      },
+      {
+        "id": "R004",
+        "original_title": "Báo cáo khoảng trống coverage và ngoại lệ được phê duyệt"
+      }
+    ],
+    "STD-QC-UAT": [
+      {
+        "id": "R001",
+        "original_title": "Xây dựng kịch bản UAT từ business flow và AC đã được chốt"
+      },
+      {
+        "id": "R002",
+        "original_title": "Xác định người dùng nghiệp vụ chịu trách nhiệm nghiệm thu và tiêu chí hoàn thành"
+      },
+      {
+        "id": "R003",
+        "original_title": "Lưu kết quả UAT, lỗi, ngoại lệ và quyết định sign-off"
+      },
+      {
+        "id": "R004",
+        "original_title": "Không đồng nhất kết quả UAT với việc hoàn tất toàn bộ regression hay kiểm thử kỹ thuật"
+      }
+    ],
+    "STD-QC-UI": [
+      {
+        "id": "R001",
+        "original_title": "Đối chiếu UI với design và các trạng thái loading, empty, error, success"
+      },
+      {
+        "id": "R002",
+        "original_title": "Kiểm tra validation field, toast/dialog, focus, navigation và keyboard"
+      },
+      {
+        "id": "R003",
+        "original_title": "Kiểm tra responsive, nội dung dài, ngôn ngữ và tính nhất quán component"
+      },
+      {
+        "id": "R004",
+        "original_title": "Không chỉ so ảnh; kiểm tra hành vi và phản hồi đúng acceptance criteria"
+      }
+    ],
+    "STD-TEST": [
+      {
+        "id": "R001",
+        "original_title": "Kiểm thử hành vi từ acceptance criteria, bao gồm luồng âm và trường hợp biên"
+      },
+      {
+        "id": "R002",
+        "original_title": "Chạy lint, type check và test có tính xác định trong CI khi phù hợp"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xem quality gate thất bại là blocker trừ khi có phê duyệt được ghi nhận"
+      },
+      {
+        "id": "R004",
+        "original_title": "Cô lập test fixture và tránh phụ thuộc vào dữ liệu production đang hoạt động"
+      }
+    ]
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-QC-AUTO",
   "name": "Tự động hóa kiểm thử",
   "category": "11_quality_assurance_testing",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Ưu tiên tự động hóa luồng có tần suất chạy cao, ổn định và có giá trị regression.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Ưu tiên tự động hóa luồng có tần suất chạy cao, ổn định và có giá trị regression."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Ưu tiên tự động hóa luồng có tần suất chạy cao, ổn định và có giá trị regression.",
+      "id": "R001"
     },
     {
       "title": "Test automation phải độc lập, chạy lặp lại được và không phụ thuộc dữ liệu production",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Test automation phải độc lập, chạy lặp lại được và không phụ thuộc dữ liệu production.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Test automation phải độc lập, chạy lặp lại được và không phụ thuộc dữ liệu production."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Test automation phải độc lập, chạy lặp lại được và không phụ thuộc dữ liệu production.",
+      "id": "R002"
     },
     {
       "title": "Dùng selector ổn định, test fixture xác định và chờ theo trạng thái thay vì sleep cố định",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Dùng selector ổn định, test fixture xác định và chờ theo trạng thái thay vì sleep cố định.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Dùng selector ổn định, test fixture xác định và chờ theo trạng thái thay vì sleep cố định."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Dùng selector ổn định, test fixture xác định và chờ theo trạng thái thay vì sleep cố định.",
+      "id": "R003"
     },
     {
       "title": "Theo dõi flaky tests và không dùng retry để che lỗi sản phẩm",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Theo dõi flaky tests và không dùng retry để che lỗi sản phẩm.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Theo dõi flaky tests và không dùng retry để che lỗi sản phẩm."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Theo dõi flaky tests và không dùng retry để che lỗi sản phẩm.",
+      "id": "R004"
     }
   ],
   "depends_on": [
@@ -77,5 +81,13 @@
       "cause": "Không liên kết requirement, testcase và người chịu trách nhiệm.",
       "solution": "Thiết lập liên kết, xác định phạm vi áp dụng và yêu cầu bằng chứng trước khi hoàn tất."
     }
-  ]
+  ],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

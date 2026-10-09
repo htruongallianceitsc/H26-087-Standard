@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-QC-ENV",
   "name": "Quản lý môi trường kiểm thử",
   "category": "11_quality_assurance_testing",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Công bố cấu hình môi trường, phiên bản dịch vụ và khác biệt so với production.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Công bố cấu hình môi trường, phiên bản dịch vụ và khác biệt so với production."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Công bố cấu hình môi trường, phiên bản dịch vụ và khác biệt so với production.",
+      "id": "R001"
     },
     {
       "title": "Phân biệt lỗi môi trường với lỗi phần mềm và ghi lại trạng thái outage",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Phân biệt lỗi môi trường với lỗi phần mềm và ghi lại trạng thái outage.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Phân biệt lỗi môi trường với lỗi phần mềm và ghi lại trạng thái outage."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Phân biệt lỗi môi trường với lỗi phần mềm và ghi lại trạng thái outage.",
+      "id": "R002"
     },
     {
       "title": "Test account và secret lưu an toàn, phân quyền tối thiểu",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Test account và secret lưu an toàn, phân quyền tối thiểu.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Test account và secret lưu an toàn, phân quyền tối thiểu."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Test account và secret lưu an toàn, phân quyền tối thiểu.",
+      "id": "R003"
     },
     {
       "title": "Có quy trình reset dữ liệu, seed và phục hồi dịch vụ phụ thuộc",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Có quy trình reset dữ liệu, seed và phục hồi dịch vụ phụ thuộc.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Có quy trình reset dữ liệu, seed và phục hồi dịch vụ phụ thuộc."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Có quy trình reset dữ liệu, seed và phục hồi dịch vụ phụ thuộc.",
+      "id": "R004"
     }
   ],
   "depends_on": [
@@ -77,5 +81,13 @@
       "cause": "Không liên kết requirement, testcase và người chịu trách nhiệm.",
       "solution": "Thiết lập liên kết, xác định phạm vi áp dụng và yêu cầu bằng chứng trước khi hoàn tất."
     }
-  ]
+  ],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

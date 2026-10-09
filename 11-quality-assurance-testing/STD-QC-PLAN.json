@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-QC-PLAN",
   "name": "Lập kế hoạch & Phạm vi kiểm thử",
   "category": "11_quality_assurance_testing",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Xác định phạm vi kiểm thử theo requirement, feature, thay đổi và rủi ro.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Xác định phạm vi kiểm thử theo requirement, feature, thay đổi và rủi ro."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Xác định phạm vi kiểm thử theo requirement, feature, thay đổi và rủi ro.",
+      "id": "R001"
     },
     {
       "title": "Ghi rõ loại kiểm thử, mức ưu tiên, người phụ trách và điều kiện bắt đầu/kết thúc",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Ghi rõ loại kiểm thử, mức ưu tiên, người phụ trách và điều kiện bắt đầu/kết thúc.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Ghi rõ loại kiểm thử, mức ưu tiên, người phụ trách và điều kiện bắt đầu/kết thúc."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Ghi rõ loại kiểm thử, mức ưu tiên, người phụ trách và điều kiện bắt đầu/kết thúc.",
+      "id": "R002"
     },
     {
       "title": "Ghi nhận trường hợp ngoài phạm vi và giả định đã được phê duyệt",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Ghi nhận trường hợp ngoài phạm vi và giả định đã được phê duyệt.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Ghi nhận trường hợp ngoài phạm vi và giả định đã được phê duyệt."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Ghi nhận trường hợp ngoài phạm vi và giả định đã được phê duyệt.",
+      "id": "R003"
     },
     {
       "title": "Cập nhật kế hoạch khi phạm vi hoặc mức độ rủi ro thay đổi",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Cập nhật kế hoạch khi phạm vi hoặc mức độ rủi ro thay đổi.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Cập nhật kế hoạch khi phạm vi hoặc mức độ rủi ro thay đổi."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Cập nhật kế hoạch khi phạm vi hoặc mức độ rủi ro thay đổi.",
+      "id": "R004"
     }
   ],
   "depends_on": [
@@ -77,5 +81,13 @@
       "cause": "Không liên kết requirement, testcase và người chịu trách nhiệm.",
       "solution": "Thiết lập liên kết, xác định phạm vi áp dụng và yêu cầu bằng chứng trước khi hoàn tất."
     }
-  ]
+  ],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

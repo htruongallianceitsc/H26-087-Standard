@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "code": "STD-QC-API",
   "name": "Kiểm thử API & Hợp đồng",
   "category": "11_quality_assurance_testing",
@@ -13,7 +13,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Kiểm tra HTTP status, body, headers và error code đúng hợp đồng, kể cả 400/401/403/404/409/422/429/5xx khi áp dụng.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra HTTP status, body, headers và error code đúng hợp đồng, kể cả 400/401/403/404/409/422/429/5xx khi áp dụng."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra HTTP status, body, headers và error code đúng hợp đồng, kể cả 400/401/403/404/409/422/429/5xx khi áp dụng.",
+      "id": "R001"
     },
     {
       "title": "Kiểm tra schema request/response, boundary, pagination, filtering và version",
@@ -21,7 +22,8 @@
       "layer": "process",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Kiểm tra schema request/response, boundary, pagination, filtering và version.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra schema request/response, boundary, pagination, filtering và version."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra schema request/response, boundary, pagination, filtering và version.",
+      "id": "R002"
     },
     {
       "title": "Kiểm tra xác thực, phân quyền và không rò rỉ dữ liệu nhạy cảm",
@@ -29,7 +31,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Kiểm tra xác thực, phân quyền và không rò rỉ dữ liệu nhạy cảm.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra xác thực, phân quyền và không rò rỉ dữ liệu nhạy cảm."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra xác thực, phân quyền và không rò rỉ dữ liệu nhạy cảm.",
+      "id": "R003"
     },
     {
       "title": "Kiểm tra idempotency, timeout, retry và lỗi dịch vụ phụ thuộc theo hợp đồng",
@@ -37,7 +40,8 @@
       "layer": "process",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Kiểm tra idempotency, timeout, retry và lỗi dịch vụ phụ thuộc theo hợp đồng.",
-      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra idempotency, timeout, retry và lỗi dịch vụ phụ thuộc theo hợp đồng."
+      "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra idempotency, timeout, retry và lỗi dịch vụ phụ thuộc theo hợp đồng.",
+      "id": "R004"
     }
   ],
   "depends_on": [
@@ -81,5 +85,20 @@
       "cause": "Không liên kết requirement, testcase và người chịu trách nhiệm.",
       "solution": "Thiết lập liên kết, xác định phạm vi áp dụng và yêu cầu bằng chứng trước khi hoàn tất."
     }
-  ]
+  ],
+  "applicability": {
+    "scope": "conditional",
+    "project_types": [
+      "api",
+      "backend",
+      "web",
+      "mobile",
+      "hybrid"
+    ]
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
 }

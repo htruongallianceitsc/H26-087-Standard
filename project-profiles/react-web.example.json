@@ -1,0 +1,8 @@
+{
+  "project": "Ví dụ ứng dụng ReactJS",
+  "project_type": "web",
+  "platforms": ["web"],
+  "technologies": ["react", "aspnet-core", "postgresql"],
+  "features": {"deep_link": false, "push_notification": false},
+  "selected_standards": ["STD-WEB-ARCH", "STD-API-HTTP", "STD-REQ"]
+}
