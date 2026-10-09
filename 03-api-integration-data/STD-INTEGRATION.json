@@ -3,36 +3,64 @@
   "code": "STD-INTEGRATION",
   "name": "Tích hợp bên thứ ba",
   "category": "03_api_integration_data",
-  "description": "Tiêu chuẩn chuẩn hóa cho Tích hợp bên thứ ba. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "description": "Tích hợp bên thứ ba: yêu cầu triển khai và kiểm chứng cụ thể cho STD-INTEGRATION, bao gồm hợp đồng hành vi, failure mode, quality gate và ví dụ đúng/sai.",
   "version": "1.1.0",
   "status": "active",
   "rules": [
     {
-      "title": "Xác định rõ cách tiếp cận cho tích hợp bên thứ ba trước khi triển khai",
-      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Tích hợp bên thứ ba; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
-      "layer": "api",
+      "title": "Hợp đồng adapter và mapping rõ ràng",
+      "detail": "Cô lập SDK/provider trong adapter; xác định mapping trường, kiểu lỗi, timeout, rate limit và version; test bằng fixture độc lập.",
+      "layer": [
+        "process"
+      ],
       "severity": "must",
-      "example_good": "Project ghi nhận rõ cách Tích hợp bên thứ ba được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
-      "example_bad": "Tích hợp bên thứ ba được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review.",
+      "example_good": "IPaymentProvider map lỗi timeout thành RetryableProviderError.",
+      "example_bad": "Provider response shape tràn vào domain ở mọi service.",
       "id": "R001"
     },
     {
-      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
-      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
-      "layer": "api",
-      "severity": "should",
-      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
-      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán.",
+      "title": "Bảo vệ credential và dữ liệu truyền đi",
+      "detail": "Secret lưu server-side vault, TLS, allowlist data fields và URL endpoint; không log token/PII; kiểm payload thực tế.",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "example_good": "Server ký request bằng key vault và redacted tracing.",
+      "example_bad": "API key đối tác gắn trong ứng dụng React.",
       "id": "R002"
     },
     {
-      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
-      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
-      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review.",
+      "title": "Retry chỉ cho lỗi tạm thời và idempotent",
+      "detail": "Phân biệt 4xx cố định, 429/5xx tạm thời; tôn trọng Retry-After; idempotency cho mutation và bounded retry.",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "example_good": "Retry 429 theo Retry-After, tối đa 3 lần có jitter.",
+      "example_bad": "Retry 400 invalid request 100 lần.",
       "id": "R003"
+    },
+    {
+      "id": "R004",
+      "title": "Giới hạn tài nguyên và cô lập sự cố",
+      "detail": "Bulkhead/concurrency, timeout và circuit breaker riêng theo provider; khi lỗi kéo dài fallback hoặc degrade theo nghiệp vụ.",
+      "example_good": "Provider email outage không chặn tạo tài khoản.",
+      "example_bad": "SDK email treo làm cạn toàn worker web.",
+      "layer": [
+        "process"
+      ],
+      "severity": "should"
+    },
+    {
+      "id": "R005",
+      "title": "Đối soát và test contract nâng cấp",
+      "detail": "Dùng sandbox+mock+contract fixtures; reconcile dữ liệu ngoài với local, cảnh báo mismatch và hỗ trợ replay an toàn.",
+      "example_good": "Job so khớp payoutId với statement provider hàng ngày.",
+      "example_bad": "Chỉ dựa vào HTTP 200 để kết luận tiền đã chi.",
+      "layer": [
+        "process"
+      ],
+      "severity": "should"
     }
   ],
   "integration_guide": [

@@ -3,36 +3,64 @@
   "code": "STD-MONOREPO",
   "name": "Quản lý Monorepo & Workspace",
   "category": "01_governance_delivery",
-  "description": "Tiêu chuẩn chuẩn hóa cho Quản lý Monorepo & Workspace. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "description": "Quản lý Monorepo & Workspace: yêu cầu triển khai và kiểm chứng cụ thể cho STD-MONOREPO, bao gồm hợp đồng hành vi, failure mode, quality gate và ví dụ đúng/sai.",
   "version": "1.1.0",
   "status": "active",
   "rules": [
     {
-      "title": "Xác định rõ cách tiếp cận cho quản lý Monorepo & Workspace trước khi triển khai",
-      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Quản lý Monorepo & Workspace; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
-      "layer": "process",
+      "title": "Khai báo ranh giới package và dependency",
+      "detail": "Mỗi package có public API, owner, dependencies rõ; cấm import vào internal path của package khác; kiểm tra vòng dependency trong CI.",
+      "layer": [
+        "process"
+      ],
       "severity": "must",
-      "example_good": "Project ghi nhận rõ cách Quản lý Monorepo & Workspace được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
-      "example_bad": "Quản lý Monorepo & Workspace được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review.",
+      "example_good": "Ứng dụng import @org/auth qua index.ts công khai.",
+      "example_bad": "Import ../../auth/src/internal/session.",
       "id": "R001"
     },
     {
-      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
-      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
-      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán.",
+      "title": "Chạy kiểm tra theo phạm vi ảnh hưởng",
+      "detail": "Dựa đồ thị phụ thuộc để build/test các package bị thay đổi và dependents; vẫn chạy full suite định kỳ hoặc trước release.",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "example_good": "Thay core-utils kích hoạt test apps/web và apps/mobile cùng phụ thuộc.",
+      "example_bad": "Chỉ test package core-utils dù 5 app sử dụng.",
       "id": "R002"
     },
     {
-      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
-      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
-      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review.",
+      "title": "Khóa phiên bản công cụ và dependency",
+      "detail": "Commit đúng lockfile và cấu hình package manager; install CI dùng chế độ frozen/ci, không tự update phiên bản.",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "example_good": "CI chạy npm ci và kiểm tra workspace dependency.",
+      "example_bad": "CI chạy npm install cập nhật lockfile không kiểm soát.",
       "id": "R003"
+    },
+    {
+      "id": "R004",
+      "title": "Tách cache build theo inputs thực tế",
+      "detail": "Cache key gồm lockfile, source, env inputs, compiler và config; không chia sẻ cache chứa secret hoặc build artifact khác target.",
+      "example_good": "Remote cache được key theo hash package+tsconfig.",
+      "example_bad": "Reuse output sau khi đã đổi tsconfig.",
+      "layer": [
+        "process"
+      ],
+      "severity": "should"
+    },
+    {
+      "id": "R005",
+      "title": "Quản lý version/release package độc lập",
+      "detail": "Xác định fixed/independent versioning, changelog và kiểm tra consumer compatibility trước publish; release artifact truy xuất được commit.",
+      "example_good": "Changeset ghi bump minor auth-sdk và dependent version.",
+      "example_bad": "Publish package breaking change dưới cùng version.",
+      "layer": [
+        "process"
+      ],
+      "severity": "should"
     }
   ],
   "integration_guide": [

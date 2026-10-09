@@ -3,36 +3,64 @@
   "code": "STD-RES",
   "name": "Độ tin cậy, Khả năng phục hồi & Chịu lỗi",
   "category": "02_engineering_foundation",
-  "description": "Tiêu chuẩn chuẩn hóa cho Độ tin cậy, Khả năng phục hồi & Chịu lỗi. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "description": "Độ tin cậy, Khả năng phục hồi & Chịu lỗi: yêu cầu triển khai và kiểm chứng cụ thể cho STD-RES, bao gồm hợp đồng hành vi, failure mode, quality gate và ví dụ đúng/sai.",
   "version": "1.1.0",
   "status": "active",
   "rules": [
     {
-      "title": "Xác định rõ cách tiếp cận cho độ tin cậy, khả năng phục hồi & chịu lỗi trước khi triển khai",
-      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Độ tin cậy, Khả năng phục hồi & Chịu lỗi; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
-      "layer": "process",
+      "title": "Timeout và retry có ngân sách",
+      "detail": "Mỗi external dependency có timeout và retry giới hạn, jitter/backoff; không retry operation không idempotent thiếu key.",
+      "layer": [
+        "process"
+      ],
       "severity": "must",
-      "example_good": "Project ghi nhận rõ cách Độ tin cậy, Khả năng phục hồi & Chịu lỗi được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
-      "example_bad": "Độ tin cậy, Khả năng phục hồi & Chịu lỗi được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review.",
+      "example_good": "HTTP timeout 2s, retry tối đa 2 lần với jitter cho GET.",
+      "example_bad": "Retry POST thanh toán mãi không có idempotency.",
       "id": "R001"
     },
     {
-      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
-      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
-      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán.",
+      "title": "Thiết kế circuit breaker và bulkhead",
+      "detail": "Ngăn lỗi một dependency chiếm toàn bộ thread/connection; circuit mở theo error threshold và half-open probe kiểm soát.",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "example_good": "Pool riêng cho provider SMS để lỗi SMS không chặn checkout.",
+      "example_bad": "SMS timeout làm cạn mọi API worker.",
       "id": "R002"
     },
     {
-      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
-      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
-      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review.",
+      "title": "Xử lý lỗi suy giảm an toàn",
+      "detail": "Xác định chức năng nào fail closed, chức năng nào fallback/cache; không fallback bypass auth/security.",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "example_good": "Product catalog dùng cache stale khi search lỗi.",
+      "example_bad": "Authz service lỗi thì mặc định cho phép truy cập.",
       "id": "R003"
+    },
+    {
+      "id": "R004",
+      "title": "Kiểm thử failure injection và phục hồi",
+      "detail": "Diễn tập kill process, mất network, trễ DB, duplicate message; ghi RTO và mất dữ liệu chấp nhận được theo service tier.",
+      "example_good": "Chaos test tắt Redis và xác minh đọc DB fallback.",
+      "example_bad": "Chỉ test happy path với toàn bộ dependency luôn online.",
+      "layer": [
+        "process"
+      ],
+      "severity": "should"
+    },
+    {
+      "id": "R005",
+      "title": "Quan sát chỉ số reliability và error budget",
+      "detail": "Theo dõi success rate, saturation, lag, timeout, queue DLQ; alert theo user impact với owner và runbook.",
+      "example_good": "Alert dựa burn-rate SLO và liên kết runbook giảm tải.",
+      "example_bad": "Pager kích hoạt theo CPU 60% mà không xét user impact.",
+      "layer": [
+        "process"
+      ],
+      "severity": "should"
     }
   ],
   "integration_guide": [

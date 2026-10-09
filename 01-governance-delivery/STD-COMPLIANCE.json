@@ -3,36 +3,64 @@
   "code": "STD-COMPLIANCE",
   "name": "Tuân thủ quy định & Bằng chứng",
   "category": "01_governance_delivery",
-  "description": "Tiêu chuẩn chuẩn hóa cho Tuân thủ quy định & Bằng chứng. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "description": "Tuân thủ quy định & Bằng chứng: yêu cầu triển khai và kiểm chứng cụ thể cho STD-COMPLIANCE, bao gồm hợp đồng hành vi, failure mode, quality gate và ví dụ đúng/sai.",
   "version": "1.1.0",
   "status": "active",
   "rules": [
     {
-      "title": "Xác định rõ cách tiếp cận cho tuân thủ quy định & bằng chứng trước khi triển khai",
-      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Tuân thủ quy định & Bằng chứng; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
-      "layer": "process",
+      "title": "Lập ma trận nghĩa vụ theo sản phẩm và thị trường",
+      "detail": "Liệt kê luật/chính sách/hợp đồng áp dụng, phạm vi dữ liệu, owner, ngày hiệu lực và link tới rule/test; không mặc định cùng một luật cho mọi quốc gia.",
+      "layer": [
+        "process"
+      ],
       "severity": "must",
-      "example_good": "Project ghi nhận rõ cách Tuân thủ quy định & Bằng chứng được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
-      "example_bad": "Tuân thủ quy định & Bằng chứng được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review.",
+      "example_good": "Ma trận mapping PII retention theo từng thị trường vận hành.",
+      "example_bad": "Tuyên bố GDPR áp dụng cho mọi project không phân tích phạm vi.",
       "id": "R001"
     },
     {
-      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
-      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
-      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán.",
+      "title": "Thu thập bằng chứng có nguồn gốc và hạn lưu",
+      "detail": "Mỗi nghĩa vụ có chứng cứ test/log/audit với đường dẫn, chủ sở hữu, thời điểm và thời hạn lưu; quyền truy cập bằng chứng được giới hạn.",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "example_good": "Evidence mã hóa export permission test và hash artifact trong CI.",
+      "example_bad": "Chụp màn hình không ngày và không lưu nguồn.",
       "id": "R002"
     },
     {
-      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
-      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
-      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review.",
+      "title": "Đánh giá thay đổi trước khi phát hành",
+      "detail": "Khi thêm field PII, SDK, nhà xử lý hoặc luồng payment, chạy impact review với các nghĩa vụ hiện hành; ghi duyệt và hành động.",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "example_good": "Checklist release có mục data transfer impact cho SDK mới.",
+      "example_bad": "Thêm nhà cung cấp thu thập dữ liệu không cần review.",
       "id": "R003"
+    },
+    {
+      "id": "R004",
+      "title": "Quản lý ngoại lệ có thời hạn",
+      "detail": "Waiver nêu rule, lý do, risk, người phê duyệt, biện pháp bù và expiry; báo cáo quá hạn trước release.",
+      "example_good": "Ngoại lệ encryption có hạn 14 ngày và mitigation cô lập truy cập.",
+      "example_bad": "Bỏ qua rule compliance không có hồ sơ.",
+      "layer": [
+        "process"
+      ],
+      "severity": "should"
+    },
+    {
+      "id": "R005",
+      "title": "Kiểm toán định kỳ tính hiệu lực",
+      "detail": "Định kỳ kiểm tra mẫu bằng chứng thực tế, báo cáo gap, remediation owner và due date; không coi checkbox là kiểm toán hoàn chỉnh.",
+      "example_good": "Audit quý đối chiếu policy retention và bằng chứng xóa DB.",
+      "example_bad": "Tích đã tuân thủ dù không có chứng cứ.",
+      "layer": [
+        "process"
+      ],
+      "severity": "should"
     }
   ],
   "integration_guide": [

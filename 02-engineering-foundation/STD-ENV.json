@@ -3,36 +3,64 @@
   "code": "STD-ENV",
   "name": "Môi trường, Cấu hình & Secret",
   "category": "02_engineering_foundation",
-  "description": "Tiêu chuẩn chuẩn hóa cho Môi trường, Cấu hình & Secret. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "description": "Môi trường, Cấu hình & Secret: yêu cầu triển khai và kiểm chứng cụ thể cho STD-ENV, bao gồm hợp đồng hành vi, failure mode, quality gate và ví dụ đúng/sai.",
   "version": "1.1.0",
   "status": "active",
   "rules": [
     {
-      "title": "Xác định rõ cách tiếp cận cho môi trường, cấu hình & secret trước khi triển khai",
-      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Môi trường, Cấu hình & Secret; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
-      "layer": "process",
+      "title": "Phân tách môi trường và quyền truy cập",
+      "detail": "Dev/staging/prod có credential, dữ liệu và IAM riêng; không cho môi trường dev có quyền ghi vào production.",
+      "layer": [
+        "process"
+      ],
       "severity": "must",
-      "example_good": "Project ghi nhận rõ cách Môi trường, Cấu hình & Secret được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
-      "example_bad": "Môi trường, Cấu hình & Secret được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review.",
+      "example_good": "Service account staging chỉ truy cập database staging.",
+      "example_bad": "Dùng cùng DB password trên dev và prod.",
       "id": "R001"
     },
     {
-      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
-      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
-      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán.",
+      "title": "Đưa secret vào kho bí mật được quản lý",
+      "detail": "Không commit secret, token, .env production; inject runtime qua secret manager, mask CI log và kiểm tra secret scanning.",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "example_good": "App đọc DATABASE_URL từ vault theo workload identity.",
+      "example_bad": "API key hardcode trong React bundle.",
       "id": "R002"
     },
     {
-      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
-      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
-      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review.",
+      "title": "Validate cấu hình khi khởi động",
+      "detail": "Khai báo required env/type/range và fail-fast trước khi nhận traffic; log tên setting lỗi nhưng không in secret.",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "example_good": "Startup kiểm tra Redis TTL > 0 và URL hợp lệ.",
+      "example_bad": "App chạy với PAYMENT_MODE rỗng rồi âm thầm fallback live.",
       "id": "R003"
+    },
+    {
+      "id": "R004",
+      "title": "Quản lý rotation và thu hồi",
+      "detail": "Credential có owner, rotation policy và khả năng revoke; thử rotation không downtime với hai key chuyển tiếp khi phù hợp.",
+      "example_good": "Đổi webhook secret theo overlap window rồi revoke key cũ.",
+      "example_bad": "Một production token tồn tại vô thời hạn không ai quản lý.",
+      "layer": [
+        "process"
+      ],
+      "severity": "should"
+    },
+    {
+      "id": "R005",
+      "title": "Kiểm soát thay đổi cấu hình production",
+      "detail": "Config versioned hoặc audit theo request, có plan rollback và xác minh sau deploy; settings nhạy cảm cần duyệt.",
+      "example_good": "Thay rate limit có PR và monitor 429 sau rollout.",
+      "example_bad": "Sửa trực tiếp console prod không lưu change history.",
+      "layer": [
+        "process"
+      ],
+      "severity": "should"
     }
   ],
   "integration_guide": [

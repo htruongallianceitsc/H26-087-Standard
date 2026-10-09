@@ -31,6 +31,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Đặt NFR vào ranh giới kiến trúc"
+      },
+      {
+        "id": "R005",
+        "original_title": "Rà soát ADR bị thay thế"
       }
     ],
     "STD-BIZ": [
@@ -81,6 +89,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Phản hồi comment có thể kiểm chứng"
+      },
+      {
+        "id": "R005",
+        "original_title": "Kiểm soát regression theo bề mặt thay đổi"
       }
     ],
     "STD-COMPLIANCE": [
@@ -95,6 +111,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Quản lý ngoại lệ có thời hạn"
+      },
+      {
+        "id": "R005",
+        "original_title": "Kiểm toán định kỳ tính hiệu lực"
       }
     ],
     "STD-DOC": [
@@ -163,6 +187,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Tách cache build theo inputs thực tế"
+      },
+      {
+        "id": "R005",
+        "original_title": "Quản lý version/release package độc lập"
       }
     ],
     "STD-NAME": [
@@ -213,6 +245,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm thử backward và forward compatibility"
+      },
+      {
+        "id": "R005",
+        "original_title": "Đồng bộ version schema và migration"
       }
     ],
     "STD-ANALYTICS": [
@@ -227,6 +267,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Ngăn duplicate event khi retry/re-render"
+      },
+      {
+        "id": "R005",
+        "original_title": "Kiểm thử chất lượng dữ liệu và funnel"
       }
     ],
     "STD-DEP": [
@@ -241,6 +289,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Lập chính sách nâng cấp và loại bỏ dependency"
+      },
+      {
+        "id": "R005",
+        "original_title": "Bảo vệ pipeline khỏi dependency confusion"
       }
     ],
     "STD-ENV": [
@@ -255,6 +311,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Quản lý rotation và thu hồi"
+      },
+      {
+        "id": "R005",
+        "original_title": "Kiểm soát thay đổi cấu hình production"
       }
     ],
     "STD-ERR": [
@@ -287,6 +351,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Theo dõi metric theo cohort"
+      },
+      {
+        "id": "R005",
+        "original_title": "Dọn dead flag và test tổ hợp quan trọng"
       }
     ],
     "STD-I18N": [
@@ -301,6 +373,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Quản lý fallback và kiểm tra thiếu key"
+      },
+      {
+        "id": "R005",
+        "original_title": "Đáp ứng RTL và định dạng đầu vào"
       }
     ],
     "STD-LOG": [
@@ -333,6 +413,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Quan sát bottleneck theo thành phần"
+      },
+      {
+        "id": "R005",
+        "original_title": "Đặt giới hạn và bảo vệ hệ thống khi quá tải"
       }
     ],
     "STD-PRIV": [
@@ -381,6 +469,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm thử failure injection và phục hồi"
+      },
+      {
+        "id": "R005",
+        "original_title": "Quan sát chỉ số reliability và error budget"
       }
     ],
     "STD-SEC": [
@@ -467,6 +563,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Định nghĩa concurrency và idempotency cho mutation"
+      },
+      {
+        "id": "R005",
+        "original_title": "Công bố OpenAPI và contract test"
       }
     ],
     "STD-API-RT": [
@@ -481,6 +585,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Áp dụng backpressure và giới hạn payload"
+      },
+      {
+        "id": "R005",
+        "original_title": "Giữ nhất quán snapshot sau reconnect"
       }
     ],
     "STD-API": [
@@ -513,6 +625,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Bảo vệ tính riêng tư và phân quyền"
+      },
+      {
+        "id": "R005",
+        "original_title": "Quan sát hit-rate và sự cố cache"
       }
     ],
     "STD-DATA-MIG": [
@@ -561,6 +681,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Tách transaction nội bộ và distributed workflow"
+      },
+      {
+        "id": "R005",
+        "original_title": "Xử lý trạng thái không chắc chắn"
       }
     ],
     "STD-DATA": [
@@ -575,6 +703,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Lưu tiền và thời gian không mất độ chính xác"
+      },
+      {
+        "id": "R005",
+        "original_title": "Nâng schema tương thích đa phiên bản"
       }
     ],
     "STD-DEEP-LINK": [
@@ -631,6 +767,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Giới hạn tài nguyên và cô lập sự cố"
+      },
+      {
+        "id": "R005",
+        "original_title": "Đối soát và test contract nâng cấp"
       }
     ],
     "STD-WEBHOOK": [
@@ -645,6 +789,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Phiên bản hóa hợp đồng event"
+      },
+      {
+        "id": "R005",
+        "original_title": "Có khả năng replay và giám sát tồn đọng"
       }
     ],
     "STD-A11Y": [
@@ -1599,6 +1751,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Giới hạn cache và khả năng phục hồi"
+      },
+      {
+        "id": "R005",
+        "original_title": "Không lộ dữ liệu qua backup hoặc debug"
       }
     ],
     "STD-RN-TEST": [
@@ -1739,6 +1899,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Luồng async và cancellation xuyên suốt"
+      },
+      {
+        "id": "R005",
+        "original_title": "Áp dụng authorization trên mọi resource"
       }
     ],
     "STD-DOTNET-EF": [
@@ -1753,6 +1921,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Quản lý optimistic concurrency và transactions"
+      },
+      {
+        "id": "R005",
+        "original_title": "Bảo vệ query thô và connection"
       }
     ],
     "STD-DOTNET-TEST": [
@@ -1767,6 +1943,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm thử failure/retry và concurrency"
+      },
+      {
+        "id": "R005",
+        "original_title": "Đưa test vào quality gate phù hợp"
       }
     ],
     "STD-DOTNET": [
@@ -2243,6 +2427,14 @@
       {
         "id": "R003",
         "original_title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại"
+      },
+      {
+        "id": "R004",
+        "original_title": "Kiểm thử giới hạn và hành vi hồi phục"
+      },
+      {
+        "id": "R005",
+        "original_title": "Kiểm soát độ tin cậy phép đo"
       }
     ],
     "STD-QC-A11Y": [

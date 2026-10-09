@@ -3,36 +3,64 @@
   "code": "STD-DOTNET-API",
   "name": "API, Dependency Injection & Middleware",
   "category": "08_technology",
-  "description": "Tiêu chuẩn chuẩn hóa cho API, Dependency Injection & Middleware. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "description": "API, Dependency Injection & Middleware: yêu cầu triển khai và kiểm chứng cụ thể cho STD-DOTNET-API, bao gồm hợp đồng hành vi, failure mode, quality gate và ví dụ đúng/sai.",
   "version": "1.1.0",
   "status": "active",
   "rules": [
     {
-      "title": "Xác định rõ cách tiếp cận cho API, DI & Middleware trước khi triển khai",
-      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho API, Dependency Injection & Middleware; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
-      "layer": "api",
+      "title": "Đặt middleware theo thứ tự bảo mật chuẩn",
+      "detail": "Configure exception handler, forwarded headers (chỉ proxy tin cậy), HTTPS, authentication, authorization, endpoints đúng thứ tự; integration test 401/403.",
+      "layer": [
+        "api"
+      ],
       "severity": "must",
-      "example_good": "Project ghi nhận rõ cách API, Dependency Injection & Middleware được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
-      "example_bad": "API, Dependency Injection & Middleware được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review.",
+      "example_good": "UseAuthentication trước UseAuthorization; proxy allowlist.",
+      "example_bad": "UseAuthorization thiếu UseAuthentication.",
       "id": "R001"
     },
     {
-      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
-      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
-      "layer": "api",
-      "severity": "should",
-      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
-      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán.",
+      "title": "Dùng DI lifetime tương thích scope",
+      "detail": "DbContext scoped; singleton không giữ scoped dependency; validate scopes ở dev/test và tránh service locator trong business logic.",
+      "layer": [
+        "api"
+      ],
+      "severity": "must",
+      "example_good": "OrderService scoped nhận AppDbContext scoped.",
+      "example_bad": "Singleton cache giữ một DbContext scoped suốt đời.",
       "id": "R002"
     },
     {
-      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
-      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
-      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review.",
+      "title": "Validate input và map error thống nhất",
+      "detail": "Validate DTO ở boundary, reject unsafe fields/overposting; lỗi trả ProblemDetails/code với traceId; không lộ stack trace production.",
+      "layer": [
+        "api"
+      ],
+      "severity": "must",
+      "example_good": "Invalid email -> 422 với field errors và traceId.",
+      "example_bad": "Trả exception.ToString() trong HTTP response.",
       "id": "R003"
+    },
+    {
+      "id": "R004",
+      "title": "Luồng async và cancellation xuyên suốt",
+      "detail": "Async I/O sử dụng Task, chuyển CancellationToken đến EF/HTTP client; không .Result/.Wait gây block; timeout cho outbound call.",
+      "example_good": "await db.Orders.ToListAsync(ct) trong endpoint.",
+      "example_bad": "db query .Result dưới thread pool tải cao.",
+      "layer": [
+        "api"
+      ],
+      "severity": "should"
+    },
+    {
+      "id": "R005",
+      "title": "Áp dụng authorization trên mọi resource",
+      "detail": "Policy-based authz + kiểm ownership/tenant tại query/service; test IDOR với 2 người dùng.",
+      "example_good": "GET /orders/42 lọc order.TenantId == caller.TenantId.",
+      "example_bad": "Chỉ đặt [Authorize] nhưng trả mọi order theo id.",
+      "layer": [
+        "api"
+      ],
+      "severity": "should"
     }
   ],
   "integration_guide": [

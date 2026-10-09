@@ -3,36 +3,64 @@
   "code": "STD-API-REST",
   "name": "Thiết kế RESTful API",
   "category": "03_api_integration_data",
-  "description": "Tiêu chuẩn chuẩn hóa cho Thiết kế RESTful API. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "description": "Thiết kế RESTful API: yêu cầu triển khai và kiểm chứng cụ thể cho STD-API-REST, bao gồm hợp đồng hành vi, failure mode, quality gate và ví dụ đúng/sai.",
   "version": "1.1.0",
   "status": "active",
   "rules": [
     {
-      "title": "Xác định rõ cách tiếp cận cho thiết kế RESTful API trước khi triển khai",
-      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Thiết kế RESTful API; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
-      "layer": "api",
+      "title": "Định danh resource và phương thức HTTP nhất quán",
+      "detail": "URI dùng danh từ resource, GET chỉ đọc, POST tạo hoặc action rõ, PUT thay thế, PATCH cập nhật; không dùng GET để thay đổi trạng thái.",
+      "layer": [
+        "process"
+      ],
       "severity": "must",
-      "example_good": "Project ghi nhận rõ cách Thiết kế RESTful API được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
-      "example_bad": "Thiết kế RESTful API được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review.",
+      "example_good": "GET /orders/123 và PATCH /orders/123 cập nhật trạng thái.",
+      "example_bad": "GET /deleteOrder?id=123 xóa dữ liệu.",
       "id": "R001"
     },
     {
-      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
-      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
-      "layer": "api",
-      "severity": "should",
-      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
-      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán.",
+      "title": "Response và status nhất quán với STD-API-HTTP",
+      "detail": "Phân biệt 200/201/202/204, 400/401/403/404/409/422/429; lỗi có machine-readable code/correlationId theo contract.",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "example_good": "POST tạo trả 201 + Location; validation trả 422 Problem Details.",
+      "example_bad": "Mọi lỗi đều 200 {success:false}.",
       "id": "R002"
     },
     {
-      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
-      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
-      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review.",
+      "title": "Giới hạn phân trang lọc và sort",
+      "detail": "Endpoint danh sách có max page size, stable sort/tiebreaker và filter được tài liệu hóa; test không bỏ/trùng item giữa trang.",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "example_good": "GET /orders?limit=50&cursor=...; order by createdAt,id.",
+      "example_bad": "GET /orders trả toàn bảng không giới hạn.",
       "id": "R003"
+    },
+    {
+      "id": "R004",
+      "title": "Định nghĩa concurrency và idempotency cho mutation",
+      "detail": "Mutations dễ lặp có idempotency key; cập nhật cạnh tranh dùng ETag/If-Match hoặc version; trả 409/412 khi conflict.",
+      "example_good": "PUT payment với idempotency key và kiểm tra version.",
+      "example_bad": "Client retry tạo 2 bản ghi order giống nhau.",
+      "layer": [
+        "process"
+      ],
+      "severity": "should"
+    },
+    {
+      "id": "R005",
+      "title": "Công bố OpenAPI và contract test",
+      "detail": "Mọi endpoint/field/auth/response code có OpenAPI cập nhật cùng PR; kiểm tra schema diff và backward compatibility.",
+      "example_good": "CI chạy OpenAPI lint + provider/consumer contract tests.",
+      "example_bad": "Đổi enum field server mà không cập nhật schema.",
+      "layer": [
+        "process"
+      ],
+      "severity": "should"
     }
   ],
   "integration_guide": [

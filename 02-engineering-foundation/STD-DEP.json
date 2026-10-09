@@ -3,36 +3,64 @@
   "code": "STD-DEP",
   "name": "Quản lý dependency & Package",
   "category": "02_engineering_foundation",
-  "description": "Tiêu chuẩn chuẩn hóa cho Quản lý dependency & Package. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "description": "Quản lý dependency & Package: yêu cầu triển khai và kiểm chứng cụ thể cho STD-DEP, bao gồm hợp đồng hành vi, failure mode, quality gate và ví dụ đúng/sai.",
   "version": "1.1.0",
   "status": "active",
   "rules": [
     {
-      "title": "Xác định rõ cách tiếp cận cho quản lý dependency & package trước khi triển khai",
-      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Quản lý dependency & Package; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
-      "layer": "process",
+      "title": "Khóa và kiểm soát nguồn package",
+      "detail": "Commit lockfile và chỉ dùng registry được phê duyệt; CI install dạng reproducible; chặn direct install từ nguồn không xác định.",
+      "layer": [
+        "process"
+      ],
       "severity": "must",
-      "example_good": "Project ghi nhận rõ cách Quản lý dependency & Package được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
-      "example_bad": "Quản lý dependency & Package được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review.",
+      "example_good": "npm ci với lockfile và registry công ty.",
+      "example_bad": "npm install từ gist không pin commit.",
       "id": "R001"
     },
     {
-      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
-      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
-      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán.",
+      "title": "Quét lỗ hổng theo mức rủi ro",
+      "detail": "Chạy SCA cho direct/transitive dependency; phân loại exploitable exposure, owner và SLA xử lý theo policy; lưu waiver có expiry.",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "example_good": "PR nâng library CVE high ảnh hưởng API public và bổ sung test regression.",
+      "example_bad": "Bỏ qua audit cảnh báo high vĩnh viễn.",
       "id": "R002"
     },
     {
-      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
-      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
-      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review.",
+      "title": "Tồn kho giấy phép và thành phần",
+      "detail": "Xuất SBOM/lock dependency cho release, review license incompatible và nghĩa vụ notice; đính kèm artifact khi yêu cầu.",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "example_good": "SBOM CycloneDX kèm bản release container.",
+      "example_bad": "Nhập package GPL không kiểm tra nghĩa vụ.",
       "id": "R003"
+    },
+    {
+      "id": "R004",
+      "title": "Lập chính sách nâng cấp và loại bỏ dependency",
+      "detail": "Theo dõi EOL, maintenance, changelog, breaking version; upgrade theo batch nhỏ với integration tests.",
+      "example_good": "Lịch review tháng dependency hết hỗ trợ và canary.",
+      "example_bad": "Giữ phiên bản package EOL không có kế hoạch.",
+      "layer": [
+        "process"
+      ],
+      "severity": "should"
+    },
+    {
+      "id": "R005",
+      "title": "Bảo vệ pipeline khỏi dependency confusion",
+      "detail": "Namespace/package source precedence rõ, kiểm integrity/signature khi hỗ trợ, không cho public registry shadow tên package nội bộ.",
+      "example_good": "Private scope chỉ resolve từ private registry.",
+      "example_bad": "Package nội bộ có thể bị thay bằng package public trùng tên.",
+      "layer": [
+        "process"
+      ],
+      "severity": "should"
     }
   ],
   "integration_guide": [

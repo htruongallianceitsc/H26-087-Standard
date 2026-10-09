@@ -3,36 +3,64 @@
   "code": "STD-WEBHOOK",
   "name": "Webhook & Hợp đồng sự kiện",
   "category": "03_api_integration_data",
-  "description": "Tiêu chuẩn chuẩn hóa cho Webhook & Hợp đồng sự kiện. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "description": "Webhook & Hợp đồng sự kiện: yêu cầu triển khai và kiểm chứng cụ thể cho STD-WEBHOOK, bao gồm hợp đồng hành vi, failure mode, quality gate và ví dụ đúng/sai.",
   "version": "1.1.0",
   "status": "active",
   "rules": [
     {
-      "title": "Xác định rõ cách tiếp cận cho Webhook & hợp đồng sự kiện trước khi triển khai",
-      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Webhook & Hợp đồng sự kiện; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
-      "layer": "api",
+      "title": "Xác minh chữ ký và chống replay",
+      "detail": "Xác thực HMAC/asymmetric signature trên raw body, constant-time compare, timestamp tolerance và replay ID; reject trước xử lý nghiệp vụ.",
+      "layer": [
+        "process"
+      ],
       "severity": "must",
-      "example_good": "Project ghi nhận rõ cách Webhook & Hợp đồng sự kiện được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
-      "example_bad": "Webhook & Hợp đồng sự kiện được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review.",
+      "example_good": "Webhook chữ ký hợp lệ trong cửa sổ 5 phút, event ID chưa thấy.",
+      "example_bad": "Tin field sender trong JSON không kiểm chữ ký.",
       "id": "R001"
     },
     {
-      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
-      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
-      "layer": "api",
-      "severity": "should",
-      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
-      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán.",
+      "title": "Tiếp nhận nhanh và xử lý bất đồng bộ",
+      "detail": "ACK 2xx chỉ sau khi persist event nhận; worker xử lý riêng, có DLQ; response không chờ external calls dài.",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "example_good": "Persist inbox event rồi trả 200 trong SLO.",
+      "example_bad": "Giữ HTTP request 60s trong khi xử lý báo cáo.",
       "id": "R002"
     },
     {
-      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
-      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
-      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review.",
+      "title": "Deduplicate và bảo toàn thứ tự nghiệp vụ",
+      "detail": "Unique(provider,eventId), handler idempotent; event đến sai thứ tự phải lấy current authoritative state hoặc version check.",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "example_good": "Duplicate payment.succeeded không cộng tiền hai lần.",
+      "example_bad": "Refund event trước paid event tạo trạng thái Paid sai.",
       "id": "R003"
+    },
+    {
+      "id": "R004",
+      "title": "Phiên bản hóa hợp đồng event",
+      "detail": "Event có type/version và parser tương thích; unknown version vào quarantine/log thay vì silently ignore hoặc crash toàn worker.",
+      "example_good": "v1/v2 parser với contract fixture và unknown->DLQ.",
+      "example_bad": "Đổi event amount string sang numeric không version.",
+      "layer": [
+        "process"
+      ],
+      "severity": "should"
+    },
+    {
+      "id": "R005",
+      "title": "Có khả năng replay và giám sát tồn đọng",
+      "detail": "Theo dõi delivery lag, retries, dead-letter, signature failures; cho replay theo event ID có audit và bảo vệ duplicate.",
+      "example_good": "Ops replay eventId 123 từ inbox sau fix worker.",
+      "example_bad": "Mất event khi consumer fail không thể gửi lại.",
+      "layer": [
+        "process"
+      ],
+      "severity": "should"
     }
   ],
   "integration_guide": [

@@ -3,36 +3,64 @@
   "code": "STD-I18N",
   "name": "Quốc tế hóa & Bản địa hóa",
   "category": "02_engineering_foundation",
-  "description": "Tiêu chuẩn chuẩn hóa cho Quốc tế hóa & Bản địa hóa. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "description": "Quốc tế hóa & Bản địa hóa: yêu cầu triển khai và kiểm chứng cụ thể cho STD-I18N, bao gồm hợp đồng hành vi, failure mode, quality gate và ví dụ đúng/sai.",
   "version": "1.1.0",
   "status": "active",
   "rules": [
     {
-      "title": "Xác định rõ cách tiếp cận cho quốc tế hóa & bản địa hóa trước khi triển khai",
-      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Quốc tế hóa & Bản địa hóa; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
-      "layer": "process",
+      "title": "Không hardcode chuỗi hiển thị trong logic",
+      "detail": "Mọi nhãn, error, toast, validation nằm trong locale resource theo stable key; không nối chuỗi có thứ tự ngữ pháp cố định.",
+      "layer": [
+        "process"
+      ],
       "severity": "must",
-      "example_good": "Project ghi nhận rõ cách Quốc tế hóa & Bản địa hóa được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
-      "example_bad": "Quốc tế hóa & Bản địa hóa được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review.",
+      "example_good": "t(\"invoice.total\", {amount: formatted}) với ICU message.",
+      "example_bad": "\"Hello \" + userName + \", you owe \" + amount.",
       "id": "R001"
     },
     {
-      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
-      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
-      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán.",
+      "title": "Định dạng ngày số và tiền theo locale",
+      "detail": "Sử dụng Intl/locale formatter với currency và timezone xác định; dữ liệu lưu chuẩn UTC/ISO và numeric, không lưu string đã format.",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "example_good": "vi-VN hiển thị 1.234.567 ₫ từ VND numeric.",
+      "example_bad": "Parse tiền từ chuỗi 1,234 làm mất dấu phân cách.",
       "id": "R002"
     },
     {
-      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
-      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
-      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review.",
+      "title": "Hỗ trợ plural và độ dài nội dung",
+      "detail": "Dùng plural/select theo ICU; kiểm thử text expansion, wrapping, ellipsis và kích thước font lớn.",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "example_good": "\"{count, plural, one {...} other {...}}\" và layout responsive.",
+      "example_bad": "Button fixed 80px cắt chữ tiếng Đức.",
       "id": "R003"
+    },
+    {
+      "id": "R004",
+      "title": "Quản lý fallback và kiểm tra thiếu key",
+      "detail": "Định nghĩa locale mặc định, fallback khi thiếu key; CI phát hiện key lệch và placeholder mismatch trước release.",
+      "example_good": "CI compare keys en/vi và validate {count} placeholder.",
+      "example_bad": "Production hiển thị literal \"cart.submit\".",
+      "layer": [
+        "process"
+      ],
+      "severity": "should"
+    },
+    {
+      "id": "R005",
+      "title": "Đáp ứng RTL và định dạng đầu vào",
+      "detail": "Với locale RTL nếu hỗ trợ, dùng direction-aware layout và icon thích hợp; input phone/address theo vùng; QA với pseudo-locale.",
+      "example_good": "Icon back đảo hướng trong giao diện Ả Rập.",
+      "example_bad": "Flex row hardcoded khiến thứ tự input đảo sai.",
+      "layer": [
+        "process"
+      ],
+      "severity": "should"
     }
   ],
   "integration_guide": [

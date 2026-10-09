@@ -3,36 +3,64 @@
   "code": "STD-DATA",
   "name": "Mô hình dữ liệu & Thiết kế Schema",
   "category": "03_api_integration_data",
-  "description": "Tiêu chuẩn chuẩn hóa cho Mô hình dữ liệu & Thiết kế Schema. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này.",
+  "description": "Mô hình dữ liệu & Thiết kế Schema: yêu cầu triển khai và kiểm chứng cụ thể cho STD-DATA, bao gồm hợp đồng hành vi, failure mode, quality gate và ví dụ đúng/sai.",
   "version": "1.1.0",
   "status": "active",
   "rules": [
     {
-      "title": "Xác định rõ cách tiếp cận cho mô hình dữ liệu & thiết kế schema trước khi triển khai",
-      "detail": "Tài liệu hóa phạm vi, quyết định, ràng buộc và ownership cho Mô hình dữ liệu & Thiết kế Schema; liên kết quyết định với requirement liên quan và bằng chứng triển khai.",
-      "layer": "db",
+      "title": "Định nghĩa khóa và ràng buộc invariant trong DB",
+      "detail": "Dùng PK/FK/unique/check/not null ở DB phù hợp, không chỉ validate phía UI; migration kiểm dữ liệu cũ trước constraint.",
+      "layer": [
+        "process"
+      ],
       "severity": "must",
-      "example_good": "Project ghi nhận rõ cách Mô hình dữ liệu & Thiết kế Schema được áp dụng, ai chịu trách nhiệm và cách xác minh tuân thủ.",
-      "example_bad": "Mô hình dữ liệu & Thiết kế Schema được triển khai theo kiểu ad hoc, không có quy tắc được tài liệu hóa hoặc bằng chứng review.",
+      "example_good": "UNIQUE(tenant_id, external_order_id) chống duplicate.",
+      "example_bad": "Tin mỗi kiểm tra duplicate trước INSERT ở API.",
       "id": "R001"
     },
     {
-      "title": "Xử lý rõ ràng các trường hợp lỗi, biên và tương thích",
-      "detail": "Xác định các failure mode liên quan, edge case, ràng buộc tương thích và kỳ vọng rollback/recovery trước khi release.",
-      "layer": "db",
-      "severity": "should",
-      "example_good": "Các trường hợp biên và lỗi được thể hiện trong acceptance criteria, test, kiểm tra hoặc hướng dẫn vận hành.",
-      "example_bad": "Chỉ happy path được xác định, còn các trường hợp lỗi bị để cho người triển khai tự suy đoán.",
+      "title": "Thiết kế schema theo truy vấn thực tế",
+      "detail": "Index theo điều kiện filter/join/sort và tenant; EXPLAIN ANALYZE với dữ liệu đại diện, tránh tạo index mọi cột.",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "example_good": "Index (tenant_id, created_at DESC, id) phục vụ list orders.",
+      "example_bad": "Query full-scan triệu dòng mỗi lần phân trang.",
       "id": "R002"
     },
     {
-      "title": "Xác minh việc áp dụng bằng bằng chứng có thể lặp lại",
-      "detail": "Sử dụng kiểm tra tự động khi khả thi và review thủ công khi cần đánh giá; ghi nhận các sai lệch có lý do thay vì âm thầm bỏ qua quy tắc.",
-      "layer": "process",
-      "severity": "should",
-      "example_good": "Bằng chứng review hoặc kiểm tra tự động cho biết các quy tắc đã được kiểm tra và các ngoại lệ đã được phê duyệt.",
-      "example_bad": "Standard chỉ tồn tại dưới dạng tài liệu nhưng không được tham chiếu trong quá trình delivery hoặc review.",
+      "title": "Quản lý audit và vòng đời bản ghi",
+      "detail": "Các entity quan trọng ghi created/updated actor/time theo UTC; soft-delete có quy tắc unique/filter/retention rõ; không vô hạn hóa PII.",
+      "layer": [
+        "process"
+      ],
+      "severity": "must",
+      "example_good": "DeletedAt + partial unique index cho active records.",
+      "example_bad": "Dữ liệu đã xóa vẫn xuất trong báo cáo active.",
       "id": "R003"
+    },
+    {
+      "id": "R004",
+      "title": "Lưu tiền và thời gian không mất độ chính xác",
+      "detail": "Tiền dùng DECIMAL/numeric hoặc minor units và currency; timestamp UTC/timestamptz; không dùng float cho giao dịch.",
+      "example_good": "Amount numeric(18,2) kèm CurrencyCode.",
+      "example_bad": "Amount double precision gây sai số khi cộng.",
+      "layer": [
+        "process"
+      ],
+      "severity": "should"
+    },
+    {
+      "id": "R005",
+      "title": "Nâng schema tương thích đa phiên bản",
+      "detail": "Chuyển kiểu/cột bằng expand-migrate-contract; backfill đo tốc độ, rollback, tránh deploy app đọc field trước khi DB sẵn sàng.",
+      "example_good": "Add nullable column -> backfill -> dual read -> enforce constraint.",
+      "example_bad": "DROP column đang được version cũ sử dụng.",
+      "layer": [
+        "process"
+      ],
+      "severity": "should"
     }
   ],
   "integration_guide": [
