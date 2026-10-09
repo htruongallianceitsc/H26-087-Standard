@@ -52,7 +52,11 @@ STANDARD CATALOG
 │   │                         ↳ Sử dụng STD-VERSIONING
 │   │
 │   ├── STD-API-REST ....... Thiết kế RESTful API
+│   ├── STD-API-HTTP ....... Quy ước HTTP Status Code & Phản hồi lỗi API      [MỚI]
+│   │                         ↳ Mở rộng STD-API; sử dụng STD-API-REST, STD-ERR, STD-FEEDBACK, STD-LOG, STD-SEC
 │   ├── STD-API-RT ......... API thời gian thực & WebSocket/SSE
+│   ├── STD-DEEP-LINK ...... Deep Link, Universal Links & App Links          [MỚI]
+│   │                         ↳ Sử dụng STD-MOB-NAV, STD-WEB-ROUTE, STD-SEC, STD-PRIV, STD-INTEGRATION, STD-MOB-RELEASE
 │   ├── STD-INTEGRATION .... Tích hợp bên thứ ba
 │   ├── STD-WEBHOOK ........ Webhook & Hợp đồng sự kiện
 │   ├── STD-DATA ........... Mô hình dữ liệu & Thiết kế Schema

@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "code": "STD-DEEP-LINK",
+  "name": "Deep Link, Universal Links & App Links",
+  "category": "03_api_integration_data",
+  "description": "Tiêu chuẩn thiết kế, xác minh, bảo mật và kiểm thử đường dẫn mở app từ web, QR, tin nhắn và push; hỗ trợ Android App Links, iOS Universal Links, hành vi chưa cài app và theo dõi nguồn giới thiệu, không cam kết deferred deep link khi nền tảng không bảo đảm.",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "title": "Dùng HTTPS link làm địa chỉ chia sẻ chuẩn",
+      "detail": "Public link phải dùng https://domain/path thay vì chỉ custom URL scheme; thiết kế URL ổn định, không gắn token truy cập hoặc PII vào URL; route theo path, query parameter allowlist.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "https://go.example.com/p/abc123 mở đúng nội dung trên web hoặc app.",
+      "example_bad": "Chỉ gửi myapp://item/123 khiến người chưa cài app không truy cập được."
+    },
+    {
+      "title": "Cấu hình iOS Universal Links đúng xác thực domain",
+      "detail": "Cung cấp apple-app-site-association hợp lệ tại /.well-known/apple-app-site-association hoặc /apple-app-site-association trên HTTPS, không redirect, content type phù hợp; khai báo Associated Domains applinks:domain; đối chiếu Team ID/Bundle ID và path/components được phép; kiểm tra hành vi Safari theo nền tảng.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "AASA trả HTTP 200 trên HTTPS, có appIDs hợp lệ và entitlement tương ứng.",
+      "example_bad": "File AASA trả 302 hoặc không khớp Bundle ID."
+    },
+    {
+      "title": "Cấu hình Android App Links bằng Digital Asset Links",
+      "detail": "Cung cấp /.well-known/assetlinks.json trên HTTPS với package_name và SHA-256 certificate fingerprint của app được ký (bao gồm Play App Signing nếu dùng); khai báo VIEW, BROWSABLE, DEFAULT, scheme https, host tương ứng và autoVerify khi phù hợp.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "assetlinks.json được xác thực và adb kiểm tra app-links domain thành công.",
+      "example_bad": "Dùng fingerprint của keystore debug cho bản production mà không khai báo certificate production."
+    },
+    {
+      "title": "Đảm bảo fallback khi chưa cài app và mở web an toàn",
+      "detail": "Không giả định web có thể phát hiện chắc chắn app đã cài. Dùng verified links để hệ điều hành tự phân giải; trang web phải có nội dung hữu ích và lời mời cài app theo platform, tránh ép redirect vòng lặp. Tùy thiết bị/trình duyệt mà prompt và hành vi khác nhau.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "Người chưa cài app thấy landing page và nút mở App Store/Google Play.",
+      "example_bad": "JavaScript tự chuyển qua scheme rồi store liên tục, khiến người dùng mắc vòng lặp."
+    },
+    {
+      "title": "Điều hướng đúng theo trạng thái đăng nhập và vòng đời",
+      "detail": "Router xử lý cold start, warm start, background/resume, và link mở sau login; chỉ cho phép navigation sau khi app khởi tạo và quyền đã xác định. Lưu pending target có TTL và xóa sau khi xử lý để không điều hướng lặp.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "Link tới đơn hàng yêu cầu login; sau login chuyển đúng đơn mà người dùng có quyền.",
+      "example_bad": "Link tới màn hình cần auth được mở khi chưa nạp session rồi crash."
+    },
+    {
+      "title": "Chống open redirect, giả mạo và lộ dữ liệu",
+      "detail": "Chỉ chấp nhận host/scheme/path đã đăng ký; validate và chuẩn hóa input, giới hạn redirect target và query; không tin tưởng quyền chỉ từ URL. Dùng server-side authorization cho tài nguyên; không đưa session, OTP, reset token vào analytics/referrer/log công khai.",
+      "layer": "security",
+      "severity": "must",
+      "example_good": "Router từ chối https://evil.example/ và chỉ mở tài nguyên sau check quyền.",
+      "example_bad": "Tham số ?next=https://attacker.test được redirect tùy ý."
+    },
+    {
+      "title": "Xác định rõ giới hạn deferred deep linking",
+      "detail": "Ghi nhận attribution sau cài đặt là best-effort, không bảo đảm mọi hệ điều hành/trình duyệt; kiểm tra chính sách ATT/consent và SDK nếu dùng nhà cung cấp. Có fallback nhập referral code và không xem referrer hay fingerprint là bằng chứng định danh đáng tin.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "Người dùng có thể nhập referral code nếu nguồn sau cài không khôi phục được.",
+      "example_bad": "Cam kết 100% giữ mã giới thiệu sau mọi lần cài từ App Store."
+    },
+    {
+      "title": "Chuẩn hóa attribution, query và canonical URL",
+      "detail": "Dùng tên tham số ổn định cho campaign/referral và thời hạn hợp lý; thống nhất short link → canonical destination, xử lý duplicate click và thay đổi campaign; không làm rò rỉ dữ liệu nhạy cảm vào bên thứ ba. Quy định precedence rõ ràng khi nguồn attribution mâu thuẫn.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "referral_code được kiểm chứng backend và gắn một lần theo rule đăng ký.",
+      "example_bad": "Mỗi lần mở link đều ghi đè referrer đã xác nhận."
+    },
+    {
+      "title": "Kiểm thử toàn bộ ma trận thiết bị và kênh mở",
+      "detail": "Thử iOS/Android với app chưa cài/đã cài, cold/warm/background, đăng nhập/chưa đăng nhập, app nâng cấp, link hết hạn, path sai, Safari/Chrome/in-app browser, QR/SMS/email/push và trường hợp người dùng tắt liên kết mặc định.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Test matrix ghi kết quả mở từ Zalo, Chrome, Safari, QR và notification trên bản release thật.",
+      "example_bad": "Chỉ kiểm thử scheme thủ công trên simulator debug."
+    },
+    {
+      "title": "Thiết lập giám sát link và phương án khôi phục",
+      "detail": "Theo dõi tỷ lệ click, fallback, link không phân giải, redirect loop, mở app thành công khi có đo đạc hợp lệ; có kế hoạch rollback đường dẫn và versioning route; không log trọn query chứa PII.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Có dashboard lỗi association và route not found; đường dẫn cũ vẫn tương thích.",
+      "example_bad": "Thay đổi route làm toàn bộ QR cũ mất hiệu lực."
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-MOB-NAV",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-WEB-ROUTE",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-SEC",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-PRIV",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-INTEGRATION",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-MOB-RELEASE",
+      "dependency_type": "uses"
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Thiết kế URL và ma trận routing",
+      "description": "Định nghĩa domain HTTPS, path/query, route đích, yêu cầu xác thực, web fallback, chính sách redirect và referral attribution."
+    },
+    {
+      "step": 2,
+      "title": "Xác thực liên kết iOS và Android",
+      "description": "Triển khai AASA và assetlinks.json trên domain production, cấu hình entitlement/manifest, xác minh fingerprint ký thật; không redirect file association."
+    },
+    {
+      "step": 3,
+      "title": "Triển khai router và fallback",
+      "description": "Xử lý initial/resumed link, pending link qua đăng nhập, quyền truy cập tài nguyên, đường dẫn không hợp lệ và landing page khi chưa cài app."
+    },
+    {
+      "step": 4,
+      "title": "Kiểm thử và đo lường",
+      "description": "Chạy test matrix thiết bị thực, kênh mở và trình duyệt trong app; theo dõi lỗi phân giải và chiến lược rollback/giữ tương thích link cũ."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Cài app xong không giữ được referral",
+      "cause": "Deferred deep link phụ thuộc nền tảng, chính sách và nhà cung cấp.",
+      "solution": "Cung cấp lựa chọn nhập mã giới thiệu thủ công; đo độ tin cậy theo từng kênh."
+    },
+    {
+      "issue": "Link chỉ mở web dù app đã cài",
+      "cause": "Association file, signature, entitlement hoặc thiết lập người dùng không khớp.",
+      "solution": "Kiểm tra AASA/assetlinks, domain verification và hành vi trình duyệt/OS."
+    },
+    {
+      "issue": "Deep link mở lặp lại sau login",
+      "cause": "Pending link không được consume hoặc router được gọi nhiều lần.",
+      "solution": "Gắn ID và TTL cho pending destination; consume idempotent đúng một lần."
+    },
+    {
+      "issue": "Mở link dẫn tới nội dung của người khác",
+      "cause": "Tin tưởng ID từ URL mà không kiểm tra authorization.",
+      "solution": "Luôn kiểm tra quyền ở backend và trả 403/404 theo chính sách."
+    }
+  ],
+  "diagrams": []
+}

@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "code": "STD-API-HTTP",
+  "name": "Quy ước HTTP Status Code & Phản hồi lỗi API",
+  "category": "03_api_integration_data",
+  "description": "Chuẩn hóa việc chọn mã trạng thái HTTP, response body, phân loại lỗi, hành vi retry và cách hiển thị lỗi trên client. Áp dụng thống nhất cho API REST, frontend web và mobile; không thay thế mã lỗi nghiệp vụ ổn định.",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "title": "Dùng mã 2xx đúng theo ý nghĩa thao tác",
+      "detail": "200 OK cho xử lý thành công có nội dung; 201 Created khi tạo tài nguyên (trả Location nếu có URL định danh); 202 Accepted cho xử lý bất đồng bộ và phải có cách theo dõi; 204 No Content không có response body. Không trả 200 cho lỗi nghiệp vụ.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "POST /orders tạo đơn: HTTP 201, Location: /orders/123 và body đơn mới.",
+      "example_bad": "Tạo thành công trả 200 nhưng nội dung {success:false} khi gặp lỗi."
+    },
+    {
+      "title": "Phân biệt xác thực và phân quyền",
+      "detail": "401 Unauthorized khi thiếu/hết hạn/không hợp lệ thông tin xác thực; 403 Forbidden khi đã nhận diện nhưng không đủ quyền. Không buộc logout khi gặp 403; không đưa chi tiết nhạy cảm vào response.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Token hết hạn → 401; token hợp lệ nhưng thiếu quyền quản trị → 403.",
+      "example_bad": "Mọi trường hợp từ chối đều trả 401 và xóa phiên người dùng."
+    },
+    {
+      "title": "Chuẩn hóa 400, 404, 405, 409 và 422",
+      "detail": "400 cho request sai cú pháp/định dạng; 404 khi không tìm thấy tài nguyên; 405 khi phương thức không được phép (Allow header); 409 khi xung đột trạng thái/phiên bản; 422 khi cú pháp hợp lệ nhưng dữ liệu vi phạm validation/ngữ nghĩa. Chốt ranh giới 400/422 trong API contract và áp dụng nhất quán.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Đổi trạng thái đơn không hợp lệ → 409; email sai định dạng theo contract → 422 kèm fieldErrors.",
+      "example_bad": "Bất kể validation, not found hay conflict đều trả 400."
+    },
+    {
+      "title": "Áp dụng chính xác 429 và nhóm 5xx",
+      "detail": "429 khi vượt rate limit; 500 lỗi máy chủ không dự kiến; 502 phản hồi upstream không hợp lệ; 503 dịch vụ tạm thời không sẵn sàng; 504 upstream timeout. Có thể trả Retry-After với 429/503 khi biết thời gian; không tiết lộ stack trace/SQL/token.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Rate limit → 429 + Retry-After: 60; sự cố tạm thời → 503.",
+      "example_bad": "Timeout gọi upstream luôn trả 400 và kèm stack trace."
+    },
+    {
+      "title": "Phản hồi lỗi có cấu trúc ổn định",
+      "detail": "Ưu tiên application/problem+json theo RFC 9457 với type,title,status,detail,instance; dùng mã lỗi nghiệp vụ ổn định qua trường mở rộng code và lỗi từng trường qua errors; status trong body phải trùng HTTP status. Không bắt client parse thông điệp để phân nhánh.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "HTTP 422, Content-Type: application/problem+json; {\"type\":\"about:blank\",\"title\":\"Dữ liệu không hợp lệ\",\"status\":422,\"code\":\"VALIDATION_FAILED\",\"errors\":{\"email\":[\"Định dạng chưa đúng\"]}}.",
+      "example_bad": "HTTP 200 + {\"message\":\"Lỗi không hợp lệ\"} khiến client phải so chuỗi tiếng Việt."
+    },
+    {
+      "title": "Phân biệt lỗi cần hiển thị và lỗi nội bộ",
+      "detail": "Frontend chỉ hiển thị thông điệp thân thiện đã định nghĩa trong bảng mã lỗi; không trực tiếp toast detail nội bộ của 5xx, exception hoặc trace. Ánh xạ field validation sang form; 401 kích hoạt refresh/login theo chính sách; 403 hiển thị không có quyền; 429 hiển thị chờ; 5xx thông báo chung và ghi log.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "HTTP 422 với errors.email → hiện lỗi tại trường email, không phát toast trùng.",
+      "example_bad": "Toast nguyên văn lỗi SQL hoặc exception cho người dùng."
+    },
+    {
+      "title": "Retry có giới hạn và bảo vệ thao tác không idempotent",
+      "detail": "Chỉ retry tự động các lỗi mạng, 429, 502, 503, 504 khi phù hợp; dùng exponential backoff + jitter, giới hạn lần thử, tôn trọng Retry-After. Không tự retry POST/PATCH có side effect khi chưa có idempotency key hoặc cơ chế chống trùng.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "POST /payments dùng Idempotency-Key; retry 503 tối đa 3 lần có backoff.",
+      "example_bad": "Mỗi HTTP 500 đều retry vô hạn và tạo đơn trùng."
+    },
+    {
+      "title": "Định nghĩa contract và test theo method",
+      "detail": "GET 200/304/404; POST 201/202/400/409/422; PUT/PATCH 200/204/409/412/422; DELETE 200/202/204/404; phân biệt 304 với response lỗi, và 412 khi điều kiện If-Match thất bại. Ma trận chỉ là gợi ý, từng endpoint phải khai báo response đúng trong OpenAPI.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "OpenAPI khai báo 200, 401, 403, 404, 409, 422, 500 và có contract test.",
+      "example_bad": "Tài liệu chỉ khai báo 200 dù thực tế client gặp 401/422/500."
+    },
+    {
+      "title": "Gắn correlation ID và quan sát lỗi an toàn",
+      "detail": "Bổ sung request/correlation ID cho lỗi để truy vết; log phía server giữ thông tin có kiểm soát, ẩn PII/secrets; client truyền ID khi gửi báo cáo lỗi. Không dùng response body nhạy cảm làm log.",
+      "layer": "process",
+      "severity": "must",
+      "example_good": "Response 500 chứa mã lỗi chung và requestId, log nội bộ lưu chi tiết theo requestId.",
+      "example_bad": "Trả đường dẫn máy chủ, access token và raw exception ra ngoài."
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-API",
+      "dependency_type": "extends"
+    },
+    {
+      "code": "STD-API-REST",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-ERR",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-FEEDBACK",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-LOG",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-SEC",
+      "dependency_type": "uses"
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Thống nhất ma trận HTTP status",
+      "description": "Định nghĩa bảng hành vi theo endpoint, phương thức, xác thực, validation, conflict, throttle, timeout và lỗi hệ thống; lựa chọn nhất quán 400/422."
+    },
+    {
+      "step": 2,
+      "title": "Chuẩn hóa cấu trúc lỗi",
+      "description": "Định nghĩa problem details, code nghiệp vụ, errors theo field, requestId và quy tắc quốc tế hóa message; công bố trong OpenAPI."
+    },
+    {
+      "step": 3,
+      "title": "Tích hợp client và retry",
+      "description": "Ánh xạ status + code thành login/forbidden/form error/toast/retry; giới hạn retry theo idempotency và Retry-After."
+    },
+    {
+      "step": 4,
+      "title": "Kiểm thử và giám sát",
+      "description": "Bổ sung contract test, unit/integration test, giám sát tỷ lệ 4xx/5xx, đối chiếu status HTTP với body và điều tra bằng correlation ID."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "API trả HTTP 200 khi nghiệp vụ thất bại",
+      "cause": "Nhầm transport status và trạng thái nghiệp vụ.",
+      "solution": "Trả 4xx/5xx phù hợp và lưu mã nghiệp vụ ổn định trong problem details."
+    },
+    {
+      "issue": "401 và 403 gây xử lý logout sai",
+      "cause": "Client gộp lỗi xác thực và phân quyền.",
+      "solution": "Tách refresh/login khi 401 và màn hình thiếu quyền khi 403."
+    },
+    {
+      "issue": "Thông báo nội bộ xuất hiện trên UI",
+      "cause": "Frontend hiển thị detail từ backend mà không phân loại.",
+      "solution": "Dùng catalog mã lỗi và mapping thông báo; che thông tin nội bộ."
+    },
+    {
+      "issue": "Retry gây giao dịch trùng",
+      "cause": "Retry POST vô điều kiện khi timeout hoặc 5xx.",
+      "solution": "Dùng idempotency key, retry giới hạn và kiểm thử timeout sau khi server đã commit."
+    }
+  ],
+  "diagrams": []
+}

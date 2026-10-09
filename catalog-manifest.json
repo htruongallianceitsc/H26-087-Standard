@@ -1,7 +1,7 @@
 {
   "sourceOfTruth": "STRUCTURE.txt",
   "schema": "standard-import.schema.json",
-  "count": 115,
+  "count": 117,
   "groups": [
     {
       "folder": "01-governance-delivery",
@@ -44,7 +44,9 @@
       "files": [
         "STD-API.json",
         "STD-API-REST.json",
+        "STD-API-HTTP.json",
         "STD-API-RT.json",
+        "STD-DEEP-LINK.json",
         "STD-INTEGRATION.json",
         "STD-WEBHOOK.json",
         "STD-DATA.json",

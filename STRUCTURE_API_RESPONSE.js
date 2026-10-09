@@ -226,10 +226,31 @@ const STANDARD_CATALOG = [
                 type: 'standard'
             },
             {
+                code: 'STD-API-HTTP',
+                name: 'Quy ước HTTP Status Code & Phản hồi lỗi API',
+                title: 'STD-API-HTTP .... Quy ước HTTP Status Code & Phản hồi lỗi API',
+                type: 'standard',
+                tag: 'MỚI',
+                relations: [
+                    { type: 'EXTENDS', targets: ["STD-API"], label: 'Mở rộng STD-API' },
+                    { type: 'USES', targets: ["STD-API-REST", "STD-ERR", "STD-FEEDBACK", "STD-LOG", "STD-SEC"], label: 'Sử dụng STD-API-REST, STD-ERR, STD-FEEDBACK, STD-LOG, STD-SEC' }
+                ]
+            },
+            {
                 code: 'STD-API-RT',
                 name: 'API thời gian thực & WebSocket/SSE',
                 title: 'STD-API-RT ......... API thời gian thực & WebSocket/SSE',
                 type: 'standard'
+            },
+            {
+                code: 'STD-DEEP-LINK',
+                name: 'Deep Link, Universal Links & App Links',
+                title: 'STD-DEEP-LINK .... Deep Link, Universal Links & App Links',
+                type: 'standard',
+                tag: 'MỚI',
+                relations: [
+                    { type: 'USES', targets: ["STD-MOB-NAV", "STD-WEB-ROUTE", "STD-SEC", "STD-PRIV", "STD-INTEGRATION", "STD-MOB-RELEASE"], label: 'Sử dụng STD-MOB-NAV, STD-WEB-ROUTE, STD-SEC, STD-PRIV, STD-INTEGRATION, STD-MOB-RELEASE' }
+                ]
             },
             {
                 code: 'STD-INTEGRATION',
