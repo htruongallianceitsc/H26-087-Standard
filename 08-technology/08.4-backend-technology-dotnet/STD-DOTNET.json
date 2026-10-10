@@ -10,38 +10,53 @@
     {
       "title": "Tách controller/endpoint khỏi application/domain rule và persistence",
       "detail": "Yêu cầu: Tách controller/endpoint khỏi application/domain rule và persistence. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc ASP.NET Core có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Minimal API chỉ nhận DTO rồi gọi application service; EF ở infrastructure. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "service",
       "severity": "must",
       "example_good": "Minimal API chỉ nhận DTO rồi gọi application service; EF ở infrastructure. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Tách controller/endpoint khỏi application/domain rule và persistence' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: minimal API chỉ nhận DTO rồi gọi application service; EF ở infrastructure.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Sử dụng dependency injection với vòng đời resource theo scope",
       "detail": "Yêu cầu: Sử dụng dependency injection với vòng đời resource theo scope. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc ASP.NET Core có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Scoped DbContext không inject vào singleton background service. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "service",
       "severity": "must",
       "example_good": "Scoped DbContext không inject vào singleton background service. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Sử dụng dependency injection với vòng đời resource theo scope' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: scoped DbContext không inject vào singleton background service.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "maintainability"
+      ]
     },
     {
       "title": "Validation DTO đầu vào và triển khai error contract tập trung",
       "detail": "Yêu cầu: Validation DTO đầu vào và triển khai error contract tập trung. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc ASP.NET Core có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: FluentValidation trả ProblemDetails theo error contract. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "service",
       "severity": "should",
       "example_good": "FluentValidation trả ProblemDetails theo error contract. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Validation DTO đầu vào và triển khai error contract tập trung' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: fluentValidation trả ProblemDetails theo error contract.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Bảo vệ endpoint bằng authorization theo policy và integration test",
       "detail": "Yêu cầu: Bảo vệ endpoint bằng authorization theo policy và integration test. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc ASP.NET Core có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: [Authorize(Policy=\"CanEditOrder\")] + integration test role viewer 403. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "service",
       "severity": "should",
       "example_good": "[Authorize(Policy=\"CanEditOrder\")] + integration test role viewer 403. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Bảo vệ endpoint bằng authorization theo policy và integration test' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: [Authorize(Policy=\"CanEditOrder\")] + integration test role viewer 403.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "authorization",
+        "compliance",
+        "security",
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

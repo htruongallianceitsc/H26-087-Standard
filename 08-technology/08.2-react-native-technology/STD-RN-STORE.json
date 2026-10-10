@@ -10,35 +10,44 @@
     {
       "title": "Phân loại dữ liệu trước khi lưu thiết bị",
       "detail": "Token/secret dùng storage bảo mật hệ điều hành; cache dữ liệu công khai có TTL và không lưu password/OTP lâu dài.",
-      "layer": [
-        "process"
-      ],
+      "layer": "mobile",
       "severity": "must",
       "example_good": "Refresh token lưu qua Keychain/Android Keystore abstraction.",
       "example_bad": "Lưu refresh token vào AsyncStorage không mã hóa.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "authentication",
+        "security"
+      ]
     },
     {
       "title": "Tách cache theo tài khoản và xóa khi logout",
       "detail": "Storage key được namespace theo user/tenant/version; logout xóa token, PII cache và trạng thái liên quan, test account switching.",
-      "layer": [
-        "process"
-      ],
+      "layer": "mobile",
       "severity": "must",
       "example_good": "Logout user A xóa user:A:messages và query cache.",
       "example_bad": "User B đăng nhập đọc offline inbox của user A.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "compatibility",
+        "observability",
+        "privacy",
+        "security"
+      ]
     },
     {
       "title": "Migration cấu trúc local storage có kiểm thử",
       "detail": "Version persisted state và migration từng bước có rollback/recovery; kiểm thử nâng cấp từ các bản app đang hỗ trợ.",
-      "layer": [
-        "process"
-      ],
+      "layer": "mobile",
       "severity": "must",
       "example_good": "Persisted state v2 migrates v1->v2 và test fixture cũ.",
       "example_bad": "Đổi field JSON làm app crash sau update.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "compatibility",
+        "data-integrity",
+        "testing"
+      ]
     },
     {
       "id": "R004",
@@ -46,10 +55,11 @@
       "detail": "Quản lý quota/eviction, stale data và lỗi thiếu dung lượng; không coi local cache là nguồn thật nếu nghiệp vụ cần xác nhận server.",
       "example_good": "Offline feed lưu 100 item mới nhất và resync sau reconnect.",
       "example_bad": "Lưu toàn bộ attachment vào AsyncStorage không giới hạn.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "mobile",
+      "severity": "should",
+      "concerns": [
+        "resilience"
+      ]
     },
     {
       "id": "R005",
@@ -57,10 +67,14 @@
       "detail": "Đánh giá OS backup eligibility cho secret/PII, tránh log/storage dump nhạy cảm, hạn chế dữ liệu trong shared preferences.",
       "example_good": "Cấu hình exclude backup cho file chứa dữ liệu nhạy cảm.",
       "example_bad": "Production log in toàn bộ persisted auth state.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "mobile",
+      "severity": "should",
+      "concerns": [
+        "observability",
+        "privacy",
+        "resilience",
+        "security"
+      ]
     }
   ],
   "integration_guide": [

@@ -10,35 +10,39 @@
     {
       "title": "Khai báo owner key scope và TTL",
       "detail": "Mỗi cache key có namespace, version, tenant/user scope, TTL và quy tắc consistency; không cache dữ liệu private vào shared key.",
-      "layer": [
-        "process"
-      ],
+      "layer": "integration",
       "severity": "must",
       "example_good": "tenant:42:products:v2 TTL 300s.",
       "example_bad": "Cache key \"profile\" dùng chung cho tất cả user.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "compatibility",
+        "data-integrity"
+      ]
     },
     {
       "title": "Định nghĩa invalidation khi write",
       "detail": "Write/update/delete phải xác định invalidation hoặc event-driven refresh; test stale window và race giữa invalidate/write.",
-      "layer": [
-        "process"
-      ],
+      "layer": "integration",
       "severity": "must",
       "example_good": "Cập nhật price phát invalidate product:42 và kiểm cache miss.",
       "example_bad": "Sửa giá DB nhưng cache sản phẩm giữ 24h không ai biết.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Chống cache stampede và quá tải",
       "detail": "Dùng jitter TTL, single-flight/lock cho hot key, max value size và eviction policy; load-test cold cache.",
-      "layer": [
-        "process"
-      ],
+      "layer": "integration",
       "severity": "must",
       "example_good": "Cache 5 phút ±20% jitter và coalesce 100 miss.",
       "example_bad": "1.000 request cùng miss gọi DB 1.000 lần.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "compliance"
+      ]
     },
     {
       "id": "R004",
@@ -46,10 +50,13 @@
       "detail": "Không chia sẻ cache giữa người dùng khi response nhạy cảm; vary theo identity/auth context; purge khi revoke permission cần thiết.",
       "example_good": "Cache permission theo userId+policyVersion.",
       "example_bad": "User B nhận dashboard cache của user A.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "api",
+      "severity": "should",
+      "concerns": [
+        "authorization",
+        "privacy",
+        "security"
+      ]
     },
     {
       "id": "R005",
@@ -57,10 +64,12 @@
       "detail": "Theo dõi hit/miss, eviction, memory, stale rate, latency và fallback khi Redis outage; tránh cache failure thành outage toàn hệ thống.",
       "example_good": "Redis down => DB fallback có rate limit và alert.",
       "example_bad": "Không có circuit breaker khi cache timeout.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "integration",
+      "severity": "should",
+      "concerns": [
+        "performance",
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [

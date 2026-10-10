@@ -14,7 +14,10 @@
       "severity": "must",
       "example_good": "Search p95 <= 400 ms ở 100 RPS được kiểm tra bằng load test.",
       "example_bad": "Chỉ đo một request localhost rồi tuyên bố đạt.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "performance"
+      ]
     },
     {
       "title": "Tránh N+1 và payload dư thừa",
@@ -23,7 +26,10 @@
       "severity": "must",
       "example_good": "Danh sách 50 đơn chạy 2 query có projection.",
       "example_bad": "Load 50 order rồi gọi query từng orderItem.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "performance"
+      ]
     },
     {
       "title": "Giới hạn tài nguyên mỗi request",
@@ -32,7 +38,11 @@
       "severity": "should",
       "example_good": "Export nặng trả job ID, xử lý nền có queue limit.",
       "example_bad": "Endpoint đồng bộ đọc toàn bộ bảng triệu dòng vào RAM.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "performance",
+        "reliability"
+      ]
     },
     {
       "title": "Đo hiệu suất trên dữ liệu đại diện",
@@ -41,7 +51,12 @@
       "severity": "should",
       "example_good": "Test với 1 triệu rows và 200 virtual users.",
       "example_bad": "Benchmark với bảng 10 rows trên máy dev.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "networking",
+        "performance",
+        "usability"
+      ]
     }
   ],
   "integration_guide": [

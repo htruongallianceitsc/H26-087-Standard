@@ -10,35 +10,38 @@
     {
       "title": "Định danh resource và phương thức HTTP nhất quán",
       "detail": "URI dùng danh từ resource, GET chỉ đọc, POST tạo hoặc action rõ, PUT thay thế, PATCH cập nhật; không dùng GET để thay đổi trạng thái.",
-      "layer": [
-        "process"
-      ],
+      "layer": "api",
       "severity": "must",
       "example_good": "GET /orders/123 và PATCH /orders/123 cập nhật trạng thái.",
       "example_bad": "GET /deleteOrder?id=123 xóa dữ liệu.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Response và status nhất quán với STD-API-HTTP",
       "detail": "Phân biệt 200/201/202/204, 400/401/403/404/409/422/429; lỗi có machine-readable code/correlationId theo contract.",
-      "layer": [
-        "process"
-      ],
+      "layer": "api",
       "severity": "must",
       "example_good": "POST tạo trả 201 + Location; validation trả 422 Problem Details.",
       "example_bad": "Mọi lỗi đều 200 {success:false}.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Giới hạn phân trang lọc và sort",
       "detail": "Endpoint danh sách có max page size, stable sort/tiebreaker và filter được tài liệu hóa; test không bỏ/trùng item giữa trang.",
-      "layer": [
-        "process"
-      ],
+      "layer": "api",
       "severity": "must",
       "example_good": "GET /orders?limit=50&cursor=...; order by createdAt,id.",
       "example_bad": "GET /orders trả toàn bảng không giới hạn.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "documentation"
+      ]
     },
     {
       "id": "R004",
@@ -46,10 +49,12 @@
       "detail": "Mutations dễ lặp có idempotency key; cập nhật cạnh tranh dùng ETag/If-Match hoặc version; trả 409/412 khi conflict.",
       "example_good": "PUT payment với idempotency key và kiểm tra version.",
       "example_bad": "Client retry tạo 2 bản ghi order giống nhau.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "integration",
+      "severity": "should",
+      "concerns": [
+        "compatibility",
+        "reliability"
+      ]
     },
     {
       "id": "R005",
@@ -57,10 +62,12 @@
       "detail": "Mọi endpoint/field/auth/response code có OpenAPI cập nhật cùng PR; kiểm tra schema diff và backward compatibility.",
       "example_good": "CI chạy OpenAPI lint + provider/consumer contract tests.",
       "example_bad": "Đổi enum field server mà không cập nhật schema.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "db",
+      "severity": "should",
+      "concerns": [
+        "compatibility",
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

@@ -10,35 +10,38 @@
     {
       "title": "Định nghĩa owner, phạm vi và thời hạn flag",
       "detail": "Mỗi flag có owner, mục đích, default an toàn, môi trường, ngày expiry và kế hoạch dọn bỏ.",
-      "layer": [
-        "process"
-      ],
+      "layer": "architecture",
       "severity": "must",
       "example_good": "new_checkout owner Payments, expiry sau rollout 30 ngày.",
       "example_bad": "Flag tạm thời tồn tại 2 năm không biết ai sở hữu.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "maintainability"
+      ]
     },
     {
       "title": "Thiết lập rollout ổn định theo cohort",
       "detail": "Dùng stable hash userId/group để phân bổ %, tránh user nhảy cohort; không dùng feature flag client làm kiểm soát quyền.",
-      "layer": [
-        "process"
-      ],
+      "layer": "delivery",
       "severity": "must",
       "example_good": "Rollout 5% theo hash tenantId và backend vẫn kiểm authz.",
       "example_bad": "Ẩn nút admin bằng flag là lớp bảo mật duy nhất.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "release"
+      ]
     },
     {
       "title": "Có kill switch và fallback kiểm chứng được",
       "detail": "Flag thay đổi tại runtime trong khoảng propagation xác định; kiểm thử off/on và khi provider flag mất kết nối.",
-      "layer": [
-        "process"
-      ],
+      "layer": "architecture",
       "severity": "must",
       "example_good": "Tắt integration ngoài khi tỷ lệ lỗi tăng, fallback đọc từ cache.",
       "example_bad": "Flag service lỗi làm toàn bộ request 500.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "id": "R004",
@@ -46,10 +49,14 @@
       "detail": "Dashboard gắn phiên bản/cohort và đo error, latency, conversion; rollback khi vượt threshold đã định nghĩa.",
       "example_good": "Bật 10% và tự dừng khi checkout_error > baseline cho 15 phút.",
       "example_bad": "Rollout 100% ngay không quan sát.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "architecture",
+      "severity": "should",
+      "concerns": [
+        "compatibility",
+        "data-integrity",
+        "observability",
+        "performance"
+      ]
     },
     {
       "id": "R005",
@@ -57,10 +64,11 @@
       "detail": "Sau khi quyết định permanent, xóa cả nhánh cũ, config và test; tránh nổ tổ hợp flag khi QA.",
       "example_good": "PR xóa old_checkout sau rollout và test stable path.",
       "example_bad": "Lưu cả 2 implementation không thời hạn.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "architecture",
+      "severity": "should",
+      "concerns": [
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

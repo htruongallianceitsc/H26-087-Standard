@@ -10,38 +10,52 @@
     {
       "title": "Ghi nhận yêu cầu thô kèm nguồn, owner và các câu hỏi chưa được giải quyết trước khi phân loại",
       "detail": "Yêu cầu: Ghi nhận yêu cầu thô kèm nguồn, owner và các câu hỏi chưa được giải quyết trước khi phân loại. Phạm vi áp dụng: các thay đổi thuộc Yêu cầu & Tiêu chí chấp nhận có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: REQ-043 lưu email nguồn, requestor và trạng thái open question. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "requirements",
       "severity": "must",
       "example_good": "REQ-043 lưu email nguồn, requestor và trạng thái open question. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Ghi nhận yêu cầu thô kèm nguồn, owner và các câu hỏi chưa được giải quyết trước khi phân loại' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: rEQ-043 lưu email nguồn, requestor và trạng thái open question.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Tách functional requirement có thể kiểm thử khỏi giả định và ràng buộc phi chức năng",
       "detail": "Yêu cầu: Tách functional requirement có thể kiểm thử khỏi giả định và ràng buộc phi chức năng. Phạm vi áp dụng: các thay đổi thuộc Yêu cầu & Tiêu chí chấp nhận có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: NFR-P95-01 nêu thời gian đáp ứng 95th percentile và tách khỏi đăng nhập. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "requirements",
       "severity": "must",
       "example_good": "NFR-P95-01 nêu thời gian đáp ứng 95th percentile và tách khỏi đăng nhập. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Tách functional requirement có thể kiểm thử khỏi giả định và ràng buộc phi chức năng' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: nFR-P95-01 nêu thời gian đáp ứng 95th percentile và tách khỏi đăng nhập.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "authentication",
+        "performance",
+        "testing"
+      ]
     },
     {
       "title": "Viết acceptance criteria theo Given-When-Then có thể quan sát, bao gồm trường hợp lỗi và biên",
       "detail": "Yêu cầu: Viết acceptance criteria theo Given-When-Then có thể quan sát, bao gồm trường hợp lỗi và biên. Phạm vi áp dụng: các thay đổi thuộc Yêu cầu & Tiêu chí chấp nhận có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: AC: Given token hết hạn, When gọi API, Then trả 401 không tiết lộ thông tin. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "requirements",
       "severity": "should",
       "example_good": "AC: Given token hết hạn, When gọi API, Then trả 401 không tiết lộ thông tin. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Viết acceptance criteria theo Given-When-Then có thể quan sát, bao gồm trường hợp lỗi và biên' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: aC: Given token hết hạn, When gọi API, Then trả 401 không tiết lộ thông tin.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "security"
+      ]
     },
     {
       "title": "Liên kết requirement đã được duyệt với feature và bằng chứng kiểm thử",
       "detail": "Yêu cầu: Liên kết requirement đã được duyệt với feature và bằng chứng kiểm thử. Phạm vi áp dụng: các thay đổi thuộc Yêu cầu & Tiêu chí chấp nhận có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: REQ-043 link FEAT-AUTH và TC-AUTH-401 với kết quả kiểm thử. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "requirements",
       "severity": "should",
       "example_good": "REQ-043 link FEAT-AUTH và TC-AUTH-401 với kết quả kiểm thử. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Liên kết requirement đã được duyệt với feature và bằng chứng kiểm thử' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: rEQ-043 link FEAT-AUTH và TC-AUTH-401 với kết quả kiểm thử.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

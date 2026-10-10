@@ -10,35 +10,39 @@
     {
       "title": "Đọc dữ liệu không tracking có chủ đích",
       "detail": "Dùng AsNoTracking cho query read-only, projection DTO chỉ lấy cột cần thiết; kiểm query plan/round trip khi list lớn.",
-      "layer": [
-        "api"
-      ],
+      "layer": "api",
       "severity": "must",
       "example_good": "db.Orders.AsNoTracking().Select(x=>new OrderDto(...)).Take(50).",
       "example_bad": "ToList cả entity graph để hiển thị 3 cột.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "maintainability"
+      ]
     },
     {
       "title": "Chặn N+1 query và cartesian explosion",
       "detail": "Review Include/split query/project query, benchmark query count và payload cho trang dữ liệu; không lazy-load từng record trong vòng lặp.",
-      "layer": [
-        "api"
-      ],
+      "layer": "api",
       "severity": "must",
       "example_good": "Projection lấy order và tổng detail bằng một query.",
       "example_bad": "foreach orders rồi query order details từng item.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "maintainability"
+      ]
     },
     {
       "title": "Thực thi migration có kiểm soát",
       "detail": "Migration script được review, chạy theo pipeline riêng, có expand/contract và rollback; không auto migrate production khi app startup.",
-      "layer": [
-        "api"
-      ],
+      "layer": "api",
       "severity": "must",
       "example_good": "EF migration SQL được duyệt trước deploy.",
       "example_bad": "Database.Migrate() từ mọi pod trong production.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "automation",
+        "data-integrity"
+      ]
     },
     {
       "id": "R004",
@@ -46,10 +50,14 @@
       "detail": "Concurrency token/version row để phát hiện lost update; transaction scope ngắn và retry conflict rõ cho caller.",
       "example_good": "RowVersion nhận DbUpdateConcurrencyException -> 409.",
       "example_bad": "Hai worker ghi đè cùng balance không phát hiện.",
-      "layer": [
-        "api"
-      ],
-      "severity": "should"
+      "layer": "api",
+      "severity": "should",
+      "concerns": [
+        "compatibility",
+        "data-integrity",
+        "reliability",
+        "security"
+      ]
     },
     {
       "id": "R005",
@@ -57,10 +65,14 @@
       "detail": "Dùng FromSqlInterpolated hoặc parameters cho raw SQL; DbContext dispose theo scope; timeout và cancellation token.",
       "example_good": "FromSqlInterpolated($\"SELECT ... WHERE id={id}\").",
       "example_bad": "FromSqlRaw(\"... WHERE id=\" + userInput).",
-      "layer": [
-        "api"
-      ],
-      "severity": "should"
+      "layer": "api",
+      "severity": "should",
+      "concerns": [
+        "maintainability",
+        "reliability",
+        "resilience",
+        "security"
+      ]
     }
   ],
   "integration_guide": [

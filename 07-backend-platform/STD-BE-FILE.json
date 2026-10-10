@@ -14,7 +14,10 @@
       "severity": "must",
       "example_good": "PDF được kiểm tra signature %PDF và size limit được cấu hình.",
       "example_bad": "Tin file.exe đổi tên thành .pdf.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Tên tệp và đường dẫn không do client điều khiển",
@@ -23,7 +26,10 @@
       "severity": "must",
       "example_good": "Upload lưu key dạng UUID; download qua ID có quyền.",
       "example_bad": "Nối ../ từ request thành đường dẫn ổ đĩa.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Quét và cách ly nội dung nguy hiểm",
@@ -32,7 +38,10 @@
       "severity": "should",
       "example_good": "Tệp được scan trước khi status chuyển AVAILABLE.",
       "example_bad": "Upload xong được phục vụ công khai tức thì.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Kiểm soát tải xuống và vòng đời",
@@ -41,7 +50,10 @@
       "severity": "should",
       "example_good": "User A không thể lấy file user B bằng cách đổi ID.",
       "example_bad": "Bucket public chứa toàn bộ tài liệu cá nhân.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [

@@ -10,38 +10,50 @@
     {
       "title": "Chọn CSR, SSR hoặc static rendering dựa trên nhu cầu indexing và nội dung",
       "detail": "Yêu cầu: Chọn CSR, SSR hoặc static rendering dựa trên nhu cầu indexing và nội dung. Phạm vi áp dụng: các thay đổi thuộc SEO & Chiến lược Rendering có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Trang blog sử dụng SSR trong khi trang quản trị giữ CSR. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "must",
       "example_good": "Trang blog sử dụng SSR trong khi trang quản trị giữ CSR. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Chọn CSR, SSR hoặc static rendering dựa trên nhu cầu indexing và nội dung' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: trang blog sử dụng SSR trong khi trang quản trị giữ CSR.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "observability"
+      ]
     },
     {
       "title": "Cung cấp canonical URL, metadata và nội dung có thể crawl cho trang công khai",
       "detail": "Yêu cầu: Cung cấp canonical URL, metadata và nội dung có thể crawl cho trang công khai. Phạm vi áp dụng: các thay đổi thuộc SEO & Chiến lược Rendering có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Product page xuất title, canonical, JSON-LD và HTML render được. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "must",
       "example_good": "Product page xuất title, canonical, JSON-LD và HTML render được. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Cung cấp canonical URL, metadata và nội dung có thể crawl cho trang công khai' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: product page xuất title, canonical, JSON-LD và HTML render được.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Loại trừ route riêng tư/cần xác thực khỏi search indexing",
       "detail": "Yêu cầu: Loại trừ route riêng tư/cần xác thực khỏi search indexing. Phạm vi áp dụng: các thay đổi thuộc SEO & Chiến lược Rendering có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Route /admin và /account không có trong sitemap và trả noindex. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "should",
       "example_good": "Route /admin và /account không có trong sitemap và trả noindex. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Loại trừ route riêng tư/cần xác thực khỏi search indexing' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: route /admin và /account không có trong sitemap và trả noindex.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "privacy"
+      ]
     },
     {
       "title": "Kiểm thử nội dung render ở production và redirect theo ràng buộc crawler thực tế",
       "detail": "Yêu cầu: Kiểm thử nội dung render ở production và redirect theo ràng buộc crawler thực tế. Phạm vi áp dụng: các thay đổi thuộc SEO & Chiến lược Rendering có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Kiểm tra rendered HTML bằng crawler để phát hiện redirect loop. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "should",
       "example_good": "Kiểm tra rendered HTML bằng crawler để phát hiện redirect loop. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Kiểm thử nội dung render ở production và redirect theo ràng buộc crawler thực tế' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: kiểm tra rendered HTML bằng crawler để phát hiện redirect loop.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

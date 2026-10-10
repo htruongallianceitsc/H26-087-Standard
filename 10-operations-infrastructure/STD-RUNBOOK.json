@@ -10,38 +10,50 @@
     {
       "title": "Hướng dẫn thao tác có điều kiện kích hoạt",
       "detail": "Mỗi runbook ghi dấu hiệu, prerequisite, quyền, lệnh, kết quả kỳ vọng và cách dừng an toàn. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "operations",
       "severity": "must",
       "example_good": "Runbook reconnect queue chỉ chạy khi lag threshold vượt.",
       "example_bad": "Chỉ ghi “restart service nếu cần”.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "documentation"
+      ]
     },
     {
       "title": "Lệnh có phạm vi và khả năng rollback",
       "detail": "Các bước thay đổi prod ghi target environment/namespace, dry-run, impact và rollback; lệnh xóa cần cảnh báo. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "operations",
       "severity": "must",
       "example_good": "kubectl rollout undo deployment/app -n prod có điều kiện rõ.",
       "example_bad": "Dán lệnh DELETE không nêu môi trường.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "data-integrity"
+      ]
     },
     {
       "title": "Runbook được diễn tập",
       "detail": "Thử hướng dẫn trên staging hoặc drill, sửa lệnh lỗi, ghi ngày xác minh và người phụ trách. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "operations",
       "severity": "should",
       "example_good": "On-call mới theo runbook xử lý thử failover thành công.",
       "example_bad": "Runbook 2 năm không cập nhật sau đổi hạ tầng.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "documentation"
+      ]
     },
     {
       "title": "Tham chiếu telemetry và escalation",
       "detail": "Nêu link dashboard/log/query và tiêu chí nâng severity/chuyển tuyến khi thao tác không hiệu quả. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "operations",
       "severity": "should",
       "example_good": "Nếu error rate không giảm sau 5 phút thì page backend lead.",
       "example_bad": "Không có tiêu chí khi nào dừng retry và gọi người khác.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "observability"
+      ]
     }
   ],
   "integration_guide": [

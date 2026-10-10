@@ -10,38 +10,51 @@
     {
       "title": "Sử dụng query key bao gồm mọi parameter có ý nghĩa",
       "detail": "Yêu cầu: Sử dụng query key bao gồm mọi parameter có ý nghĩa. Phạm vi áp dụng: các thay đổi thuộc TanStack Query có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: useQuery key ['orders', userId, filters] chứa mọi dependency. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "service",
       "severity": "must",
       "example_good": "useQuery key ['orders', userId, filters] chứa mọi dependency. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Sử dụng query key bao gồm mọi parameter có ý nghĩa' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: useQuery key ['orders', userId, filters] chứa mọi dependency.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "maintainability"
+      ]
     },
     {
       "title": "Invalidate hoặc cập nhật query sau mutation với ownership rõ ràng",
       "detail": "Yêu cầu: Invalidate hoặc cập nhật query sau mutation với ownership rõ ràng. Phạm vi áp dụng: các thay đổi thuộc TanStack Query có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: mutation onSuccess invalidate ['orders',userId] đúng user. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "service",
       "severity": "must",
       "example_good": "mutation onSuccess invalidate ['orders',userId] đúng user. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Invalidate hoặc cập nhật query sau mutation với ownership rõ ràng' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: mutation onSuccess invalidate ['orders',userId] đúng user.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Xử lý rõ ràng việc hủy, dữ liệu stale và retry policy",
       "detail": "Yêu cầu: Xử lý rõ ràng việc hủy, dữ liệu stale và retry policy. Phạm vi áp dụng: các thay đổi thuộc TanStack Query có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: AbortSignal truyền axios, retry 401 tắt và retry 503 giới hạn. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "service",
       "severity": "should",
       "example_good": "AbortSignal truyền axios, retry 401 tắt và retry 503 giới hạn. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Xử lý rõ ràng việc hủy, dữ liệu stale và retry policy' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: abortSignal truyền axios, retry 401 tắt và retry 503 giới hạn.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "compliance",
+        "reliability"
+      ]
     },
     {
       "title": "Không sao chép server state vào các global store ad hoc trùng lặp",
       "detail": "Yêu cầu: Không sao chép server state vào các global store ad hoc trùng lặp. Phạm vi áp dụng: các thay đổi thuộc TanStack Query có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Server orders chỉ sống trong Query cache, global store chỉ giữ modal state. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "service",
       "severity": "should",
       "example_good": "Server orders chỉ sống trong Query cache, global store chỉ giữ modal state. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Không sao chép server state vào các global store ad hoc trùng lặp' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: server orders chỉ sống trong Query cache, global store chỉ giữ modal state.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [

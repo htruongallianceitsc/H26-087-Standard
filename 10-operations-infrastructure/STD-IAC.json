@@ -10,38 +10,57 @@
     {
       "title": "Hạ tầng được quản lý qua code review",
       "detail": "Tài nguyên production được mô tả bằng Terraform/Pulumi hoặc tương đương, áp dụng qua pipeline có review; hạn chế sửa console. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "infrastructure",
       "severity": "must",
       "example_good": "PR có plan diff và approval trước apply.",
       "example_bad": "Sửa firewall trực tiếp rồi quên cập nhật IaC.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "automation",
+        "maintainability",
+        "usability"
+      ]
     },
     {
       "title": "State và secret được bảo vệ",
       "detail": "IaC state mã hóa, lock để tránh concurrent apply, RBAC hạn chế; secret không commit vào repo hoặc plan log. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "infrastructure",
       "severity": "must",
       "example_good": "Remote state có encryption + lock và quyền theo môi trường.",
       "example_bad": "Terraform state public chứa DB password.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "authorization",
+        "observability",
+        "security"
+      ]
     },
     {
       "title": "Phát hiện drift và policy violation",
       "detail": "Chạy plan định kỳ detect drift và policy-as-code check encryption/network/public access. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "infrastructure",
       "severity": "should",
       "example_good": "CI fail khi storage bucket public ngoài allowlist.",
       "example_bad": "Resource đã drift nhưng pipeline vẫn báo green.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "compliance",
+        "networking",
+        "security"
+      ]
     },
     {
       "title": "Môi trường tạo lại được",
       "detail": "Có bootstrap dependency và pinned provider/module version; test destroy/recreate ở sandbox. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "infrastructure",
       "severity": "should",
       "example_good": "Recreate staging bằng tag release mà không click console.",
       "example_bad": "Provider auto latest làm plan thay đổi ngẫu nhiên.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "compatibility",
+        "maintainability"
+      ]
     }
   ],
   "integration_guide": [

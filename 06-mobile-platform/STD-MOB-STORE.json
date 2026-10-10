@@ -10,38 +10,53 @@
     {
       "title": "Lưu secret trong secure storage do OS bảo vệ thay vì preference thông thường",
       "detail": "Yêu cầu: Lưu secret trong secure storage do OS bảo vệ thay vì preference thông thường. Phạm vi áp dụng: các thay đổi thuộc Lưu trữ cục bộ & Lưu trữ an toàn có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Refresh token lưu Keychain/Keystore, không dùng SharedPreferences thuần. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "must",
       "example_good": "Refresh token lưu Keychain/Keystore, không dùng SharedPreferences thuần. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Lưu secret trong secure storage do OS bảo vệ thay vì preference thông thường' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: refresh token lưu Keychain/Keystore, không dùng SharedPreferences thuần.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "authentication",
+        "security"
+      ]
     },
     {
       "title": "Đặt chính sách lưu giữ, cleanup khi logout và cô lập khi chuyển tài khoản",
       "detail": "Yêu cầu: Đặt chính sách lưu giữ, cleanup khi logout và cô lập khi chuyển tài khoản. Phạm vi áp dụng: các thay đổi thuộc Lưu trữ cục bộ & Lưu trữ an toàn có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Logout clear storage theo account namespace và xóa cached profile. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "must",
       "example_good": "Logout clear storage theo account namespace và xóa cached profile. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Đặt chính sách lưu giữ, cleanup khi logout và cô lập khi chuyển tài khoản' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: logout clear storage theo account namespace và xóa cached profile.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "observability"
+      ]
     },
     {
       "title": "Mã hóa dữ liệu offline nhạy cảm khi threat model yêu cầu",
       "detail": "Yêu cầu: Mã hóa dữ liệu offline nhạy cảm khi threat model yêu cầu. Phạm vi áp dụng: các thay đổi thuộc Lưu trữ cục bộ & Lưu trữ an toàn có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Database offline chứa PII được mã hóa key quản lý bởi OS. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "should",
       "example_good": "Database offline chứa PII được mã hóa key quản lý bởi OS. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Mã hóa dữ liệu offline nhạy cảm khi threat model yêu cầu' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: database offline chứa PII được mã hóa key quản lý bởi OS.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "privacy",
+        "resilience",
+        "security"
+      ]
     },
     {
       "title": "Hỗ trợ migration storage và phục hồi khi state bị hỏng",
       "detail": "Yêu cầu: Hỗ trợ migration storage và phục hồi khi state bị hỏng. Phạm vi áp dụng: các thay đổi thuộc Lưu trữ cục bộ & Lưu trữ an toàn có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Migration v3->v4 có test dữ liệu cũ và fallback cho JSON hỏng. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "should",
       "example_good": "Migration v3->v4 có test dữ liệu cũ và fallback cho JSON hỏng. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Hỗ trợ migration storage và phục hồi khi state bị hỏng' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: migration v3->v4 có test dữ liệu cũ và fallback cho JSON hỏng.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "resilience"
+      ]
     }
   ],
   "integration_guide": [

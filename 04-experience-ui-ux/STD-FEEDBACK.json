@@ -10,38 +10,52 @@
     {
       "title": "Thông báo tương ứng tác động thao tác",
       "detail": "Success nhẹ dùng toast ngắn; lỗi field chỉ ở field; tác vụ dài dùng progress; lỗi ngăn tiếp tục phải hiện inline hoặc dialog. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "ui",
       "severity": "must",
       "example_good": "Lỗi email hiện dưới field; upload dài hiển thị tiến độ.",
       "example_bad": "Mọi HTTP 200/400 đều bật toast giống nhau.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "observability"
+      ]
     },
     {
       "title": "Thông báo không lộ dữ liệu kỹ thuật",
       "detail": "Message hướng dẫn người dùng xử lý, không in stack trace, SQL hay token; log lưu correlation ID nội bộ. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "design",
       "severity": "must",
       "example_good": "Hiển thị “Không lưu được, thử lại” và mã tham chiếu hỗ trợ.",
       "example_bad": "Toast nguyên exception có connection string.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "observability",
+        "security"
+      ]
     },
     {
       "title": "Ngăn spam thông báo lặp",
       "detail": "Các lần retry/re-render của cùng operation không tạo nhiều toast; lỗi nền không được cướp focus liên tục. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "ui",
       "severity": "should",
       "example_good": "Chỉ một thông báo cho một request thất bại dù retry hai lần.",
       "example_bad": "Mỗi vòng polling báo lỗi giống nhau.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability",
+        "usability"
+      ]
     },
     {
       "title": "Phản hồi trạng thái thành công đúng thời điểm",
       "detail": "Chỉ xác nhận hoàn tất khi backend hoặc hàng đợi đã xác nhận mức bảo đảm được nêu; phân biệt “đã nhận” và “đã xử lý”. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "design",
       "severity": "should",
       "example_good": "Sau HTTP 202 hiển thị “Đã tiếp nhận, đang xử lý”.",
       "example_bad": "Nói “Đã thanh toán” khi mới gửi request.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [

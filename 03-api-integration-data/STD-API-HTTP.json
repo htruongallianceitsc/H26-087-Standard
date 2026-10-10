@@ -14,7 +14,10 @@
       "severity": "must",
       "example_good": "POST /orders tạo đơn: HTTP 201, Location: /orders/123 và body đơn mới.",
       "example_bad": "Tạo thành công trả 200 nhưng nội dung {success:false} khi gặp lỗi.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Phân biệt xác thực và phân quyền",
@@ -23,7 +26,12 @@
       "severity": "must",
       "example_good": "Token hết hạn → 401; token hợp lệ nhưng thiếu quyền quản trị → 403.",
       "example_bad": "Mọi trường hợp từ chối đều trả 401 và xóa phiên người dùng.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "authorization",
+        "observability",
+        "security"
+      ]
     },
     {
       "title": "Chuẩn hóa 400, 404, 405, 409 và 422",
@@ -32,16 +40,23 @@
       "severity": "must",
       "example_good": "Đổi trạng thái đơn không hợp lệ → 409; email sai định dạng theo contract → 422 kèm fieldErrors.",
       "example_bad": "Bất kể validation, not found hay conflict đều trả 400.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Áp dụng chính xác 429 và nhóm 5xx",
       "detail": "429 khi vượt rate limit; 500 lỗi máy chủ không dự kiến; 502 phản hồi upstream không hợp lệ; 503 dịch vụ tạm thời không sẵn sàng; 504 upstream timeout. Có thể trả Retry-After với 429/503 khi biết thời gian; không tiết lộ stack trace/SQL/token.",
-      "layer": "api",
+      "layer": "db",
       "severity": "must",
       "example_good": "Rate limit → 429 + Retry-After: 60; sự cố tạm thời → 503.",
       "example_bad": "Timeout gọi upstream luôn trả 400 và kèm stack trace.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "reliability",
+        "security"
+      ]
     },
     {
       "title": "Phản hồi lỗi có cấu trúc ổn định",
@@ -50,16 +65,24 @@
       "severity": "must",
       "example_good": "HTTP 422, Content-Type: application/problem+json; {\"type\":\"about:blank\",\"title\":\"Dữ liệu không hợp lệ\",\"status\":422,\"code\":\"VALIDATION_FAILED\",\"errors\":{\"email\":[\"Định dạng chưa đúng\"]}}.",
       "example_bad": "HTTP 200 + {\"message\":\"Lỗi không hợp lệ\"} khiến client phải so chuỗi tiếng Việt.",
-      "id": "R005"
+      "id": "R005",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Phân biệt lỗi cần hiển thị và lỗi nội bộ",
       "detail": "Frontend chỉ hiển thị thông điệp thân thiện đã định nghĩa trong bảng mã lỗi; không trực tiếp toast detail nội bộ của 5xx, exception hoặc trace. Ánh xạ field validation sang form; 401 kích hoạt refresh/login theo chính sách; 403 hiển thị không có quyền; 429 hiển thị chờ; 5xx thông báo chung và ghi log.",
-      "layer": "ui",
+      "layer": "db",
       "severity": "must",
       "example_good": "HTTP 422 với errors.email → hiện lỗi tại trường email, không phát toast trùng.",
       "example_bad": "Toast nguyên văn lỗi SQL hoặc exception cho người dùng.",
-      "id": "R006"
+      "id": "R006",
+      "concerns": [
+        "authentication",
+        "observability",
+        "usability"
+      ]
     },
     {
       "title": "Retry có giới hạn và bảo vệ thao tác không idempotent",
@@ -68,7 +91,10 @@
       "severity": "must",
       "example_good": "POST /payments dùng Idempotency-Key; retry 503 tối đa 3 lần có backoff.",
       "example_bad": "Mỗi HTTP 500 đều retry vô hạn và tạo đơn trùng.",
-      "id": "R007"
+      "id": "R007",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Định nghĩa contract và test theo method",
@@ -77,16 +103,24 @@
       "severity": "must",
       "example_good": "OpenAPI khai báo 200, 401, 403, 404, 409, 422, 500 và có contract test.",
       "example_bad": "Tài liệu chỉ khai báo 200 dù thực tế client gặp 401/422/500.",
-      "id": "R008"
+      "id": "R008",
+      "concerns": [
+        "testing"
+      ]
     },
     {
       "title": "Gắn correlation ID và quan sát lỗi an toàn",
       "detail": "Bổ sung request/correlation ID cho lỗi để truy vết; log phía server giữ thông tin có kiểm soát, ẩn PII/secrets; client truyền ID khi gửi báo cáo lỗi. Không dùng response body nhạy cảm làm log.",
-      "layer": "process",
+      "layer": "api",
       "severity": "must",
       "example_good": "Response 500 chứa mã lỗi chung và requestId, log nội bộ lưu chi tiết theo requestId.",
       "example_bad": "Trả đường dẫn máy chủ, access token và raw exception ra ngoài.",
-      "id": "R009"
+      "id": "R009",
+      "concerns": [
+        "observability",
+        "privacy",
+        "security"
+      ]
     }
   ],
   "depends_on": [

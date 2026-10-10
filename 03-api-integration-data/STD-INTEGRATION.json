@@ -10,35 +10,42 @@
     {
       "title": "Hợp đồng adapter và mapping rõ ràng",
       "detail": "Cô lập SDK/provider trong adapter; xác định mapping trường, kiểu lỗi, timeout, rate limit và version; test bằng fixture độc lập.",
-      "layer": [
-        "process"
-      ],
+      "layer": "integration",
       "severity": "must",
       "example_good": "IPaymentProvider map lỗi timeout thành RetryableProviderError.",
       "example_bad": "Provider response shape tràn vào domain ở mọi service.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "compatibility",
+        "reliability"
+      ]
     },
     {
       "title": "Bảo vệ credential và dữ liệu truyền đi",
       "detail": "Secret lưu server-side vault, TLS, allowlist data fields và URL endpoint; không log token/PII; kiểm payload thực tế.",
-      "layer": [
-        "process"
-      ],
+      "layer": "api",
       "severity": "must",
       "example_good": "Server ký request bằng key vault và redacted tracing.",
       "example_bad": "API key đối tác gắn trong ứng dụng React.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "authentication",
+        "observability",
+        "privacy",
+        "security"
+      ]
     },
     {
       "title": "Retry chỉ cho lỗi tạm thời và idempotent",
       "detail": "Phân biệt 4xx cố định, 429/5xx tạm thời; tôn trọng Retry-After; idempotency cho mutation và bounded retry.",
-      "layer": [
-        "process"
-      ],
+      "layer": "integration",
       "severity": "must",
       "example_good": "Retry 429 theo Retry-After, tối đa 3 lần có jitter.",
       "example_bad": "Retry 400 invalid request 100 lần.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "id": "R004",
@@ -46,10 +53,11 @@
       "detail": "Bulkhead/concurrency, timeout và circuit breaker riêng theo provider; khi lỗi kéo dài fallback hoặc degrade theo nghiệp vụ.",
       "example_good": "Provider email outage không chặn tạo tài khoản.",
       "example_bad": "SDK email treo làm cạn toàn worker web.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "integration",
+      "severity": "should",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "id": "R005",
@@ -57,10 +65,11 @@
       "detail": "Dùng sandbox+mock+contract fixtures; reconcile dữ liệu ngoài với local, cảnh báo mismatch và hỗ trợ replay an toàn.",
       "example_good": "Job so khớp payoutId với statement provider hàng ngày.",
       "example_bad": "Chỉ dựa vào HTTP 200 để kết luận tiền đã chi.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "integration",
+      "severity": "should",
+      "concerns": [
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

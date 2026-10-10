@@ -10,38 +10,55 @@
     {
       "title": "Xác định RTO/RPO theo kịch bản mất dịch vụ",
       "detail": "Định nghĩa RTO/RPO riêng cho DB corruption, region down, credential compromise và service outage; có owner duyệt. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "operations",
       "severity": "must",
       "example_good": "Region outage RTO 2h, RPO 15m cùng tiêu chí test.",
       "example_bad": "Chỉ ghi “khôi phục nhanh nhất có thể”.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "authentication",
+        "resilience",
+        "security"
+      ]
     },
     {
       "title": "Có runbook failover và failback",
       "detail": "Ghi điều kiện kích hoạt, thứ tự DNS/traffic/data switch, kiểm split brain và cách quay lại primary. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "operations",
       "severity": "must",
       "example_good": "Runbook diễn tập đổi traffic sang secondary và failback.",
       "example_bad": "Chỉ có backup mà không có bước phục hồi traffic.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "documentation",
+        "networking",
+        "reliability"
+      ]
     },
     {
       "title": "Diễn tập tình huống gián đoạn",
       "detail": "Thực hiện tabletop và restore/failover drill với bằng chứng RTO/RPO, nhận diện blocker rồi lập action. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "operations",
       "severity": "should",
       "example_good": "Biên bản drill ghi mất 65 phút, data gap 7 phút.",
       "example_bad": "DR plan chưa từng chạy thử.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability",
+        "resilience"
+      ]
     },
     {
       "title": "Phân vai điều phối khi sự cố lớn",
       "detail": "Có incident commander, owner hệ thống, truyền thông và tiêu chí công bố phục hồi. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "operations",
       "severity": "should",
       "example_good": "Danh bạ on-call và escalation được kiểm tra định kỳ.",
       "example_bad": "Sự cố xảy ra không biết ai phê duyệt failover.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "resilience"
+      ]
     }
   ],
   "integration_guide": [

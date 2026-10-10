@@ -10,38 +10,52 @@
     {
       "title": "SLI đo từ trải nghiệm thực",
       "detail": "Định nghĩa SLI theo success requests, latency, freshness hoặc processing delay gắn journey; loại health probe khi phù hợp. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "operations",
       "severity": "must",
       "example_good": "Checkout success ratio đo response hợp lệ sau payment confirmation.",
       "example_bad": "Dùng CPU% làm chỉ số duy nhất cho trải nghiệm user.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "performance",
+        "usability"
+      ]
     },
     {
       "title": "SLO có cửa sổ và phép tính rõ",
       "detail": "SLO cần đối tượng, target, rolling window, event exclusions và nguồn dữ liệu đo. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "operations",
       "severity": "must",
       "example_good": "99.9% successful checkout trong rolling 30 ngày.",
       "example_bad": "Tuyên bố uptime “cao” không có mẫu số.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Alert dựa trên burn rate",
       "detail": "Page theo multi-window burn rate để tránh spam; cảnh báo chậm cho xu hướng; xác nhận mức tác động thực. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "operations",
       "severity": "should",
       "example_good": "Alert khi 1h/5m burn vượt ngưỡng policy đã chọn.",
       "example_bad": "Page với mọi request 500 đơn lẻ.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "observability"
+      ]
     },
     {
       "title": "Error budget tác động quyết định release",
       "detail": "Theo dõi budget còn lại và đưa vào release gate/ưu tiên reliability; exception có owner. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "operations",
       "severity": "should",
       "example_good": "Budget hết -> dừng rollout tính năng rủi ro đến khi phục hồi.",
       "example_bad": "SLO chỉ nằm trên slide, release không chịu ảnh hưởng.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "cost",
+        "release"
+      ]
     }
   ],
   "integration_guide": [

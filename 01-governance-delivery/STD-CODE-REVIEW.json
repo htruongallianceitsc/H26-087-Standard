@@ -10,35 +10,44 @@
     {
       "title": "PR có phạm vi nhỏ và mô tả tác động",
       "detail": "PR ghi why/what, issue, các vùng bị ảnh hưởng, bằng chứng test và cách rollback; tách refactor độc lập khỏi logic mới.",
-      "layer": [
-        "process"
-      ],
+      "layer": "delivery",
       "severity": "must",
       "example_good": "PR thay đổi API có link ticket, curl test và migration note.",
       "example_bad": "PR hàng nghìn dòng không mô tả lý do.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "data-integrity",
+        "maintainability",
+        "observability"
+      ]
     },
     {
       "title": "Review độc lập cho thay đổi nhạy cảm",
       "detail": "Auth, phân quyền, payment, PII, migration cần người review có ownership, không tự approve; dùng CODEOWNERS hoặc quy trình tương đương.",
-      "layer": [
-        "process"
-      ],
+      "layer": "delivery",
       "severity": "must",
       "example_good": "Thay policy auth cần reviewer thuộc nhóm security/backend.",
       "example_bad": "Tác giả tự merge thay đổi kiểm tra token.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "authorization",
+        "privacy",
+        "security"
+      ]
     },
     {
       "title": "CI bắt buộc xanh trước khi merge",
       "detail": "Không bypass các check build, test, lint, secret scan và schema validation trừ exception có log phê duyệt, hết hạn.",
-      "layer": [
-        "process"
-      ],
+      "layer": "delivery",
       "severity": "must",
       "example_good": "Branch protection yêu cầu check unit/integration pass.",
       "example_bad": "Merge mặc dù migration test đang fail.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "maintainability",
+        "observability",
+        "security"
+      ]
     },
     {
       "id": "R004",
@@ -46,10 +55,11 @@
       "detail": "Mỗi comment blocking phải được sửa hoặc có quyết định phản biện ghi rõ; reviewer xác nhận lại thay đổi.",
       "example_good": "Comment SQL injection được xử lý bằng parameterized query và test.",
       "example_bad": "Resolve conversation chưa sửa lỗi.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "delivery",
+      "severity": "should",
+      "concerns": [
+        "documentation"
+      ]
     },
     {
       "id": "R005",
@@ -57,10 +67,13 @@
       "detail": "Reviewer kiểm tra compatibility, authz, concurrency, error path và test case liên quan, không chỉ format và naming.",
       "example_good": "PR retry job bổ sung test duplicate delivery.",
       "example_bad": "Chỉ review lint và snapshot happy path.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "delivery",
+      "severity": "should",
+      "concerns": [
+        "compatibility",
+        "networking",
+        "usability"
+      ]
     }
   ],
   "integration_guide": [

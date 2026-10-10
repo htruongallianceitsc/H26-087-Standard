@@ -10,38 +10,52 @@
     {
       "title": "Tập trung quản lý màu sắc, typography, spacing và theme token",
       "detail": "Yêu cầu: Tập trung quản lý màu sắc, typography, spacing và theme token. Phạm vi áp dụng: các thay đổi thuộc Tổ hợp Widget & Theming có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: ThemeExtension dùng màu và spacing token thống nhất. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "must",
       "example_good": "ThemeExtension dùng màu và spacing token thống nhất. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Tập trung quản lý màu sắc, typography, spacing và theme token' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: themeExtension dùng màu và spacing token thống nhất.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "security"
+      ]
     },
     {
       "title": "Tổ hợp các widget nhỏ thay vì sử dụng build method quá lớn",
       "detail": "Yêu cầu: Tổ hợp các widget nhỏ thay vì sử dụng build method quá lớn. Phạm vi áp dụng: các thay đổi thuộc Tổ hợp Widget & Theming có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: OrderRow chia thành AmountText, StatusChip, ActionButtons. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "must",
       "example_good": "OrderRow chia thành AmountText, StatusChip, ActionButtons. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Tổ hợp các widget nhỏ thay vì sử dụng build method quá lớn' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: orderRow chia thành AmountText, StatusChip, ActionButtons.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Tuân thủ MediaQuery, SafeArea và text scale phục vụ accessibility",
       "detail": "Yêu cầu: Tuân thủ MediaQuery, SafeArea và text scale phục vụ accessibility. Phạm vi áp dụng: các thay đổi thuộc Tổ hợp Widget & Theming có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: MediaQuery textScaler và SafeArea không clip nội dung. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "should",
       "example_good": "MediaQuery textScaler và SafeArea không clip nội dung. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Tuân thủ MediaQuery, SafeArea và text scale phục vụ accessibility' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: mediaQuery textScaler và SafeArea không clip nội dung.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "accessibility",
+        "compliance"
+      ]
     },
     {
       "title": "Render và đối chiếu widget với thiết kế màn hình đã được duyệt",
       "detail": "Yêu cầu: Render và đối chiếu widget với thiết kế màn hình đã được duyệt. Phạm vi áp dụng: các thay đổi thuộc Tổ hợp Widget & Theming có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Golden compare LoginScreen trên 360dp và 600dp. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "should",
       "example_good": "Golden compare LoginScreen trên 360dp và 600dp. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Render và đối chiếu widget với thiết kế màn hình đã được duyệt' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: golden compare LoginScreen trên 360dp và 600dp.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "authentication",
+        "observability"
+      ]
     }
   ],
   "integration_guide": [

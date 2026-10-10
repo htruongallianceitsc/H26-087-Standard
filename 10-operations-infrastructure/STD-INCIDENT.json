@@ -10,38 +10,53 @@
     {
       "title": "Phân loại mức độ và kích hoạt phản ứng",
       "detail": "Định nghĩa severity theo user impact, data/security và SLO; có pager policy và escalation. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "operations",
       "severity": "must",
       "example_good": "Sev1 mất checkout paging ngay cho on-call.",
       "example_bad": "Lỗi mất doanh thu chỉ nằm trong Slack không ai nhận.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "compliance"
+      ]
     },
     {
       "title": "Lưu timeline và vai trò rõ ràng",
       "detail": "Incident có commander, người điều tra, communications, mốc UTC và quyết định mitigation. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "operations",
       "severity": "must",
       "example_good": "Timeline ghi detect, acknowledge, mitigation, resolution.",
       "example_bad": "Nhiều người thao tác prod mà không có điều phối.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Giảm ảnh hưởng trước khi phân tích sâu",
       "detail": "Ưu tiên rollback, failover, feature flag hoặc cô lập traffic an toàn; không xóa log/bằng chứng. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "operations",
       "severity": "should",
       "example_good": "Rollback bản release lỗi để phục hồi checkout.",
       "example_bad": "Phân tích root cause hàng giờ trong lúc hệ thống vẫn down.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "data-integrity",
+        "observability",
+        "release",
+        "reliability"
+      ]
     },
     {
       "title": "Postmortem không quy lỗi cá nhân",
       "detail": "Sự cố nghiêm trọng có impact, contributing factors, detection gap, action owner/due date và kiểm tra hoàn thành. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "operations",
       "severity": "should",
       "example_good": "Action thêm alert queue lag có owner và deadline.",
       "example_bad": "Đóng incident khi hệ thống phục hồi mà không học được gì.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [

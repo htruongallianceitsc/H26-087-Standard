@@ -10,38 +10,56 @@
     {
       "title": "Ghi nhận actor, action, target, outcome và correlation ID",
       "detail": "Yêu cầu: Ghi nhận actor, action, target, outcome và correlation ID. Phạm vi áp dụng: các thay đổi thuộc Nhật ký kiểm toán & Lịch sử thay đổi có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: AuditEvent có actorId, operation, entityId, result, traceId. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "service",
       "severity": "must",
       "example_good": "AuditEvent có actorId, operation, entityId, result, traceId. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Ghi nhận actor, action, target, outcome và correlation ID' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: auditEvent có actorId, operation, entityId, result, traceId.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "compliance",
+        "observability"
+      ]
     },
     {
       "title": "Bảo vệ audit log khỏi việc chỉnh sửa bởi người dùng thông thường",
       "detail": "Yêu cầu: Bảo vệ audit log khỏi việc chỉnh sửa bởi người dùng thông thường. Phạm vi áp dụng: các thay đổi thuộc Nhật ký kiểm toán & Lịch sử thay đổi có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Chỉ audit writer có INSERT; người dùng app không có UPDATE/DELETE. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "service",
       "severity": "must",
       "example_good": "Chỉ audit writer có INSERT; người dùng app không có UPDATE/DELETE. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Bảo vệ audit log khỏi việc chỉnh sửa bởi người dùng thông thường' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: chỉ audit writer có INSERT; người dùng app không có UPDATE/DELETE.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "compliance",
+        "observability"
+      ]
     },
     {
       "title": "Mask các field secret và thực thi chính sách lưu giữ cũng như truy cập",
       "detail": "Yêu cầu: Mask các field secret và thực thi chính sách lưu giữ cũng như truy cập. Phạm vi áp dụng: các thay đổi thuộc Nhật ký kiểm toán & Lịch sử thay đổi có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Audit payload redact phone/password và TTL theo retention policy. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "service",
       "severity": "should",
       "example_good": "Audit payload redact phone/password và TTL theo retention policy. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Mask các field secret và thực thi chính sách lưu giữ cũng như truy cập' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: audit payload redact phone/password và TTL theo retention policy.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "authentication",
+        "compliance",
+        "privacy",
+        "security"
+      ]
     },
     {
       "title": "Đảm bảo thao tác nghiệp vụ và việc phát audit event luôn nhất quán",
       "detail": "Yêu cầu: Đảm bảo thao tác nghiệp vụ và việc phát audit event luôn nhất quán. Phạm vi áp dụng: các thay đổi thuộc Nhật ký kiểm toán & Lịch sử thay đổi có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Outbox lưu audit event cùng transaction đổi trạng thái nghiệp vụ. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "service",
       "severity": "should",
       "example_good": "Outbox lưu audit event cùng transaction đổi trạng thái nghiệp vụ. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Đảm bảo thao tác nghiệp vụ và việc phát audit event luôn nhất quán' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: outbox lưu audit event cùng transaction đổi trạng thái nghiệp vụ.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "compliance",
+        "data-integrity"
+      ]
     }
   ],
   "integration_guide": [

@@ -10,35 +10,42 @@
     {
       "title": "Xác định performance budget theo user journey",
       "detail": "Đặt mục tiêu đo được cho latency p95/p99, throughput, memory, payload và cold-start trên môi trường đại diện; công bố điều kiện tải.",
-      "layer": [
-        "process"
-      ],
+      "layer": "architecture",
       "severity": "must",
       "example_good": "Search API p95 < 300ms với 100 RPS, dataset 1 triệu record.",
       "example_bad": "Yêu cầu hệ thống phải nhanh mà không có workload.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "cost",
+        "performance",
+        "usability"
+      ]
     },
     {
       "title": "Đo baseline và regression tự động",
       "detail": "Benchmark trước/sau cùng environment/dataset; CI hoặc release gate phát hiện regression vượt tolerance đã duyệt.",
-      "layer": [
-        "process"
-      ],
+      "layer": "delivery",
       "severity": "must",
       "example_good": "Tải trang 20 lần và so sánh median/p95 với baseline.",
       "example_bad": "Kết luận tối ưu từ một lần chạy local.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "networking",
+        "performance",
+        "release"
+      ]
     },
     {
       "title": "Giới hạn tải dữ liệu và số lần gọi",
       "detail": "Phân trang/lazy load/batch, tránh N+1 và response không giới hạn; test volume và kích thước payload.",
-      "layer": [
-        "process"
-      ],
+      "layer": "data",
       "severity": "must",
       "example_good": "GET /orders?limit=50 và DB index theo filter.",
       "example_bad": "SELECT * trả 200k order cho một màn hình.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "performance"
+      ]
     },
     {
       "id": "R004",
@@ -46,10 +53,11 @@
       "detail": "Trace request qua FE/API/DB/external call, phân tích CPU, GC, memory và query plan trước khi tối ưu.",
       "example_good": "Trace chỉ rõ 700ms ở SQL sort chưa có index.",
       "example_bad": "Tăng CPU máy chủ mà không đo truy vấn.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "architecture",
+      "severity": "should",
+      "concerns": [
+        "performance"
+      ]
     },
     {
       "id": "R005",
@@ -57,10 +65,12 @@
       "detail": "Thiết lập timeout, concurrency, queue depth, circuit breaker/backpressure phù hợp; tải stress phải degrade có kiểm soát.",
       "example_good": "Queue giới hạn 1.000 job và HTTP trả 429 Retry-After khi đầy.",
       "example_bad": "Request chờ vô hạn dẫn đến cạn connection pool.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "architecture",
+      "severity": "should",
+      "concerns": [
+        "performance",
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [

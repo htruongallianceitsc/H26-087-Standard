@@ -10,38 +10,52 @@
     {
       "title": "Gắn tag chi phí theo nguồn sử dụng",
       "detail": "Mọi tài nguyên chịu phí có project, environment, owner, cost-center khi provider hỗ trợ. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "operations",
       "severity": "must",
       "example_good": "Cloud bill nhóm được chi phí staging/prod theo team.",
       "example_bad": "Tài nguyên không tag không rõ ai chịu phí.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "cost"
+      ]
     },
     {
       "title": "Ngân sách và cảnh báo xu hướng",
       "detail": "Đặt monthly budget và alert tại ngưỡng thỏa thuận; phát hiện tăng đột biến dựa trên baseline. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "operations",
       "severity": "must",
       "example_good": "Alert khi forecast vượt ngân sách 20%.",
       "example_bad": "Phát hiện chi phí tăng sau khi nhận hóa đơn.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "cost",
+        "observability"
+      ]
     },
     {
       "title": "Giới hạn tài nguyên không kiểm soát",
       "detail": "Thiết lập TTL cho preview env, quotas và autoscaling max theo tải/ưu tiên business. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "operations",
       "severity": "should",
       "example_good": "Preview environment tự xóa sau 72 giờ không dùng.",
       "example_bad": "Mỗi PR tạo DB lớn và không dọn.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Tối ưu dựa trên usage đo được",
       "detail": "Right-size compute/storage theo p95 sử dụng và SLO; kiểm tác động chi phí trước thay đổi lớn. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "operations",
       "severity": "should",
       "example_good": "Giảm instance sau khi so sánh p95 CPU và latency.",
       "example_bad": "Giảm chi phí bằng cách tắt log bảo mật.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "cost",
+        "performance"
+      ]
     }
   ],
   "integration_guide": [

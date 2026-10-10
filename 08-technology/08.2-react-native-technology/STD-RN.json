@@ -10,38 +10,51 @@
     {
       "title": "Bọc các lời gọi native module và xử lý lỗi permission hoặc OS",
       "detail": "Yêu cầu: Bọc các lời gọi native module và xử lý lỗi permission hoặc OS. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc React Native có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: NativeCameraAdapter bắt permission denied và trả Result typed. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "must",
       "example_good": "NativeCameraAdapter bắt permission denied và trả Result typed. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Bọc các lời gọi native module và xử lý lỗi permission hoặc OS' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: nativeCameraAdapter bắt permission denied và trả Result typed.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "authorization"
+      ]
     },
     {
       "title": "Không chặn JS thread bằng các thao tác đồng bộ tốn tài nguyên",
       "detail": "Yêu cầu: Không chặn JS thread bằng các thao tác đồng bộ tốn tài nguyên. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc React Native có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Danh sách lớn dùng FlatList không blocking JS bằng JSON parse nặng. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "must",
       "example_good": "Danh sách lớn dùng FlatList không blocking JS bằng JSON parse nặng. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Không chặn JS thread bằng các thao tác đồng bộ tốn tài nguyên' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: danh sách lớn dùng FlatList không blocking JS bằng JSON parse nặng.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Tài liệu hóa các giả định về Expo so với bare workflow cho từng project",
       "detail": "Yêu cầu: Tài liệu hóa các giả định về Expo so với bare workflow cho từng project. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc React Native có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Expo plugin requirements và bare native modules ghi trong ADR. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "should",
       "example_good": "Expo plugin requirements và bare native modules ghi trong ADR. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Tài liệu hóa các giả định về Expo so với bare workflow cho từng project' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: expo plugin requirements và bare native modules ghi trong ADR.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "automation",
+        "documentation"
+      ]
     },
     {
       "title": "Kiểm thử phần triển khai đặc thù nền tảng trên thiết bị thật được hỗ trợ",
       "detail": "Yêu cầu: Kiểm thử phần triển khai đặc thù nền tảng trên thiết bị thật được hỗ trợ. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc React Native có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Kiểm thử background push và link trên iOS/Android thực. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "should",
       "example_good": "Kiểm thử background push và link trên iOS/Android thực. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Kiểm thử phần triển khai đặc thù nền tảng trên thiết bị thật được hỗ trợ' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: kiểm thử background push và link trên iOS/Android thực.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

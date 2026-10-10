@@ -10,35 +10,39 @@
     {
       "title": "Ghi ADR cho quyết định có tác động xuyên module",
       "detail": "ADR ghi bối cảnh, các phương án, trade-off, quyết định, người phê duyệt và link requirement trước khi merge thay đổi kiến trúc.",
-      "layer": [
-        "process"
-      ],
+      "layer": "governance",
       "severity": "must",
       "example_good": "ADR-014 nêu chọn queue thay gọi đồng bộ vì SLO và phương án rollback.",
       "example_bad": "Đổi giao tiếp sang queue nhưng không ghi lý do hoặc tác động.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "documentation"
+      ]
     },
     {
       "title": "Kiểm soát chiều phụ thuộc giữa các tầng",
       "detail": "Vẽ và kiểm tra dependency direction; business/domain không import UI, database adapter hoặc HTTP client; CI có thể kiểm tra import vòng.",
-      "layer": [
-        "process"
-      ],
+      "layer": "governance",
       "severity": "must",
       "example_good": "Domain chỉ định interface Repository; Infrastructure triển khai.",
       "example_bad": "Domain import trực tiếp EntityFramework DbContext.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "maintainability"
+      ]
     },
     {
       "title": "Đánh giá khả năng đảo ngược quyết định",
       "detail": "ADR phải ghi phương án migration, fallback và rollback cho thay đổi storage/protocol/định dạng dữ liệu.",
-      "layer": [
-        "process"
-      ],
+      "layer": "governance",
       "severity": "must",
       "example_good": "Triển khai dual-read trước khi chuyển schema rồi mới loại đường cũ.",
       "example_bad": "Thay schema dữ liệu ngay, không có đường quay lại.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "data-integrity",
+        "documentation"
+      ]
     },
     {
       "id": "R004",
@@ -46,10 +50,13 @@
       "detail": "Ghi budget latency, throughput, availability và threat boundary theo đường đi dữ liệu quan trọng; xác minh bằng benchmark/threat review.",
       "example_good": "Thiết kế luồng checkout có SLO P95 và test tải kèm.",
       "example_bad": "Chỉ mô tả các component mà không đo nhu cầu tải.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "governance",
+      "severity": "should",
+      "concerns": [
+        "cost",
+        "performance",
+        "security"
+      ]
     },
     {
       "id": "R005",
@@ -57,10 +64,11 @@
       "detail": "ADR không xóa lịch sử; đánh dấu superseded và liên kết ADR mới, cập nhật sơ đồ liên quan trong cùng PR.",
       "example_good": "ADR-021 supersedes ADR-014 và cập nhật sequence diagram.",
       "example_bad": "Sửa lặng lẽ ADR cũ khiến quyết định lịch sử bị mất.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "governance",
+      "severity": "should",
+      "concerns": [
+        "documentation"
+      ]
     }
   ],
   "integration_guide": [

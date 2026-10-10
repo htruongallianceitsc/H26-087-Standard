@@ -10,38 +10,53 @@
     {
       "title": "Xác định hành vi tìm kiếm, lọc, sắp xếp, phân trang và trạng thái rỗng",
       "detail": "Yêu cầu: Xác định hành vi tìm kiếm, lọc, sắp xếp, phân trang và trạng thái rỗng. Phạm vi áp dụng: các thay đổi thuộc CRUD, Danh sách & Phân trang có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Table API có sort whitelist, pageSize<=100 và empty state. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "api",
       "severity": "must",
       "example_good": "Table API có sort whitelist, pageSize<=100 và empty state. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Xác định hành vi tìm kiếm, lọc, sắp xếp, phân trang và trạng thái rỗng' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: table API có sort whitelist, pageSize<=100 và empty state.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Phân quyền từng thao tác create/read/update/delete ở phía server",
       "detail": "Yêu cầu: Phân quyền từng thao tác create/read/update/delete ở phía server. Phạm vi áp dụng: các thay đổi thuộc CRUD, Danh sách & Phân trang có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: API DELETE /users/{id} kiểm tra quyền admin server-side. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "api",
       "severity": "must",
       "example_good": "API DELETE /users/{id} kiểm tra quyền admin server-side. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Phân quyền từng thao tác create/read/update/delete ở phía server' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: aPI DELETE /users/{id} kiểm tra quyền admin server-side.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "authorization",
+        "security"
+      ]
     },
     {
       "title": "Xử lý cập nhật đồng thời, submit trùng và rollback thay đổi optimistic",
       "detail": "Yêu cầu: Xử lý cập nhật đồng thời, submit trùng và rollback thay đổi optimistic. Phạm vi áp dụng: các thay đổi thuộc CRUD, Danh sách & Phân trang có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Update truyền rowVersion, 409 trả conflict UI cho user. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "service",
       "severity": "should",
       "example_good": "Update truyền rowVersion, 409 trả conflict UI cho user. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Xử lý cập nhật đồng thời, submit trùng và rollback thay đổi optimistic' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: update truyền rowVersion, 409 trả conflict UI cho user.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "compatibility",
+        "data-integrity"
+      ]
     },
     {
       "title": "Quy định feedback dễ tiếp cận cho validation và kết quả thao tác",
       "detail": "Yêu cầu: Quy định feedback dễ tiếp cận cho validation và kết quả thao tác. Phạm vi áp dụng: các thay đổi thuộc CRUD, Danh sách & Phân trang có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Form invalid inline; successful save hiển thị toast và focus trở lại list. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "ui",
       "severity": "should",
       "example_good": "Form invalid inline; successful save hiển thị toast và focus trở lại list. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Quy định feedback dễ tiếp cận cho validation và kết quả thao tác' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: form invalid inline; successful save hiển thị toast và focus trở lại list.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "accessibility",
+        "usability"
+      ]
     }
   ],
   "integration_guide": [

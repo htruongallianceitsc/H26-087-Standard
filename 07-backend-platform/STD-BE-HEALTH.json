@@ -14,7 +14,10 @@
       "severity": "must",
       "example_good": "/health/live trả 200 khi process vẫn xử lý event loop.",
       "example_bad": "DB chậm khiến orchestrator restart mọi pod.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Readiness kiểm tra khả năng nhận traffic",
@@ -23,7 +26,10 @@
       "severity": "must",
       "example_good": "Migration chưa xong thì readiness=503.",
       "example_bad": "Trả 200 ngay khi process khởi động dù cache chưa tải.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Endpoint health ít lộ thông tin",
@@ -32,7 +38,13 @@
       "severity": "should",
       "example_good": "Health trả healthy/degraded và request ID.",
       "example_bad": "Health công khai tên máy chủ DB và chuỗi kết nối.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "compatibility",
+        "maintainability",
+        "observability",
+        "security"
+      ]
     },
     {
       "title": "Test hoạt động khi dependency gián đoạn",
@@ -41,7 +53,11 @@
       "severity": "should",
       "example_good": "Broker bắt buộc hỏng: readiness fail, liveness vẫn pass.",
       "example_bad": "Chỉ test health trong tình trạng tất cả service đang chạy.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "maintainability",
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

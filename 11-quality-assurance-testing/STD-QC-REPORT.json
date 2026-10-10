@@ -10,38 +10,54 @@
     {
       "title": "Báo cáo số testcase Passed, Failed, Blocked, Not Run theo build và phạm vi",
       "detail": "Báo cáo số testcase Passed, Failed, Blocked, Not Run theo build và phạm vi. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
-      "layer": "process",
+      "layer": "quality",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Báo cáo số testcase Passed, Failed, Blocked, Not Run theo build và phạm vi.",
       "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Báo cáo số testcase Passed, Failed, Blocked, Not Run theo build và phạm vi.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "documentation",
+        "testing"
+      ]
     },
     {
       "title": "Báo cáo defect theo severity, tuổi lỗi, reopen và xu hướng giải quyết",
       "detail": "Báo cáo defect theo severity, tuổi lỗi, reopen và xu hướng giải quyết. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
-      "layer": "process",
+      "layer": "quality",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Báo cáo defect theo severity, tuổi lỗi, reopen và xu hướng giải quyết.",
       "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Báo cáo defect theo severity, tuổi lỗi, reopen và xu hướng giải quyết.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "documentation",
+        "testing"
+      ]
     },
     {
       "title": "Trình bày requirement/AC coverage và rủi ro chưa được kiểm thử",
       "detail": "Trình bày requirement/AC coverage và rủi ro chưa được kiểm thử. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
-      "layer": "process",
+      "layer": "quality",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Trình bày requirement/AC coverage và rủi ro chưa được kiểm thử.",
       "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Trình bày requirement/AC coverage và rủi ro chưa được kiểm thử.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "documentation",
+        "testing"
+      ]
     },
     {
       "title": "Không coi số testcase nhiều hoặc tỷ lệ pass cao là bằng chứng chất lượng duy nhất",
       "detail": "Không coi số testcase nhiều hoặc tỷ lệ pass cao là bằng chứng chất lượng duy nhất. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
-      "layer": "process",
+      "layer": "quality",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Không coi số testcase nhiều hoặc tỷ lệ pass cao là bằng chứng chất lượng duy nhất.",
       "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Không coi số testcase nhiều hoặc tỷ lệ pass cao là bằng chứng chất lượng duy nhất.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "documentation",
+        "testing"
+      ]
     }
   ],
   "depends_on": [

@@ -10,94 +10,112 @@
     {
       "title": "Định nghĩa vai trò và quyền hạn thành các thao tác rõ ràng trên resource",
       "detail": "Permission có mã ổn định dạng resource:action; role gán permission, mặc định deny; phân quyền tenant/resource riêng, tránh chỉ dựa tên role.",
-      "layer": [
-        "process",
-        "security"
-      ],
+      "layer": "service",
       "severity": "must",
       "example_good": "invoices:approve kiểm tra quyền và tenant trước khi duyệt.",
       "example_bad": "Role='Admin' hardcode trong 20 controller.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "authorization",
+        "security"
+      ]
     },
     {
       "title": "Thực thi kiểm tra quyền trong API thay vì chỉ ẩn UI",
       "detail": "Mọi endpoint nhạy cảm kiểm tra permission + đối tượng; UI ẩn nút không phải bảo mật; test IDOR và privilege escalation.",
-      "layer": [
-        "process",
-        "security"
-      ],
+      "layer": "api",
       "severity": "must",
       "example_good": "DELETE /users/5 kiểm tra users:delete tại server.",
       "example_bad": "Ẩn nút Delete rồi API cho ai cũng DELETE được.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "authorization",
+        "security"
+      ]
     },
     {
       "title": "Kiểm thử các trường hợp biên về đặc quyền tối thiểu, thu hồi quyền và role kế thừa",
       "detail": "Permission thay đổi có hiệu lực theo SLA/chính sách session cache; thử revoke, inherited-role, role conflict và quyền phủ định.",
-      "layer": [
-        "process",
-        "security"
-      ],
+      "layer": "service",
       "severity": "should",
       "example_good": "Sau revoke, API từ chối phiên đã refresh quyền.",
       "example_bad": "Quyền cũ được cache vô hạn trong JWT không hết hạn.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "authorization",
+        "security",
+        "testing"
+      ]
     },
     {
       "title": "Theo dõi thay đổi role nhạy cảm trong audit log",
       "detail": "Log actor, target, before/after, reason, requestId, timestamp; giới hạn quyền admin phân quyền cho chính mình theo policy.",
-      "layer": [
-        "process",
-        "security"
-      ],
+      "layer": "service",
       "severity": "should",
       "example_good": "Audit ghi ai cấp invoices:approve cho user và lúc nào.",
       "example_bad": "Sửa role trực tiếp DB không để lại lịch sử.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "authorization",
+        "compliance",
+        "observability",
+        "security"
+      ]
     },
     {
       "id": "R005",
-      "layer": [
-        "security"
-      ],
+      "layer": "service",
       "severity": "must",
       "title": "Ngăn tự nâng đặc quyền",
       "detail": "Chỉ người được phân quyền mới gán quyền; không cho cấp permission cao hơn phạm vi có thể ủy quyền; thao tác nhạy cảm cần step-up/phê duyệt nếu policy yêu cầu.",
       "example_good": "Manager chỉ cấp quyền trong tổ chức của mình.",
-      "example_bad": "User thường POST /me/roles thêm super_admin."
+      "example_bad": "User thường POST /me/roles thêm super_admin.",
+      "concerns": [
+        "authorization",
+        "compliance",
+        "security"
+      ]
     },
     {
       "id": "R006",
-      "layer": [
-        "security"
-      ],
+      "layer": "api",
       "severity": "should",
       "title": "Chuẩn hóa mã quyền giữa backend và UI",
       "detail": "Tập trung catalog permission mã hóa ổn định, mapping route/menu/button và API; CI phát hiện quyền dùng mà chưa định nghĩa.",
       "example_good": "permission catalog chứa reports:export, API/UI cùng tham chiếu.",
-      "example_bad": "UI dùng REPORT_EXPORT, backend dùng ExportAll tùy ý."
+      "example_bad": "UI dùng REPORT_EXPORT, backend dùng ExportAll tùy ý.",
+      "concerns": [
+        "authorization",
+        "observability",
+        "security"
+      ]
     },
     {
       "id": "R007",
-      "layer": [
-        "security"
-      ],
+      "layer": "service",
       "severity": "should",
       "title": "Phân tách trách nhiệm cho tác vụ quan trọng",
       "detail": "Xác định các cặp hành động không được cùng actor thực hiện (maker-checker) theo nghiệp vụ; test phê duyệt chính yêu cầu của mình bị chặn.",
       "example_good": "Người tạo lệnh rút tiền không được duyệt chính lệnh đó.",
-      "example_bad": "Người dùng có thể tạo và tự phê duyệt khoản chi lớn."
+      "example_bad": "Người dùng có thể tạo và tự phê duyệt khoản chi lớn.",
+      "concerns": [
+        "authorization",
+        "security"
+      ]
     },
     {
       "id": "R008",
-      "layer": [
-        "security"
-      ],
+      "layer": "service",
       "severity": "should",
       "title": "Kiểm thử ma trận vai trò và đối tượng",
       "detail": "Sinh test allow/deny theo role, permission, resource ownership, tenant và trạng thái; khi thêm permission phải bổ sung negative test.",
       "example_good": "Role Accountant chỉ read invoice tenant mình; tenant khác trả 403.",
-      "example_bad": "Chỉ kiểm tra menu admin có hiện không."
+      "example_bad": "Chỉ kiểm tra menu admin có hiện không.",
+      "concerns": [
+        "authorization",
+        "security",
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

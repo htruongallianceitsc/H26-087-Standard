@@ -10,38 +10,52 @@
     {
       "title": "Kiểm thử kết quả người dùng có thể quan sát thay vì chi tiết triển khai nội bộ",
       "detail": "Yêu cầu: Kiểm thử kết quả người dùng có thể quan sát thay vì chi tiết triển khai nội bộ. Phạm vi áp dụng: các thay đổi thuộc Kiểm thử React, Vitest/Jest & RTL có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Test click Save rồi kiểm tra toast, không assert useState nội bộ. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "must",
       "example_good": "Test click Save rồi kiểm tra toast, không assert useState nội bộ. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Kiểm thử kết quả người dùng có thể quan sát thay vì chi tiết triển khai nội bộ' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: test click Save rồi kiểm tra toast, không assert useState nội bộ.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "testing"
+      ]
     },
     {
       "title": "Mock ranh giới network và bao phủ các trạng thái loading/error/empty",
       "detail": "Yêu cầu: Mock ranh giới network và bao phủ các trạng thái loading/error/empty. Phạm vi áp dụng: các thay đổi thuộc Kiểm thử React, Vitest/Jest & RTL có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: MSW mô phỏng 500, 404, loading và empty ở API boundary. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "must",
       "example_good": "MSW mô phỏng 500, 404, loading và empty ở API boundary. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Mock ranh giới network và bao phủ các trạng thái loading/error/empty' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: mSW mô phỏng 500, 404, loading và empty ở API boundary.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "networking"
+      ]
     },
     {
       "title": "Chạy kiểm tra tương tác tập trung vào accessibility trên form và dialog",
       "detail": "Yêu cầu: Chạy kiểm tra tương tác tập trung vào accessibility trên form và dialog. Phạm vi áp dụng: các thay đổi thuộc Kiểm thử React, Vitest/Jest & RTL có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Axe test dialog có label, focus trap và escape handling. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "should",
       "example_good": "Axe test dialog có label, focus trap và escape handling. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Chạy kiểm tra tương tác tập trung vào accessibility trên form và dialog' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: axe test dialog có label, focus trap và escape handling.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "accessibility",
+        "observability",
+        "usability"
+      ]
     },
     {
       "title": "Kiểm thử hành vi điều hướng và mutation cho các luồng quan trọng",
       "detail": "Yêu cầu: Kiểm thử hành vi điều hướng và mutation cho các luồng quan trọng. Phạm vi áp dụng: các thay đổi thuộc Kiểm thử React, Vitest/Jest & RTL có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Test create order invalid -> 422 -> sửa -> success và navigate. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "should",
       "example_good": "Test create order invalid -> 422 -> sửa -> success và navigate. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Kiểm thử hành vi điều hướng và mutation cho các luồng quan trọng' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: test create order invalid -> 422 -> sửa -> success và navigate.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

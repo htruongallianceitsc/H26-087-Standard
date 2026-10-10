@@ -10,35 +10,40 @@
     {
       "title": "Timeout và retry có ngân sách",
       "detail": "Mỗi external dependency có timeout và retry giới hạn, jitter/backoff; không retry operation không idempotent thiếu key.",
-      "layer": [
-        "process"
-      ],
+      "layer": "architecture",
       "severity": "must",
       "example_good": "HTTP timeout 2s, retry tối đa 2 lần với jitter cho GET.",
       "example_bad": "Retry POST thanh toán mãi không có idempotency.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "maintainability",
+        "reliability"
+      ]
     },
     {
       "title": "Thiết kế circuit breaker và bulkhead",
       "detail": "Ngăn lỗi một dependency chiếm toàn bộ thread/connection; circuit mở theo error threshold và half-open probe kiểm soát.",
-      "layer": [
-        "process"
-      ],
+      "layer": "architecture",
       "severity": "must",
       "example_good": "Pool riêng cho provider SMS để lỗi SMS không chặn checkout.",
       "example_bad": "SMS timeout làm cạn mọi API worker.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "maintainability",
+        "reliability"
+      ]
     },
     {
       "title": "Xử lý lỗi suy giảm an toàn",
       "detail": "Xác định chức năng nào fail closed, chức năng nào fallback/cache; không fallback bypass auth/security.",
-      "layer": [
-        "process"
-      ],
+      "layer": "architecture",
       "severity": "must",
       "example_good": "Product catalog dùng cache stale khi search lỗi.",
       "example_bad": "Authz service lỗi thì mặc định cho phép truy cập.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "maintainability"
+      ]
     },
     {
       "id": "R004",
@@ -46,10 +51,14 @@
       "detail": "Diễn tập kill process, mất network, trễ DB, duplicate message; ghi RTO và mất dữ liệu chấp nhận được theo service tier.",
       "example_good": "Chaos test tắt Redis và xác minh đọc DB fallback.",
       "example_bad": "Chỉ test happy path với toàn bộ dependency luôn online.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "data",
+      "severity": "should",
+      "concerns": [
+        "networking",
+        "reliability",
+        "resilience",
+        "testing"
+      ]
     },
     {
       "id": "R005",
@@ -57,10 +66,14 @@
       "detail": "Theo dõi success rate, saturation, lag, timeout, queue DLQ; alert theo user impact với owner và runbook.",
       "example_good": "Alert dựa burn-rate SLO và liên kết runbook giảm tải.",
       "example_bad": "Pager kích hoạt theo CPU 60% mà không xét user impact.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "architecture",
+      "severity": "should",
+      "concerns": [
+        "cost",
+        "documentation",
+        "observability",
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [

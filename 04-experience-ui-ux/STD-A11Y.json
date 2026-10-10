@@ -14,7 +14,11 @@
       "severity": "must",
       "example_good": "Checklist 2.4.7 Focus Visible và 2.5.8 Target Size theo phiên bản áp dụng.",
       "example_bad": "Coi điểm Lighthouse cao là chứng nhận WCAG.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "accessibility",
+        "compliance"
+      ]
     },
     {
       "title": "Điều hướng bàn phím đầy đủ",
@@ -23,71 +27,94 @@
       "severity": "should",
       "example_good": "Tab qua form, Enter kích hoạt, Esc đóng dialog và trả focus.",
       "example_bad": "Modal không thể thoát nếu không dùng chuột.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "accessibility",
+        "observability",
+        "usability"
+      ]
     },
     {
       "title": "Tên và vai trò được đọc bởi assistive technology",
       "detail": "Form có label gắn với input; icon button có accessible name; thành phần động khai báo role/state đúng; dùng HTML semantic trước ARIA.",
-      "layer": "process",
+      "layer": "ui",
       "severity": "should",
       "example_good": "<button aria-label=\"Đóng\">×</button>.",
       "example_bad": "<div onclick> không role, tabindex hay name.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "accessibility",
+        "authorization",
+        "observability",
+        "performance",
+        "usability"
+      ]
     },
     {
       "id": "R004",
-      "layer": [
-        "process"
-      ],
+      "layer": "ui",
       "severity": "must",
       "title": "Thông báo lỗi và trạng thái dễ tiếp cận",
       "detail": "Field lỗi gắn aria-describedby/invalid; thay đổi trạng thái quan trọng dùng live region không spam; focus tới heading/lỗi đầu tiên khi thích hợp.",
       "example_good": "Lỗi email được screen reader đọc cùng trường email.",
-      "example_bad": "Toast tự biến mất nhưng screen reader không biết."
+      "example_bad": "Toast tự biến mất nhưng screen reader không biết.",
+      "concerns": [
+        "accessibility",
+        "usability"
+      ]
     },
     {
       "id": "R005",
-      "layer": [
-        "process"
-      ],
+      "layer": "ui",
       "severity": "must",
       "title": "Đảm bảo tương phản và trạng thái focus",
       "detail": "Văn bản thường tối thiểu 4.5:1, chữ lớn 3:1 theo WCAG AA; focus indicator nhìn thấy, không chỉ dùng màu truyền tải lỗi.",
       "example_good": "Label có contrast 4.8:1 và lỗi kèm icon/chữ.",
-      "example_bad": "Placeholder contrast 2:1 là thông tin duy nhất."
+      "example_bad": "Placeholder contrast 2:1 là thông tin duy nhất.",
+      "concerns": [
+        "accessibility",
+        "usability"
+      ]
     },
     {
       "id": "R006",
-      "layer": [
-        "process"
-      ],
+      "layer": "design",
       "severity": "should",
       "title": "Tôn trọng resize và chuyển động giảm",
       "detail": "Giao diện hỗ trợ zoom/reflow theo tiêu chí áp dụng, không mất chức năng khi tăng cỡ chữ; animations nhạy cảm có prefers-reduced-motion.",
       "example_good": "@media (prefers-reduced-motion: reduce) tắt chuyển động không cần thiết.",
-      "example_bad": "Cố định height làm cắt nội dung khi zoom 200%."
+      "example_bad": "Cố định height làm cắt nội dung khi zoom 200%.",
+      "concerns": [
+        "accessibility"
+      ]
     },
     {
       "id": "R007",
-      "layer": [
-        "process"
-      ],
+      "layer": "design",
       "severity": "should",
       "title": "Hỗ trợ touch target và thời hạn tương tác",
       "detail": "Với các control phù hợp áp dụng WCAG 2.2 2.5.8: kích thước tối thiểu 24×24 CSS px hoặc ngoại lệ khoảng cách; người dùng có cách kéo dài timeout khi cần.",
       "example_good": "Nút icon 32×32 CSS px với vùng chạm rõ.",
-      "example_bad": "Nút đóng dialog chỉ 12×12 px sát cạnh nút khác."
+      "example_bad": "Nút đóng dialog chỉ 12×12 px sát cạnh nút khác.",
+      "concerns": [
+        "accessibility",
+        "reliability"
+      ]
     },
     {
       "id": "R008",
-      "layer": [
-        "process"
-      ],
+      "layer": "ui",
       "severity": "should",
       "title": "Kiểm thử với assistive technology và người dùng",
       "detail": "Smoke test keyboard, screen reader (NVDA/VoiceOver/TalkBack phù hợp platform), zoom và thiết bị cảm ứng; liên kết lỗi với screen/component, mức ưu tiên và bằng chứng fix.",
       "example_good": "QA test tạo đơn bằng keyboard và NVDA, lưu build + kết quả.",
-      "example_bad": "Không bao giờ thử bằng screen reader."
+      "example_bad": "Không bao giờ thử bằng screen reader.",
+      "concerns": [
+        "accessibility",
+        "observability",
+        "testing",
+        "usability"
+      ]
     }
   ],
   "integration_guide": [

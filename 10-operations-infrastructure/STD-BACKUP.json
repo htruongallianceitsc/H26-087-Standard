@@ -10,38 +10,52 @@
     {
       "title": "Định nghĩa RPO và phạm vi bản sao",
       "detail": "Dữ liệu quan trọng xác định RPO theo mất mát chấp nhận được; backup bao gồm DB, object, cấu hình và khóa cần phục hồi. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "infrastructure",
       "severity": "must",
       "example_good": "RPO 15 phút cho DB với PITR; đối chiếu backup object.",
       "example_bad": "Chỉ sao lưu một file dump mỗi tháng.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "resilience"
+      ]
     },
     {
       "title": "Bảo vệ bản sao khỏi xóa/sửa trái phép",
       "detail": "Mã hóa, giới hạn quyền, tách account và giữ bản sao immutable/offsite theo threat model. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "infrastructure",
       "severity": "must",
       "example_good": "Backup ở account khác có retention lock.",
       "example_bad": "Backup nằm cùng ổ đĩa và cùng credential prod.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "security"
+      ]
     },
     {
       "title": "Khôi phục thử định kỳ",
       "detail": "Restore vào môi trường cô lập, đo RTO, kiểm integrity và dữ liệu ứng dụng; kết quả phải có log và owner. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "infrastructure",
       "severity": "should",
       "example_good": "Hàng quý khôi phục DB + file, chạy smoke test nghiệp vụ.",
       "example_bad": "Chỉ kiểm tra job backup status=success.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "observability",
+        "resilience"
+      ]
     },
     {
       "title": "Kiểm tra retention và xóa hợp lệ",
       "detail": "Retention theo phân loại dữ liệu, legal hold và yêu cầu riêng tư; kiểm catalog bản sao hết hạn. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "infrastructure",
       "severity": "should",
       "example_good": "Chính sách 7/30/365 ngày được triển khai và audit.",
       "example_bad": "Giữ backup vô hạn không có chủ sở hữu.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "observability",
+        "privacy"
+      ]
     }
   ],
   "integration_guide": [

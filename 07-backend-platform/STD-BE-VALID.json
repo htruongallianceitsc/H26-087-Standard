@@ -14,7 +14,10 @@
       "severity": "must",
       "example_good": "Quantity 1..100 được check trên API và DB khi phù hợp.",
       "example_bad": "Chỉ dùng thuộc tính required ở HTML.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "usability"
+      ]
     },
     {
       "title": "Phân biệt dữ liệu sai và lỗi nghiệp vụ",
@@ -23,7 +26,10 @@
       "severity": "must",
       "example_good": "fieldErrors.email có code INVALID_FORMAT.",
       "example_bad": "Mọi failure đều trả 500 với exception text.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "performance"
+      ]
     },
     {
       "title": "Normalize trước kiểm tra uniqueness",
@@ -32,7 +38,10 @@
       "severity": "should",
       "example_good": "Email trim và case-fold rồi unique index.",
       "example_bad": "Hai request cùng email vượt qua kiểm tra trước insert.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Không thay authorization bằng validation",
@@ -41,7 +50,12 @@
       "severity": "should",
       "example_good": "Server lấy tenantId từ principal đã xác thực.",
       "example_bad": "Tin ownerId gửi trong JSON là quyền hợp lệ.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "authorization",
+        "performance",
+        "security"
+      ]
     }
   ],
   "integration_guide": [

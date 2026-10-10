@@ -14,7 +14,11 @@
       "severity": "must",
       "example_good": "Unique(tenant_id,idempotency_key) và lưu response cuối.",
       "example_bad": "Retry POST tạo thêm lần thanh toán mới.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "data-integrity",
+        "reliability"
+      ]
     },
     {
       "title": "Sử dụng transaction cho invariant đa bước",
@@ -23,71 +27,84 @@
       "severity": "should",
       "example_good": "UPDATE stock SET qty=qty-1 WHERE qty>0 RETURNING qty.",
       "example_bad": "SELECT qty rồi UPDATE không khóa giữa hai request.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "data-integrity"
+      ]
     },
     {
       "title": "Đặt optimistic concurrency hoặc locking phù hợp",
       "detail": "Entity dễ tranh chấp có version/ETag hoặc row lock; conflict trả 409/412 ổn định; test hai tác nhân cùng ghi.",
-      "layer": "process",
+      "layer": "service",
       "severity": "should",
       "example_good": "UPDATE ... WHERE id=@id AND version=@v; 0 rows => 409.",
       "example_bad": "Hai client ghi đè cùng một bản ghi im lặng.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "compatibility"
+      ]
     },
     {
       "id": "R004",
-      "layer": [
-        "process"
-      ],
+      "layer": "service",
       "severity": "must",
       "title": "Bảo đảm không xử lý trùng consumer",
       "detail": "Message handler dùng inbox/unique messageId hoặc business key; ACK chỉ sau commit; xử lý redelivery an toàn.",
       "example_good": "payment_event_id unique ngăn ghi ledger hai lần.",
-      "example_bad": "Consumer retry cộng số dư lần hai."
+      "example_bad": "Consumer retry cộng số dư lần hai.",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "id": "R005",
-      "layer": [
-        "process"
-      ],
+      "layer": "service",
       "severity": "must",
       "title": "Outbox cho giao dịch DB và event",
       "detail": "Khi cần đồng bộ thay đổi DB với publish event, ghi outbox cùng transaction, worker publish có retry và consumer idempotent.",
       "example_good": "Save order + outbox event trong một DB commit.",
-      "example_bad": "Commit order xong publish mất mạng, event thất lạc."
+      "example_bad": "Commit order xong publish mất mạng, event thất lạc.",
+      "concerns": [
+        "data-integrity",
+        "reliability"
+      ]
     },
     {
       "id": "R006",
-      "layer": [
-        "process"
-      ],
+      "layer": "service",
       "severity": "should",
       "title": "Giới hạn concurrency và timeout",
       "detail": "Worker/job có concurrency cap, timeout/cancel, backoff+jitter; queue có dead-letter và chính sách retry; tránh retry vô hạn.",
       "example_good": "Queue worker retry tối đa theo policy và chuyển DLQ.",
-      "example_bad": "Retry 500 liên tục không ngừng."
+      "example_bad": "Retry 500 liên tục không ngừng.",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "id": "R007",
-      "layer": [
-        "process"
-      ],
+      "layer": "service",
       "severity": "should",
       "title": "Định nghĩa thứ tự và ownership khi bắt buộc",
       "detail": "Với nghiệp vụ phụ thuộc thứ tự, dùng partition key/sequence và xử lý theo aggregate; tránh giả định toàn hệ thống xử lý FIFO.",
       "example_good": "Event cho orderId đi cùng partition.",
-      "example_bad": "Hai worker áp dụng trạng thái Done rồi Pending."
+      "example_bad": "Hai worker áp dụng trạng thái Done rồi Pending.",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "id": "R008",
-      "layer": [
-        "process"
-      ],
+      "layer": "service",
       "severity": "should",
       "title": "Stress-test race condition theo invariant",
       "detail": "Chạy integration/load test đồng thời: double submit, repeated webhook, delayed ACK, crash trước/sau commit; xác nhận tổng tiền/số dư/stock không sai.",
       "example_good": "100 request cùng key chỉ sinh 1 transaction.",
-      "example_bad": "Chỉ kiểm thử request tuần tự."
+      "example_bad": "Chỉ kiểm thử request tuần tự.",
+      "concerns": [
+        "performance",
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

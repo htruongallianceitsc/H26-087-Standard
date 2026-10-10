@@ -137,12 +137,24 @@
     "layerValue": {
       "type": "string",
       "enum": [
+        "governance",
+        "requirements",
+        "architecture",
+        "design",
         "ui",
+        "client",
+        "mobile",
         "api",
+        "service",
+        "integration",
+        "data",
         "db",
-        "process",
-        "security"
-      ]
+        "infrastructure",
+        "delivery",
+        "operations",
+        "quality"
+      ],
+      "description": "Tầng chịu trách nhiệm TRIỂN KHAI/KIỂM TRA quy tắc, không phải chủ đề. Ví dụ security là concern; API authorization chạy tại api/service."
     },
     "layer": {
       "oneOf": [
@@ -153,9 +165,12 @@
           "type": "array",
           "items": {
             "$ref": "#/$defs/layerValue"
-          }
+          },
+          "minItems": 1,
+          "uniqueItems": true
         }
-      ]
+      ],
+      "description": "Một hoặc nhiều tầng triển khai cụ thể. Ưu tiên một tầng chủ đạo; nhiều tầng chỉ khi cùng quy tắc thực sự áp dụng tại tất cả tầng. Không dùng process/security làm layer."
     },
     "severity": {
       "type": "string",
@@ -217,6 +232,37 @@
               }
             }
           }
+        },
+        "concerns": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "security",
+              "privacy",
+              "authentication",
+              "authorization",
+              "reliability",
+              "performance",
+              "accessibility",
+              "usability",
+              "observability",
+              "testing",
+              "maintainability",
+              "compatibility",
+              "compliance",
+              "cost",
+              "data-integrity",
+              "resilience",
+              "localization",
+              "automation",
+              "documentation",
+              "release",
+              "networking"
+            ]
+          },
+          "description": "Nhãn chủ đề độc lập với layer. Dùng để lọc security/performance/testing v.v.; không mặc định kế thừa theo tên standard."
         }
       }
     },

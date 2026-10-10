@@ -10,38 +10,52 @@
     {
       "title": "Kiểm thử màn hình chính trong điều kiện loading, error và offline",
       "detail": "Yêu cầu: Kiểm thử màn hình chính trong điều kiện loading, error và offline. Phạm vi áp dụng: các thay đổi thuộc Jest & React Native Testing Library có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Jest test loading/empty/offline của OrderScreen. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "must",
       "example_good": "Jest test loading/empty/offline của OrderScreen. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Kiểm thử màn hình chính trong điều kiện loading, error và offline' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: jest test loading/empty/offline của OrderScreen.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "resilience",
+        "testing"
+      ]
     },
     {
       "title": "Kiểm thử navigation và deep link destination trên thiết bị",
       "detail": "Yêu cầu: Kiểm thử navigation và deep link destination trên thiết bị. Phạm vi áp dụng: các thay đổi thuộc Jest & React Native Testing Library có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Detox kiểm tra link mở OrderDetail từ ứng dụng đóng hoàn toàn. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "must",
       "example_good": "Detox kiểm tra link mở OrderDetail từ ứng dụng đóng hoàn toàn. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Kiểm thử navigation và deep link destination trên thiết bị' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: detox kiểm tra link mở OrderDetail từ ứng dụng đóng hoàn toàn.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "testing"
+      ]
     },
     {
       "title": "Mock native adapter trong unit test và xác minh tích hợp thực tế riêng biệt",
       "detail": "Yêu cầu: Mock native adapter trong unit test và xác minh tích hợp thực tế riêng biệt. Phạm vi áp dụng: các thay đổi thuộc Jest & React Native Testing Library có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Native camera mock trong unit test, scan thật trong device test. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "should",
       "example_good": "Native camera mock trong unit test, scan thật trong device test. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Mock native adapter trong unit test và xác minh tích hợp thực tế riêng biệt' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: native camera mock trong unit test, scan thật trong device test.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "testing"
+      ]
     },
     {
       "title": "Kiểm thử khác biệt nền tảng trong test matrix CI/device",
       "detail": "Yêu cầu: Kiểm thử khác biệt nền tảng trong test matrix CI/device. Phạm vi áp dụng: các thay đổi thuộc Jest & React Native Testing Library có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: CI chạy cả iOS và Android với permission granted/denied. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "should",
       "example_good": "CI chạy cả iOS và Android với permission granted/denied. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Kiểm thử khác biệt nền tảng trong test matrix CI/device' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: cI chạy cả iOS và Android với permission granted/denied.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "authorization",
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

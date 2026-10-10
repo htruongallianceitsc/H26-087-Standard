@@ -10,38 +10,53 @@
     {
       "title": "Đọc requirement, các standard áp dụng và tài liệu tham chiếu thiết kế trước khi code",
       "detail": "Yêu cầu: Đọc requirement, các standard áp dụng và tài liệu tham chiếu thiết kế trước khi code. Phạm vi áp dụng: các thay đổi thuộc Phát triển hỗ trợ bởi AI & Quy trình Agent có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Agent đọc REQ-LOGIN-01, STD-BE-AUTH và mockup trước khi sửa AuthScreen. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "governance",
       "severity": "must",
       "example_good": "Agent đọc REQ-LOGIN-01, STD-BE-AUTH và mockup trước khi sửa AuthScreen. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Đọc requirement, các standard áp dụng và tài liệu tham chiếu thiết kế trước khi code' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: agent đọc REQ-LOGIN-01, STD-BE-AUTH và mockup trước khi sửa AuthScreen.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "authentication",
+        "documentation",
+        "observability"
+      ]
     },
     {
       "title": "Lập kế hoạch có xét đến phạm vi ảnh hưởng và ánh xạ thay đổi tới tiêu chí chấp nhận",
       "detail": "Yêu cầu: Lập kế hoạch có xét đến phạm vi ảnh hưởng và ánh xạ thay đổi tới tiêu chí chấp nhận. Phạm vi áp dụng: các thay đổi thuộc Phát triển hỗ trợ bởi AI & Quy trình Agent có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Workplan ghi file tác động, AC-01 và test tương ứng trước khi sửa. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "governance",
       "severity": "must",
       "example_good": "Workplan ghi file tác động, AC-01 và test tương ứng trước khi sửa. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Lập kế hoạch có xét đến phạm vi ảnh hưởng và ánh xạ thay đổi tới tiêu chí chấp nhận' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: workplan ghi file tác động, AC-01 và test tương ứng trước khi sửa.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Triển khai trong phạm vi kiến trúc đã được duyệt và tránh refactor không liên quan",
       "detail": "Yêu cầu: Triển khai trong phạm vi kiến trúc đã được duyệt và tránh refactor không liên quan. Phạm vi áp dụng: các thay đổi thuộc Phát triển hỗ trợ bởi AI & Quy trình Agent có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: PR chỉ đổi auth flow theo ADR-007, không refactor billing module. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "governance",
       "severity": "should",
       "example_good": "PR chỉ đổi auth flow theo ADR-007, không refactor billing module. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Triển khai trong phạm vi kiến trúc đã được duyệt và tránh refactor không liên quan' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: pR chỉ đổi auth flow theo ADR-007, không refactor billing module.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "documentation",
+        "maintainability"
+      ]
     },
     {
       "title": "Chạy kiểm tra, so sánh UI bàn giao với design và báo cáo bằng chứng/khoảng lệch",
       "detail": "Yêu cầu: Chạy kiểm tra, so sánh UI bàn giao với design và báo cáo bằng chứng/khoảng lệch. Phạm vi áp dụng: các thay đổi thuộc Phát triển hỗ trợ bởi AI & Quy trình Agent có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Báo cáo chạy unit test, ảnh đối chiếu mockup và chênh lệch spacing 4px. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "governance",
       "severity": "should",
       "example_good": "Báo cáo chạy unit test, ảnh đối chiếu mockup và chênh lệch spacing 4px. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Chạy kiểm tra, so sánh UI bàn giao với design và báo cáo bằng chứng/khoảng lệch' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: báo cáo chạy unit test, ảnh đối chiếu mockup và chênh lệch spacing 4px.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [

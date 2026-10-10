@@ -10,38 +10,50 @@
     {
       "title": "Chọn và tài liệu hóa một chiến lược quản lý client state thống nhất",
       "detail": "Yêu cầu: Chọn và tài liệu hóa một chiến lược quản lý client state thống nhất. Phạm vi áp dụng: các thay đổi thuộc Quản lý State React Native có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Zustand chỉ quản lý UI state, server cache dùng query library. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "must",
       "example_good": "Zustand chỉ quản lý UI state, server cache dùng query library. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Chọn và tài liệu hóa một chiến lược quản lý client state thống nhất' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: zustand chỉ quản lý UI state, server cache dùng query library.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "documentation"
+      ]
     },
     {
       "title": "Tách biệt remote query state khỏi local UI state",
       "detail": "Yêu cầu: Tách biệt remote query state khỏi local UI state. Phạm vi áp dụng: các thay đổi thuộc Quản lý State React Native có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Order API state trong React Query, modal state trong local store. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "must",
       "example_good": "Order API state trong React Query, modal state trong local store. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Tách biệt remote query state khỏi local UI state' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: order API state trong React Query, modal state trong local store.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Chỉ khôi phục state sau process recreation khi bảo đảm an toàn",
       "detail": "Yêu cầu: Chỉ khôi phục state sau process recreation khi bảo đảm an toàn. Phạm vi áp dụng: các thay đổi thuộc Quản lý State React Native có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Persist chỉ lưu filter; token/session state được khởi tạo an toàn. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "should",
       "example_good": "Persist chỉ lưu filter; token/session state được khởi tạo an toàn. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Chỉ khôi phục state sau process recreation khi bảo đảm an toàn' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: persist chỉ lưu filter; token/session state được khởi tạo an toàn.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "security"
+      ]
     },
     {
       "title": "Kiểm thử transition sau background, resume và chuyển tài khoản",
       "detail": "Yêu cầu: Kiểm thử transition sau background, resume và chuyển tài khoản. Phạm vi áp dụng: các thay đổi thuộc Quản lý State React Native có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Test resume khi hết phiên và chuyển account không lộ dữ liệu cũ. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "should",
       "example_good": "Test resume khi hết phiên và chuyển account không lộ dữ liệu cũ. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Kiểm thử transition sau background, resume và chuyển tài khoản' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: test resume khi hết phiên và chuyển account không lộ dữ liệu cũ.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

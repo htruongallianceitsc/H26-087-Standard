@@ -10,35 +10,40 @@
     {
       "title": "Xác minh chữ ký và chống replay",
       "detail": "Xác thực HMAC/asymmetric signature trên raw body, constant-time compare, timestamp tolerance và replay ID; reject trước xử lý nghiệp vụ.",
-      "layer": [
-        "process"
-      ],
+      "layer": "integration",
       "severity": "must",
       "example_good": "Webhook chữ ký hợp lệ trong cửa sổ 5 phút, event ID chưa thấy.",
       "example_bad": "Tin field sender trong JSON không kiểm chữ ký.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "observability",
+        "security"
+      ]
     },
     {
       "title": "Tiếp nhận nhanh và xử lý bất đồng bộ",
       "detail": "ACK 2xx chỉ sau khi persist event nhận; worker xử lý riêng, có DLQ; response không chờ external calls dài.",
-      "layer": [
-        "process"
-      ],
+      "layer": "api",
       "severity": "must",
       "example_good": "Persist inbox event rồi trả 200 trong SLO.",
       "example_bad": "Giữ HTTP request 60s trong khi xử lý báo cáo.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Deduplicate và bảo toàn thứ tự nghiệp vụ",
       "detail": "Unique(provider,eventId), handler idempotent; event đến sai thứ tự phải lấy current authoritative state hoặc version check.",
-      "layer": [
-        "process"
-      ],
+      "layer": "integration",
       "severity": "must",
       "example_good": "Duplicate payment.succeeded không cộng tiền hai lần.",
       "example_bad": "Refund event trước paid event tạo trạng thái Paid sai.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "compatibility",
+        "reliability"
+      ]
     },
     {
       "id": "R004",
@@ -46,10 +51,12 @@
       "detail": "Event có type/version và parser tương thích; unknown version vào quarantine/log thay vì silently ignore hoặc crash toàn worker.",
       "example_good": "v1/v2 parser với contract fixture và unknown->DLQ.",
       "example_bad": "Đổi event amount string sang numeric không version.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "integration",
+      "severity": "should",
+      "concerns": [
+        "compatibility",
+        "observability"
+      ]
     },
     {
       "id": "R005",
@@ -57,10 +64,14 @@
       "detail": "Theo dõi delivery lag, retries, dead-letter, signature failures; cho replay theo event ID có audit và bảo vệ duplicate.",
       "example_good": "Ops replay eventId 123 từ inbox sau fix worker.",
       "example_bad": "Mất event khi consumer fail không thể gửi lại.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "integration",
+      "severity": "should",
+      "concerns": [
+        "compliance",
+        "observability",
+        "reliability",
+        "security"
+      ]
     }
   ],
   "integration_guide": [

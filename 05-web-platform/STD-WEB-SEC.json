@@ -10,84 +10,106 @@
     {
       "title": "Thiết lập CSP hạn chế script",
       "detail": "Ưu tiên CSP nonce/hash hoặc script-src self phù hợp, tránh unsafe-inline/eval trong production; triển khai report-only trước khi enforce với ứng dụng hiện có.",
-      "layer": "security",
+      "layer": "client",
       "severity": "must",
       "example_good": "CSP script-src 'self' 'nonce-...' cùng report endpoint.",
       "example_bad": "CSP * và unsafe-inline cho toàn bộ script.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "security"
+      ]
     },
     {
       "title": "Chống XSS tại điểm render",
       "detail": "Render untrusted text bằng escaping mặc định; trường HTML cần sanitizer có allowlist, không dùng dangerouslySetInnerHTML với HTML thô.",
-      "layer": "security",
+      "layer": "client",
       "severity": "should",
       "example_good": "React hiển thị {comment.text} dưới dạng text.",
       "example_bad": "Đưa comment của user thẳng vào innerHTML.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "security"
+      ]
     },
     {
       "title": "Chống CSRF với cookie auth",
       "detail": "Endpoint thay đổi trạng thái dùng cookie auth phải áp SameSite thích hợp và CSRF token hoặc Origin check mạnh; không coi CORS là biện pháp CSRF.",
-      "layer": "process",
+      "layer": "client",
       "severity": "should",
       "example_good": "POST /profile xác minh CSRF token và Origin.",
       "example_bad": "Cookie session + endpoint POST không CSRF protection.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "security"
+      ]
     },
     {
       "id": "R004",
-      "layer": [
-        "security"
-      ],
+      "layer": "client",
       "severity": "must",
       "title": "Bảo vệ cookie và token trình duyệt",
       "detail": "Cookie session cấu hình Secure, HttpOnly, SameSite phù hợp, thời hạn và scope tối thiểu; không đặt refresh token vào localStorage khi đã có lựa chọn BFF HttpOnly.",
       "example_good": "Set-Cookie: sid=...; Secure; HttpOnly; SameSite=Lax.",
-      "example_bad": "Lưu long-lived refresh token trong JS global."
+      "example_bad": "Lưu long-lived refresh token trong JS global.",
+      "concerns": [
+        "authentication",
+        "security"
+      ]
     },
     {
       "id": "R005",
-      "layer": [
-        "security"
-      ],
+      "layer": "client",
       "severity": "must",
       "title": "Cấu hình CORS và nhúng trang",
       "detail": "Chỉ allow origin cần thiết; giới hạn frame-ancestors; không ghép credentials với wildcard origin; kiểm tra cross-origin trên môi trường thật.",
       "example_good": "CSP frame-ancestors 'none'; CORS allowlist origin.",
-      "example_bad": "CORS phản chiếu Origin không kiểm tra."
+      "example_bad": "CORS phản chiếu Origin không kiểm tra.",
+      "concerns": [
+        "authentication",
+        "security"
+      ]
     },
     {
       "id": "R006",
-      "layer": [
-        "security"
-      ],
+      "layer": "client",
       "severity": "should",
       "title": "Không lộ dữ liệu qua cache/URL",
       "detail": "Trang hoặc API có PII/token dùng Cache-Control thích hợp; không đưa credential vào query string, referrer hoặc analytics.",
       "example_good": "/me trả Cache-Control: no-store khi cần.",
-      "example_bad": "Link /reset?token=... được gửi tới tracking SDK."
+      "example_bad": "Link /reset?token=... được gửi tới tracking SDK.",
+      "concerns": [
+        "authentication",
+        "privacy",
+        "security"
+      ]
     },
     {
       "id": "R007",
-      "layer": [
-        "security"
-      ],
+      "layer": "client",
       "severity": "should",
       "title": "Bảo vệ dependency frontend",
       "detail": "Lock dependency và audit các gói/build script có quyền thực thi; không tự động chấp nhận cảnh báo nghiêm trọng; review script bên thứ ba.",
       "example_good": "CI npm audit theo policy và PR dependency có review.",
-      "example_bad": "Nhúng script CDN không kiểm soát vào trang admin."
+      "example_bad": "Nhúng script CDN không kiểm soát vào trang admin.",
+      "concerns": [
+        "compliance",
+        "maintainability",
+        "security"
+      ]
     },
     {
       "id": "R008",
-      "layer": [
-        "security"
-      ],
+      "layer": "client",
       "severity": "should",
       "title": "Kiểm thử bảo mật browser",
       "detail": "E2E hoặc security test bao phủ XSS payload, CSRF, CSP, clickjacking và logout/cache cho các luồng nhạy cảm.",
       "example_good": "Security smoke test xác nhận script injection không chạy.",
-      "example_bad": "Chỉ thử UI layout."
+      "example_bad": "Chỉ thử UI layout.",
+      "concerns": [
+        "observability",
+        "security",
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

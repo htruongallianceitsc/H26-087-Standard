@@ -10,50 +10,55 @@
     {
       "title": "Tuân thủ safe area, text scaling và system navigation inset",
       "detail": "Yêu cầu: Tuân thủ safe area, text scaling và system navigation inset. Phạm vi áp dụng: các thay đổi thuộc Layout Mobile, Safe Area & Bàn phím có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Màn hình đăng nhập dùng SafeArea và không che bottom CTA. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": [
-        "ui",
-        "process"
-      ],
+      "layer": "mobile",
       "severity": "must",
       "example_good": "Màn hình đăng nhập dùng SafeArea và không che bottom CTA. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Tuân thủ safe area, text scaling và system navigation inset' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: màn hình đăng nhập dùng SafeArea và không che bottom CTA.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "accessibility",
+        "authentication",
+        "compliance"
+      ]
     },
     {
       "title": "Giữ input đang focus luôn nhìn thấy khi bàn phím hiển thị",
       "detail": "Yêu cầu: Giữ input đang focus luôn nhìn thấy khi bàn phím hiển thị. Phạm vi áp dụng: các thay đổi thuộc Layout Mobile, Safe Area & Bàn phím có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: TextField tự scroll vào vùng nhìn thấy khi bàn phím mở. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": [
-        "ui",
-        "process"
-      ],
+      "layer": "mobile",
       "severity": "must",
       "example_good": "TextField tự scroll vào vùng nhìn thấy khi bàn phím mở. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Giữ input đang focus luôn nhìn thấy khi bàn phím hiển thị' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: textField tự scroll vào vùng nhìn thấy khi bàn phím mở.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "accessibility",
+        "performance",
+        "usability"
+      ]
     },
     {
       "title": "Cung cấp các trạng thái loading, empty, error và tương tác bị gián đoạn",
       "detail": "Yêu cầu: Cung cấp các trạng thái loading, empty, error và tương tác bị gián đoạn. Phạm vi áp dụng: các thay đổi thuộc Layout Mobile, Safe Area & Bàn phím có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Trang search có state loading, empty, error, timeout riêng. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": [
-        "ui",
-        "process"
-      ],
+      "layer": "mobile",
       "severity": "should",
       "example_good": "Trang search có state loading, empty, error, timeout riêng. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Cung cấp các trạng thái loading, empty, error và tương tác bị gián đoạn' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: trang search có state loading, empty, error, timeout riêng.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "accessibility",
+        "reliability"
+      ]
     },
     {
       "title": "Xác minh portrait/landscape và các mật độ màn hình khác nhau khi được hỗ trợ",
       "detail": "Yêu cầu: Xác minh portrait/landscape và các mật độ màn hình khác nhau khi được hỗ trợ. Phạm vi áp dụng: các thay đổi thuộc Layout Mobile, Safe Area & Bàn phím có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Golden test 320dp và textScale 2.0 không tràn nút. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": [
-        "ui",
-        "process"
-      ],
+      "layer": "mobile",
       "severity": "should",
       "example_good": "Golden test 320dp và textScale 2.0 không tràn nút. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Xác minh portrait/landscape và các mật độ màn hình khác nhau khi được hỗ trợ' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: golden test 320dp và textScale 2.0 không tràn nút.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "accessibility"
+      ]
     }
   ],
   "integration_guide": [

@@ -10,35 +10,40 @@
     {
       "title": "Dùng thay đổi tương thích cho API và contract",
       "detail": "Lập bảng compatibility cho response field, error code, event và client; breaking change yêu cầu migration plan và thông báo consumer.",
-      "layer": [
-        "process"
-      ],
+      "layer": "delivery",
       "severity": "must",
       "example_good": "Thêm optional field không phá client và contract test vẫn pass.",
       "example_bad": "Đổi type userId từ string sang object không versioning.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "compatibility"
+      ]
     },
     {
       "title": "Áp dụng version sản phẩm theo chính sách rõ ràng",
       "detail": "Xác định SemVer cho thư viện hoặc release version cho app; quy tắc major/minor/patch được tài liệu hóa và đối chiếu diff.",
-      "layer": [
-        "process"
-      ],
+      "layer": "delivery",
       "severity": "must",
       "example_good": "Bỏ public method => major version package SDK.",
       "example_bad": "Xóa method nhưng phát hành patch.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "compatibility",
+        "documentation",
+        "release"
+      ]
     },
     {
       "title": "Thiết lập thời hạn hỗ trợ và deprecation",
       "detail": "Thông báo sunset, phiên bản thay thế, thời hạn hỗ trợ và metric consumer đang dùng; chỉ tắt sau khi kiểm tra usage/approval.",
-      "layer": [
-        "process"
-      ],
+      "layer": "delivery",
       "severity": "must",
       "example_good": "Header Deprecation/Sunset và dashboard sử dụng endpoint cũ.",
       "example_bad": "Xóa endpoint ngay trong cùng release.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "observability"
+      ]
     },
     {
       "id": "R004",
@@ -46,10 +51,13 @@
       "detail": "Contract tests kiểm cả old client/new server và retry/dữ liệu persisted qua phiên bản; xác định giới hạn hỗ trợ.",
       "example_good": "CI test mobile v1.5 với API v2.1 trong compatibility matrix.",
       "example_bad": "Chỉ test client/server latest cùng lúc.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "delivery",
+      "severity": "should",
+      "concerns": [
+        "compatibility",
+        "reliability",
+        "testing"
+      ]
     },
     {
       "id": "R005",
@@ -57,10 +65,12 @@
       "detail": "Thay đổi DB/event/file format có version hoặc migration rõ; không đặt version chỉ bằng tên file nếu consumer cần xác định.",
       "example_good": "Event payload có schemaVersion và consumer reject version không hỗ trợ.",
       "example_bad": "Consumer parse mọi payload theo cấu trúc mới.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "delivery",
+      "severity": "should",
+      "concerns": [
+        "compatibility",
+        "usability"
+      ]
     }
   ],
   "integration_guide": [

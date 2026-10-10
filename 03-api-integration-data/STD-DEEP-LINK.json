@@ -10,65 +10,92 @@
     {
       "title": "Dùng HTTPS link làm địa chỉ chia sẻ chuẩn",
       "detail": "Public link phải dùng https://domain/path thay vì chỉ custom URL scheme; thiết kế URL ổn định, không gắn token truy cập hoặc PII vào URL; route theo path, query parameter allowlist.",
-      "layer": "ui",
+      "layer": "api",
       "severity": "must",
       "example_good": "https://go.example.com/p/abc123 mở đúng nội dung trên web hoặc app.",
       "example_bad": "Chỉ gửi myapp://item/123 khiến người chưa cài app không truy cập được.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "privacy",
+        "security"
+      ]
     },
     {
       "title": "Cấu hình iOS Universal Links đúng xác thực domain",
       "detail": "Cung cấp apple-app-site-association hợp lệ tại /.well-known/apple-app-site-association hoặc /apple-app-site-association trên HTTPS, không redirect, content type phù hợp; khai báo Associated Domains applinks:domain; đối chiếu Team ID/Bundle ID và path/components được phép; kiểm tra hành vi Safari theo nền tảng.",
-      "layer": "ui",
+      "layer": "api",
       "severity": "must",
       "example_good": "AASA trả HTTP 200 trên HTTPS, có appIDs hợp lệ và entitlement tương ứng.",
       "example_bad": "File AASA trả 302 hoặc không khớp Bundle ID.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Cấu hình Android App Links bằng Digital Asset Links",
       "detail": "Cung cấp /.well-known/assetlinks.json trên HTTPS với package_name và SHA-256 certificate fingerprint của app được ký (bao gồm Play App Signing nếu dùng); khai báo VIEW, BROWSABLE, DEFAULT, scheme https, host tương ứng và autoVerify khi phù hợp.",
-      "layer": "ui",
+      "layer": "api",
       "severity": "must",
       "example_good": "assetlinks.json được xác thực và adb kiểm tra app-links domain thành công.",
       "example_bad": "Dùng fingerprint của keystore debug cho bản production mà không khai báo certificate production.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Đảm bảo fallback khi chưa cài app và mở web an toàn",
       "detail": "Không giả định web có thể phát hiện chắc chắn app đã cài. Dùng verified links để hệ điều hành tự phân giải; trang web phải có nội dung hữu ích và lời mời cài app theo platform, tránh ép redirect vòng lặp. Tùy thiết bị/trình duyệt mà prompt và hành vi khác nhau.",
-      "layer": "ui",
+      "layer": "integration",
       "severity": "must",
       "example_good": "Người chưa cài app thấy landing page và nút mở App Store/Google Play.",
       "example_bad": "JavaScript tự chuyển qua scheme rồi store liên tục, khiến người dùng mắc vòng lặp.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "usability"
+      ]
     },
     {
       "title": "Điều hướng đúng theo trạng thái đăng nhập và vòng đời",
       "detail": "Router xử lý cold start, warm start, background/resume, và link mở sau login; chỉ cho phép navigation sau khi app khởi tạo và quyền đã xác định. Lưu pending target có TTL và xóa sau khi xử lý để không điều hướng lặp.",
-      "layer": "ui",
+      "layer": "integration",
       "severity": "must",
       "example_good": "Link tới đơn hàng yêu cầu login; sau login chuyển đúng đơn mà người dùng có quyền.",
       "example_bad": "Link tới màn hình cần auth được mở khi chưa nạp session rồi crash.",
-      "id": "R005"
+      "id": "R005",
+      "concerns": [
+        "authentication",
+        "observability"
+      ]
     },
     {
       "title": "Chống open redirect, giả mạo và lộ dữ liệu",
       "detail": "Chỉ chấp nhận host/scheme/path đã đăng ký; validate và chuẩn hóa input, giới hạn redirect target và query; không tin tưởng quyền chỉ từ URL. Dùng server-side authorization cho tài nguyên; không đưa session, OTP, reset token vào analytics/referrer/log công khai.",
-      "layer": "security",
+      "layer": "integration",
       "severity": "must",
       "example_good": "Router từ chối https://evil.example/ và chỉ mở tài nguyên sau check quyền.",
       "example_bad": "Tham số ?next=https://attacker.test được redirect tùy ý.",
-      "id": "R006"
+      "id": "R006",
+      "concerns": [
+        "authentication",
+        "authorization",
+        "observability",
+        "performance",
+        "security"
+      ]
     },
     {
       "title": "Xác định rõ giới hạn deferred deep linking",
       "detail": "Ghi nhận attribution sau cài đặt là best-effort, không bảo đảm mọi hệ điều hành/trình duyệt; kiểm tra chính sách ATT/consent và SDK nếu dùng nhà cung cấp. Có fallback nhập referral code và không xem referrer hay fingerprint là bằng chứng định danh đáng tin.",
-      "layer": "ui",
+      "layer": "integration",
       "severity": "must",
       "example_good": "Người dùng có thể nhập referral code nếu nguồn sau cài không khôi phục được.",
       "example_bad": "Cam kết 100% giữ mã giới thiệu sau mọi lần cài từ App Store.",
-      "id": "R007"
+      "id": "R007",
+      "concerns": [
+        "privacy"
+      ]
     },
     {
       "title": "Chuẩn hóa attribution, query và canonical URL",
@@ -77,25 +104,38 @@
       "severity": "must",
       "example_good": "referral_code được kiểm chứng backend và gắn một lần theo rule đăng ký.",
       "example_bad": "Mỗi lần mở link đều ghi đè referrer đã xác nhận.",
-      "id": "R008"
+      "id": "R008",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Kiểm thử toàn bộ ma trận thiết bị và kênh mở",
       "detail": "Thử iOS/Android với app chưa cài/đã cài, cold/warm/background, đăng nhập/chưa đăng nhập, app nâng cấp, link hết hạn, path sai, Safari/Chrome/in-app browser, QR/SMS/email/push và trường hợp người dùng tắt liên kết mặc định.",
-      "layer": "process",
+      "layer": "integration",
       "severity": "must",
       "example_good": "Test matrix ghi kết quả mở từ Zalo, Chrome, Safari, QR và notification trên bản release thật.",
       "example_bad": "Chỉ kiểm thử scheme thủ công trên simulator debug.",
-      "id": "R009"
+      "id": "R009",
+      "concerns": [
+        "authentication",
+        "testing"
+      ]
     },
     {
       "title": "Thiết lập giám sát link và phương án khôi phục",
       "detail": "Theo dõi tỷ lệ click, fallback, link không phân giải, redirect loop, mở app thành công khi có đo đạc hợp lệ; có kế hoạch rollback đường dẫn và versioning route; không log trọn query chứa PII.",
-      "layer": "process",
+      "layer": "integration",
       "severity": "must",
       "example_good": "Có dashboard lỗi association và route not found; đường dẫn cũ vẫn tương thích.",
       "example_bad": "Thay đổi route làm toàn bộ QR cũ mất hiệu lực.",
-      "id": "R010"
+      "id": "R010",
+      "concerns": [
+        "compatibility",
+        "data-integrity",
+        "observability",
+        "privacy"
+      ]
     }
   ],
   "depends_on": [

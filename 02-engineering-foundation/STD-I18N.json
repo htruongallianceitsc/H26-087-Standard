@@ -10,35 +10,40 @@
     {
       "title": "Không hardcode chuỗi hiển thị trong logic",
       "detail": "Mọi nhãn, error, toast, validation nằm trong locale resource theo stable key; không nối chuỗi có thứ tự ngữ pháp cố định.",
-      "layer": [
-        "process"
-      ],
+      "layer": "architecture",
       "severity": "must",
       "example_good": "t(\"invoice.total\", {amount: formatted}) với ICU message.",
       "example_bad": "\"Hello \" + userName + \", you owe \" + amount.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "localization",
+        "observability"
+      ]
     },
     {
       "title": "Định dạng ngày số và tiền theo locale",
       "detail": "Sử dụng Intl/locale formatter với currency và timezone xác định; dữ liệu lưu chuẩn UTC/ISO và numeric, không lưu string đã format.",
-      "layer": [
-        "process"
-      ],
+      "layer": "data",
       "severity": "must",
       "example_good": "vi-VN hiển thị 1.234.567 ₫ từ VND numeric.",
       "example_bad": "Parse tiền từ chuỗi 1,234 làm mất dấu phân cách.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "localization",
+        "usability"
+      ]
     },
     {
       "title": "Hỗ trợ plural và độ dài nội dung",
       "detail": "Dùng plural/select theo ICU; kiểm thử text expansion, wrapping, ellipsis và kích thước font lớn.",
-      "layer": [
-        "process"
-      ],
+      "layer": "architecture",
       "severity": "must",
       "example_good": "\"{count, plural, one {...} other {...}}\" và layout responsive.",
       "example_bad": "Button fixed 80px cắt chữ tiếng Đức.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "id": "R004",
@@ -46,10 +51,12 @@
       "detail": "Định nghĩa locale mặc định, fallback khi thiếu key; CI phát hiện key lệch và placeholder mismatch trước release.",
       "example_good": "CI compare keys en/vi và validate {count} placeholder.",
       "example_bad": "Production hiển thị literal \"cart.submit\".",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "delivery",
+      "severity": "should",
+      "concerns": [
+        "localization",
+        "release"
+      ]
     },
     {
       "id": "R005",
@@ -57,10 +64,12 @@
       "detail": "Với locale RTL nếu hỗ trợ, dùng direction-aware layout và icon thích hợp; input phone/address theo vùng; QA với pseudo-locale.",
       "example_good": "Icon back đảo hướng trong giao diện Ả Rập.",
       "example_bad": "Flex row hardcoded khiến thứ tự input đảo sai.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "architecture",
+      "severity": "should",
+      "concerns": [
+        "localization",
+        "performance"
+      ]
     }
   ],
   "integration_guide": [

@@ -10,38 +10,53 @@
     {
       "title": "Mặc định giới hạn truy cập mạng",
       "detail": "Deny-by-default ingress/egress theo service/port; DB/cache chỉ private network; public endpoint qua gateway. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "infrastructure",
       "severity": "must",
       "example_good": "PostgreSQL chỉ cho app subnet trên port 5432.",
       "example_bad": "DB mở 0.0.0.0/0 để tiện debug.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "networking"
+      ]
     },
     {
       "title": "Mã hóa kết nối và quản lý chứng chỉ",
       "detail": "TLS cho traffic không tin cậy, xác minh certificate, rotation trước hết hạn và HSTS khi áp dụng. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "infrastructure",
       "severity": "must",
       "example_good": "Gateway TLS1.2+ với cảnh báo certificate expiry.",
       "example_bad": "Disable certificate verification trong production.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "security"
+      ]
     },
     {
       "title": "Bảo vệ dịch vụ trước lạm dụng",
       "detail": "Rate limiting, request size, connection timeout, WAF/DDoS theo threat model và đo false positive. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "infrastructure",
       "severity": "should",
       "example_good": "Limit login per IP/account, có 429 và Retry-After.",
       "example_bad": "API public nhận body vô hạn không giới hạn tốc độ.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability",
+        "security"
+      ]
     },
     {
       "title": "Quan sát mạng theo luồng",
       "detail": "Log luồng bị chặn và latency/error ở edge; định nghĩa security group và DNS change traceable. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "infrastructure",
       "severity": "should",
       "example_good": "Dashboard theo dõi 5xx gateway và connection reset.",
       "example_bad": "Không phân biệt lỗi mạng với lỗi ứng dụng.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "networking",
+        "observability",
+        "performance"
+      ]
     }
   ],
   "integration_guide": [

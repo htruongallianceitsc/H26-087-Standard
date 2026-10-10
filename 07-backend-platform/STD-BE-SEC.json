@@ -10,84 +10,108 @@
     {
       "title": "Áp dụng middleware bảo mật thống nhất",
       "detail": "Pipeline backend xác thực trước phân quyền, từ chối mặc định endpoint nhạy cảm; endpoint health công khai phải giới hạn nội dung; kiểm thử route thiếu policy.",
-      "layer": "security",
+      "layer": "api",
       "severity": "must",
       "example_good": "/admin/users bắt buộc auth + permission; /health/live chỉ trả trạng thái tối thiểu.",
       "example_bad": "Controller mới tự public vì quên attribute.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "authorization",
+        "automation",
+        "compliance",
+        "security"
+      ]
     },
     {
       "title": "Không tin dữ liệu từ client",
       "detail": "Validate DTO/size/mime theo allowlist, ràng buộc business tại service và DB; không bind entity trực tiếp gây mass assignment.",
-      "layer": "security",
+      "layer": "service",
       "severity": "should",
       "example_good": "UpdateUserDto không nhận IsAdmin từ request; quyền cấp qua endpoint riêng.",
       "example_bad": "PUT /users bind mọi thuộc tính, cho sửa Role=Admin.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "security"
+      ]
     },
     {
       "title": "Giới hạn tần suất và tài nguyên",
       "detail": "Đặt giới hạn request, upload, timeout và concurrency theo endpoint rủi ro; trả 429/413 phù hợp; đo khả năng chống request lớn và brute-force.",
-      "layer": "process",
+      "layer": "api",
       "severity": "should",
       "example_good": "/login áp rate-limit theo IP+account, upload từ chối quá 10 MB theo contract.",
       "example_bad": "Cho phép JSON 2 GB qua API công khai.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability",
+        "security"
+      ]
     },
     {
       "id": "R004",
-      "layer": [
-        "security"
-      ],
+      "layer": "service",
       "severity": "must",
       "title": "An toàn với truy vấn và dữ liệu",
       "detail": "Dùng parameterized SQL/ORM an toàn; lọc tenant ở truy vấn và khi cập nhật; không trả chi tiết DB exception cho client.",
       "example_good": "UPDATE orders WHERE id=@id AND tenant_id=@tenant.",
-      "example_bad": "Dùng nối chuỗi SQL với query param."
+      "example_bad": "Dùng nối chuỗi SQL với query param.",
+      "concerns": [
+        "security"
+      ]
     },
     {
       "id": "R005",
-      "layer": [
-        "security"
-      ],
+      "layer": "api",
       "severity": "must",
       "title": "Bảo vệ outbound request và SSRF",
       "detail": "Nếu server tải URL do user cung cấp, chỉ cho phép scheme/host phù hợp, kiểm tra DNS/IP sau redirect và chặn mạng nội bộ, metadata IP; test địa chỉ loopback.",
       "example_good": "Proxy ảnh dùng allowlist domain và chặn 169.254.169.254.",
-      "example_bad": "Fetch URL bất kỳ từ form nhập của người dùng."
+      "example_bad": "Fetch URL bất kỳ từ form nhập của người dùng.",
+      "concerns": [
+        "networking",
+        "security"
+      ]
     },
     {
       "id": "R006",
-      "layer": [
-        "security"
-      ],
+      "layer": "service",
       "severity": "should",
       "title": "Quản lý secret và khóa",
       "detail": "Secrets lấy từ vault/env được quản lý, xoay vòng và giới hạn quyền đọc; tránh log secret; key rotation có phương án rollout.",
       "example_good": "API key lấy từ secret manager qua workload identity.",
-      "example_bad": "Ghi refresh token vào structured log."
+      "example_bad": "Ghi refresh token vào structured log.",
+      "concerns": [
+        "observability",
+        "release",
+        "security"
+      ]
     },
     {
       "id": "R007",
-      "layer": [
-        "security"
-      ],
+      "layer": "service",
       "severity": "should",
       "title": "Cấu hình CORS, header và transport",
       "detail": "CORS chỉ allow origin cần thiết, credentials không đi với wildcard; TLS giữa các trust boundary; thiết lập header cần thiết theo ứng dụng.",
       "example_good": "AllowOrigin=https://admin.example.com với AllowCredentials.",
-      "example_bad": "Access-Control-Allow-Origin:* và credentials:true."
+      "example_bad": "Access-Control-Allow-Origin:* và credentials:true.",
+      "concerns": [
+        "authentication",
+        "security"
+      ]
     },
     {
       "id": "R008",
-      "layer": [
-        "security"
-      ],
+      "layer": "api",
       "severity": "should",
       "title": "Kiểm thử endpoint khi không có quyền",
       "detail": "Negative integration test bao phủ không token, token giả, thiếu permission, cross-tenant, upload nguy hiểm và exception handler.",
       "example_good": "Test /invoices/7 với tenant khác trả 404 hoặc 403 nhất quán.",
-      "example_bad": "Chỉ test trạng thái HTTP 200."
+      "example_bad": "Chỉ test trạng thái HTTP 200.",
+      "concerns": [
+        "authorization",
+        "security",
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

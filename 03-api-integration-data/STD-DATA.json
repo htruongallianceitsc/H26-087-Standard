@@ -10,35 +10,39 @@
     {
       "title": "Định nghĩa khóa và ràng buộc invariant trong DB",
       "detail": "Dùng PK/FK/unique/check/not null ở DB phù hợp, không chỉ validate phía UI; migration kiểm dữ liệu cũ trước constraint.",
-      "layer": [
-        "process"
-      ],
+      "layer": "db",
       "severity": "must",
       "example_good": "UNIQUE(tenant_id, external_order_id) chống duplicate.",
       "example_bad": "Tin mỗi kiểm tra duplicate trước INSERT ở API.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "data-integrity"
+      ]
     },
     {
       "title": "Thiết kế schema theo truy vấn thực tế",
       "detail": "Index theo điều kiện filter/join/sort và tenant; EXPLAIN ANALYZE với dữ liệu đại diện, tránh tạo index mọi cột.",
-      "layer": [
-        "process"
-      ],
+      "layer": "db",
       "severity": "must",
       "example_good": "Index (tenant_id, created_at DESC, id) phục vụ list orders.",
       "example_bad": "Query full-scan triệu dòng mỗi lần phân trang.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Quản lý audit và vòng đời bản ghi",
       "detail": "Các entity quan trọng ghi created/updated actor/time theo UTC; soft-delete có quy tắc unique/filter/retention rõ; không vô hạn hóa PII.",
-      "layer": [
-        "process"
-      ],
+      "layer": "integration",
       "severity": "must",
       "example_good": "DeletedAt + partial unique index cho active records.",
       "example_bad": "Dữ liệu đã xóa vẫn xuất trong báo cáo active.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "compliance",
+        "privacy"
+      ]
     },
     {
       "id": "R004",
@@ -46,10 +50,11 @@
       "detail": "Tiền dùng DECIMAL/numeric hoặc minor units và currency; timestamp UTC/timestamptz; không dùng float cho giao dịch.",
       "example_good": "Amount numeric(18,2) kèm CurrencyCode.",
       "example_bad": "Amount double precision gây sai số khi cộng.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "integration",
+      "severity": "should",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "id": "R005",
@@ -57,10 +62,13 @@
       "detail": "Chuyển kiểu/cột bằng expand-migrate-contract; backfill đo tốc độ, rollback, tránh deploy app đọc field trước khi DB sẵn sàng.",
       "example_good": "Add nullable column -> backfill -> dual read -> enforce constraint.",
       "example_bad": "DROP column đang được version cũ sử dụng.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "db",
+      "severity": "should",
+      "concerns": [
+        "compatibility",
+        "data-integrity",
+        "release"
+      ]
     }
   ],
   "integration_guide": [

@@ -10,84 +10,101 @@
     {
       "title": "Bảo vệ lệnh thanh toán khỏi xử lý trùng",
       "detail": "Mỗi yêu cầu tạo/thu tiền có idempotency key và khóa duy nhất phía server; retry cùng payload phải trả kết quả nhất quán, không phát sinh thêm giao dịch.",
-      "layer": "process",
+      "layer": "service",
       "severity": "must",
       "example_good": "POST /payments với cùng key chỉ có 1 charge record.",
       "example_bad": "Double-click Pay tạo 2 khoản thu.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Xác minh webhook bằng chữ ký và chống replay",
       "detail": "Xác thực signature trên raw body, timestamp/window và event ID; từ chối signature sai; lưu event ID unique trước xử lý; không tin trạng thái trong redirect URL.",
-      "layer": "process",
+      "layer": "api",
       "severity": "should",
       "example_good": "Webhook signed hợp lệ cập nhật order đúng một lần.",
       "example_bad": "Return URL ?status=success đánh dấu đã trả tiền.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "security"
+      ]
     },
     {
       "title": "Mô hình trạng thái thanh toán tường minh",
       "detail": "Trạng thái pending/authorized/captured/failed/refunded phải có transition table; xử lý event trễ/out-of-order và xác minh trạng thái từ provider khi cần.",
-      "layer": "process",
+      "layer": "service",
       "severity": "should",
       "example_good": "Refund chỉ được tạo từ captured theo rule nghiệp vụ.",
       "example_bad": "Event pending muộn ghi đè trạng thái paid.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "id": "R004",
-      "layer": [
-        "process"
-      ],
+      "layer": "service",
       "severity": "must",
       "title": "Đối soát ledger và provider",
       "detail": "Lưu provider transaction ID, amount, currency, fee, thời gian và status; chạy đối soát kỳ và phát hiện mismatch/duplicate; không dùng chỉ front-end làm nguồn số tiền.",
       "example_good": "Daily reconciliation phát hiện captured ở PSP nhưng order vẫn pending.",
-      "example_bad": "Chỉ dựa vào callback trình duyệt."
+      "example_bad": "Chỉ dựa vào callback trình duyệt.",
+      "concerns": [
+        "data-integrity"
+      ]
     },
     {
       "id": "R005",
-      "layer": [
-        "process"
-      ],
+      "layer": "api",
       "severity": "must",
       "title": "Bảo vệ dữ liệu thẻ và thông tin nhạy cảm",
       "detail": "Ưu tiên hosted checkout/tokenization của PSP; không ghi PAN/CVV vào API/log/DB; đánh giá phạm vi PCI DSS theo mô hình tích hợp.",
       "example_good": "UI redirect sang hosted checkout và chỉ lưu PSP token.",
-      "example_bad": "API tự nhận và log CVV thẻ."
+      "example_bad": "API tự nhận và log CVV thẻ.",
+      "concerns": [
+        "observability",
+        "security"
+      ]
     },
     {
       "id": "R006",
-      "layer": [
-        "process"
-      ],
+      "layer": "service",
       "severity": "should",
       "title": "Ràng buộc tiền tệ và chống sửa số tiền",
       "detail": "Server tính amount từ đơn đã khóa giá, lưu tiền ở đơn vị nhỏ nhất hoặc decimal theo currency; client chỉ gửi orderId, không quyết định amount phải thu.",
       "example_good": "Charge amount lấy từ order snapshot lưu server.",
-      "example_bad": "POST {amount:1000} do client tùy chỉnh."
+      "example_bad": "POST {amount:1000} do client tùy chỉnh.",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "id": "R007",
-      "layer": [
-        "process"
-      ],
+      "layer": "api",
       "severity": "should",
       "title": "Quy trình hoàn tiền và tranh chấp có kiểm soát",
       "detail": "Refund có permission, trạng thái, giới hạn tổng đã capture, chống trùng và audit actor; ghi nhận chargeback/dispute và cập nhật theo webhook được xác minh.",
       "example_good": "Hai refund đồng thời không vượt captured_amount.",
-      "example_bad": "API hoàn tiền nhận bất kỳ số tiền do user gửi."
+      "example_bad": "API hoàn tiền nhận bất kỳ số tiền do user gửi.",
+      "concerns": [
+        "authorization",
+        "compliance"
+      ]
     },
     {
       "id": "R008",
-      "layer": [
-        "process"
-      ],
+      "layer": "api",
       "severity": "should",
       "title": "Thử nghiệm lỗi tích hợp và kịch bản khôi phục",
       "detail": "QA mô phỏng timeout sau charge, webhook retry/out-of-order, PSP 5xx, duplicate clicks, reversal và reconciliation; kiểm tra eventual consistency.",
       "example_good": "Test timeout rồi retry cùng key, ledger vẫn có một payment.",
-      "example_bad": "Chỉ kiểm thử thanh toán thành công."
+      "example_bad": "Chỉ kiểm thử thanh toán thành công.",
+      "concerns": [
+        "data-integrity",
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [

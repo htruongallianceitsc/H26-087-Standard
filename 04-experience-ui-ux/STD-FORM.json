@@ -14,7 +14,10 @@
       "severity": "must",
       "example_good": "API trả lỗi field phone; form đánh dấu đúng phone, focus vào đó.",
       "example_bad": "Chỉ validate ở trình duyệt và tin request có thể sửa.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "usability"
+      ]
     },
     {
       "title": "Giữ dữ liệu khi gửi lỗi",
@@ -23,7 +26,11 @@
       "severity": "must",
       "example_good": "API lỗi địa chỉ, họ tên vẫn ở form.",
       "example_bad": "Lỗi submit làm form reset tất cả.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "performance",
+        "reliability"
+      ]
     },
     {
       "title": "Ngăn submit trùng và yêu cầu không cần thiết",
@@ -32,7 +39,10 @@
       "severity": "should",
       "example_good": "Submit đơn hàng có idempotency key và trạng thái pending.",
       "example_bad": "Double click tạo hai đơn hàng.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Input truy cập được bằng bàn phím",
@@ -41,7 +51,11 @@
       "severity": "should",
       "example_good": "Input có label for và aria-describedby đến lỗi.",
       "example_bad": "Placeholder thay thế label, lỗi chỉ có màu đỏ.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "accessibility",
+        "performance"
+      ]
     }
   ],
   "integration_guide": [

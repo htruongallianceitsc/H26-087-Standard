@@ -10,38 +10,53 @@
     {
       "title": "Xác định route chuẩn, parameter và hành vi khi route không tồn tại",
       "detail": "Yêu cầu: Xác định route chuẩn, parameter và hành vi khi route không tồn tại. Phạm vi áp dụng: các thay đổi thuộc Routing, Điều hướng & Trạng thái URL có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: /orders/:orderId validate ID; route không tồn tại trả 404 UI. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "must",
       "example_good": "/orders/:orderId validate ID; route không tồn tại trả 404 UI. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Xác định route chuẩn, parameter và hành vi khi route không tồn tại' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: /orders/:orderId validate ID; route không tồn tại trả 404 UI.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Giữ trạng thái filter/query có thể điều hướng trong URL khi phù hợp để chia sẻ",
       "detail": "Yêu cầu: Giữ trạng thái filter/query có thể điều hướng trong URL khi phù hợp để chia sẻ. Phạm vi áp dụng: các thay đổi thuộc Routing, Điều hướng & Trạng thái URL có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Filter status=paid được đồng bộ vào ?status=paid&sort=createdAt. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "must",
       "example_good": "Filter status=paid được đồng bộ vào ?status=paid&sort=createdAt. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Giữ trạng thái filter/query có thể điều hướng trong URL khi phù hợp để chia sẻ' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: filter status=paid được đồng bộ vào ?status=paid&sort=createdAt.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Bảo vệ trang bị giới hạn bằng UI guard nhưng vẫn dựa vào authorization phía server",
       "detail": "Yêu cầu: Bảo vệ trang bị giới hạn bằng UI guard nhưng vẫn dựa vào authorization phía server. Phạm vi áp dụng: các thay đổi thuộc Routing, Điều hướng & Trạng thái URL có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Protected route redirect login nhưng API vẫn trả 403 nếu không có quyền. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "should",
       "example_good": "Protected route redirect login nhưng API vẫn trả 403 nếu không có quyền. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Bảo vệ trang bị giới hạn bằng UI guard nhưng vẫn dựa vào authorization phía server' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: protected route redirect login nhưng API vẫn trả 403 nếu không có quyền.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "authentication",
+        "authorization",
+        "observability",
+        "security"
+      ]
     },
     {
       "title": "Xử lý reload sâu và điều hướng trực tiếp bằng quy tắc fallback của hosting",
       "detail": "Yêu cầu: Xử lý reload sâu và điều hướng trực tiếp bằng quy tắc fallback của hosting. Phạm vi áp dụng: các thay đổi thuộc Routing, Điều hướng & Trạng thái URL có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Truy cập thẳng /orders/123 trên CDN trả app shell rồi route xử lý. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "should",
       "example_good": "Truy cập thẳng /orders/123 trên CDN trả app shell rồi route xử lý. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Xử lý reload sâu và điều hướng trực tiếp bằng quy tắc fallback của hosting' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: truy cập thẳng /orders/123 trên CDN trả app shell rồi route xử lý.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [

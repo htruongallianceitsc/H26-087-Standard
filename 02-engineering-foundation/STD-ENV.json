@@ -10,35 +10,41 @@
     {
       "title": "Phân tách môi trường và quyền truy cập",
       "detail": "Dev/staging/prod có credential, dữ liệu và IAM riêng; không cho môi trường dev có quyền ghi vào production.",
-      "layer": [
-        "process"
-      ],
+      "layer": "data",
       "severity": "must",
       "example_good": "Service account staging chỉ truy cập database staging.",
       "example_bad": "Dùng cùng DB password trên dev và prod.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "authentication",
+        "security"
+      ]
     },
     {
       "title": "Đưa secret vào kho bí mật được quản lý",
       "detail": "Không commit secret, token, .env production; inject runtime qua secret manager, mask CI log và kiểm tra secret scanning.",
-      "layer": [
-        "process"
-      ],
+      "layer": "architecture",
       "severity": "must",
       "example_good": "App đọc DATABASE_URL từ vault theo workload identity.",
       "example_bad": "API key hardcode trong React bundle.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "observability",
+        "security"
+      ]
     },
     {
       "title": "Validate cấu hình khi khởi động",
       "detail": "Khai báo required env/type/range và fail-fast trước khi nhận traffic; log tên setting lỗi nhưng không in secret.",
-      "layer": [
-        "process"
-      ],
+      "layer": "architecture",
       "severity": "must",
       "example_good": "Startup kiểm tra Redis TTL > 0 và URL hợp lệ.",
       "example_bad": "App chạy với PAYMENT_MODE rỗng rồi âm thầm fallback live.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "observability",
+        "security"
+      ]
     },
     {
       "id": "R004",
@@ -46,10 +52,13 @@
       "detail": "Credential có owner, rotation policy và khả năng revoke; thử rotation không downtime với hai key chuyển tiếp khi phù hợp.",
       "example_good": "Đổi webhook secret theo overlap window rồi revoke key cũ.",
       "example_bad": "Một production token tồn tại vô thời hạn không ai quản lý.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "architecture",
+      "severity": "should",
+      "concerns": [
+        "authentication",
+        "compliance",
+        "security"
+      ]
     },
     {
       "id": "R005",
@@ -57,10 +66,14 @@
       "detail": "Config versioned hoặc audit theo request, có plan rollback và xác minh sau deploy; settings nhạy cảm cần duyệt.",
       "example_good": "Thay rate limit có PR và monitor 429 sau rollout.",
       "example_bad": "Sửa trực tiếp console prod không lưu change history.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "delivery",
+      "severity": "should",
+      "concerns": [
+        "compatibility",
+        "compliance",
+        "data-integrity",
+        "release"
+      ]
     }
   ],
   "integration_guide": [

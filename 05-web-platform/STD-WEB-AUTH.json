@@ -10,94 +10,117 @@
     {
       "title": "Ưu tiên cookie HttpOnly an toàn khi kiến trúc session hỗ trợ",
       "detail": "Khi triển khai BFF/session auth, dùng Secure, HttpOnly, SameSite phù hợp và cookie scope tối thiểu; không expose refresh token cho component.",
-      "layer": [
-        "process",
-        "api"
-      ],
+      "layer": "client",
       "severity": "must",
       "example_good": "Session cookie HttpOnly/Secure được cấp qua BFF.",
       "example_bad": "Lưu refresh token lâu dài vào localStorage cho mọi component đọc.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "authentication",
+        "security"
+      ]
     },
     {
       "title": "Bảo vệ các endpoint thay đổi trạng thái dùng xác thực bằng cookie khỏi CSRF",
       "detail": "Những request thay đổi trạng thái dùng cookie phải có anti-CSRF token hoặc xác minh Origin nghiêm ngặt; kiểm thử request cross-site.",
-      "layer": [
-        "process",
-        "api"
-      ],
+      "layer": "client",
       "severity": "must",
       "example_good": "POST /account/email yêu cầu header CSRF đúng phiên.",
       "example_bad": "Dựa riêng vào CORS để ngăn form CSRF.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "authentication",
+        "security"
+      ]
     },
     {
       "title": "Xử lý hết hạn và refresh mà không làm lộ credential cho UI component",
       "detail": "Tập trung refresh vào auth client, đồng bộ concurrent 401 theo single-flight; nếu refresh thất bại dừng retry và điều hướng login giữ return URL an toàn.",
-      "layer": [
-        "process",
-        "api"
-      ],
+      "layer": "client",
       "severity": "should",
       "example_good": "10 API gặp 401 kích hoạt đúng 1 refresh call.",
       "example_bad": "10 API cùng refresh, token cũ ghi đè token mới.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "authentication",
+        "observability",
+        "reliability",
+        "security"
+      ]
     },
     {
       "title": "Phân quyền mọi thao tác được bảo vệ ở phía server; route guard chỉ phục vụ UX",
       "detail": "Route guard chỉ tối ưu UX; server kiểm tra actor, action và resource; 403 không kích hoạt logout.",
-      "layer": [
-        "process",
-        "api"
-      ],
+      "layer": "client",
       "severity": "should",
       "example_good": "UI ẩn Admin, API /roles vẫn trả 403 khi thiếu quyền.",
       "example_bad": "User sửa URL để vào màn hình admin và gọi API thành công.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "authentication",
+        "authorization",
+        "observability",
+        "security",
+        "usability"
+      ]
     },
     {
       "id": "R005",
-      "layer": [
-        "security"
-      ],
+      "layer": "client",
       "severity": "must",
       "title": "Không leak trạng thái phiên qua URL",
       "detail": "Tránh token trong query, fragment được gửi log/referrer và browser history; callback OAuth kiểm tra state/nonce và PKCE khi phù hợp.",
       "example_good": "Authorization Code + PKCE, validate state trước exchange.",
-      "example_bad": "Token nằm trong URL được copy vào analytics."
+      "example_bad": "Token nằm trong URL được copy vào analytics.",
+      "concerns": [
+        "authentication",
+        "observability",
+        "security"
+      ]
     },
     {
       "id": "R006",
-      "layer": [
-        "security"
-      ],
+      "layer": "client",
       "severity": "should",
       "title": "Logout và đổi tài khoản làm sạch state",
       "detail": "Logout phải thu hồi phiên server khi áp dụng, xóa auth cache, query cache chứa PII và trạng thái đa tab; kiểm thử back/refresh không hiện dữ liệu cũ.",
       "example_good": "Logout clear React Query cache và gọi revoke session.",
-      "example_bad": "Đăng nhập tài khoản B vẫn thấy đơn tài khoản A."
+      "example_bad": "Đăng nhập tài khoản B vẫn thấy đơn tài khoản A.",
+      "concerns": [
+        "authentication",
+        "observability",
+        "privacy",
+        "security"
+      ]
     },
     {
       "id": "R007",
-      "layer": [
-        "security"
-      ],
+      "layer": "client",
       "severity": "should",
       "title": "Xử lý lỗi thân thiện, không lộ chi tiết",
       "detail": "401 dẫn tới khôi phục phiên hoặc login; 403 hiện thiếu quyền; 429 hiển thị thời gian thử lại; lỗi máy chủ không toast exception raw.",
       "example_good": "403 show “Bạn không có quyền”, giữ phiên.",
-      "example_bad": "Bất kỳ 403 đều xóa token và điều hướng login."
+      "example_bad": "Bất kỳ 403 đều xóa token và điều hướng login.",
+      "concerns": [
+        "authentication",
+        "observability",
+        "security"
+      ]
     },
     {
       "id": "R008",
-      "layer": [
-        "security"
-      ],
+      "layer": "client",
       "severity": "should",
       "title": "Kiểm thử session đa tab và cạnh tranh",
       "detail": "Kiểm thử expired token, refresh fail, reload, 2 tab logout và nhiều request đồng thời; đính kèm evidence với bản build.",
       "example_good": "Tab B không truy cập dữ liệu cũ sau tab A logout.",
-      "example_bad": "Chỉ test nút Login."
+      "example_bad": "Chỉ test nút Login.",
+      "concerns": [
+        "authentication",
+        "observability",
+        "security",
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

@@ -10,38 +10,54 @@
     {
       "title": "Giữ validation phía client đồng bộ với server contract nhưng không tin cậy kiểm tra từ client",
       "detail": "Yêu cầu: Giữ validation phía client đồng bộ với server contract nhưng không tin cậy kiểm tra từ client. Phạm vi áp dụng: các thay đổi thuộc Form trình duyệt & Validation có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Client dùng Zod để phản hồi sớm; server vẫn từ chối dữ liệu sai schema. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "must",
       "example_good": "Client dùng Zod để phản hồi sớm; server vẫn từ chối dữ liệu sai schema. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Giữ validation phía client đồng bộ với server contract nhưng không tin cậy kiểm tra từ client' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: client dùng Zod để phản hồi sớm; server vẫn từ chối dữ liệu sai schema.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "usability"
+      ]
     },
     {
       "title": "Hiển thị lỗi theo field, lỗi server và lỗi cấp form theo cách hỗ trợ accessibility",
       "detail": "Yêu cầu: Hiển thị lỗi theo field, lỗi server và lỗi cấp form theo cách hỗ trợ accessibility. Phạm vi áp dụng: các thay đổi thuộc Form trình duyệt & Validation có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: API 422 map errors.email tới aria-describedby của input email. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "must",
       "example_good": "API 422 map errors.email tới aria-describedby của input email. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Hiển thị lỗi theo field, lỗi server và lỗi cấp form theo cách hỗ trợ accessibility' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: aPI 422 map errors.email tới aria-describedby của input email.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "accessibility",
+        "performance",
+        "usability"
+      ]
     },
     {
       "title": "Ngăn submit hai lần ngoài ý muốn và lưu draft an toàn khi phù hợp",
       "detail": "Yêu cầu: Ngăn submit hai lần ngoài ý muốn và lưu draft an toàn khi phù hợp. Phạm vi áp dụng: các thay đổi thuộc Form trình duyệt & Validation có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Submit button khóa trong khi mutation pending; idempotency key giữ khi retry. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "should",
       "example_good": "Submit button khóa trong khi mutation pending; idempotency key giữ khi retry. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Ngăn submit hai lần ngoài ý muốn và lưu draft an toàn khi phù hợp' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: submit button khóa trong khi mutation pending; idempotency key giữ khi retry.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability",
+        "usability"
+      ]
     },
     {
       "title": "Hỗ trợ luồng submit bằng bàn phím và screen reader",
       "detail": "Yêu cầu: Hỗ trợ luồng submit bằng bàn phím và screen reader. Phạm vi áp dụng: các thay đổi thuộc Form trình duyệt & Validation có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Form submit bằng Enter và screen reader đọc live error summary. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "should",
       "example_good": "Form submit bằng Enter và screen reader đọc live error summary. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Hỗ trợ luồng submit bằng bàn phím và screen reader' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: form submit bằng Enter và screen reader đọc live error summary.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "accessibility",
+        "usability"
+      ]
     }
   ],
   "integration_guide": [

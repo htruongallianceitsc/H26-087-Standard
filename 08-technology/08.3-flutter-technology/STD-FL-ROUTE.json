@@ -10,38 +10,51 @@
     {
       "title": "Xác định named route và path/query parameter đã được validation",
       "detail": "Yêu cầu: Xác định named route và path/query parameter đã được validation. Phạm vi áp dụng: các thay đổi thuộc Điều hướng Flutter & go_router có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: GoRouter /orders/:id validate UUID trước mở OrderScreen. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "must",
       "example_good": "GoRouter /orders/:id validate UUID trước mở OrderScreen. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Xác định named route và path/query parameter đã được validation' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: goRouter /orders/:id validate UUID trước mở OrderScreen.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Áp dụng redirect guard cho route được bảo vệ mà không tạo vòng lặp redirect",
       "detail": "Yêu cầu: Áp dụng redirect guard cho route được bảo vệ mà không tạo vòng lặp redirect. Phạm vi áp dụng: các thay đổi thuộc Điều hướng Flutter & go_router có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: redirect login dùng redirect target sanitized và chặn vòng lặp. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "must",
       "example_good": "redirect login dùng redirect target sanitized và chặn vòng lặp. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Áp dụng redirect guard cho route được bảo vệ mà không tạo vòng lặp redirect' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: redirect login dùng redirect target sanitized và chặn vòng lặp.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "authentication",
+        "observability"
+      ]
     },
     {
       "title": "Xử lý deep link khi cold start và khi ứng dụng resume",
       "detail": "Yêu cầu: Xử lý deep link khi cold start và khi ứng dụng resume. Phạm vi áp dụng: các thay đổi thuộc Điều hướng Flutter & go_router có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: initialLocation và onLinkHandled đều mở đúng /orders/:id. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "should",
       "example_good": "initialLocation và onLinkHandled đều mở đúng /orders/:id. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Xử lý deep link khi cold start và khi ứng dụng resume' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: initialLocation và onLinkHandled đều mở đúng /orders/:id.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Kiểm thử semantics của browser/back stack khi hỗ trợ Flutter web",
       "detail": "Yêu cầu: Kiểm thử semantics của browser/back stack khi hỗ trợ Flutter web. Phạm vi áp dụng: các thay đổi thuộc Điều hướng Flutter & go_router có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Flutter Web back/forward test giữ query filter sau reload. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "should",
       "example_good": "Flutter Web back/forward test giữ query filter sau reload. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Kiểm thử semantics của browser/back stack khi hỗ trợ Flutter web' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: flutter Web back/forward test giữ query filter sau reload.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

@@ -10,35 +10,38 @@
     {
       "title": "Bảo vệ handshake và từng subscription",
       "detail": "WebSocket/SSE xác thực kết nối, authorise từng channel/room theo tenant và kiểm quyền lại khi membership đổi.",
-      "layer": [
-        "process"
-      ],
+      "layer": "integration",
       "severity": "must",
       "example_good": "User A subscribe room B bị 403/close theo policy.",
       "example_bad": "Ai biết roomId cũng join nhận event.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Định nghĩa thứ tự, cursor và replay",
       "detail": "Event có ID đơn điệu theo stream hoặc sequence; reconnect dùng cursor/Last-Event-ID và deduplicate; nêu semantics at-least-once.",
-      "layer": [
-        "process"
-      ],
+      "layer": "integration",
       "severity": "must",
       "example_good": "Client reconnect từ event 150 và bỏ event ID trùng.",
       "example_bad": "Mất mạng 10 giây thì mất mọi event không phát hiện.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Quản lý heartbeat và reconnect backoff",
       "detail": "Ping/pong hoặc heartbeat, timeout nhận biết stale connection; reconnect exponential backoff+jitter và chặn vòng lặp reconnect.",
-      "layer": [
-        "process"
-      ],
+      "layer": "integration",
       "severity": "must",
       "example_good": "Client tối đa 30s backoff ngẫu nhiên khi gateway down.",
       "example_bad": "1.000 client reconnect mỗi 100ms đồng thời.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "id": "R004",
@@ -46,10 +49,11 @@
       "detail": "Rate limit per user/connection, cap frame size, bounded send queue; slow consumers được drop/resync theo contract.",
       "example_good": "Server ngắt client queue > giới hạn và yêu cầu snapshot sync.",
       "example_bad": "Unlimited websocket buffer gây OOM khi client chậm.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "integration",
+      "severity": "should",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "id": "R005",
@@ -57,10 +61,11 @@
       "detail": "Dữ liệu realtime là tín hiệu; cung cấp API snapshot để reconcile trạng thái và test race giữa fetch và push.",
       "example_good": "Sau resume fetch delta cursor, rồi apply event chưa thấy.",
       "example_bad": "Tin chỉ dựa vào socket event không kiểm tra mất event.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "api",
+      "severity": "should",
+      "concerns": [
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [

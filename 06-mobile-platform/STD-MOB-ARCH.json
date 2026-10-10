@@ -10,38 +10,50 @@
     {
       "title": "Đặt tích hợp nền tảng phía sau interface/adapter",
       "detail": "Yêu cầu: Đặt tích hợp nền tảng phía sau interface/adapter. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc ứng dụng Mobile có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Camera adapter được inject, feature không import plugin camera trực tiếp. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "must",
       "example_good": "Camera adapter được inject, feature không import plugin camera trực tiếp. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Đặt tích hợp nền tảng phía sau interface/adapter' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: camera adapter được inject, feature không import plugin camera trực tiếp.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Tách trách nhiệm presentation, application state và domain/data",
       "detail": "Yêu cầu: Tách trách nhiệm presentation, application state và domain/data. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc ứng dụng Mobile có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Bloc điều phối UI state; repository đóng gói API và local persistence. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "must",
       "example_good": "Bloc điều phối UI state; repository đóng gói API và local persistence. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Tách trách nhiệm presentation, application state và domain/data' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: bloc điều phối UI state; repository đóng gói API và local persistence.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Thiết kế hành vi suy giảm chức năng khi mất mạng hoặc tiến trình ứng dụng bị kết thúc",
       "detail": "Yêu cầu: Thiết kế hành vi suy giảm chức năng khi mất mạng hoặc tiến trình ứng dụng bị kết thúc. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc ứng dụng Mobile có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: App bị kill giữa upload khôi phục draft nhưng không gửi lại giao dịch không idempotent. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "should",
       "example_good": "App bị kill giữa upload khôi phục draft nhưng không gửi lại giao dịch không idempotent. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Thiết kế hành vi suy giảm chức năng khi mất mạng hoặc tiến trình ứng dụng bị kết thúc' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: app bị kill giữa upload khôi phục draft nhưng không gửi lại giao dịch không idempotent.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Xác định rõ khác biệt capability giữa iOS và Android",
       "detail": "Yêu cầu: Xác định rõ khác biệt capability giữa iOS và Android. Phạm vi áp dụng: các thay đổi thuộc Kiến trúc ứng dụng Mobile có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: iOS/Android capability matrix nêu permission và fallback khác biệt. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "should",
       "example_good": "iOS/Android capability matrix nêu permission và fallback khác biệt. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Xác định rõ khác biệt capability giữa iOS và Android' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: iOS/Android capability matrix nêu permission và fallback khác biệt.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "authorization"
+      ]
     }
   ],
   "integration_guide": [

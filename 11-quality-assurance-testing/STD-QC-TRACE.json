@@ -10,38 +10,55 @@
     {
       "title": "Mỗi testcase liên kết tới requirement, AC hoặc rủi ro mà nó kiểm chứng",
       "detail": "Mỗi testcase liên kết tới requirement, AC hoặc rủi ro mà nó kiểm chứng. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
-      "layer": "process",
+      "layer": "quality",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Mỗi testcase liên kết tới requirement, AC hoặc rủi ro mà nó kiểm chứng.",
       "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Mỗi testcase liên kết tới requirement, AC hoặc rủi ro mà nó kiểm chứng.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "documentation",
+        "testing"
+      ]
     },
     {
       "title": "Ghi nhận trạng thái coverage theo AC, phân biệt chưa thiết kế và chưa thực thi",
       "detail": "Ghi nhận trạng thái coverage theo AC, phân biệt chưa thiết kế và chưa thực thi. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
-      "layer": "process",
+      "layer": "quality",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Ghi nhận trạng thái coverage theo AC, phân biệt chưa thiết kế và chưa thực thi.",
       "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Ghi nhận trạng thái coverage theo AC, phân biệt chưa thiết kế và chưa thực thi.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "documentation",
+        "testing"
+      ]
     },
     {
       "title": "Theo dõi tác động thay đổi requirement tới testcase và bộ regression",
       "detail": "Theo dõi tác động thay đổi requirement tới testcase và bộ regression. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
-      "layer": "process",
+      "layer": "quality",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Theo dõi tác động thay đổi requirement tới testcase và bộ regression.",
       "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Theo dõi tác động thay đổi requirement tới testcase và bộ regression.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "documentation",
+        "networking",
+        "testing"
+      ]
     },
     {
       "title": "Báo cáo khoảng trống coverage và ngoại lệ được phê duyệt",
       "detail": "Báo cáo khoảng trống coverage và ngoại lệ được phê duyệt. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
-      "layer": "process",
+      "layer": "quality",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Báo cáo khoảng trống coverage và ngoại lệ được phê duyệt.",
       "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Báo cáo khoảng trống coverage và ngoại lệ được phê duyệt.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "documentation",
+        "testing"
+      ]
     }
   ],
   "depends_on": [

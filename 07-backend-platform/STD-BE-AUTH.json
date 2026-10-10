@@ -10,84 +10,114 @@
     {
       "title": "Xác thực access token/session theo issuer và audience",
       "detail": "Mỗi request xác thực chữ ký, thuật toán allowlist, issuer, audience, nbf, exp và clock skew nhỏ được cấu hình; không tin claim chưa xác minh.",
-      "layer": "security",
+      "layer": "api",
       "severity": "must",
       "example_good": "JWT bearer middleware từ chối token sai aud và hết hạn.",
       "example_bad": "Chỉ decode base64 JWT rồi tin role claim.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "authentication",
+        "security"
+      ]
     },
     {
       "title": "Ủy quyền trên resource và tenant",
       "detail": "Kiểm tra permission + owner/tenant trong service/query, mặc định từ chối; route guard client không thay thế kiểm tra này.",
-      "layer": "security",
+      "layer": "service",
       "severity": "should",
       "example_good": "GET /documents/{id} buộc tenantId từ principal trùng bản ghi.",
       "example_bad": "Bất kỳ user login đều đọc được document ID khác.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "authentication",
+        "authorization",
+        "security"
+      ]
     },
     {
       "title": "Lưu mật khẩu bằng KDF chuyên dụng",
       "detail": "Với mật khẩu nội bộ dùng Argon2id hoặc lựa chọn KDF được phê duyệt, salt riêng, tham số cost phù hợp và chính sách rehash; không dùng MD5/SHA256 đơn thuần.",
-      "layer": "process",
+      "layer": "service",
       "severity": "should",
       "example_good": "PasswordHash được tạo bằng Argon2id và nâng tham số khi login.",
       "example_bad": "SHA256(password) lưu vào DB.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "authentication",
+        "cost"
+      ]
     },
     {
       "id": "R004",
-      "layer": [
-        "security"
-      ],
+      "layer": "api",
       "severity": "must",
       "title": "Giới hạn đăng nhập và tránh enumeration",
       "detail": "Rate limit theo nhiều chiều, backoff/lockout cân bằng chống DoS; response quên mật khẩu không tiết lộ tài khoản tồn tại; log sự kiện rủi ro.",
       "example_good": "Reset password luôn trả phản hồi chung, email chỉ gửi nếu tồn tại.",
-      "example_bad": "Trả “email không đăng ký” tại API reset."
+      "example_bad": "Trả “email không đăng ký” tại API reset.",
+      "concerns": [
+        "authentication",
+        "observability",
+        "reliability",
+        "security"
+      ]
     },
     {
       "id": "R005",
-      "layer": [
-        "security"
-      ],
+      "layer": "service",
       "severity": "must",
       "title": "Quản lý refresh/session và thu hồi",
       "detail": "Refresh token cần random mạnh, lưu hash tại server khi dùng opaque token, có rotation/reuse detection theo kiến trúc; logout/revoke phải vô hiệu hóa refresh; kiểm thử concurrent refresh.",
       "example_good": "Refresh lần 2 bằng token cũ bị từ chối và được ghi nhận.",
-      "example_bad": "Refresh token không hạn dùng và không thể thu hồi."
+      "example_bad": "Refresh token không hạn dùng và không thể thu hồi.",
+      "concerns": [
+        "authentication",
+        "observability",
+        "security"
+      ]
     },
     {
       "id": "R006",
-      "layer": [
-        "security"
-      ],
+      "layer": "service",
       "severity": "should",
       "title": "Áp dụng MFA cho hành động nhạy cảm",
       "detail": "Với thao tác tăng quyền, đổi phương thức xác thực hoặc thanh toán rủi ro cao, xác thực bổ sung theo risk model; OTP có TTL, one-time và rate limit.",
       "example_good": "Đổi email yêu cầu step-up, mã OTP chỉ dùng một lần.",
-      "example_bad": "OTP 6 số dùng lại vô hạn trong ngày."
+      "example_bad": "OTP 6 số dùng lại vô hạn trong ngày.",
+      "concerns": [
+        "authentication",
+        "security"
+      ]
     },
     {
       "id": "R007",
-      "layer": [
-        "security"
-      ],
+      "layer": "api",
       "severity": "should",
       "title": "Không trả credential/secret trong lỗi và log",
       "detail": "Response auth dùng code ổn định; không ghi password, OTP, token; audit đăng nhập/thu hồi với thời điểm, actor và requestId.",
       "example_good": "Auth log chứa outcome và userId giả danh, không có Authorization header.",
-      "example_bad": "Log toàn bộ request body đăng nhập."
+      "example_bad": "Log toàn bộ request body đăng nhập.",
+      "concerns": [
+        "authentication",
+        "compliance",
+        "observability",
+        "security"
+      ]
     },
     {
       "id": "R008",
-      "layer": [
-        "security"
-      ],
+      "layer": "service",
       "severity": "should",
       "title": "Ma trận kiểm thử auth/permission",
       "detail": "Test invalid signature, wrong aud, expired, revoked, concurrent refresh, tenant mismatch và privilege escalation ở boundary server.",
       "example_good": "Contract test user thường POST /admin/roles nhận 403.",
-      "example_bad": "Chỉ test login đúng mật khẩu."
+      "example_bad": "Chỉ test login đúng mật khẩu.",
+      "concerns": [
+        "authentication",
+        "authorization",
+        "security",
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

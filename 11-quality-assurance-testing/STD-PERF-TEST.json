@@ -10,35 +10,41 @@
     {
       "title": "Viết workload theo hành vi sử dụng thực tế",
       "detail": "Mỗi kịch bản ghi tỉ lệ endpoints, concurrency/arrival rate, dataset, môi trường, warm-up và thời lượng; phân biệt load/stress/soak/spike.",
-      "layer": [
-        "process"
-      ],
+      "layer": "quality",
       "severity": "must",
       "example_good": "200 user, 70% search 20% detail 10% checkout trong 30 phút.",
       "example_bad": "Chỉ bắn 100 request login và gọi là test tải.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "performance",
+        "testing"
+      ]
     },
     {
       "title": "Thiết lập acceptance threshold rõ",
       "detail": "Định p95/p99 latency, error rate, throughput và resource saturation theo SLO của dịch vụ trước khi chạy; báo pass/fail tự động.",
-      "layer": [
-        "process"
-      ],
+      "layer": "quality",
       "severity": "must",
       "example_good": "p95 checkout < 800ms; error < 0.5% tại 100 RPS.",
       "example_bad": "Báo nhanh vì average dưới 1 giây dù p99 là 20s.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "performance",
+        "testing"
+      ]
     },
     {
       "title": "Theo dõi server và DB khi chạy",
       "detail": "Thu CPU, memory, GC, DB lock/slow query, connection pool, queue lag và trace theo thời gian load test để tìm điểm nghẽn.",
-      "layer": [
-        "process"
-      ],
+      "layer": "quality",
       "severity": "must",
       "example_good": "Report nối biểu đồ p99 tăng với DB pool saturation.",
       "example_bad": "Chỉ xuất thống kê client-side request.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "performance",
+        "testing"
+      ]
     },
     {
       "id": "R004",
@@ -46,10 +52,13 @@
       "detail": "Stress đến knee-point, kiểm throttling/backpressure/429, giảm tải và xác minh service phục hồi, không mất dữ liệu.",
       "example_good": "Khi 300 RPS trả 429 có kiểm soát, phục hồi sau 5 phút.",
       "example_bad": "Hệ thống treo vô hạn và không đo recovery.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "quality",
+      "severity": "should",
+      "concerns": [
+        "performance",
+        "resilience",
+        "testing"
+      ]
     },
     {
       "id": "R005",
@@ -57,10 +66,13 @@
       "detail": "Chạy nhiều lần, kiểm network/generator không nghẽn, tạo dữ liệu độc lập và loại warm-up khỏi thống kê; lưu config/script/raw results.",
       "example_good": "Report ghi hash commit, k6 script, dataset và 3 runs.",
       "example_bad": "Kết luận từ một run trên laptop đang chạy tác vụ khác.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "quality",
+      "severity": "should",
+      "concerns": [
+        "networking",
+        "performance",
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

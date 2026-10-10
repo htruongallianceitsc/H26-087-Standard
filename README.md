@@ -58,3 +58,9 @@ Mỗi rule khi nâng cấp nên có nội dung kiểm chứng được, ví dụ
 ## Tài liệu lịch sử
 
 Các review/changelog cũ được chuyển vào `docs/history/`; hướng dẫn schema nằm trong `docs/guides/`. Những tài liệu này không phải nguồn sự thật về số lượng standard hiện tại.
+
+## Wave 5: Layer & concern taxonomy
+
+Trường `layer` nay mô tả **tầng chịu trách nhiệm thực thi**; trường tùy chọn `concerns` mô tả **chủ đề kiểm soát**. Ví dụ một quy tắc phân quyền ở API dùng `layer: "api"`, `concerns: ["security", "authorization"]`. Chi tiết enum, ví dụ, giới hạn tương thích và cách lọc ở [`docs/guides/RULE-TAXONOMY.md`](docs/guides/RULE-TAXONOMY.md).
+
+**Lưu ý migration:** Schema vẫn có `schemaVersion=2` nhưng đã mở rộng tập enum; importer v2 hardcode giá trị cũ cần cập nhật trước khi đọc bản này. Với importer v1, dùng `export-v1` và chấp nhận taxonomy bị thu hẹp khi xuất.

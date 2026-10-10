@@ -10,38 +10,53 @@
     {
       "title": "Chỉ sử dụng service worker cho các kịch bản cache/offline được xác định rõ",
       "detail": "Yêu cầu: Chỉ sử dụng service worker cho các kịch bản cache/offline được xác định rõ. Phạm vi áp dụng: các thay đổi thuộc Progressive Web App (PWA) có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Service worker chỉ cache asset hash; API session dùng network-only. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "must",
       "example_good": "Service worker chỉ cache asset hash; API session dùng network-only. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Chỉ sử dụng service worker cho các kịch bản cache/offline được xác định rõ' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: service worker chỉ cache asset hash; API session dùng network-only.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "networking",
+        "resilience"
+      ]
     },
     {
       "title": "Đánh version cho cache entry và tránh cache response riêng tư một cách tùy tiện",
       "detail": "Yêu cầu: Đánh version cho cache entry và tránh cache response riêng tư một cách tùy tiện. Phạm vi áp dụng: các thay đổi thuộc Progressive Web App (PWA) có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Cache name gồm build version và không lưu /api/account/profile. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "must",
       "example_good": "Cache name gồm build version và không lưu /api/account/profile. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Đánh version cho cache entry và tránh cache response riêng tư một cách tùy tiện' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: cache name gồm build version và không lưu /api/account/profile.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "compatibility",
+        "privacy"
+      ]
     },
     {
       "title": "Cung cấp fallback hợp lý khi push, install prompt hoặc offline API không được hỗ trợ",
       "detail": "Yêu cầu: Cung cấp fallback hợp lý khi push, install prompt hoặc offline API không được hỗ trợ. Phạm vi áp dụng: các thay đổi thuộc Progressive Web App (PWA) có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Khi push không được hỗ trợ, UI cho phép xem notification inbox. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "should",
       "example_good": "Khi push không được hỗ trợ, UI cho phép xem notification inbox. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Cung cấp fallback hợp lý khi push, install prompt hoặc offline API không được hỗ trợ' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: khi push không được hỗ trợ, UI cho phép xem notification inbox.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "resilience"
+      ]
     },
     {
       "title": "Kiểm thử update, asset cũ và thay đổi session xuyên suốt vòng đời PWA",
       "detail": "Yêu cầu: Kiểm thử update, asset cũ và thay đổi session xuyên suốt vòng đời PWA. Phạm vi áp dụng: các thay đổi thuộc Progressive Web App (PWA) có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Test update từ build A sang B không kẹt JS cũ hoặc session logout. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "should",
       "example_good": "Test update từ build A sang B không kẹt JS cũ hoặc session logout. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Kiểm thử update, asset cũ và thay đổi session xuyên suốt vòng đời PWA' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: test update từ build A sang B không kẹt JS cũ hoặc session logout.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "observability",
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

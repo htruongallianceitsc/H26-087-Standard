@@ -10,38 +10,56 @@
     {
       "title": "Liệt kê input không hợp lệ, giới hạn độ dài, định dạng và giá trị không cho phép",
       "detail": "Liệt kê input không hợp lệ, giới hạn độ dài, định dạng và giá trị không cho phép. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
-      "layer": "process",
+      "layer": "quality",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Liệt kê input không hợp lệ, giới hạn độ dài, định dạng và giá trị không cho phép.",
       "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Liệt kê input không hợp lệ, giới hạn độ dài, định dạng và giá trị không cho phép.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "documentation",
+        "performance",
+        "testing"
+      ]
     },
     {
       "title": "Kiểm tra quyền truy cập sai, phiên hết hạn, lỗi mạng và timeout",
       "detail": "Kiểm tra quyền truy cập sai, phiên hết hạn, lỗi mạng và timeout. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
-      "layer": "process",
+      "layer": "quality",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Kiểm tra quyền truy cập sai, phiên hết hạn, lỗi mạng và timeout.",
       "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra quyền truy cập sai, phiên hết hạn, lỗi mạng và timeout.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "documentation",
+        "reliability",
+        "testing"
+      ]
     },
     {
       "title": "Đối chiếu kết quả lỗi với hợp đồng API và thông báo thân thiện cho người dùng",
       "detail": "Đối chiếu kết quả lỗi với hợp đồng API và thông báo thân thiện cho người dùng. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
-      "layer": "process",
+      "layer": "quality",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Đối chiếu kết quả lỗi với hợp đồng API và thông báo thân thiện cho người dùng.",
       "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Đối chiếu kết quả lỗi với hợp đồng API và thông báo thân thiện cho người dùng.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "documentation",
+        "testing"
+      ]
     },
     {
       "title": "Không chỉ xác minh lỗi được hiển thị mà còn xác minh dữ liệu không bị ghi sai",
       "detail": "Không chỉ xác minh lỗi được hiển thị mà còn xác minh dữ liệu không bị ghi sai. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
-      "layer": "process",
+      "layer": "quality",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Không chỉ xác minh lỗi được hiển thị mà còn xác minh dữ liệu không bị ghi sai.",
       "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Không chỉ xác minh lỗi được hiển thị mà còn xác minh dữ liệu không bị ghi sai.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "documentation",
+        "testing"
+      ]
     }
   ],
   "depends_on": [

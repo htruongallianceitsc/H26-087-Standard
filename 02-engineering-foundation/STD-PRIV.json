@@ -10,84 +10,115 @@
     {
       "title": "Lập bản đồ PII và mục đích xử lý",
       "detail": "Với mỗi loại dữ liệu cá nhân, ghi nguồn thu thập, mục đích, căn cứ xử lý, đối tượng truy cập, nơi lưu và thời hạn xóa; review trước khi thêm field PII.",
-      "layer": "security",
+      "layer": "data",
       "severity": "must",
       "example_good": "Data inventory ghi phone dùng OTP, retention 90 ngày đối với log xác minh theo chính sách.",
       "example_bad": "Thu thập ngày sinh không có mục đích sử dụng.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "privacy",
+        "security"
+      ]
     },
     {
       "title": "Tối thiểu hóa dữ liệu thu thập và chia sẻ",
       "detail": "Chỉ yêu cầu trường phục vụ chức năng đã phê duyệt; API response, analytics, log và event không chứa PII không cần thiết; có test kiểm tra field nhạy cảm.",
-      "layer": "security",
+      "layer": "data",
       "severity": "should",
       "example_good": "Event purchase_completed dùng orderId giả danh và tổng tiền, không có số điện thoại.",
       "example_bad": "Gửi toàn bộ user profile cho SDK analytics.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "observability",
+        "privacy",
+        "security"
+      ]
     },
     {
       "title": "Thực thi vòng đời lưu giữ và xóa",
       "detail": "Định nghĩa retention cho DB, object storage, cache, log, backup; job xóa/ẩn danh có lịch và giám sát; yêu cầu xóa phải có trạng thái và ngoại lệ nghĩa vụ lưu giữ rõ ràng.",
-      "layer": "process",
+      "layer": "architecture",
       "severity": "should",
       "example_good": "Xóa tài khoản vô hiệu session và đưa dữ liệu sang hàng đợi xóa theo retention policy.",
       "example_bad": "Xóa UI account nhưng PII trong bảng phụ lưu vô hạn.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "observability",
+        "privacy",
+        "resilience"
+      ]
     },
     {
       "id": "R004",
-      "layer": [
-        "security"
-      ],
+      "layer": "data",
       "severity": "must",
       "title": "Kiểm soát truy cập PII theo mục đích",
       "detail": "Chỉ role được phép xem dữ liệu tối thiểu; quyền export dữ liệu phải tách riêng và được audit; thử truy cập chéo tài khoản phải thất bại.",
       "example_good": "Support chỉ xem số điện thoại đã che, export cần quyền riêng.",
-      "example_bad": "Mọi nhân viên có thể tải CSV đầy đủ số định danh."
+      "example_bad": "Mọi nhân viên có thể tải CSV đầy đủ số định danh.",
+      "concerns": [
+        "authorization",
+        "compliance",
+        "privacy",
+        "security"
+      ]
     },
     {
       "id": "R005",
-      "layer": [
-        "security"
-      ],
+      "layer": "data",
       "severity": "must",
       "title": "Ẩn PII trong log và môi trường thử nghiệm",
       "detail": "Mask/hash theo mục đích; log không giữ OTP, token, mật khẩu, tài liệu ID; môi trường staging dùng dữ liệu tổng hợp hoặc ẩn danh; test log sanitizer.",
       "example_good": "Log userId nội bộ và requestId, ẩn header Authorization.",
-      "example_bad": "Sao chép database production nguyên PII sang máy dev."
+      "example_bad": "Sao chép database production nguyên PII sang máy dev.",
+      "concerns": [
+        "authentication",
+        "documentation",
+        "observability",
+        "privacy",
+        "security"
+      ]
     },
     {
       "id": "R006",
-      "layer": [
-        "security"
-      ],
+      "layer": "architecture",
       "severity": "should",
       "title": "Minh bạch và lựa chọn người dùng",
       "detail": "Thông báo rõ mục đích, bên nhận, retention, quyền người dùng trước khi thu thập; lựa chọn tùy chọn marketing/analytics không được ngầm bật khi cần consent.",
       "example_good": "Toggle marketing mặc định tắt khi chính sách yêu cầu opt-in.",
-      "example_bad": "Gộp chấp thuận marketing vào nút đăng nhập bắt buộc."
+      "example_bad": "Gộp chấp thuận marketing vào nút đăng nhập bắt buộc.",
+      "concerns": [
+        "privacy",
+        "security"
+      ]
     },
     {
       "id": "R007",
-      "layer": [
-        "security"
-      ],
+      "layer": "data",
       "severity": "should",
       "title": "Đánh giá bên thứ ba và chuyển dữ liệu",
       "detail": "Duyệt SDK/processor nhận PII, cấu hình vùng lưu trữ, thời hạn, mục đích và phương thức xóa; kiểm chứng payload gửi thực tế qua proxy/log kiểm thử.",
       "example_good": "Checklist SDK phân loại event và tắt gửi advertising ID khi không cần.",
-      "example_bad": "Thêm SDK mới tự gửi contact list mà không review."
+      "example_bad": "Thêm SDK mới tự gửi contact list mà không review.",
+      "concerns": [
+        "observability",
+        "privacy",
+        "security"
+      ]
     },
     {
       "id": "R008",
-      "layer": [
-        "security"
-      ],
+      "layer": "data",
       "severity": "should",
       "title": "Xử lý sự cố và yêu cầu chủ thể dữ liệu",
       "detail": "Có quy trình tiếp nhận yêu cầu truy cập/sửa/xóa và incident privacy, phân công owner, thời hạn theo luật áp dụng; diễn tập truy xuất bản ghi và audit.",
       "example_good": "Ticket yêu cầu xóa có người xử lý, evidence và trạng thái hoàn thành.",
-      "example_bad": "Không có cách tra cứu dữ liệu đã chuyển cho nhà cung cấp."
+      "example_bad": "Không có cách tra cứu dữ liệu đã chuyển cho nhà cung cấp.",
+      "concerns": [
+        "compliance",
+        "privacy",
+        "security"
+      ]
     }
   ],
   "integration_guide": [

@@ -14,7 +14,10 @@
       "severity": "must",
       "example_good": "Trừ tồn kho và tạo reservation trong transaction có row lock.",
       "example_bad": "Commit order nhưng lỗi ghi order detail.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "data-integrity"
+      ]
     },
     {
       "title": "Không giữ transaction qua network I/O",
@@ -23,7 +26,13 @@
       "severity": "must",
       "example_good": "Ghi business row+outbox rồi worker gọi service khác.",
       "example_bad": "Mở transaction rồi gọi gateway chờ 30 giây.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "automation",
+        "data-integrity",
+        "networking",
+        "reliability"
+      ]
     },
     {
       "title": "Xử lý deadlock và serialization",
@@ -32,7 +41,10 @@
       "severity": "should",
       "example_good": "Serializable conflict retry tối đa 3 lần với unique key.",
       "example_bad": "Catch mọi lỗi DB và retry vô hạn.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Kiểm tra rollback qua fault injection",
@@ -41,7 +53,10 @@
       "severity": "should",
       "example_good": "Lỗi ở bước 2 => số dư và ledger không đổi.",
       "example_bad": "Chỉ test transaction ở happy path.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "data-integrity"
+      ]
     }
   ],
   "integration_guide": [

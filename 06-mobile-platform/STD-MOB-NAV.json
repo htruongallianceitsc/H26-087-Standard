@@ -10,38 +10,50 @@
     {
       "title": "Xác định route argument có kiểu dữ liệu và guard cho xác thực/điều hướng",
       "detail": "Yêu cầu: Xác định route argument có kiểu dữ liệu và guard cho xác thực/điều hướng. Phạm vi áp dụng: các thay đổi thuộc Điều hướng, Routing & Deep Linking có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: GoRouter route /orders/:id parse UUID và auth guard giữ returnTo an toàn. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "must",
       "example_good": "GoRouter route /orders/:id parse UUID và auth guard giữ returnTo an toàn. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Xác định route argument có kiểu dữ liệu và guard cho xác thực/điều hướng' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: goRouter route /orders/:id parse UUID và auth guard giữ returnTo an toàn.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Hỗ trợ initial link, link khi app resume và destination không hợp lệ/hết hạn",
       "detail": "Yêu cầu: Hỗ trợ initial link, link khi app resume và destination không hợp lệ/hết hạn. Phạm vi áp dụng: các thay đổi thuộc Điều hướng, Routing & Deep Linking có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Cold start link và onResume link đều route vào order hoặc trang expired. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "must",
       "example_good": "Cold start link và onResume link đều route vào order hoặc trang expired. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Hỗ trợ initial link, link khi app resume và destination không hợp lệ/hết hạn' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: cold start link và onResume link đều route vào order hoặc trang expired.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Xác minh Android App Links và iOS Universal Links bằng file association của domain",
       "detail": "Yêu cầu: Xác minh Android App Links và iOS Universal Links bằng file association của domain. Phạm vi áp dụng: các thay đổi thuộc Điều hướng, Routing & Deep Linking có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: AASA và assetlinks.json xác nhận domain association trên thiết bị thật. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "should",
       "example_good": "AASA và assetlinks.json xác nhận domain association trên thiết bị thật. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Xác minh Android App Links và iOS Universal Links bằng file association của domain' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: aASA và assetlinks.json xác nhận domain association trên thiết bị thật.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Ngăn điều hướng trùng do các callback notification/link cạnh tranh nhau",
       "detail": "Yêu cầu: Ngăn điều hướng trùng do các callback notification/link cạnh tranh nhau. Phạm vi áp dụng: các thay đổi thuộc Điều hướng, Routing & Deep Linking có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Dedup notificationId ngăn mở hai màn hình order khi callback đến đôi. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "mobile",
       "severity": "should",
       "example_good": "Dedup notificationId ngăn mở hai màn hình order khi callback đến đôi. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Ngăn điều hướng trùng do các callback notification/link cạnh tranh nhau' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: dedup notificationId ngăn mở hai màn hình order khi callback đến đôi.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [

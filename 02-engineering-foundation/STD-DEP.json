@@ -10,35 +10,41 @@
     {
       "title": "Khóa và kiểm soát nguồn package",
       "detail": "Commit lockfile và chỉ dùng registry được phê duyệt; CI install dạng reproducible; chặn direct install từ nguồn không xác định.",
-      "layer": [
-        "process"
-      ],
+      "layer": "architecture",
       "severity": "must",
       "example_good": "npm ci với lockfile và registry công ty.",
       "example_bad": "npm install từ gist không pin commit.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "maintainability"
+      ]
     },
     {
       "title": "Quét lỗ hổng theo mức rủi ro",
       "detail": "Chạy SCA cho direct/transitive dependency; phân loại exploitable exposure, owner và SLA xử lý theo policy; lưu waiver có expiry.",
-      "layer": [
-        "process"
-      ],
+      "layer": "architecture",
       "severity": "must",
       "example_good": "PR nâng library CVE high ảnh hưởng API public và bổ sung test regression.",
       "example_bad": "Bỏ qua audit cảnh báo high vĩnh viễn.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "compliance",
+        "maintainability"
+      ]
     },
     {
       "title": "Tồn kho giấy phép và thành phần",
       "detail": "Xuất SBOM/lock dependency cho release, review license incompatible và nghĩa vụ notice; đính kèm artifact khi yêu cầu.",
-      "layer": [
-        "process"
-      ],
+      "layer": "delivery",
       "severity": "must",
       "example_good": "SBOM CycloneDX kèm bản release container.",
       "example_bad": "Nhập package GPL không kiểm tra nghĩa vụ.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "compatibility",
+        "maintainability",
+        "release"
+      ]
     },
     {
       "id": "R004",
@@ -46,10 +52,13 @@
       "detail": "Theo dõi EOL, maintenance, changelog, breaking version; upgrade theo batch nhỏ với integration tests.",
       "example_good": "Lịch review tháng dependency hết hỗ trợ và canary.",
       "example_bad": "Giữ phiên bản package EOL không có kế hoạch.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "architecture",
+      "severity": "should",
+      "concerns": [
+        "compatibility",
+        "maintainability",
+        "observability"
+      ]
     },
     {
       "id": "R005",
@@ -57,10 +66,13 @@
       "detail": "Namespace/package source precedence rõ, kiểm integrity/signature khi hỗ trợ, không cho public registry shadow tên package nội bộ.",
       "example_good": "Private scope chỉ resolve từ private registry.",
       "example_bad": "Package nội bộ có thể bị thay bằng package public trùng tên.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "delivery",
+      "severity": "should",
+      "concerns": [
+        "automation",
+        "maintainability",
+        "security"
+      ]
     }
   ],
   "integration_guide": [

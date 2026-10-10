@@ -10,35 +10,42 @@
     {
       "title": "Thiết kế event schema và định nghĩa metric",
       "detail": "Event có tên ổn định, thời điểm UTC, actor giả danh, schema version và property với kiểu dữ liệu rõ; tránh đổi nghĩa của event.",
-      "layer": [
-        "process"
-      ],
+      "layer": "data",
       "severity": "must",
       "example_good": "purchase_completed có order_id, value, currency với type cố định.",
       "example_bad": "purchase_completed khi click nút dù thanh toán chưa thành công.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "compatibility",
+        "observability"
+      ]
     },
     {
       "title": "Không gửi token hoặc PII không cần thiết",
       "detail": "Allowlist payload trước khi gửi analytics; filter URL/query và log; kiểm tra dữ liệu trên network ở môi trường test.",
-      "layer": [
-        "process"
-      ],
+      "layer": "data",
       "severity": "must",
       "example_good": "Event sign_in_failed chỉ gửi error_category, không có password/OTP.",
       "example_bad": "Gửi request body đăng nhập đến SDK analytics.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "networking",
+        "observability",
+        "privacy",
+        "security"
+      ]
     },
     {
       "title": "Tôn trọng consent và cấu hình khu vực",
       "detail": "Không kích hoạt tracking cần đồng ý trước consent theo chính sách áp dụng; revoke phải có hiệu lực cho SDK; ghi quyết định.",
-      "layer": [
-        "process"
-      ],
+      "layer": "architecture",
       "severity": "must",
       "example_good": "SDK marketing khởi tạo sau consent và disable khi rút đồng ý.",
       "example_bad": "Chạy auto-capture ngay khi người dùng mở app bất kể lựa chọn.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "privacy"
+      ]
     },
     {
       "id": "R004",
@@ -46,10 +53,11 @@
       "detail": "Dùng event_id và định nghĩa điểm phát event theo lifecycle; downstream deduplicate theo event ID hoặc business key.",
       "example_good": "Đơn hàng thanh toán xong phát purchase_completed một lần theo orderId.",
       "example_bad": "React rerender gửi thêm 3 purchase events.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "architecture",
+      "severity": "should",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "id": "R005",
@@ -57,10 +65,11 @@
       "detail": "Đối soát số lượng event với nguồn giao dịch, test required property và cảnh báo spike/drop/missing; có owner dashboard.",
       "example_good": "CI fail nếu thiếu currency trong purchase_completed, reconcile ngày.",
       "example_bad": "Số order giảm 70% mà không có cảnh báo lỗi tracking.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "data",
+      "severity": "should",
+      "concerns": [
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

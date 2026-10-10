@@ -107,6 +107,15 @@ def check(content_strict=False):
         m=content_metrics(records)
         for k,v in m.items():
             if v: errors.append(f'content:{k}={v}')
+    # Semantic taxonomy checks beyond JSON Schema: avoid all-purpose or contradictory tags.
+    for _,d in records:
+        for rule in d.get('rules',[]):
+            layers=rule.get('layer',[])
+            layers=layers if isinstance(layers,list) else [layers]
+            key=f"{d.get('code')}#{rule.get('id')}"
+            if len(layers)>2: errors.append(f'{key}: quá nhiều layer; cân nhắc tách rule')
+            if not rule.get('concerns'): errors.append(f'{key}: concerns must contain at least one topic')
+            if len(rule.get('concerns',[]))>8: errors.append(f'{key}: concerns quá rộng; cần xem lại phân loại')
     unique_rules=len(refs)
     print(f'Validated standards: {len(docs)}; Files: {len(records)}; Rules: {unique_rules}; errors: {len(errors)}')
     for e in errors[:200]: print('ERROR:',e)
@@ -179,7 +188,17 @@ def export_v1(out):
     for p,d in records:
         d=json.loads(json.dumps(d)); d['schemaVersion']=1
         d.pop('applicability',None); d.pop('dependency_policy',None)
-        for rule in d.get('rules',[]): rule.pop('id',None); rule.pop('traceability',None)
+        for rule in d.get('rules',[]):
+            rule.pop('id',None); rule.pop('traceability',None); rule.pop('concerns',None)
+            # Legacy importer supports only ui/api/db/process/security.
+            layer=rule.get('layer', 'process')
+            layers=layer if isinstance(layer,list) else [layer]
+            legacy={'ui':'ui','client':'ui','mobile':'ui','design':'ui',
+                'api':'api','integration':'api','service':'api','db':'db','data':'db',
+                'governance':'process','requirements':'process','architecture':'process',
+                'infrastructure':'process','delivery':'process','operations':'process','quality':'process'}
+            translated=list(dict.fromkeys(legacy.get(x,'process') for x in layers))
+            rule['layer']=translated[0] if len(translated)==1 else translated
         jsonschema.validate(d,schema)
         target=out/p.relative_to(ROOT); target.parent.mkdir(parents=True,exist_ok=True)
         target.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

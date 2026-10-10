@@ -10,94 +10,120 @@
     {
       "title": "Quy định hành vi login, logout, token/session hết hạn và phục hồi",
       "detail": "Login/logout/refresh/expired/revoked phải có state transition nhất quán giữa API/web/mobile; test mỗi trạng thái không hiển thị dữ liệu cũ.",
-      "layer": [
-        "process",
-        "api"
-      ],
+      "layer": "api",
       "severity": "must",
       "example_good": "Token revoked khiến API trả 401, client xóa dữ liệu tài khoản cũ.",
       "example_bad": "UI tiếp tục hiện dữ liệu profile từ cache khi logout.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "authentication",
+        "observability",
+        "resilience",
+        "security"
+      ]
     },
     {
       "title": "Áp dụng rate limit và thông báo lỗi chung để chống dò tìm credential",
       "detail": "Áp rate limit đăng nhập/quên mật khẩu theo IP/account, thông báo trung tính, audit và cơ chế khôi phục; kiểm thử 429 và reset khi phù hợp.",
-      "layer": [
-        "process",
-        "api"
-      ],
+      "layer": "api",
       "severity": "must",
       "example_good": "Login sai nhiều lần kích hoạt throttle nhưng không tiết lộ email tồn tại.",
       "example_bad": "Endpoint trả “không tìm thấy tài khoản” cho mọi lần nhập sai.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "authentication",
+        "compliance",
+        "security"
+      ]
     },
     {
       "title": "Kiểm thử credential không hợp lệ, tài khoản bị khóa, session hết hạn và request đồng thời",
       "detail": "Test login fail, revoked, refresh lỗi, concurrent refresh, logout ở thiết bị khác và mạng mất kết nối; kết quả có evidence lặp lại.",
-      "layer": [
-        "process",
-        "api"
-      ],
+      "layer": "api",
       "severity": "should",
       "example_good": "Hai request refresh đồng thời chỉ giữ một phiên active hợp lệ.",
       "example_bad": "Refresh race tạo hai session kéo dài không thu hồi được.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "authentication",
+        "observability",
+        "security",
+        "testing"
+      ]
     },
     {
       "title": "Tách điều hướng phía client khỏi quyết định xác thực có thẩm quyền ở server",
       "detail": "UI route guard chỉ xử lý trải nghiệm; API luôn xác thực và phân quyền; response 401/403 có hành vi client tách biệt.",
-      "layer": [
-        "process",
-        "api"
-      ],
+      "layer": "api",
       "severity": "should",
       "example_good": "User gõ URL admin: UI chặn và API vẫn 403.",
       "example_bad": "Bỏ route guard là gọi API quản trị được.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "authentication",
+        "authorization",
+        "security",
+        "usability"
+      ]
     },
     {
       "id": "R005",
-      "layer": [
-        "security"
-      ],
+      "layer": "service",
       "severity": "must",
       "title": "Đăng ký và xác minh danh tính theo chính sách",
       "detail": "OTP/email/phone verification có TTL, single-use, rate limit, không cho reuse sau success; credential không xuất hiện trong log.",
       "example_good": "Mã OTP hết hạn sau TTL cấu hình và bị vô hiệu ngay khi xác nhận.",
-      "example_bad": "Một OTP đúng dùng lại nhiều lần để tạo tài khoản."
+      "example_bad": "Một OTP đúng dùng lại nhiều lần để tạo tài khoản.",
+      "concerns": [
+        "authentication",
+        "observability",
+        "security"
+      ]
     },
     {
       "id": "R006",
-      "layer": [
-        "security"
-      ],
+      "layer": "service",
       "severity": "should",
       "title": "Quản lý thiết bị, logout và revoke",
       "detail": "Session record có device/issued/expiry theo privacy policy; logout/revoke kích hoạt invalidate refresh và clear cache; cho phép thu hồi thiết bị từ xa nếu feature yêu cầu.",
       "example_good": "Logout all devices xóa refresh session server và cache app.",
-      "example_bad": "Xóa token local nhưng refresh cũ vẫn dùng được."
+      "example_bad": "Xóa token local nhưng refresh cũ vẫn dùng được.",
+      "concerns": [
+        "authentication",
+        "compliance",
+        "observability",
+        "privacy",
+        "security"
+      ]
     },
     {
       "id": "R007",
-      "layer": [
-        "security"
-      ],
+      "layer": "service",
       "severity": "should",
       "title": "Bảo vệ luồng khôi phục tài khoản",
       "detail": "Reset token random, TTL ngắn, một lần, không tiết lộ account tồn tại; thông báo đổi mật khẩu và revoke session theo chính sách rủi ro.",
       "example_good": "Reset link dùng một lần; sau reset token cũ bị vô hiệu.",
-      "example_bad": "Reset token dạng userId dễ đoán."
+      "example_bad": "Reset token dạng userId dễ đoán.",
+      "concerns": [
+        "authentication",
+        "security"
+      ]
     },
     {
       "id": "R008",
-      "layer": [
-        "security"
-      ],
+      "layer": "service",
       "severity": "should",
       "title": "Ràng buộc kết quả test với AC",
       "detail": "Mỗi luồng login/register/reset có test case cho success, validation, locked, OTP expired, rate-limited, race và privacy-safe error.",
       "example_good": "TC-AUTH-008 chứng minh OTP expired không tạo session.",
-      "example_bad": "QA chỉ test login hợp lệ."
+      "example_bad": "QA chỉ test login hợp lệ.",
+      "concerns": [
+        "authentication",
+        "observability",
+        "privacy",
+        "security",
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

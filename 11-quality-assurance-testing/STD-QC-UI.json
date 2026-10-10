@@ -10,38 +10,58 @@
     {
       "title": "Đối chiếu UI với design và các trạng thái loading, empty, error, success",
       "detail": "Đối chiếu UI với design và các trạng thái loading, empty, error, success. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
-      "layer": "process",
+      "layer": "quality",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Đối chiếu UI với design và các trạng thái loading, empty, error, success.",
       "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Đối chiếu UI với design và các trạng thái loading, empty, error, success.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "documentation",
+        "testing"
+      ]
     },
     {
       "title": "Kiểm tra validation field, toast/dialog, focus, navigation và keyboard",
       "detail": "Kiểm tra validation field, toast/dialog, focus, navigation và keyboard. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
-      "layer": "process",
+      "layer": "quality",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Kiểm tra validation field, toast/dialog, focus, navigation và keyboard.",
       "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra validation field, toast/dialog, focus, navigation và keyboard.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "accessibility",
+        "documentation",
+        "observability",
+        "testing",
+        "usability"
+      ]
     },
     {
       "title": "Kiểm tra responsive, nội dung dài, ngôn ngữ và tính nhất quán component",
       "detail": "Kiểm tra responsive, nội dung dài, ngôn ngữ và tính nhất quán component. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
-      "layer": "process",
+      "layer": "quality",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Kiểm tra responsive, nội dung dài, ngôn ngữ và tính nhất quán component.",
       "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Kiểm tra responsive, nội dung dài, ngôn ngữ và tính nhất quán component.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "documentation",
+        "localization",
+        "testing"
+      ]
     },
     {
       "title": "Không chỉ so ảnh; kiểm tra hành vi và phản hồi đúng acceptance criteria",
       "detail": "Không chỉ so ảnh; kiểm tra hành vi và phản hồi đúng acceptance criteria. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
-      "layer": "process",
+      "layer": "quality",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Không chỉ so ảnh; kiểm tra hành vi và phản hồi đúng acceptance criteria.",
       "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Không chỉ so ảnh; kiểm tra hành vi và phản hồi đúng acceptance criteria.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "documentation",
+        "testing"
+      ]
     }
   ],
   "depends_on": [

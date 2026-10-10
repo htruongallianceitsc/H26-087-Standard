@@ -14,7 +14,10 @@
       "severity": "must",
       "example_good": "Message order-paid xử lý lại không ghi hai lần.",
       "example_bad": "Ack trước khi lưu DB, crash làm mất event.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Retry và dead-letter phân loại lỗi",
@@ -23,7 +26,10 @@
       "severity": "must",
       "example_good": "Payload sai schema vào DLQ sau giới hạn thử.",
       "example_bad": "Một message lỗi chặn toàn bộ partition vô hạn.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Quản lý thứ tự khi nghiệp vụ cần",
@@ -32,7 +38,10 @@
       "severity": "should",
       "example_good": "Đơn hàng có aggregateVersion, bỏ event thấp hơn.",
       "example_bad": "Giả định queue phân tán luôn giữ thứ tự toàn cục.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Giám sát độ trễ hàng đợi",
@@ -41,7 +50,12 @@
       "severity": "should",
       "example_good": "Alert khi oldest age > 5 phút theo SLO nghiệp vụ.",
       "example_bad": "Chỉ monitor CPU consumer.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "observability",
+        "performance",
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [

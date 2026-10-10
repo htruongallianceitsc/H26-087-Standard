@@ -10,35 +10,40 @@
     {
       "title": "Lập ma trận nghĩa vụ theo sản phẩm và thị trường",
       "detail": "Liệt kê luật/chính sách/hợp đồng áp dụng, phạm vi dữ liệu, owner, ngày hiệu lực và link tới rule/test; không mặc định cùng một luật cho mọi quốc gia.",
-      "layer": [
-        "process"
-      ],
+      "layer": "governance",
       "severity": "must",
       "example_good": "Ma trận mapping PII retention theo từng thị trường vận hành.",
       "example_bad": "Tuyên bố GDPR áp dụng cho mọi project không phân tích phạm vi.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Thu thập bằng chứng có nguồn gốc và hạn lưu",
       "detail": "Mỗi nghĩa vụ có chứng cứ test/log/audit với đường dẫn, chủ sở hữu, thời điểm và thời hạn lưu; quyền truy cập bằng chứng được giới hạn.",
-      "layer": [
-        "process"
-      ],
+      "layer": "governance",
       "severity": "must",
       "example_good": "Evidence mã hóa export permission test và hash artifact trong CI.",
       "example_bad": "Chụp màn hình không ngày và không lưu nguồn.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "compliance",
+        "observability"
+      ]
     },
     {
       "title": "Đánh giá thay đổi trước khi phát hành",
       "detail": "Khi thêm field PII, SDK, nhà xử lý hoặc luồng payment, chạy impact review với các nghĩa vụ hiện hành; ghi duyệt và hành động.",
-      "layer": [
-        "process"
-      ],
+      "layer": "governance",
       "severity": "must",
       "example_good": "Checklist release có mục data transfer impact cho SDK mới.",
       "example_bad": "Thêm nhà cung cấp thu thập dữ liệu không cần review.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "privacy",
+        "release"
+      ]
     },
     {
       "id": "R004",
@@ -46,10 +51,11 @@
       "detail": "Waiver nêu rule, lý do, risk, người phê duyệt, biện pháp bù và expiry; báo cáo quá hạn trước release.",
       "example_good": "Ngoại lệ encryption có hạn 14 ngày và mitigation cô lập truy cập.",
       "example_bad": "Bỏ qua rule compliance không có hồ sơ.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "governance",
+      "severity": "should",
+      "concerns": [
+        "release"
+      ]
     },
     {
       "id": "R005",
@@ -57,10 +63,11 @@
       "detail": "Định kỳ kiểm tra mẫu bằng chứng thực tế, báo cáo gap, remediation owner và due date; không coi checkbox là kiểm toán hoàn chỉnh.",
       "example_good": "Audit quý đối chiếu policy retention và bằng chứng xóa DB.",
       "example_bad": "Tích đã tuân thủ dù không có chứng cứ.",
-      "layer": [
-        "process"
-      ],
-      "severity": "should"
+      "layer": "governance",
+      "severity": "should",
+      "concerns": [
+        "documentation"
+      ]
     }
   ],
   "integration_guide": [

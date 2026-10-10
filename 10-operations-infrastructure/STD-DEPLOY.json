@@ -10,38 +10,54 @@
     {
       "title": "Triển khai artifact bất biến",
       "detail": "Build một lần, ký/hash artifact và promote cùng digest qua staging/prod; secret được inject tại runtime. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "delivery",
       "severity": "must",
       "example_good": "Prod dùng image digest đã qua UAT.",
       "example_bad": "Build lại code mới trong bước deploy prod.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "security"
+      ]
     },
     {
       "title": "Có health gate và rollback",
       "detail": "Canary/rolling deploy kiểm readiness, error rate và latency; rollback khi vượt ngưỡng release đã định. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "delivery",
       "severity": "must",
       "example_good": "Canary 10% traffic, error rate tăng vượt gate thì rollback.",
       "example_bad": "Deploy 100% dù readiness lỗi.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "data-integrity",
+        "performance",
+        "release"
+      ]
     },
     {
       "title": "Tách migration tương thích khỏi release",
       "detail": "Thay đổi schema theo expand-migrate-contract, giữ app old/new tương thích khi rolling deploy. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "delivery",
       "severity": "should",
       "example_good": "Thêm column nullable trước khi app mới bắt đầu đọc.",
       "example_bad": "Xóa column đang được pod cũ truy cập.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "compatibility",
+        "release"
+      ]
     },
     {
       "title": "Audit quyền triển khai và thời điểm",
       "detail": "Ghi actor, commit/digest, môi trường, approvals và kết quả cho từng release; production deploy dùng least privilege. Kiểm chứng bằng test/review hoặc cấu hình triển khai theo yêu cầu này.",
-      "layer": "process",
+      "layer": "delivery",
       "severity": "should",
       "example_good": "Release record link commit, approver và rollback build.",
       "example_bad": "SSH lên prod sửa file thủ công không log.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "compliance",
+        "release"
+      ]
     }
   ],
   "integration_guide": [

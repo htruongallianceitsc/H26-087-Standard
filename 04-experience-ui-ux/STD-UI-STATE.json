@@ -14,7 +14,10 @@
       "severity": "must",
       "example_good": "Timeout cho retry; 200 [] cho empty.",
       "example_bad": "Lỗi API được hiện thành “Không có dữ liệu”.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "resilience"
+      ]
     },
     {
       "title": "Chặn response cũ ghi đè response mới",
@@ -23,7 +26,10 @@
       "severity": "must",
       "example_good": "Search “abc” không bị response muộn của “a” ghi đè.",
       "example_bad": "Response cũ xuất hiện sau và thay danh sách mới.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Trạng thái thao tác độc lập với tải trang",
@@ -32,7 +38,10 @@
       "severity": "should",
       "example_good": "Đang xóa một dòng chỉ disable nút xóa dòng đó.",
       "example_bad": "Bật full-screen spinner mỗi khi một nút phụ được bấm.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Làm rõ optimistic update và rollback",
@@ -41,7 +50,11 @@
       "severity": "should",
       "example_good": "Like được tăng tạm rồi rollback khi API lỗi.",
       "example_bad": "Cập nhật giao diện đã thanh toán trước xác nhận server.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "data-integrity",
+        "resilience"
+      ]
     }
   ],
   "integration_guide": [

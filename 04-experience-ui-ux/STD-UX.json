@@ -14,7 +14,10 @@
       "severity": "must",
       "example_good": "Tạo đơn có bước xác nhận và trang chi tiết sau thành công.",
       "example_bad": "Click Save nhưng không biết thao tác đã lưu chưa.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "resilience"
+      ]
     },
     {
       "title": "Hạn chế bất ngờ và hành vi phá hủy",
@@ -23,7 +26,10 @@
       "severity": "must",
       "example_good": "Dialog nêu tên record sẽ xóa và hậu quả.",
       "example_bad": "Nút Delete đứng cạnh Save, cùng màu và không xác nhận.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Điều hướng giữ ngữ cảnh",
@@ -32,7 +38,10 @@
       "severity": "should",
       "example_good": "Trở về danh sách vẫn ở trang 3 với bộ lọc cũ.",
       "example_bad": "Back luôn mở danh sách mặc định và mất công việc.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "usability"
+      ]
     },
     {
       "title": "Nội dung hành động cụ thể",
@@ -41,7 +50,10 @@
       "severity": "should",
       "example_good": "“Lưu thay đổi”, “Thử tải lại”.",
       "example_bad": "Chỉ dùng “OK” và “Something went wrong”.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [

@@ -10,38 +10,51 @@
     {
       "title": "Đặt budget có thể đo lường cho bundle size, LCP, INP và error rate",
       "detail": "Yêu cầu: Đặt budget có thể đo lường cho bundle size, LCP, INP và error rate. Phạm vi áp dụng: các thay đổi thuộc Hiệu năng Render Web & Bộ nhớ có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Lighthouse CI đặt LCP p75 <=2.5s và INP p75 <=200ms cho trang chính. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "must",
       "example_good": "Lighthouse CI đặt LCP p75 <=2.5s và INP p75 <=200ms cho trang chính. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Đặt budget có thể đo lường cho bundle size, LCP, INP và error rate' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: lighthouse CI đặt LCP p75 <=2.5s và INP p75 <=200ms cho trang chính.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "cost",
+        "performance"
+      ]
     },
     {
       "title": "Phân trang hoặc virtualize danh sách dài và tránh API payload không giới hạn",
       "detail": "Yêu cầu: Phân trang hoặc virtualize danh sách dài và tránh API payload không giới hạn. Phạm vi áp dụng: các thay đổi thuộc Hiệu năng Render Web & Bộ nhớ có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Danh sách 50k dòng dùng virtualization; API pageSize <=100. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "must",
       "example_good": "Danh sách 50k dòng dùng virtualization; API pageSize <=100. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Phân trang hoặc virtualize danh sách dài và tránh API payload không giới hạn' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: danh sách 50k dòng dùng virtualization; API pageSize <=100.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "performance"
+      ]
     },
     {
       "title": "Profile rerender, event listener và bộ nhớ trước khi bổ sung tối ưu hóa",
       "detail": "Yêu cầu: Profile rerender, event listener và bộ nhớ trước khi bổ sung tối ưu hóa. Phạm vi áp dụng: các thay đổi thuộc Hiệu năng Render Web & Bộ nhớ có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: React Profiler xác định rerender do unstable callbacks; heap snapshot đối chiếu. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "should",
       "example_good": "React Profiler xác định rerender do unstable callbacks; heap snapshot đối chiếu. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Profile rerender, event listener và bộ nhớ trước khi bổ sung tối ưu hóa' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: react Profiler xác định rerender do unstable callbacks; heap snapshot đối chiếu.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "performance"
+      ]
     },
     {
       "title": "Trì hoãn công việc không quan trọng và cung cấp các trạng thái loading/empty/error",
       "detail": "Yêu cầu: Trì hoãn công việc không quan trọng và cung cấp các trạng thái loading/empty/error. Phạm vi áp dụng: các thay đổi thuộc Hiệu năng Render Web & Bộ nhớ có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Ảnh dưới màn hình dùng lazy loading và skeleton rõ ràng. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "client",
       "severity": "should",
       "example_good": "Ảnh dưới màn hình dùng lazy loading và skeleton rõ ràng. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Trì hoãn công việc không quan trọng và cung cấp các trạng thái loading/empty/error' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: ảnh dưới màn hình dùng lazy loading và skeleton rõ ràng.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "performance"
+      ]
     }
   ],
   "integration_guide": [

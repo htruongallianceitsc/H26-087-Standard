@@ -10,38 +10,57 @@
     {
       "title": "Sử dụng structured log với timestamp, severity, operation và correlation ID",
       "detail": "Yêu cầu: Sử dụng structured log với timestamp, severity, operation và correlation ID. Phạm vi áp dụng: các thay đổi thuộc Logging & Observability có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Mỗi request log JSON có trace_id, severity, service, duration_ms và UTC timestamp. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "architecture",
       "severity": "must",
       "example_good": "Mỗi request log JSON có trace_id, severity, service, duration_ms và UTC timestamp. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Sử dụng structured log với timestamp, severity, operation và correlation ID' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: mỗi request log JSON có trace_id, severity, service, duration_ms và UTC timestamp.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "observability"
+      ]
     },
     {
       "title": "Không log mật khẩu, access token hoặc payload nhạy cảm",
       "detail": "Yêu cầu: Không log mật khẩu, access token hoặc payload nhạy cảm. Phạm vi áp dụng: các thay đổi thuộc Logging & Observability có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Bộ lọc logger loại password, refresh_token và Authorization trước sink. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "architecture",
       "severity": "must",
       "example_good": "Bộ lọc logger loại password, refresh_token và Authorization trước sink. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Không log mật khẩu, access token hoặc payload nhạy cảm' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: bộ lọc logger loại password, refresh_token và Authorization trước sink.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "authentication",
+        "authorization",
+        "observability",
+        "security"
+      ]
     },
     {
       "title": "Gắn instrumentation cho các hành trình người dùng quan trọng với metric thành công, thất bại và độ trễ",
       "detail": "Yêu cầu: Gắn instrumentation cho các hành trình người dùng quan trọng với metric thành công, thất bại và độ trễ. Phạm vi áp dụng: các thay đổi thuộc Logging & Observability có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Dashboard theo dõi login success rate và p95 latency theo deployment version. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "delivery",
       "severity": "should",
       "example_good": "Dashboard theo dõi login success rate và p95 latency theo deployment version. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Gắn instrumentation cho các hành trình người dùng quan trọng với metric thành công, thất bại và độ trễ' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: dashboard theo dõi login success rate và p95 latency theo deployment version.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "authentication",
+        "compatibility",
+        "observability",
+        "performance",
+        "release"
+      ]
     },
     {
       "title": "Xác định ngưỡng cảnh báo và owner cho sự cố production",
       "detail": "Yêu cầu: Xác định ngưỡng cảnh báo và owner cho sự cố production. Phạm vi áp dụng: các thay đổi thuộc Logging & Observability có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Cảnh báo error rate >2% trong 10 phút chuyển đến on-call chính. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "architecture",
       "severity": "should",
       "example_good": "Cảnh báo error rate >2% trong 10 phút chuyển đến on-call chính. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Xác định ngưỡng cảnh báo và owner cho sự cố production' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: cảnh báo error rate >2% trong 10 phút chuyển đến on-call chính.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "observability"
+      ]
     }
   ],
   "integration_guide": [

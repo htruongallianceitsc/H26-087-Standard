@@ -10,38 +10,51 @@
     {
       "title": "Giới hạn update cho đúng subject được ủy quyền và các field được phép",
       "detail": "Yêu cầu: Giới hạn update cho đúng subject được ủy quyền và các field được phép. Phạm vi áp dụng: các thay đổi thuộc Hồ sơ người dùng & Quản lý tài khoản có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: PATCH /me chỉ sửa displayName, avatarUrl; không cho client đổi role. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "service",
       "severity": "must",
       "example_good": "PATCH /me chỉ sửa displayName, avatarUrl; không cho client đổi role. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Giới hạn update cho đúng subject được ủy quyền và các field được phép' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: pATCH /me chỉ sửa displayName, avatarUrl; không cho client đổi role.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "authorization"
+      ]
     },
     {
       "title": "Validation các field thay đổi và giữ nguyên giá trị hiện có của field không đổi",
       "detail": "Yêu cầu: Validation các field thay đổi và giữ nguyên giá trị hiện có của field không đổi. Phạm vi áp dụng: các thay đổi thuộc Hồ sơ người dùng & Quản lý tài khoản có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Schema validate phone + normalize; omitted property không bị reset. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "service",
       "severity": "must",
       "example_good": "Schema validate phone + normalize; omitted property không bị reset. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Validation các field thay đổi và giữ nguyên giá trị hiện có của field không đổi' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: schema validate phone + normalize; omitted property không bị reset.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Xử lý lỗi avatar/media và response xung đột",
       "detail": "Yêu cầu: Xử lý lỗi avatar/media và response xung đột. Phạm vi áp dụng: các thay đổi thuộc Hồ sơ người dùng & Quản lý tài khoản có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Upload avatar timeout trả retry option, 409 hiển thị conflict. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "service",
       "severity": "should",
       "example_good": "Upload avatar timeout trả retry option, 409 hiển thị conflict. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Xử lý lỗi avatar/media và response xung đột' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: upload avatar timeout trả retry option, 409 hiển thị conflict.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Ghi audit cho các thay đổi hồ sơ nhạy cảm mà không làm lộ dữ liệu riêng tư",
       "detail": "Yêu cầu: Ghi audit cho các thay đổi hồ sơ nhạy cảm mà không làm lộ dữ liệu riêng tư. Phạm vi áp dụng: các thay đổi thuộc Hồ sơ người dùng & Quản lý tài khoản có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Đổi email phát audit event masked và yêu cầu xác thực bổ sung. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "process",
+      "layer": "service",
       "severity": "should",
       "example_good": "Đổi email phát audit event masked và yêu cầu xác thực bổ sung. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
       "example_bad": "Chỉ ghi 'Ghi audit cho các thay đổi hồ sơ nhạy cảm mà không làm lộ dữ liệu riêng tư' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: đổi email phát audit event masked và yêu cầu xác thực bổ sung.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "compliance",
+        "privacy"
+      ]
     }
   ],
   "integration_guide": [

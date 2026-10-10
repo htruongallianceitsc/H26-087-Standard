@@ -14,7 +14,10 @@
       "severity": "must",
       "example_good": "Figma ghi rõ input focus, form invalid và layout ở 375px/1440px.",
       "example_bad": "Chỉ giao ảnh màn hình happy path.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "usability"
+      ]
     },
     {
       "title": "Đối chiếu bản build với thiết kế",
@@ -23,7 +26,10 @@
       "severity": "must",
       "example_good": "PR có ảnh trước/sau ở viewport định nghĩa, mọi sai khác đã xử lý.",
       "example_bad": "Duyệt giao diện chỉ bằng cảm nhận.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Thiết kế tương tác khả thi",
@@ -32,7 +38,11 @@
       "severity": "should",
       "example_good": "Modal định nghĩa focus đầu, Escape và trả focus về trigger.",
       "example_bad": "Modal chỉ được vẽ mà không có hành vi bàn phím.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "accessibility",
+        "usability"
+      ]
     },
     {
       "title": "Quản lý thay đổi phiên bản thiết kế",
@@ -41,7 +51,10 @@
       "severity": "should",
       "example_good": "Ticket link frame v3 và ghi các component đổi.",
       "example_bad": "Developer triển khai theo đường link Figma đang bị sửa liên tục.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "compatibility"
+      ]
     }
   ],
   "integration_guide": [

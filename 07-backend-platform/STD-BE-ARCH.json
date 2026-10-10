@@ -14,7 +14,10 @@
       "severity": "must",
       "example_good": "Use case CreateOrder chạy được bằng unit test không khởi HTTP server.",
       "example_bad": "Controller chứa SQL, business rule và gọi cổng thanh toán.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Phụ thuộc đi về abstraction có chủ đích",
@@ -23,7 +26,10 @@
       "severity": "must",
       "example_good": "Application dùng IOrderRepository; adapter dùng Npgsql.",
       "example_bad": "Domain entity tham chiếu HttpContext và DbContext.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Xác định ranh giới giao dịch theo use case",
@@ -32,7 +38,10 @@
       "severity": "should",
       "example_good": "Commit order + outbox event trong một transaction.",
       "example_bad": "Giữ transaction DB mở trong lúc chờ payment provider.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "data-integrity"
+      ]
     },
     {
       "title": "Hợp đồng module rõ và có test",
@@ -41,7 +50,11 @@
       "severity": "should",
       "example_good": "Architecture test fail khi Domain import Infrastructure.",
       "example_bad": "Hai module tham chiếu hai chiều và dùng shared service toàn năng.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "maintainability",
+        "testing"
+      ]
     }
   ],
   "integration_guide": [

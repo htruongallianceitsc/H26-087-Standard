@@ -10,35 +10,44 @@
     {
       "title": "Đặt middleware theo thứ tự bảo mật chuẩn",
       "detail": "Configure exception handler, forwarded headers (chỉ proxy tin cậy), HTTPS, authentication, authorization, endpoints đúng thứ tự; integration test 401/403.",
-      "layer": [
-        "api"
-      ],
+      "layer": "api",
       "severity": "must",
       "example_good": "UseAuthentication trước UseAuthorization; proxy allowlist.",
       "example_bad": "UseAuthorization thiếu UseAuthentication.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "authentication",
+        "authorization",
+        "security"
+      ]
     },
     {
       "title": "Dùng DI lifetime tương thích scope",
       "detail": "DbContext scoped; singleton không giữ scoped dependency; validate scopes ở dev/test và tránh service locator trong business logic.",
-      "layer": [
-        "api"
-      ],
+      "layer": "api",
       "severity": "must",
       "example_good": "OrderService scoped nhận AppDbContext scoped.",
       "example_bad": "Singleton cache giữ một DbContext scoped suốt đời.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "compatibility",
+        "maintainability",
+        "observability"
+      ]
     },
     {
       "title": "Validate input và map error thống nhất",
       "detail": "Validate DTO ở boundary, reject unsafe fields/overposting; lỗi trả ProblemDetails/code với traceId; không lộ stack trace production.",
-      "layer": [
-        "api"
-      ],
+      "layer": "api",
       "severity": "must",
       "example_good": "Invalid email -> 422 với field errors và traceId.",
       "example_bad": "Trả exception.ToString() trong HTTP response.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "observability",
+        "performance",
+        "resilience"
+      ]
     },
     {
       "id": "R004",
@@ -46,10 +55,12 @@
       "detail": "Async I/O sử dụng Task, chuyển CancellationToken đến EF/HTTP client; không .Result/.Wait gây block; timeout cho outbound call.",
       "example_good": "await db.Orders.ToListAsync(ct) trong endpoint.",
       "example_bad": "db query .Result dưới thread pool tải cao.",
-      "layer": [
-        "api"
-      ],
-      "severity": "should"
+      "layer": "api",
+      "severity": "should",
+      "concerns": [
+        "reliability",
+        "security"
+      ]
     },
     {
       "id": "R005",
@@ -57,10 +68,13 @@
       "detail": "Policy-based authz + kiểm ownership/tenant tại query/service; test IDOR với 2 người dùng.",
       "example_good": "GET /orders/42 lọc order.TenantId == caller.TenantId.",
       "example_bad": "Chỉ đặt [Authorize] nhưng trả mọi order theo id.",
-      "layer": [
-        "api"
-      ],
-      "severity": "should"
+      "layer": "api",
+      "severity": "should",
+      "concerns": [
+        "authorization",
+        "compliance",
+        "security"
+      ]
     }
   ],
   "integration_guide": [

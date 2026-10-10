@@ -10,38 +10,57 @@
     {
       "title": "Công bố cấu hình môi trường, phiên bản dịch vụ và khác biệt so với production",
       "detail": "Công bố cấu hình môi trường, phiên bản dịch vụ và khác biệt so với production. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
-      "layer": "process",
+      "layer": "quality",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Công bố cấu hình môi trường, phiên bản dịch vụ và khác biệt so với production.",
       "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Công bố cấu hình môi trường, phiên bản dịch vụ và khác biệt so với production.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "documentation",
+        "testing"
+      ]
     },
     {
       "title": "Phân biệt lỗi môi trường với lỗi phần mềm và ghi lại trạng thái outage",
       "detail": "Phân biệt lỗi môi trường với lỗi phần mềm và ghi lại trạng thái outage. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
-      "layer": "process",
+      "layer": "quality",
       "severity": "must",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Phân biệt lỗi môi trường với lỗi phần mềm và ghi lại trạng thái outage.",
       "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Phân biệt lỗi môi trường với lỗi phần mềm và ghi lại trạng thái outage.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "documentation",
+        "testing"
+      ]
     },
     {
       "title": "Test account và secret lưu an toàn, phân quyền tối thiểu",
       "detail": "Test account và secret lưu an toàn, phân quyền tối thiểu. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
-      "layer": "process",
+      "layer": "quality",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Test account và secret lưu an toàn, phân quyền tối thiểu.",
       "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Test account và secret lưu an toàn, phân quyền tối thiểu.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "authorization",
+        "documentation",
+        "security",
+        "testing"
+      ]
     },
     {
       "title": "Có quy trình reset dữ liệu, seed và phục hồi dịch vụ phụ thuộc",
       "detail": "Có quy trình reset dữ liệu, seed và phục hồi dịch vụ phụ thuộc. Bằng chứng tối thiểu: tài liệu hoặc kết quả kiểm tra thể hiện việc áp dụng, người chịu trách nhiệm và ngoại lệ nếu có.",
-      "layer": "process",
+      "layer": "quality",
       "severity": "should",
       "example_good": "Có bằng chứng đối chiếu và kết quả rõ ràng: Có quy trình reset dữ liệu, seed và phục hồi dịch vụ phụ thuộc.",
       "example_bad": "Không có bước kiểm tra hoặc bằng chứng cho yêu cầu: Có quy trình reset dữ liệu, seed và phục hồi dịch vụ phụ thuộc.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "documentation",
+        "resilience",
+        "testing"
+      ]
     }
   ],
   "depends_on": [

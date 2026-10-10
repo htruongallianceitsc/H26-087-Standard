@@ -14,7 +14,10 @@
       "severity": "must",
       "example_good": "Job chốt lãi theo period+bookId có unique constraint.",
       "example_bad": "Hai pod chạy cron tạo hai khoản chi.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Thiết lập retry có giới hạn",
@@ -23,7 +26,10 @@
       "severity": "must",
       "example_good": "Timeout retry 3 lần rồi ghi failed + alert.",
       "example_bad": "Retry vô hạn từng giây khi payload sai schema.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Checkpoint và phục hồi công việc dài",
@@ -32,7 +38,10 @@
       "severity": "should",
       "example_good": "Xử lý 10.000 rows theo lô 500, lưu cursor sau commit.",
       "example_bad": "Restart khiến toàn bộ batch được ghi lần nữa.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "resilience"
+      ]
     },
     {
       "title": "Quan sát lịch sử thực thi và kết quả",
@@ -41,7 +50,10 @@
       "severity": "should",
       "example_good": "Dashboard thể hiện lastSuccess, duration, retries.",
       "example_bad": "Cron thất bại âm thầm không log.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "performance"
+      ]
     }
   ],
   "integration_guide": [

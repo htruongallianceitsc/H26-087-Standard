@@ -14,7 +14,10 @@
       "severity": "must",
       "example_good": "Button dùng color.action.primary và spacing.3.",
       "example_bad": "Mỗi trang chèn mã màu trực tiếp khác nhau.",
-      "id": "R001"
+      "id": "R001",
+      "concerns": [
+        "security"
+      ]
     },
     {
       "title": "Định nghĩa component API nhất quán",
@@ -23,7 +26,10 @@
       "severity": "must",
       "example_good": "Button variant=primary size=md loading=true giữ hợp đồng chung.",
       "example_bad": "Tạo nút custom mới cho mỗi màn hình.",
-      "id": "R002"
+      "id": "R002",
+      "concerns": [
+        "reliability"
+      ]
     },
     {
       "title": "Kiểm thử component trên các state",
@@ -32,7 +38,12 @@
       "severity": "should",
       "example_good": "Story/component test bao phủ input error và nút đang tải.",
       "example_bad": "Chỉ chụp screenshot trạng thái default.",
-      "id": "R003"
+      "id": "R003",
+      "concerns": [
+        "observability",
+        "testing",
+        "usability"
+      ]
     },
     {
       "title": "Version và migration token/component",
@@ -41,7 +52,11 @@
       "severity": "should",
       "example_good": "Đổi token brand.main có mapping và script tìm usage cũ.",
       "example_bad": "Xóa token cũ làm hàng loạt màn hình đổi màu âm thầm.",
-      "id": "R004"
+      "id": "R004",
+      "concerns": [
+        "compatibility",
+        "security"
+      ]
     }
   ],
   "integration_guide": [
