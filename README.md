@@ -64,3 +64,7 @@ Các review/changelog cũ được chuyển vào `docs/history/`; hướng dẫn
 Trường `layer` nay mô tả **tầng chịu trách nhiệm thực thi**; trường tùy chọn `concerns` mô tả **chủ đề kiểm soát**. Ví dụ một quy tắc phân quyền ở API dùng `layer: "api"`, `concerns: ["security", "authorization"]`. Chi tiết enum, ví dụ, giới hạn tương thích và cách lọc ở [`docs/guides/RULE-TAXONOMY.md`](docs/guides/RULE-TAXONOMY.md).
 
 **Lưu ý migration:** Schema vẫn có `schemaVersion=2` nhưng đã mở rộng tập enum; importer v2 hardcode giá trị cũ cần cập nhật trước khi đọc bản này. Với importer v1, dùng `export-v1` và chấp nhận taxonomy bị thu hẹp khi xuất.
+
+## Wave 6: Semantic QA & checklist theo vai trò
+
+Xem `docs/guides/WAVE6-SEMANTIC-QA.md` và các báo cáo dưới `docs/quality/`. Chúng là dữ liệu dẫn xuất, không thay đổi schema hoặc rule IDs.

@@ -48,7 +48,7 @@
     {
       "title": "Áp dụng chính xác 429 và nhóm 5xx",
       "detail": "429 khi vượt rate limit; 500 lỗi máy chủ không dự kiến; 502 phản hồi upstream không hợp lệ; 503 dịch vụ tạm thời không sẵn sàng; 504 upstream timeout. Có thể trả Retry-After với 429/503 khi biết thời gian; không tiết lộ stack trace/SQL/token.",
-      "layer": "db",
+      "layer": "api",
       "severity": "must",
       "example_good": "Rate limit → 429 + Retry-After: 60; sự cố tạm thời → 503.",
       "example_bad": "Timeout gọi upstream luôn trả 400 và kèm stack trace.",
@@ -73,7 +73,7 @@
     {
       "title": "Phân biệt lỗi cần hiển thị và lỗi nội bộ",
       "detail": "Frontend chỉ hiển thị thông điệp thân thiện đã định nghĩa trong bảng mã lỗi; không trực tiếp toast detail nội bộ của 5xx, exception hoặc trace. Ánh xạ field validation sang form; 401 kích hoạt refresh/login theo chính sách; 403 hiển thị không có quyền; 429 hiển thị chờ; 5xx thông báo chung và ghi log.",
-      "layer": "db",
+      "layer": "client",
       "severity": "must",
       "example_good": "HTTP 422 với errors.email → hiện lỗi tại trường email, không phát toast trùng.",
       "example_bad": "Toast nguyên văn lỗi SQL hoặc exception cho người dùng.",
