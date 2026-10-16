@@ -319,6 +319,10 @@
       {
         "id": "R005",
         "original_title": "Kiểm soát thay đổi cấu hình production"
+      },
+      {
+        "id": "R006",
+        "original_title": "Feature/mock flag phải có default an toàn và không thể vô tình bật trên production"
       }
     ],
     "STD-ERR": [
@@ -611,6 +615,10 @@
       {
         "id": "R004",
         "original_title": "Công bố OpenAPI và chạy kiểm tra contract đối với phần triển khai"
+      },
+      {
+        "id": "R005",
+        "original_title": "Mock API phải bám hợp đồng thật và dùng fixture có kiểm soát"
       }
     ],
     "STD-CACHE": [
@@ -885,6 +893,14 @@
       {
         "id": "R004",
         "original_title": "Phản hồi trạng thái thành công đúng thời điểm"
+      },
+      {
+        "id": "R005",
+        "original_title": "Chuẩn hóa motion token và ưu tiên chuyển động ngắn, có mục đích"
+      },
+      {
+        "id": "R006",
+        "original_title": "Haptic feedback chỉ dùng cho sự kiện có ý nghĩa và không thay thế feedback thị giác"
       }
     ],
     "STD-FORM": [
@@ -1205,6 +1221,14 @@
       {
         "id": "R004",
         "original_title": "Kiểm thử việc app bị gián đoạn trong quá trình login, upload, notification và realtime session"
+      },
+      {
+        "id": "R005",
+        "original_title": "Khôi phục trạng thái người dùng quan trọng sau process recreation"
+      },
+      {
+        "id": "R006",
+        "original_title": "Lưu draft cục bộ cho form quan trọng với TTL và chính sách dữ liệu rõ ràng"
       }
     ],
     "STD-MOB-NAV": [
@@ -1259,6 +1283,14 @@
       {
         "id": "R004",
         "original_title": "Dispose image, stream và controller để ngăn rò rỉ tài nguyên"
+      },
+      {
+        "id": "R005",
+        "original_title": "Giới hạn kích thước decode và bộ nhớ đệm của ảnh theo kích thước hiển thị"
+      },
+      {
+        "id": "R006",
+        "original_title": "Virtualize danh sách dài và tránh dựng trước toàn bộ item"
       }
     ],
     "STD-MOB-PUSH": [
@@ -1867,6 +1899,14 @@
       {
         "id": "R004",
         "original_title": "Sử dụng fake clock/network có tính xác định khi timing quan trọng"
+      },
+      {
+        "id": "R005",
+        "original_title": "Cung cấp mock API có thể bật bằng cấu hình và dùng fixture khớp contract"
+      },
+      {
+        "id": "R006",
+        "original_title": "Kiểm thử process death/state restoration và memory regression cho luồng quan trọng"
       }
     ],
     "STD-FL-WIDGET": [
@@ -1885,6 +1925,22 @@
       {
         "id": "R004",
         "original_title": "Render và đối chiếu widget với thiết kế màn hình đã được duyệt"
+      },
+      {
+        "id": "R005",
+        "original_title": "Dùng lazy list cho tập dữ liệu dài và chỉ áp dụng extent/keep-alive khi đúng điều kiện"
+      },
+      {
+        "id": "R006",
+        "original_title": "Decode ảnh Flutter theo kích thước render và dùng cache provider có giới hạn"
+      },
+      {
+        "id": "R007",
+        "original_title": "Dispose tài nguyên Flutter do State hoặc controller sở hữu"
+      },
+      {
+        "id": "R008",
+        "original_title": "Dùng Flutter restoration cho state UI phù hợp và persistence riêng cho draft nghiệp vụ"
       }
     ],
     "STD-DOTNET-API": [

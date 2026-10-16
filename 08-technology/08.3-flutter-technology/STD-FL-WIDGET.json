@@ -4,7 +4,7 @@
   "name": "Tổ hợp Widget & Theming",
   "category": "08_technology",
   "description": "Chuẩn kiến trúc presentation, tổ hợp widget và theming trong Flutter.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "active",
   "rules": [
     {
@@ -56,6 +56,60 @@
         "authentication",
         "observability"
       ]
+    },
+    {
+      "id": "R005",
+      "title": "Dùng lazy list cho tập dữ liệu dài và chỉ áp dụng extent/keep-alive khi đúng điều kiện",
+      "detail": "Trong Flutter, danh sách dài phải ưu tiên ListView.builder, SliverList hoặc delegate tương đương. Dùng itemExtent/itemExtentBuilder/prototypeItem khi kích thước item có thể xác định đáng tin cậy. Có thể đặt addAutomaticKeepAlives=false khi state item được quản lý bên ngoài hoặc không cần giữ; không áp dụng máy móc cho item có state cục bộ cần tồn tại. Repaint boundary nên giữ mặc định hoặc điều chỉnh sau khi profile chứng minh cần thiết.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "Product feed dùng SliverList/ListView.builder; prototypeItem được dùng vì card có chiều cao ổn định; state yêu thích nằm ở Cubit nên item không cần keep-alive.",
+      "example_bad": "Dùng Column chứa hàng nghìn item hoặc tắt keep-alive khiến TextField/state cục bộ bị reset mà không có thiết kế thay thế.",
+      "concerns": [
+        "performance",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R006",
+      "title": "Decode ảnh Flutter theo kích thước render và dùng cache provider có giới hạn",
+      "detail": "Ảnh mạng hiển thị lặp lại phải đi qua cache provider được project chuẩn hóa. Khi API/widget hỗ trợ, truyền cacheWidth/cacheHeight, memCacheWidth/memCacheHeight hoặc ResizeImage tương đương dựa trên kích thước render và devicePixelRatio. cached_network_image có thể là implementation mặc định của starter kit, nhưng project được phép thay thế nếu provider khác đáp ứng cùng tiêu chí cache, sizing, placeholder/error và eviction.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "Thumbnail 150dp dùng target decode phù hợp DPR và cache provider; placeholder/error không tạo request lặp vô hạn.",
+      "example_bad": "Image.network trong list decode ảnh gốc 4K cho thumbnail nhỏ mà không giới hạn cache/decode size.",
+      "concerns": [
+        "performance",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R007",
+      "title": "Dispose tài nguyên Flutter do State hoặc controller sở hữu",
+      "detail": "Stateful object phải dispose/cancel tài nguyên do chính nó tạo và sở hữu, gồm TextEditingController, AnimationController, ScrollController, FocusNode, StreamSubscription, Timer và listener thủ công. Không dispose object được inject nếu lifecycle thuộc owner bên ngoài. Callback async phải kiểm tra mounted hoặc được hủy để tránh cập nhật state sau dispose.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "State.dispose() hủy subscription, timer và controller do State tạo; controller từ parent chỉ được detach listener chứ không dispose thay parent.",
+      "example_bad": "Quên cancel StreamSubscription hoặc dispose nhầm controller được parent cung cấp.",
+      "concerns": [
+        "performance",
+        "reliability",
+        "maintainability"
+      ]
+    },
+    {
+      "id": "R008",
+      "title": "Dùng Flutter restoration cho state UI phù hợp và persistence riêng cho draft nghiệp vụ",
+      "detail": "Với màn hình quan trọng cần phục hồi sau process death, sử dụng restorationScopeId và RestorationMixin/RestorableProperty khi state thuộc UI restoration model của Flutter. Dữ liệu draft nghiệp vụ cần tồn tại có TTL hoặc vượt quá phạm vi restoration bucket phải lưu qua repository/storage riêng. Không coi restoration API là nơi lưu dữ liệu nhạy cảm lâu dài.",
+      "layer": "mobile",
+      "severity": "should",
+      "example_good": "Form đăng ký phục hồi tab/field phù hợp bằng RestorationMixin, còn draft nghiệp vụ được repository lưu có TTL và schema version.",
+      "example_bad": "Chỉ giữ dữ liệu trong Cubit/State RAM và giả định process sẽ không bị hệ điều hành kill.",
+      "concerns": [
+        "reliability",
+        "usability",
+        "privacy"
+      ]
     }
   ],
   "integration_guide": [
@@ -91,6 +145,18 @@
     {
       "code": "STD-MOB-ARCH",
       "dependency_type": "requires"
+    },
+    {
+      "code": "STD-MOB-PERF",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-MOB-LIFE",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-FEEDBACK",
+      "dependency_type": "uses"
     }
   ],
   "diagrams": [],

@@ -4,7 +4,7 @@
   "name": "Hợp đồng API & Quản lý phiên bản",
   "category": "03_api_integration_data",
   "description": "Hợp đồng dịch vụ nhất quán và có quản lý phiên bản.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "active",
   "rules": [
     {
@@ -56,6 +56,20 @@
       "id": "R004",
       "concerns": [
         "reliability"
+      ]
+    },
+    {
+      "id": "R005",
+      "title": "Mock API phải bám hợp đồng thật và dùng fixture có kiểm soát",
+      "detail": "Khi client cần phát triển độc lập với backend, mock response phải bám schema/version của API contract và bao phủ cả success lẫn error path quan trọng. Fixture phải được lưu có version trong repository, có owner và được cập nhật khi contract thay đổi; không dùng mock tự do khác cấu trúc production chỉ để UI chạy được.",
+      "layer": "api",
+      "severity": "should",
+      "example_good": "Fixture cho danh sách và lỗi validation khớp OpenAPI/contract hiện hành và được contract test phát hiện khi schema thay đổi.",
+      "example_bad": "Mock trả field tự đặt, thiếu error shape thật và không được cập nhật khi backend đổi contract.",
+      "concerns": [
+        "compatibility",
+        "testing",
+        "documentation"
       ]
     }
   ],

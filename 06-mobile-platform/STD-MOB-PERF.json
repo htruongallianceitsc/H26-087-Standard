@@ -4,7 +4,7 @@
   "name": "Hiệu năng khởi động, Bộ nhớ & Pin",
   "category": "06_mobile_platform",
   "description": "Chuẩn kỹ thuật hiệu năng trực tiếp trên thiết bị.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "active",
   "rules": [
     {
@@ -44,15 +44,42 @@
       ]
     },
     {
-      "title": "Dispose image, stream và controller để ngăn rò rỉ tài nguyên",
-      "detail": "Yêu cầu: Dispose image, stream và controller để ngăn rò rỉ tài nguyên. Phạm vi áp dụng: các thay đổi thuộc Hiệu năng khởi động, Bộ nhớ & Pin có tác động tới hành vi này. Tiêu chí chấp nhận: triển khai phải chứng minh được kịch bản cụ thể sau: Đóng image stream và timer khi thoát room, heap không tăng liên tục. Xác minh bằng kiểm tra cấu hình/source, test tự động hoặc chạy thử luồng tương ứng; nếu không áp dụng phải nêu lý do trong review.",
-      "layer": "mobile",
-      "severity": "should",
-      "example_good": "Đóng image stream và timer khi thoát room, heap không tăng liên tục. Bằng chứng gồm kết quả test/review hoặc cấu hình có thể đối chiếu.",
-      "example_bad": "Chỉ ghi 'Dispose image, stream và controller để ngăn rò rỉ tài nguyên' trong checklist nhưng không có triển khai hoặc kiểm thử cho tình huống: đóng image stream và timer khi thoát room, heap không tăng liên tục.",
       "id": "R004",
+      "title": "Giải phóng subscription, controller, timer và listener theo đúng vòng đời",
+      "detail": "Mọi tài nguyên giữ callback, listener, stream, timer hoặc controller phải có owner rõ ràng và được dispose/cancel khi owner kết thúc vòng đời. Không để callback tiếp tục cập nhật UI/state sau khi màn hình hoặc feature đã bị hủy. Xác minh bằng review source và memory/profile test cho các luồng mở/đóng màn hình lặp lại.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "Rời màn hình nhiều lần không làm tăng đều số listener/subscription; controller và timer được giải phóng tại lifecycle tương ứng.",
+      "example_bad": "Mỗi lần mở màn hình tạo thêm subscription/timer nhưng không cancel, khiến callback chạy trùng và heap tăng dần.",
       "concerns": [
-        "performance"
+        "performance",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R005",
+      "title": "Giới hạn kích thước decode và bộ nhớ đệm của ảnh theo kích thước hiển thị",
+      "detail": "Ảnh từ mạng hoặc file lớn không được mặc định decode ở độ phân giải gốc khi chỉ hiển thị thumbnail/preview nhỏ. Phải sử dụng cơ chế cache phù hợp và yêu cầu kích thước decode gần với kích thước render thực tế, có xét device pixel ratio. Với danh sách nhiều ảnh, theo dõi memory pressure và tránh giữ image buffer ngoài viewport lâu hơn cần thiết.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "Thumbnail 150dp trên màn hình DPR 2 được decode xấp xỉ 300px thay vì nạp ảnh gốc vài nghìn pixel; ảnh mạng dùng cache có giới hạn.",
+      "example_bad": "Danh sách thumbnail luôn decode ảnh gốc 4K và giữ toàn bộ bitmap trong RAM.",
+      "concerns": [
+        "performance",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R006",
+      "title": "Virtualize danh sách dài và tránh dựng trước toàn bộ item",
+      "detail": "Danh sách có số lượng item lớn hoặc tăng dần phải dùng cơ chế lazy/virtualized rendering. Khi chiều cao item cố định hoặc có prototype đáng tin cậy, cung cấp thông tin extent để giảm chi phí layout; chỉ tắt keep-alive khi state của item không cần được giữ hoặc đã được quản lý bên ngoài. Phải kiểm tra frame timing khi scroll trên thiết bị cấu hình thấp.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "Feed dài chỉ build item quanh viewport, có pagination và không giữ state/bitmap của hàng trăm card ngoài màn hình.",
+      "example_bad": "Dùng danh sách dựng toàn bộ hàng nghìn item hoặc ép keep-alive cho mọi card khiến RAM tăng theo số item đã cuộn qua.",
+      "concerns": [
+        "performance",
+        "reliability"
       ]
     }
   ],

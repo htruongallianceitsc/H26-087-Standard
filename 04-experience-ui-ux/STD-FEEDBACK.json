@@ -4,7 +4,7 @@
   "name": "Phản hồi, Thông báo & Messaging",
   "category": "04_experience_ui_ux",
   "description": "Phản hồi, Thông báo & Messaging: quy định các yêu cầu triển khai và bằng chứng kiểm tra cụ thể; chỉ áp dụng khi phạm vi project liên quan.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "active",
   "rules": [
     {
@@ -55,6 +55,33 @@
       "id": "R004",
       "concerns": [
         "reliability"
+      ]
+    },
+    {
+      "id": "R005",
+      "title": "Chuẩn hóa motion token và ưu tiên chuyển động ngắn, có mục đích",
+      "detail": "Animation/micro-interaction phải dùng motion token dùng chung thay vì hardcode rải rác. Phản hồi trực tiếp nên nhanh, transition container/sheet có thể dài hơn nhưng không gây cản trở thao tác. Tôn trọng thiết lập giảm chuyển động của hệ điều hành và tránh animation lặp vô hạn không mang thông tin.",
+      "layer": "design",
+      "severity": "should",
+      "example_good": "Design system định nghĩa fast khoảng 100-150ms, normal khoảng 200-250ms, emphasized khoảng 300ms; bottom sheet dùng token và giảm/loại animation khi reduce-motion bật.",
+      "example_bad": "Mỗi màn hình tự hardcode duration khác nhau hoặc animation kéo dài khiến người dùng phải chờ.",
+      "concerns": [
+        "accessibility",
+        "usability",
+        "maintainability"
+      ]
+    },
+    {
+      "id": "R006",
+      "title": "Haptic feedback chỉ dùng cho sự kiện có ý nghĩa và không thay thế feedback thị giác",
+      "detail": "Haptic phải có semantic rõ ràng: xác nhận hành động quan trọng, mốc gesture/refresh hoặc cảnh báo destructive khi phù hợp. Không rung cho mọi tap, mọi validation error hoặc mọi request failure. Phải hoạt động an toàn trên thiết bị không hỗ trợ haptic và không được là kênh feedback duy nhất cho accessibility.",
+      "layer": "ui",
+      "severity": "should",
+      "example_good": "Haptic nhẹ cho xác nhận hành động quan trọng; haptic mạnh hơn chỉ cho mốc cảnh báo/destructive đã được UX duyệt.",
+      "example_bad": "Mọi nút đều rung hoặc lỗi field khi gõ từng ký tự đều gọi vibrate.",
+      "concerns": [
+        "accessibility",
+        "usability"
       ]
     }
   ],

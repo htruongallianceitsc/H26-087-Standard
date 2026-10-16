@@ -4,7 +4,7 @@
   "name": "Môi trường, Cấu hình & Secret",
   "category": "02_engineering_foundation",
   "description": "Môi trường, Cấu hình & Secret: yêu cầu triển khai và kiểm chứng cụ thể cho STD-ENV, bao gồm hợp đồng hành vi, failure mode, quality gate và ví dụ đúng/sai.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "active",
   "rules": [
     {
@@ -73,6 +73,20 @@
         "compliance",
         "data-integrity",
         "release"
+      ]
+    },
+    {
+      "id": "R006",
+      "title": "Feature/mock flag phải có default an toàn và không thể vô tình bật trên production",
+      "detail": "Các cờ build/runtime dùng cho mock, debug backend hoặc fixture phải có default an toàn, được validate theo environment và không chứa secret. Build production phải fail hoặc bỏ qua cờ nếu cấu hình có thể chuyển traffic sang mock/debug endpoint trái phép.",
+      "layer": "delivery",
+      "severity": "must",
+      "example_good": "USE_MOCK_API chỉ được phép ở dev/test; pipeline release kiểm tra và fail nếu flag mock được bật.",
+      "example_bad": "Một dart-define hoặc env flag có thể bật mock backend trên production mà không có guard.",
+      "concerns": [
+        "release",
+        "security",
+        "reliability"
       ]
     }
   ],

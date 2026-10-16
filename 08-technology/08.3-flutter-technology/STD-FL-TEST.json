@@ -4,7 +4,7 @@
   "name": "flutter_test, bloc_test & Kiểm thử tích hợp",
   "category": "08_technology",
   "description": "Chuẩn chiến lược kiểm thử nhiều tầng cho Flutter.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "active",
   "rules": [
     {
@@ -62,6 +62,35 @@
       "concerns": [
         "networking"
       ]
+    },
+    {
+      "id": "R005",
+      "title": "Cung cấp mock API có thể bật bằng cấu hình và dùng fixture khớp contract",
+      "detail": "Flutter app cần phát triển/test độc lập với backend nên có mock transport/interceptor tại lớp ApiClient thay vì rải if(mock) trong feature. Nếu dùng Dio, có thể triển khai Interceptor hoặc adapter riêng; fixture JSON đặt trong thư mục thống nhất và deserialize qua cùng model production. Cờ như --dart-define=USE_MOCK_API=true chỉ được bật cho dev/test và phải có guard ở release.",
+      "layer": "mobile",
+      "severity": "should",
+      "example_good": "ApiClient chọn real/mock adapter theo build config; assets/fixtures dùng cùng DTO parser và test cả 200, 401, 422, timeout.",
+      "example_bad": "Widget tự đọc JSON giả hoặc mỗi repository có một nhánh mock khác nhau; mock có thể bật nhầm ở production.",
+      "concerns": [
+        "testing",
+        "compatibility",
+        "maintainability",
+        "release"
+      ]
+    },
+    {
+      "id": "R006",
+      "title": "Kiểm thử process death/state restoration và memory regression cho luồng quan trọng",
+      "detail": "Test strategy Flutter phải có kịch bản recreate process/restoration cho form nhiều bước quan trọng và profile memory cho màn hình có list/ảnh nặng. Khi automation không thể mô phỏng chính xác OS kill, phải có test thủ công có bước tái hiện và bằng chứng profiler trên thiết bị/emulator phù hợp.",
+      "layer": "mobile",
+      "severity": "should",
+      "example_good": "Integration/manual test xác minh draft phục hồi sau process recreation; DevTools memory snapshot cho thấy heap ổn định sau nhiều vòng mở/đóng feed.",
+      "example_bad": "Chỉ widget test happy path, không kiểm tra kill/reopen hoặc heap tăng sau scroll dài.",
+      "concerns": [
+        "testing",
+        "performance",
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [
@@ -101,6 +130,22 @@
     {
       "code": "STD-TEST",
       "dependency_type": "implements"
+    },
+    {
+      "code": "STD-API",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-ENV",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-MOB-LIFE",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-MOB-PERF",
+      "dependency_type": "uses"
     }
   ],
   "diagrams": [],

@@ -4,7 +4,7 @@
   "name": "Vòng đời & Thực thi nền",
   "category": "06_mobile_platform",
   "description": "Chuẩn xử lý lifecycle và phục hồi tài nguyên ứng dụng.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "active",
   "rules": [
     {
@@ -57,6 +57,34 @@
         "observability",
         "security",
         "testing"
+      ]
+    },
+    {
+      "id": "R005",
+      "title": "Khôi phục trạng thái người dùng quan trọng sau process recreation",
+      "detail": "Các luồng nhiều bước hoặc có chi phí nhập liệu cao phải xác định phần state tối thiểu cần phục hồi nếu hệ điều hành hủy process khi app ở background. Không giả định resume luôn giữ nguyên RAM. State phục hồi phải được version hóa đủ để bỏ qua dữ liệu không còn tương thích sau update ứng dụng.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "Form nhiều bước phục hồi step hiện tại và dữ liệu người dùng đã nhập an toàn sau khi process bị kill rồi mở lại.",
+      "example_bad": "Người dùng chuyển sang app khác vài phút, process bị kill và quay lại phải nhập lại toàn bộ form từ đầu.",
+      "concerns": [
+        "reliability",
+        "usability"
+      ]
+    },
+    {
+      "id": "R006",
+      "title": "Lưu draft cục bộ cho form quan trọng với TTL và chính sách dữ liệu rõ ràng",
+      "detail": "Form quan trọng nên lưu draft theo debounce hoặc tại các mốc thay đổi có ý nghĩa, thay vì ghi storage ở mọi keystroke. Draft phải có TTL/expiredAt, schema version và cơ chế clear khi submit thành công, logout hoặc dữ liệu hết hạn. Không lưu plaintext đối với dữ liệu nhạy cảm; tuân thủ chuẩn privacy/security hiện hành.",
+      "layer": "mobile",
+      "severity": "should",
+      "example_good": "Checkout lưu draft sau debounce, tự phục hồi trong cửa sổ thời gian cấu hình và xóa draft sau khi hoàn tất đơn.",
+      "example_bad": "Ghi toàn bộ form xuống storage ở mỗi ký tự, không TTL và vẫn giữ dữ liệu nhạy cảm sau logout.",
+      "concerns": [
+        "reliability",
+        "privacy",
+        "security",
+        "usability"
       ]
     }
   ],
