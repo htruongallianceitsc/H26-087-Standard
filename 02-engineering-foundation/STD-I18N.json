@@ -4,7 +4,7 @@
   "name": "Quốc tế hóa & Bản địa hóa",
   "category": "02_engineering_foundation",
   "description": "Quốc tế hóa & Bản địa hóa: yêu cầu triển khai và kiểm chứng cụ thể cho STD-I18N, bao gồm hợp đồng hành vi, failure mode, quality gate và ví dụ đúng/sai.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "status": "active",
   "rules": [
     {
@@ -101,7 +101,12 @@
       "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
     }
   ],
-  "depends_on": [],
+  "depends_on": [
+    {
+      "code": "STD-DATETIME",
+      "dependency_type": "uses"
+    }
+  ],
   "diagrams": [],
   "applicability": {
     "scope": "all"

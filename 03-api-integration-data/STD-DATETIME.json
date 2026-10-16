@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 2,
+  "status": "active",
+  "diagrams": [],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  },
+  "code": "STD-DATETIME",
+  "name": "Quản lý Date, Time & Timezone xuyên hệ thống",
+  "category": "03_api_integration_data",
+  "description": "Hợp đồng xử lý thời gian xuyên Flutter/Web, API, Backend, Database và báo cáo; tránh lệch ngày, sai giờ, lỗi DST hoặc mốc hết hạn.",
+  "version": "1.0.0",
+  "rules": [
+    {
+      "id": "R001",
+      "title": "Phân loại đúng ngữ nghĩa mọi trường thời gian",
+      "detail": "Trước khi thiết kế API hoặc DB, phân loại trường thành instant, local-date, local-time, local-date-time hoặc zoned-date-time; mô tả múi giờ, độ chính xác và nguồn thời gian. Date-only (ngày sinh) không phải instant.",
+      "layer": "data",
+      "severity": "must",
+      "example_good": "Ngày sinh dùng local-date 2000-10-26; createdAt dùng instant.",
+      "example_bad": "Chuyển ngày sinh sang UTC midnight gây lệch ngày.",
+      "concerns": [
+        "data-integrity",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R002",
+      "title": "Instant API phải có offset rõ ràng",
+      "detail": "Dùng RFC 3339/ISO 8601 profile có Z hoặc offset (+07:00) cho Instant; chuẩn hóa UTC ở boundary và kiểm tra precision. Không chấp nhận instant thiếu offset, không giả định timezone của server.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "createdAt: 2026-10-16T08:30:00Z hoặc 2026-10-16T15:30:00+07:00.",
+      "example_bad": "createdAt: 2026-10-16T15:30:00 không kèm offset.",
+      "concerns": [
+        "data-integrity",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R003",
+      "title": "Bảo toàn date-only và time-only",
+      "detail": "Date-only trao đổi YYYY-MM-DD; time-only HH:mm:ss[.fraction] (quy định precision trong contract), không tự gắn Z hay chuyển timezone. Local date-time thiếu zone chỉ hợp lệ khi được khai báo rõ là wall-clock và có ngữ cảnh giải nghĩa.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "dateOfBirth: 2000-10-26; storeOpensAt: 09:00:00.",
+      "example_bad": "Parse dateOfBirth thành DateTime UTC rồi toLocal gây lệch ngày.",
+      "concerns": [
+        "data-integrity",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R004",
+      "title": "Lưu DB đúng kiểu thời gian và precision",
+      "detail": "Instant lưu dưới dạng kiểu có ngữ nghĩa tuyệt đối; PostgreSQL ưu tiên timestamptz, DATE/TIME cho calendar-only; lưu IANA zone riêng khi cần bảo toàn zone gốc. Với SQLite/MySQL/SQL Server viết mapping và kiểm thử roundtrip riêng; không giả định các DB lưu timezone giống nhau.",
+      "layer": "db",
+      "severity": "must",
+      "example_good": "PostgreSQL: occurred_at timestamptz, birth_date date, schedule_zone text.",
+      "example_bad": "Lưu chuỗi ngày đã format hoặc dùng timestamp without time zone cho mọi trường.",
+      "concerns": [
+        "data-integrity",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R005",
+      "title": "Time zone nghiệp vụ phải khai báo IANA",
+      "detail": "Các hạn cuối ngày, báo cáo, lịch giao hàng, cửa hàng, lịch lặp phải chỉ rõ timezone nghiệp vụ bằng IANA ID (ví dụ Asia/Ho_Chi_Minh); không sử dụng offset cố định làm đại diện cho khu vực có DST. Định nghĩa chính sách xử lý local time mơ hồ/không tồn tại khi DST.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "Lịch mỗi ngày 09:00 tại America/New_York kèm DST gap/overlap policy.",
+      "example_bad": "Dùng UTC-05:00 quanh năm cho lịch New York.",
+      "concerns": [
+        "data-integrity",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R006",
+      "title": "Quy định rõ ranh giới convert và presentation",
+      "detail": "Chuẩn hóa Instant ở boundary, so sánh trên timeline và chuyển sang timezone hiển thị chỉ tại tầng presentation hoặc boundary nghiệp vụ được chỉ định. Locale chỉ điều khiển format, không quyết định timezone. Device timezone không luôn đồng nghĩa business timezone.",
+      "layer": "integration",
+      "severity": "must",
+      "example_good": "Flutter render instant theo zone tài khoản hoặc thiết bị theo requirement.",
+      "example_bad": "Cộng +7 giờ thủ công và backend lại convert một lần nữa.",
+      "concerns": [
+        "data-integrity",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R007",
+      "title": "Đồng hồ có thẩm quyền cho nghiệp vụ nhạy thời gian",
+      "detail": "Backend dùng clock có thể inject/mock cho token, hết hạn, thanh toán, voucher; clock thiết bị chỉ phục vụ UX và có thể sai. Theo dõi clock skew, đồng bộ thời gian hạ tầng; không dùng local device clock để quyết định bảo mật.",
+      "layer": "service",
+      "severity": "must",
+      "example_good": "Expiry so sánh serverInstant >= expiresAt, test inject fixed clock.",
+      "example_bad": "Cho phép voucher quá hạn dựa vào DateTime.now() của điện thoại.",
+      "concerns": [
+        "data-integrity",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R008",
+      "title": "Query theo local-date phải đổi sang khoảng instant",
+      "detail": "Đối với báo cáo/ngày nghiệp vụ, xác định [startOfDay, nextStartOfDay) theo IANA zone và chuyển 2 mốc sang UTC trước khi lọc; không mặc định ngày luôn dài 24 giờ. Dùng khoảng half-open để tránh mất dữ liệu giây cuối.",
+      "layer": "db",
+      "severity": "must",
+      "example_good": "WHERE created_at >= startUtc AND created_at < nextStartUtc.",
+      "example_bad": "WHERE DATE(created_at) = selectedDate dựa session timezone không rõ.",
+      "concerns": [
+        "data-integrity",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R009",
+      "title": "Kiểm thử timezone và tương thích end-to-end",
+      "detail": "Test UTC±offset, thiết bị đổi timezone, giao ngày/năm, DST gap/overlap, leap day, precision roundtrip, parse invalid/offset thiếu, clock skew, server chạy timezone khác và app resume. Fixtures ghi rõ temporal type; test API–DB–Flutter dùng cùng instant.",
+      "layer": "quality",
+      "severity": "must",
+      "example_good": "2026-10-16T08:30:00Z hiển thị 15:30 tại Asia/Ho_Chi_Minh, đồng nhất sau roundtrip.",
+      "example_bad": "Test chỉ với timezone máy developer rồi coi pass.",
+      "concerns": [
+        "data-integrity",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R010",
+      "title": "Migration dữ liệu thời gian không mơ hồ",
+      "detail": "Khi sửa schema/API thời gian, có kế hoạch backfill, versioning và quy tắc xử lý legacy datetime thiếu offset; không tự đoán timezone lịch sử. Cần audit các trường sai lệch và rollback/reconciliation.",
+      "layer": "data",
+      "severity": "must",
+      "example_good": "Legacy timezone được xác nhận theo tenant/site và ghi nhận trong migration.",
+      "example_bad": "Auto-append Z vào toàn bộ timestamp cũ mà không xác minh nguồn.",
+      "concerns": [
+        "data-integrity",
+        "reliability"
+      ]
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Inventory temporal fields",
+      "description": "Liệt kê các trường thời gian trong API/DB/Flutter, đánh dấu temporal type và nguồn timezone."
+    },
+    {
+      "step": 2,
+      "title": "Chốt API & DB contract",
+      "description": "Định nghĩa serialization, timezone policy, precision, database mapping và error handling; cập nhật OpenAPI/fixtures."
+    },
+    {
+      "step": 3,
+      "title": "Áp dụng conversion có kiểm soát",
+      "description": "Triển khai shared utilities cho backend/mobile; tránh conversion lặp và sử dụng injected clock cho domain logic."
+    },
+    {
+      "step": 4,
+      "title": "Kiểm thử qua các múi giờ",
+      "description": "Chạy unit/contract/integration/regression test theo các trường hợp boundary, DST và dữ liệu legacy."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Lệch ngày sinh khi client khác múi giờ",
+      "cause": "Date-only bị hiểu là Instant rồi convert timezone.",
+      "solution": "Serialize YYYY-MM-DD và lưu DATE; không áp dụng chuyển đổi UTC."
+    },
+    {
+      "issue": "Báo cáo sai khi gần nửa đêm",
+      "cause": "Lấy ngày theo timezone server/session DB thay vì zone nghiệp vụ.",
+      "solution": "Tạo giới hạn ngày theo IANA zone, đổi sang UTC và dùng [start,end)."
+    },
+    {
+      "issue": "Lịch lặp sai sau DST",
+      "cause": "Lưu UTC offset cố định thay vì timezone khu vực.",
+      "solution": "Giữ local-time + IANA zone và xác định gap/overlap policy."
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-DATA",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-API",
+      "dependency_type": "uses"
+    }
+  ]
+}

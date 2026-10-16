@@ -2870,6 +2870,48 @@
         "id": "R004",
         "original_title": "Cô lập test fixture và tránh phụ thuộc vào dữ liệu production đang hoạt động"
       }
+    ],
+    "STD-DATETIME": [
+      {
+        "id": "R001",
+        "original_title": "Phân loại đúng ngữ nghĩa mọi trường thời gian"
+      },
+      {
+        "id": "R002",
+        "original_title": "Instant API phải có offset rõ ràng"
+      },
+      {
+        "id": "R003",
+        "original_title": "Bảo toàn date-only và time-only"
+      },
+      {
+        "id": "R004",
+        "original_title": "Lưu DB đúng kiểu thời gian và precision"
+      },
+      {
+        "id": "R005",
+        "original_title": "Time zone nghiệp vụ phải khai báo IANA"
+      },
+      {
+        "id": "R006",
+        "original_title": "Quy định rõ ranh giới convert và presentation"
+      },
+      {
+        "id": "R007",
+        "original_title": "Đồng hồ có thẩm quyền cho nghiệp vụ nhạy thời gian"
+      },
+      {
+        "id": "R008",
+        "original_title": "Query theo local-date phải đổi sang khoảng instant"
+      },
+      {
+        "id": "R009",
+        "original_title": "Kiểm thử timezone và tương thích end-to-end"
+      },
+      {
+        "id": "R010",
+        "original_title": "Migration dữ liệu thời gian không mơ hồ"
+      }
     ]
   }
 }

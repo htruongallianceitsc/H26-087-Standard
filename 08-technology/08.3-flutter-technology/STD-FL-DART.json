@@ -4,7 +4,7 @@
   "name": "Quy ước Dart",
   "category": "08_technology",
   "description": "Chuẩn phân tích tĩnh, quy ước code và đặt tên trong Dart.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "status": "active",
   "rules": [
     {
@@ -91,6 +91,10 @@
     {
       "code": "STD-MOB-ARCH",
       "dependency_type": "requires"
+    },
+    {
+      "code": "STD-DATETIME",
+      "dependency_type": "uses"
     }
   ],
   "diagrams": [],

@@ -3,7 +3,7 @@
   "sourceOfTruth": "standard JSON files",
   "schema": "standard-import-v2.schema.json",
   "schemaVersion": 2,
-  "count": 137,
+  "count": 138,
   "groups": [
     {
       "folder": "01-governance-delivery",
@@ -53,6 +53,7 @@
         "STD-DATA-MIG.json",
         "STD-DATA-TX.json",
         "STD-DATA.json",
+        "STD-DATETIME.json",
         "STD-DEEP-LINK.json",
         "STD-INTEGRATION.json",
         "STD-WEBHOOK.json"

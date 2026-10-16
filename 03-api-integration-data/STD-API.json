@@ -4,7 +4,7 @@
   "name": "Hợp đồng API & Quản lý phiên bản",
   "category": "03_api_integration_data",
   "description": "Hợp đồng dịch vụ nhất quán và có quản lý phiên bản.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "status": "active",
   "rules": [
     {
@@ -109,6 +109,10 @@
     },
     {
       "code": "STD-VERSIONING",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-DATETIME",
       "dependency_type": "uses"
     }
   ],

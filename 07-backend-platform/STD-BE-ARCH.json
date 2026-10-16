@@ -4,7 +4,7 @@
   "name": "Kiến trúc ứng dụng Backend",
   "category": "07_backend_platform",
   "description": "Kiến trúc ứng dụng Backend: quy định các yêu cầu triển khai và bằng chứng kiểm tra cụ thể; chỉ áp dụng khi phạm vi project liên quan.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "status": "active",
   "rules": [
     {
@@ -90,6 +90,10 @@
     {
       "code": "STD-ARCH",
       "dependency_type": "extends"
+    },
+    {
+      "code": "STD-DATETIME",
+      "dependency_type": "uses"
     }
   ],
   "diagrams": [],
