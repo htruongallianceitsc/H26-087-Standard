@@ -42,7 +42,7 @@ Resolver là **bản triển khai tham khảo cục bộ**: `selected_standards`
 - `rule-id-registry.json`: danh mục định danh rule.
 - `project-profiles/project-profile.schema.json` và các profile mẫu.
 - `tools/standard_tool.py`: validate, resolve, xuất ngược v1.
-- `SCHEMA-V2-UPGRADE-GUIDE.md`: hướng dẫn này.
+- `docs/guides/SCHEMA-V2-UPGRADE-GUIDE.md`: hướng dẫn này.
 - `STRUCTURE.txt` và `STRUCTURE_API_RESPONSE.js`: nội dung cây danh mục standard giữ nguyên, vì không thêm/đổi vị trí standard; bổ sung chú thích schema v2 ở phần tài liệu hỗ trợ.
 
 ## Kiểm tra trước khi áp dụng thực tế

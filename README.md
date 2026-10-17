@@ -55,9 +55,15 @@ Hiện catalog vẫn còn technical debt về nội dung. `content-quality-basel
 
 Mỗi rule khi nâng cấp nên có nội dung kiểm chứng được, ví dụ good/bad thực tế, ngưỡng định lượng khi phù hợp và dẫn chiếu chuẩn ngoài đáng tin cậy.
 
-## Tài liệu lịch sử
+## Cấu trúc tài liệu
 
-Các review/changelog cũ được chuyển vào `docs/history/`; hướng dẫn schema nằm trong `docs/guides/`. Những tài liệu này không phải nguồn sự thật về số lượng standard hiện tại.
+Tất cả tài liệu bổ trợ đã được gom gọn gàng trong thư mục `docs/`:
+- `docs/guides/`: Hướng dẫn schema v2, rule taxonomy và quy trình QA.
+- `docs/history/`: Lịch sử các đợt nâng cấp, migration và mở rộng catalog.
+- `docs/reviews/`: Các báo cáo review chi tiết theo từng wave / chuyên đề (Wave 1, 2, 3, 5, Flutter runtime...).
+- `docs/quality/`: Báo cáo audit semantic và checklist phân theo vai trò (Developer, QC, Architect, DevOps...).
+
+*Lưu ý: Các tài liệu lịch sử/review phản ánh trạng thái tại thời điểm ghi nhận, không phải nguồn sự thật thay thế cho các file standard hiện hành.*
 
 ## Wave 5: Layer & concern taxonomy
 
