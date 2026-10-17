@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 2,
+  "code": "STD-SESSION",
+  "name": "Authentication Session Lifecycle",
+  "category": "02_engineering_foundation",
+  "description": "Phiên đăng nhập trên client/server đa thiết bị",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "id": "R001",
+      "title": "Định nghĩa access/refresh token lifecycle",
+      "detail": "Document token lifetime, rotation, expiry, revocation, clock skew; bảo vệ refresh token khi lưu và truyền. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "Refresh rotation và revoke token family khi reuse",
+      "example_bad": "Refresh token vĩnh viễn không thu hồi",
+      "concerns": [
+        "authentication",
+        "security",
+        "authorization"
+      ]
+    },
+    {
+      "id": "R002",
+      "title": "Đồng bộ logout và revoke trên mọi bề mặt",
+      "detail": "Clear secure credential, cache dữ liệu nhạy cảm, listener/socket khi logout; backend có revoke policy. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "Logout xóa credential và user-scoped cache",
+      "example_bad": "Chuyển UI login nhưng để token trong storage",
+      "concerns": [
+        "authentication",
+        "security",
+        "authorization"
+      ]
+    },
+    {
+      "id": "R003",
+      "title": "Xử lý single-flight refresh và trạng thái session",
+      "detail": "Giữ state machine unauthenticated/authenticating/refreshing/authenticated/expired và tránh race concurrent 401. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "Một refresh promise chung",
+      "example_bad": "Mỗi interceptor tự refresh riêng",
+      "concerns": [
+        "authentication",
+        "security",
+        "authorization"
+      ]
+    },
+    {
+      "id": "R004",
+      "title": "Phân biệt unauthorized, forbidden và offline",
+      "detail": "401 token không hợp lệ; 403 thiếu quyền; lỗi mạng không tự động logout; thay quyền cần revalidate. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "architecture",
+      "severity": "should",
+      "example_good": "403 giữ session và hiển thị thiếu quyền",
+      "example_bad": "Timeout làm logout người dùng",
+      "concerns": [
+        "authentication",
+        "security",
+        "authorization"
+      ]
+    },
+    {
+      "id": "R005",
+      "title": "Kiểm thử resume, revoke và đổi account",
+      "detail": "Test foreground/background, token expiration, revocation, 2 accounts trên một máy và dữ liệu cache cách ly. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "architecture",
+      "severity": "should",
+      "example_good": "Revoke trên server => client kết thúc phiên đúng policy",
+      "example_bad": "User B xem dữ liệu cache của user A",
+      "concerns": [
+        "authentication",
+        "security",
+        "authorization"
+      ]
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Xác định phạm vi",
+      "description": "Xác định entity/feature, threat model, boundary và contract phải áp dụng."
+    },
+    {
+      "step": 2,
+      "title": "Triển khai có test",
+      "description": "Code, test cả lỗi và concurrency, cung cấp bằng chứng review trước khi merge."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Triển khai rule chỉ qua checklist",
+      "cause": "Không có contract hoặc test xác minh",
+      "solution": "Bổ sung acceptance criteria và automated/integration test cho đường đi chính và lỗi."
+    }
+  ],
+  "depends_on": [],
+  "diagrams": [],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
+}

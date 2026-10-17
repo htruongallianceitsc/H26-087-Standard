@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 2,
+  "code": "STD-CONFIG-RUNTIME",
+  "name": "Runtime Configuration & Feature Control",
+  "category": "02_engineering_foundation",
+  "description": "Cấu hình runtime, feature flags và kill switch",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "id": "R001",
+      "title": "Quy định owner, schema, typed defaults và validation",
+      "detail": "Cấu hình có version/environment/owner, giá trị safe default và validation tại startup hoặc apply. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "Timeout config trong range 1..60s, fallback ổn định",
+      "example_bad": "String config parse lỗi làm crash app",
+      "concerns": [
+        "security",
+        "reliability",
+        "release"
+      ]
+    },
+    {
+      "id": "R002",
+      "title": "Tách secret khỏi remote/public config",
+      "detail": "Không đưa key/credential vào mobile bundle, public endpoint hoặc analytics; phân quyền chỉnh flag. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "Secrets trong secret manager và rotation",
+      "example_bad": "API private key đặt trong remote config client",
+      "concerns": [
+        "security",
+        "reliability",
+        "release"
+      ]
+    },
+    {
+      "id": "R003",
+      "title": "Có rollout/rollback và kill switch",
+      "detail": "Flag có target/cohort, expiration, audit history, safe fallback offline; kiểm thử rollback. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "Disable payment flow bằng kill switch kiểm soát",
+      "example_bad": "Tắt feature nhưng backend vẫn xử lý mutation",
+      "concerns": [
+        "security",
+        "reliability",
+        "release"
+      ]
+    },
+    {
+      "id": "R004",
+      "title": "Ngăn config drift giữa môi trường",
+      "detail": "CI validate schema, unknown keys, stale flag và policy production; không dùng mock debug config trên release. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "architecture",
+      "severity": "should",
+      "example_good": "Release check USE_MOCK_API=false",
+      "example_bad": "Prod app bật mock bằng remote flag",
+      "concerns": [
+        "security",
+        "reliability",
+        "release"
+      ]
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Xác định phạm vi",
+      "description": "Xác định entity/feature, threat model, boundary và contract phải áp dụng."
+    },
+    {
+      "step": 2,
+      "title": "Triển khai có test",
+      "description": "Code, test cả lỗi và concurrency, cung cấp bằng chứng review trước khi merge."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Triển khai rule chỉ qua checklist",
+      "cause": "Không có contract hoặc test xác minh",
+      "solution": "Bổ sung acceptance criteria và automated/integration test cho đường đi chính và lỗi."
+    }
+  ],
+  "depends_on": [],
+  "diagrams": [],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
+}

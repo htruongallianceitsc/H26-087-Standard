@@ -16,8 +16,19 @@ const STANDARD_CATALOG = [
           {
             "code": "STD-DOC",
             "dependency_type": "requires"
+          },
+          {
+            "code": "STD-AI-SEC",
+            "dependency_type": "aligns_with"
           }
         ]
+      },
+      {
+        "code": "STD-AI-SEC",
+        "name": "AI Agent Security & Tool Boundaries",
+        "type": "standard",
+        "folder": "01-governance-delivery",
+        "depends_on": []
       },
       {
         "code": "STD-ARCH",
@@ -159,6 +170,20 @@ const STANDARD_CATALOG = [
         "depends_on": []
       },
       {
+        "code": "STD-AUDIT",
+        "name": "Business Audit Trail",
+        "type": "standard",
+        "folder": "02-engineering-foundation",
+        "depends_on": []
+      },
+      {
+        "code": "STD-CONFIG-RUNTIME",
+        "name": "Runtime Configuration & Feature Control",
+        "type": "standard",
+        "folder": "02-engineering-foundation",
+        "depends_on": []
+      },
+      {
         "code": "STD-DEP",
         "name": "Quản lý dependency & Package",
         "type": "standard",
@@ -184,21 +209,36 @@ const STANDARD_CATALOG = [
         "name": "Feature Flag & Rollout tăng dần",
         "type": "standard",
         "folder": "02-engineering-foundation",
-        "depends_on": []
+        "depends_on": [
+          {
+            "code": "STD-CONFIG-RUNTIME",
+            "dependency_type": "aligns_with"
+          }
+        ]
       },
       {
         "code": "STD-I18N",
         "name": "Quốc tế hóa & Bản địa hóa",
         "type": "standard",
         "folder": "02-engineering-foundation",
-        "depends_on": []
+        "depends_on": [
+          {
+            "code": "STD-DATETIME",
+            "dependency_type": "uses"
+          }
+        ]
       },
       {
         "code": "STD-LOG",
         "name": "Logging & Observability",
         "type": "standard",
         "folder": "02-engineering-foundation",
-        "depends_on": []
+        "depends_on": [
+          {
+            "code": "STD-TRACE",
+            "dependency_type": "aligns_with"
+          }
+        ]
       },
       {
         "code": "STD-PERF",
@@ -227,6 +267,20 @@ const STANDARD_CATALOG = [
         "type": "standard",
         "folder": "02-engineering-foundation",
         "depends_on": []
+      },
+      {
+        "code": "STD-SESSION",
+        "name": "Authentication Session Lifecycle",
+        "type": "standard",
+        "folder": "02-engineering-foundation",
+        "depends_on": []
+      },
+      {
+        "code": "STD-TRACE",
+        "name": "Distributed Tracing & Correlation",
+        "type": "standard",
+        "folder": "02-engineering-foundation",
+        "depends_on": []
       }
     ]
   },
@@ -250,6 +304,18 @@ const STANDARD_CATALOG = [
           {
             "code": "STD-VERSIONING",
             "dependency_type": "uses"
+          },
+          {
+            "code": "STD-DATETIME",
+            "dependency_type": "uses"
+          },
+          {
+            "code": "STD-PAGINATION",
+            "dependency_type": "aligns_with"
+          },
+          {
+            "code": "STD-ID",
+            "dependency_type": "aligns_with"
           }
         ]
       },
@@ -297,7 +363,12 @@ const STANDARD_CATALOG = [
         "name": "API thời gian thực & WebSocket/SSE",
         "type": "standard",
         "folder": "03-api-integration-data",
-        "depends_on": []
+        "depends_on": [
+          {
+            "code": "STD-NOTIFICATION",
+            "dependency_type": "aligns_with"
+          }
+        ]
       },
       {
         "code": "STD-CACHE",
@@ -307,11 +378,27 @@ const STANDARD_CATALOG = [
         "depends_on": []
       },
       {
+        "code": "STD-CLIENT-API",
+        "name": "Client API Lifecycle & Network Recovery",
+        "type": "standard",
+        "folder": "03-api-integration-data",
+        "depends_on": []
+      },
+      {
         "code": "STD-DATA",
         "name": "Mô hình dữ liệu & Thiết kế Schema",
         "type": "standard",
         "folder": "03-api-integration-data",
-        "depends_on": []
+        "depends_on": [
+          {
+            "code": "STD-DATETIME",
+            "dependency_type": "uses"
+          },
+          {
+            "code": "STD-DATA-OWNERSHIP",
+            "dependency_type": "aligns_with"
+          }
+        ]
       },
       {
         "code": "STD-DATA-MIG",
@@ -326,11 +413,34 @@ const STANDARD_CATALOG = [
         ]
       },
       {
+        "code": "STD-DATA-OWNERSHIP",
+        "name": "Data Ownership & Source of Truth",
+        "type": "standard",
+        "folder": "03-api-integration-data",
+        "depends_on": []
+      },
+      {
         "code": "STD-DATA-TX",
         "name": "Giao dịch, Đồng thời & Tính nhất quán",
         "type": "standard",
         "folder": "03-api-integration-data",
         "depends_on": []
+      },
+      {
+        "code": "STD-DATETIME",
+        "name": "Quản lý Date, Time & Timezone xuyên hệ thống",
+        "type": "standard",
+        "folder": "03-api-integration-data",
+        "depends_on": [
+          {
+            "code": "STD-DATA",
+            "dependency_type": "uses"
+          },
+          {
+            "code": "STD-API",
+            "dependency_type": "uses"
+          }
+        ]
       },
       {
         "code": "STD-DEEP-LINK",
@@ -365,6 +475,20 @@ const STANDARD_CATALOG = [
         ]
       },
       {
+        "code": "STD-FILE-LIFECYCLE",
+        "name": "File & Media Lifecycle",
+        "type": "standard",
+        "folder": "03-api-integration-data",
+        "depends_on": []
+      },
+      {
+        "code": "STD-ID",
+        "name": "Identifier & Key Strategy",
+        "type": "standard",
+        "folder": "03-api-integration-data",
+        "depends_on": []
+      },
+      {
         "code": "STD-INTEGRATION",
         "name": "Tích hợp bên thứ ba",
         "type": "standard",
@@ -372,8 +496,36 @@ const STANDARD_CATALOG = [
         "depends_on": []
       },
       {
+        "code": "STD-NOTIFICATION",
+        "name": "Unified Notification Delivery",
+        "type": "standard",
+        "folder": "03-api-integration-data",
+        "depends_on": []
+      },
+      {
+        "code": "STD-PAGINATION",
+        "name": "Pagination, Sorting & Query Contract",
+        "type": "standard",
+        "folder": "03-api-integration-data",
+        "depends_on": []
+      },
+      {
+        "code": "STD-SEARCH",
+        "name": "Search & Filtering Contract",
+        "type": "standard",
+        "folder": "03-api-integration-data",
+        "depends_on": []
+      },
+      {
         "code": "STD-WEBHOOK",
         "name": "Webhook & Hợp đồng sự kiện",
+        "type": "standard",
+        "folder": "03-api-integration-data",
+        "depends_on": []
+      },
+      {
+        "code": "STD-WORKFLOW",
+        "name": "Business Workflow & State Machine",
         "type": "standard",
         "folder": "03-api-integration-data",
         "depends_on": []
@@ -470,6 +622,10 @@ const STANDARD_CATALOG = [
           {
             "code": "STD-WEB-SEC",
             "dependency_type": "uses"
+          },
+          {
+            "code": "STD-SESSION",
+            "dependency_type": "aligns_with"
           }
         ]
       },
@@ -502,7 +658,12 @@ const STANDARD_CATALOG = [
         "name": "Progressive Web App (PWA)",
         "type": "standard",
         "folder": "05-web-platform",
-        "depends_on": []
+        "depends_on": [
+          {
+            "code": "STD-CONFIG-RUNTIME",
+            "dependency_type": "aligns_with"
+          }
+        ]
       },
       {
         "code": "STD-WEB-RESP",
@@ -627,6 +788,10 @@ const STANDARD_CATALOG = [
           {
             "code": "STD-CACHE",
             "dependency_type": "uses"
+          },
+          {
+            "code": "STD-DATA-OWNERSHIP",
+            "dependency_type": "aligns_with"
           }
         ]
       },
@@ -647,7 +812,12 @@ const STANDARD_CATALOG = [
         "name": "Push Notification & Routing",
         "type": "standard",
         "folder": "06-mobile-platform",
-        "depends_on": []
+        "depends_on": [
+          {
+            "code": "STD-NOTIFICATION",
+            "dependency_type": "aligns_with"
+          }
+        ]
       },
       {
         "code": "STD-MOB-RELEASE",
@@ -735,6 +905,10 @@ const STANDARD_CATALOG = [
           {
             "code": "STD-ARCH",
             "dependency_type": "extends"
+          },
+          {
+            "code": "STD-DATETIME",
+            "dependency_type": "uses"
           }
         ]
       },
@@ -743,7 +917,12 @@ const STANDARD_CATALOG = [
         "name": "Xác thực & Phân quyền",
         "type": "standard",
         "folder": "07-backend-platform",
-        "depends_on": []
+        "depends_on": [
+          {
+            "code": "STD-SESSION",
+            "dependency_type": "aligns_with"
+          }
+        ]
       },
       {
         "code": "STD-BE-CONCUR",
@@ -766,7 +945,12 @@ const STANDARD_CATALOG = [
         "name": "Xử lý tệp & Object Storage",
         "type": "standard",
         "folder": "07-backend-platform",
-        "depends_on": []
+        "depends_on": [
+          {
+            "code": "STD-FILE-LIFECYCLE",
+            "dependency_type": "aligns_with"
+          }
+        ]
       },
       {
         "code": "STD-BE-HEALTH",
@@ -990,6 +1174,18 @@ const STANDARD_CATALOG = [
           {
             "code": "STD-MOB-ARCH",
             "dependency_type": "requires"
+          },
+          {
+            "code": "STD-DATETIME",
+            "dependency_type": "uses"
+          },
+          {
+            "code": "STD-CLIENT-API",
+            "dependency_type": "aligns_with"
+          },
+          {
+            "code": "STD-SESSION",
+            "dependency_type": "aligns_with"
           }
         ]
       },
@@ -1018,6 +1214,26 @@ const STANDARD_CATALOG = [
           {
             "code": "STD-TEST",
             "dependency_type": "implements"
+          },
+          {
+            "code": "STD-API",
+            "dependency_type": "uses"
+          },
+          {
+            "code": "STD-ENV",
+            "dependency_type": "uses"
+          },
+          {
+            "code": "STD-MOB-LIFE",
+            "dependency_type": "uses"
+          },
+          {
+            "code": "STD-MOB-PERF",
+            "dependency_type": "uses"
+          },
+          {
+            "code": "STD-CLIENT-API",
+            "dependency_type": "aligns_with"
           }
         ]
       },
@@ -1030,6 +1246,18 @@ const STANDARD_CATALOG = [
           {
             "code": "STD-MOB-ARCH",
             "dependency_type": "requires"
+          },
+          {
+            "code": "STD-MOB-PERF",
+            "dependency_type": "uses"
+          },
+          {
+            "code": "STD-MOB-LIFE",
+            "dependency_type": "uses"
+          },
+          {
+            "code": "STD-FEEDBACK",
+            "dependency_type": "uses"
           }
         ]
       },
@@ -1852,6 +2080,10 @@ const STANDARD_CATALOG = [
           {
             "code": "STD-REQ",
             "dependency_type": "requires"
+          },
+          {
+            "code": "STD-DATETIME",
+            "dependency_type": "uses"
           }
         ]
       }

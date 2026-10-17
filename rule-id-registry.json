@@ -17,6 +17,10 @@
       {
         "id": "R004",
         "original_title": "Chạy kiểm tra, so sánh UI bàn giao với design và báo cáo bằng chứng/khoảng lệch"
+      },
+      {
+        "id": "R005",
+        "original_title": "Agent phải phân biệt nguồn instruction đáng tin"
       }
     ],
     "STD-ARCH": [
@@ -253,6 +257,10 @@
       {
         "id": "R005",
         "original_title": "Đồng bộ version schema và migration"
+      },
+      {
+        "id": "R006",
+        "original_title": "Ma trận hỗ trợ client/server/contract"
       }
     ],
     "STD-ANALYTICS": [
@@ -403,6 +411,10 @@
       {
         "id": "R004",
         "original_title": "Xác định ngưỡng cảnh báo và owner cho sự cố production"
+      },
+      {
+        "id": "R005",
+        "original_title": "Trace context được propagate xuyên service"
       }
     ],
     "STD-PERF": [
@@ -619,6 +631,10 @@
       {
         "id": "R005",
         "original_title": "Mock API phải bám hợp đồng thật và dùng fixture có kiểm soát"
+      },
+      {
+        "id": "R006",
+        "original_title": "Schema evolution theo expand-migrate-contract"
       }
     ],
     "STD-CACHE": [
@@ -675,6 +691,10 @@
       {
         "id": "R008",
         "original_title": "Quan sát và cảnh báo trong rollout"
+      },
+      {
+        "id": "R009",
+        "original_title": "Migration tương thích phiên bản rolling deploy"
       }
     ],
     "STD-DATA-TX": [
@@ -1061,6 +1081,10 @@
       {
         "id": "R004",
         "original_title": "Kiểm thử update, asset cũ và thay đổi session xuyên suốt vòng đời PWA"
+      },
+      {
+        "id": "R005",
+        "original_title": "Service worker update và cache/data version"
       }
     ],
     "STD-WEB-RESP": [
@@ -1265,6 +1289,10 @@
       {
         "id": "R004",
         "original_title": "Kiểm thử kết nối chập chờn và submit trùng"
+      },
+      {
+        "id": "R005",
+        "original_title": "Offline sync conflict resolution và replay an toàn"
       }
     ],
     "STD-MOB-PERF": [
@@ -1309,6 +1337,10 @@
       {
         "id": "R004",
         "original_title": "Tránh đưa nội dung nhạy cảm vào push payload không đáng tin cậy"
+      },
+      {
+        "id": "R005",
+        "original_title": "Đồng bộ token thiết bị và message dedup"
       }
     ],
     "STD-MOB-RELEASE": [
@@ -1537,6 +1569,10 @@
       {
         "id": "R004",
         "original_title": "Quan sát lịch sử thực thi và kết quả"
+      },
+      {
+        "id": "R005",
+        "original_title": "Idempotent delivery và trace của background job"
       }
     ],
     "STD-BE-PERF": [
@@ -1863,6 +1899,10 @@
       {
         "id": "R004",
         "original_title": "Tổ chức import thư viện và trách nhiệm file theo cách nhất quán, dễ dự đoán"
+      },
+      {
+        "id": "R005",
+        "original_title": "Chuẩn hóa lỗi mạng và vòng đời request Flutter"
       }
     ],
     "STD-FL-ROUTE": [
@@ -1907,6 +1947,10 @@
       {
         "id": "R006",
         "original_title": "Kiểm thử process death/state restoration và memory regression cho luồng quan trọng"
+      },
+      {
+        "id": "R007",
+        "original_title": "Kiểm thử reconnect, offline replay và token refresh race"
       }
     ],
     "STD-FL-WIDGET": [
@@ -2911,6 +2955,260 @@
       {
         "id": "R010",
         "original_title": "Migration dữ liệu thời gian không mơ hồ"
+      }
+    ],
+    "STD-AI-SEC": [
+      {
+        "id": "R001",
+        "original_title": "Coi source/docs/tool output là dữ liệu không tin cậy"
+      },
+      {
+        "id": "R002",
+        "original_title": "Áp dụng least privilege và phê duyệt thao tác nguy hiểm"
+      },
+      {
+        "id": "R003",
+        "original_title": "Ngăn exfiltration và secret leakage"
+      },
+      {
+        "id": "R004",
+        "original_title": "Xác minh artifact và báo cáo bằng chứng trung thực"
+      },
+      {
+        "id": "R005",
+        "original_title": "Ranh giới tự động hóa và human-in-the-loop"
+      }
+    ],
+    "STD-AUDIT": [
+      {
+        "id": "R001",
+        "original_title": "Ghi actor, action, resource, result và UTC instant"
+      },
+      {
+        "id": "R002",
+        "original_title": "Audit transaction phải nhất quán dữ liệu nghiệp vụ"
+      },
+      {
+        "id": "R003",
+        "original_title": "Mask PII và giới hạn truy cập audit"
+      },
+      {
+        "id": "R004",
+        "original_title": "Phát hiện sửa hoặc xóa trái phép"
+      }
+    ],
+    "STD-CONFIG-RUNTIME": [
+      {
+        "id": "R001",
+        "original_title": "Quy định owner, schema, typed defaults và validation"
+      },
+      {
+        "id": "R002",
+        "original_title": "Tách secret khỏi remote/public config"
+      },
+      {
+        "id": "R003",
+        "original_title": "Có rollout/rollback và kill switch"
+      },
+      {
+        "id": "R004",
+        "original_title": "Ngăn config drift giữa môi trường"
+      }
+    ],
+    "STD-SESSION": [
+      {
+        "id": "R001",
+        "original_title": "Định nghĩa access/refresh token lifecycle"
+      },
+      {
+        "id": "R002",
+        "original_title": "Đồng bộ logout và revoke trên mọi bề mặt"
+      },
+      {
+        "id": "R003",
+        "original_title": "Xử lý single-flight refresh và trạng thái session"
+      },
+      {
+        "id": "R004",
+        "original_title": "Phân biệt unauthorized, forbidden và offline"
+      },
+      {
+        "id": "R005",
+        "original_title": "Kiểm thử resume, revoke và đổi account"
+      }
+    ],
+    "STD-TRACE": [
+      {
+        "id": "R001",
+        "original_title": "Truyền trace context theo chuẩn hợp đồng"
+      },
+      {
+        "id": "R002",
+        "original_title": "Phân biệt trace ID, span ID và request ID"
+      },
+      {
+        "id": "R003",
+        "original_title": "Redact và sampling tránh lộ dữ liệu"
+      },
+      {
+        "id": "R004",
+        "original_title": "Quan sát latency và lỗi xuyên service"
+      }
+    ],
+    "STD-CLIENT-API": [
+      {
+        "id": "R001",
+        "original_title": "Phân loại lỗi networking và HTTP"
+      },
+      {
+        "id": "R002",
+        "original_title": "Timeout, retry và backoff có giới hạn"
+      },
+      {
+        "id": "R003",
+        "original_title": "Hủy request và tránh stale response"
+      },
+      {
+        "id": "R004",
+        "original_title": "Single-flight token refresh và phân biệt 401/403"
+      },
+      {
+        "id": "R005",
+        "original_title": "Theo dõi phục hồi connectivity khi resume"
+      }
+    ],
+    "STD-DATA-OWNERSHIP": [
+      {
+        "id": "R001",
+        "original_title": "Chỉ định authoritative source theo dữ liệu"
+      },
+      {
+        "id": "R002",
+        "original_title": "Định nghĩa cache freshness và invalidation"
+      },
+      {
+        "id": "R003",
+        "original_title": "Chống response out-of-order"
+      },
+      {
+        "id": "R004",
+        "original_title": "Quản lý optimistic mutation có đối soát"
+      }
+    ],
+    "STD-FILE-LIFECYCLE": [
+      {
+        "id": "R001",
+        "original_title": "Validate MIME, extension, size và nội dung"
+      },
+      {
+        "id": "R002",
+        "original_title": "Upload an toàn và có thể phục hồi"
+      },
+      {
+        "id": "R003",
+        "original_title": "Quản lý lifecycle và orphan cleanup"
+      },
+      {
+        "id": "R004",
+        "original_title": "Bảo vệ download và nội dung nhạy cảm"
+      },
+      {
+        "id": "R005",
+        "original_title": "Xử lý metadata, thumbnail và EXIF"
+      }
+    ],
+    "STD-ID": [
+      {
+        "id": "R001",
+        "original_title": "Phân biệt internal PK và public identifier"
+      },
+      {
+        "id": "R002",
+        "original_title": "Chọn UUID/ULID/int theo access pattern"
+      },
+      {
+        "id": "R003",
+        "original_title": "Serialize ID không mất chính xác"
+      },
+      {
+        "id": "R004",
+        "original_title": "Không tái sử dụng ID và giữ referential integrity"
+      }
+    ],
+    "STD-NOTIFICATION": [
+      {
+        "id": "R001",
+        "original_title": "Hợp đồng notification domain event và channel"
+      },
+      {
+        "id": "R002",
+        "original_title": "Kiểm tra consent và preference trước gửi"
+      },
+      {
+        "id": "R003",
+        "original_title": "At-least-once có dedup và backoff"
+      },
+      {
+        "id": "R004",
+        "original_title": "Vòng đời device token và permission"
+      },
+      {
+        "id": "R005",
+        "original_title": "Tracking và observability đảm bảo privacy"
+      }
+    ],
+    "STD-PAGINATION": [
+      {
+        "id": "R001",
+        "original_title": "Chọn offset hoặc cursor dựa vào use case"
+      },
+      {
+        "id": "R002",
+        "original_title": "Đảm bảo total ordering và cursor ổn định"
+      },
+      {
+        "id": "R003",
+        "original_title": "Chuẩn hóa response paging metadata"
+      },
+      {
+        "id": "R004",
+        "original_title": "Reset pagination khi filter/sort thay đổi"
+      }
+    ],
+    "STD-SEARCH": [
+      {
+        "id": "R001",
+        "original_title": "Định nghĩa chuẩn normalize Unicode có chủ đích"
+      },
+      {
+        "id": "R002",
+        "original_title": "Tách searching khỏi exact matching nghiệp vụ"
+      },
+      {
+        "id": "R003",
+        "original_title": "Giới hạn query và bảo vệ performance"
+      },
+      {
+        "id": "R004",
+        "original_title": "Contract ranking, highlight và paging"
+      }
+    ],
+    "STD-WORKFLOW": [
+      {
+        "id": "R001",
+        "original_title": "Mô hình state và transition được phép"
+      },
+      {
+        "id": "R002",
+        "original_title": "Enforce concurrency và idempotency cho transition"
+      },
+      {
+        "id": "R003",
+        "original_title": "Định nghĩa compensation và terminal states"
+      },
+      {
+        "id": "R004",
+        "original_title": "Test ma trận state transition"
       }
     ]
   }

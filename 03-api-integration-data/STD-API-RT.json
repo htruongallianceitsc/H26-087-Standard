@@ -97,7 +97,12 @@
       "solution": "Gắn từng quy tắc quan trọng với bằng chứng xác minh thực tế và ghi nhận rõ các ngoại lệ."
     }
   ],
-  "depends_on": [],
+  "depends_on": [
+    {
+      "code": "STD-NOTIFICATION",
+      "dependency_type": "aligns_with"
+    }
+  ],
   "diagrams": [],
   "applicability": {
     "scope": "all"

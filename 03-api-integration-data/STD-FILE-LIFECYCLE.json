@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 2,
+  "code": "STD-FILE-LIFECYCLE",
+  "name": "File & Media Lifecycle",
+  "category": "03_api_integration_data",
+  "description": "Upload download và xử lý file an toàn",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "id": "R001",
+      "title": "Validate MIME, extension, size và nội dung",
+      "detail": "Kiểm tra server-side type/signature/limits và scan với rủi ro phù hợp; không tin metadata từ client. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Validate magic bytes + size trước processing",
+      "example_bad": "Chỉ chặn file .exe phía UI",
+      "concerns": [
+        "security",
+        "reliability",
+        "data-integrity"
+      ]
+    },
+    {
+      "id": "R002",
+      "title": "Upload an toàn và có thể phục hồi",
+      "detail": "Signed upload URL có hạn, authorization, upload session/checksum, multipart resumable khi cần. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Chunked upload có resume id và checksum",
+      "example_bad": "Retry upload tạo nhiều file rác",
+      "concerns": [
+        "security",
+        "reliability",
+        "data-integrity"
+      ]
+    },
+    {
+      "id": "R003",
+      "title": "Quản lý lifecycle và orphan cleanup",
+      "detail": "Tách uploaded/processing/ready/failed/deleted, retention và cleanup file orphan; quyền download riêng. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Background job xóa object orphan sau TTL",
+      "example_bad": "Lưu object vô hạn sau khi bản ghi DB bị xóa",
+      "concerns": [
+        "security",
+        "reliability",
+        "data-integrity"
+      ]
+    },
+    {
+      "id": "R004",
+      "title": "Bảo vệ download và nội dung nhạy cảm",
+      "detail": "Signed URL ngắn hạn, Content-Disposition và Content-Type đúng, kiểm tra auth/tenant, cache policy. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "should",
+      "example_good": "Private attachment có access check",
+      "example_bad": "Public bucket chứa hợp đồng khách hàng",
+      "concerns": [
+        "security",
+        "reliability",
+        "data-integrity"
+      ]
+    },
+    {
+      "id": "R005",
+      "title": "Xử lý metadata, thumbnail và EXIF",
+      "detail": "Tối ưu ảnh theo use case, tránh decode nguyên gốc; scrub EXIF location nếu không cần, kiểm thử file độc hại. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "should",
+      "example_good": "Thumbnail server-generated và bỏ GPS EXIF",
+      "example_bad": "Ảnh 20MB hiển thị list và lộ GPS",
+      "concerns": [
+        "security",
+        "reliability",
+        "data-integrity"
+      ]
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Xác định phạm vi",
+      "description": "Xác định entity/feature, threat model, boundary và contract phải áp dụng."
+    },
+    {
+      "step": 2,
+      "title": "Triển khai có test",
+      "description": "Code, test cả lỗi và concurrency, cung cấp bằng chứng review trước khi merge."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Triển khai rule chỉ qua checklist",
+      "cause": "Không có contract hoặc test xác minh",
+      "solution": "Bổ sung acceptance criteria và automated/integration test cho đường đi chính và lỗi."
+    }
+  ],
+  "depends_on": [],
+  "diagrams": [],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
+}

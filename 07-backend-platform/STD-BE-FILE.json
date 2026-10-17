@@ -85,7 +85,12 @@
       "solution": "Đính kèm liên kết commit, test report, dashboard hoặc biên bản review theo mã rule."
     }
   ],
-  "depends_on": [],
+  "depends_on": [
+    {
+      "code": "STD-FILE-LIFECYCLE",
+      "dependency_type": "aligns_with"
+    }
+  ],
   "diagrams": [],
   "applicability": {
     "scope": "conditional",

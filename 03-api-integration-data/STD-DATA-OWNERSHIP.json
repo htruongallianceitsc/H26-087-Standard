@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 2,
+  "code": "STD-DATA-OWNERSHIP",
+  "name": "Data Ownership & Source of Truth",
+  "category": "03_api_integration_data",
+  "description": "Quy định quyền sở hữu dữ liệu và cache client",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "id": "R001",
+      "title": "Chỉ định authoritative source theo dữ liệu",
+      "detail": "Mỗi entity/field có owner, quyền ghi, consistency level và sync direction; tránh hai writer không có conflict policy. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "OrderStatus do backend quyết định, draft do client sở hữu",
+      "example_bad": "Hai client độc lập ghi order status",
+      "concerns": [
+        "data-integrity",
+        "compatibility",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R002",
+      "title": "Định nghĩa cache freshness và invalidation",
+      "detail": "Có cache key, TTL/stale policy, user scoping, invalidation sau mutation và lúc logout. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Mutation cập nhật/invalidate query liên quan",
+      "example_bad": "Dữ liệu cũ hiển thị vô thời hạn",
+      "concerns": [
+        "data-integrity",
+        "compatibility",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R003",
+      "title": "Chống response out-of-order",
+      "detail": "Dùng revision/ETag/sequence, dedup hoặc version check khi apply state; optimistic update phải rollback được. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Bỏ response revision 3 nếu đang revision 4",
+      "example_bad": "Response request cũ ghi đè mới",
+      "concerns": [
+        "data-integrity",
+        "compatibility",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R004",
+      "title": "Quản lý optimistic mutation có đối soát",
+      "detail": "Ghi operation id/status, rollback/compensate khi lỗi, hiển thị trạng thái chưa đồng bộ. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "should",
+      "example_good": "UI pending đến khi server xác nhận",
+      "example_bad": "UI báo thành công vĩnh viễn khi server reject",
+      "concerns": [
+        "data-integrity",
+        "compatibility",
+        "reliability"
+      ]
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Xác định phạm vi",
+      "description": "Xác định entity/feature, threat model, boundary và contract phải áp dụng."
+    },
+    {
+      "step": 2,
+      "title": "Triển khai có test",
+      "description": "Code, test cả lỗi và concurrency, cung cấp bằng chứng review trước khi merge."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Triển khai rule chỉ qua checklist",
+      "cause": "Không có contract hoặc test xác minh",
+      "solution": "Bổ sung acceptance criteria và automated/integration test cho đường đi chính và lỗi."
+    }
+  ],
+  "depends_on": [],
+  "diagrams": [],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
+}

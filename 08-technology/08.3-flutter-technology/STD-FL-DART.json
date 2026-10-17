@@ -4,7 +4,7 @@
   "name": "Quy ước Dart",
   "category": "08_technology",
   "description": "Chuẩn phân tích tĩnh, quy ước code và đặt tên trong Dart.",
-  "version": "1.1.1",
+  "version": "1.3.0",
   "status": "active",
   "rules": [
     {
@@ -56,6 +56,18 @@
       "concerns": [
         "maintainability"
       ]
+    },
+    {
+      "id": "R005",
+      "title": "Chuẩn hóa lỗi mạng và vòng đời request Flutter",
+      "detail": "Dio/client adapter phân loại transport vs HTTP status, cancellation, single-flight refresh; state update chỉ khi widget còn hiệu lực.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "Phân biệt SocketException và 401 response",
+      "example_bad": "Network timeout bị gắn nhãn unauthorized",
+      "concerns": [
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [
@@ -95,6 +107,14 @@
     {
       "code": "STD-DATETIME",
       "dependency_type": "uses"
+    },
+    {
+      "code": "STD-CLIENT-API",
+      "dependency_type": "aligns_with"
+    },
+    {
+      "code": "STD-SESSION",
+      "dependency_type": "aligns_with"
     }
   ],
   "diagrams": [],

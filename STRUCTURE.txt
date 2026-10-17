@@ -3,7 +3,8 @@ Nguồn sự thật: các file STD-*.json / CAP-*.json; không sửa file này t
 
 01-governance-delivery — Governance & Delivery
   - STD-AI-DEV — Phát triển hỗ trợ bởi AI & Quy trình Agent
-    ↳ requires STD-DOC
+    ↳ requires STD-DOC; aligns_with STD-AI-SEC
+  - STD-AI-SEC — AI Agent Security & Tool Boundaries
   - STD-ARCH — Nguyên tắc kiến trúc & ADR
   - STD-BIZ — Quy tắc nghiệp vụ & Quy trình nghiệp vụ
   - STD-CI — Tích hợp liên tục & Pipeline Build
@@ -22,33 +23,52 @@ Nguồn sự thật: các file STD-*.json / CAP-*.json; không sửa file này t
 
 02-engineering-foundation — Engineering Foundation
   - STD-ANALYTICS — Phân tích sản phẩm & Theo dõi sự kiện
+  - STD-AUDIT — Business Audit Trail
+  - STD-CONFIG-RUNTIME — Runtime Configuration & Feature Control
   - STD-DEP — Quản lý dependency & Package
   - STD-ENV — Môi trường, Cấu hình & Secret
   - STD-ERR — Xử lý & Phân loại lỗi
   - STD-FLAG — Feature Flag & Rollout tăng dần
+    ↳ aligns_with STD-CONFIG-RUNTIME
   - STD-I18N — Quốc tế hóa & Bản địa hóa
+    ↳ uses STD-DATETIME
   - STD-LOG — Logging & Observability
+    ↳ aligns_with STD-TRACE
   - STD-PERF — Nguyên tắc kỹ thuật hiệu năng
   - STD-PRIV — Quyền riêng tư, PII & Lưu giữ dữ liệu
   - STD-RES — Độ tin cậy, Khả năng phục hồi & Chịu lỗi
   - STD-SEC — Nguyên tắc bảo mật ứng dụng
+  - STD-SESSION — Authentication Session Lifecycle
+  - STD-TRACE — Distributed Tracing & Correlation
 
 03-api-integration-data — API, Integration & Data
   - STD-API — Hợp đồng API & Quản lý phiên bản
-    ↳ requires STD-SEC; uses STD-VERSIONING
+    ↳ requires STD-SEC; uses STD-VERSIONING; uses STD-DATETIME; aligns_with STD-PAGINATION; aligns_with STD-ID
   - STD-API-HTTP — Quy ước HTTP Status Code & Phản hồi lỗi API
     ↳ extends STD-API; uses STD-API-REST; uses STD-ERR; uses STD-FEEDBACK; uses STD-LOG; uses STD-SEC
   - STD-API-REST — Thiết kế RESTful API
   - STD-API-RT — API thời gian thực & WebSocket/SSE
+    ↳ aligns_with STD-NOTIFICATION
   - STD-CACHE — Bộ nhớ đệm & Vô hiệu hóa Cache
+  - STD-CLIENT-API — Client API Lifecycle & Network Recovery
   - STD-DATA — Mô hình dữ liệu & Thiết kế Schema
+    ↳ uses STD-DATETIME; aligns_with STD-DATA-OWNERSHIP
   - STD-DATA-MIG — Tiến hóa Schema & Migration cơ sở dữ liệu
     ↳ uses STD-VERSIONING
+  - STD-DATA-OWNERSHIP — Data Ownership & Source of Truth
   - STD-DATA-TX — Giao dịch, Đồng thời & Tính nhất quán
+  - STD-DATETIME — Quản lý Date, Time & Timezone xuyên hệ thống
+    ↳ uses STD-DATA; uses STD-API
   - STD-DEEP-LINK — Deep Link, Universal Links & App Links
     ↳ uses STD-MOB-NAV; uses STD-WEB-ROUTE; uses STD-SEC; uses STD-PRIV; uses STD-INTEGRATION; uses STD-MOB-RELEASE
+  - STD-FILE-LIFECYCLE — File & Media Lifecycle
+  - STD-ID — Identifier & Key Strategy
   - STD-INTEGRATION — Tích hợp bên thứ ba
+  - STD-NOTIFICATION — Unified Notification Delivery
+  - STD-PAGINATION — Pagination, Sorting & Query Contract
+  - STD-SEARCH — Search & Filtering Contract
   - STD-WEBHOOK — Webhook & Hợp đồng sự kiện
+  - STD-WORKFLOW — Business Workflow & State Machine
 
 04-experience-ui-ux — Experience / UI / UX
   - STD-A11Y — Khả năng tiếp cận & Thiết kế hòa nhập
@@ -63,12 +83,13 @@ Nguồn sự thật: các file STD-*.json / CAP-*.json; không sửa file này t
   - STD-WEB-ARCH — Kiến trúc ứng dụng Web
     ↳ extends STD-ARCH
   - STD-WEB-AUTH — Xác thực trình duyệt & Session
-    ↳ uses STD-SEC; uses STD-WEB-SEC
+    ↳ uses STD-SEC; uses STD-WEB-SEC; aligns_with STD-SESSION
   - STD-WEB-FORM — Form trình duyệt & Validation
     ↳ extends STD-FORM
   - STD-WEB-PERF — Hiệu năng Render Web & Bộ nhớ
     ↳ extends STD-PERF
   - STD-WEB-PWA — Progressive Web App (PWA)
+    ↳ aligns_with STD-CONFIG-RUNTIME
   - STD-WEB-RESP — Layout Responsive
     ↳ uses STD-DS; uses STD-A11Y
   - STD-WEB-ROUTE — Routing, Điều hướng & Trạng thái URL
@@ -87,10 +108,11 @@ Nguồn sự thật: các file STD-*.json / CAP-*.json; không sửa file này t
   - STD-MOB-NAV — Điều hướng, Routing & Deep Linking
     ↳ aligns_with STD-UX
   - STD-MOB-OFF — Offline, Kết nối & Đồng bộ
-    ↳ uses STD-RES; uses STD-CACHE
+    ↳ uses STD-RES; uses STD-CACHE; aligns_with STD-DATA-OWNERSHIP
   - STD-MOB-PERF — Hiệu năng khởi động, Bộ nhớ & Pin
     ↳ extends STD-PERF
   - STD-MOB-PUSH — Push Notification & Routing
+    ↳ aligns_with STD-NOTIFICATION
   - STD-MOB-RELEASE — Build Mobile, Ký ứng dụng & Phát hành Store
     ↳ uses STD-VERSIONING
   - STD-MOB-SEC — Bảo mật ứng dụng Mobile
@@ -102,11 +124,13 @@ Nguồn sự thật: các file STD-*.json / CAP-*.json; không sửa file này t
 
 07-backend-platform — Backend Platform
   - STD-BE-ARCH — Kiến trúc ứng dụng Backend
-    ↳ extends STD-ARCH
+    ↳ extends STD-ARCH; uses STD-DATETIME
   - STD-BE-AUTH — Xác thực & Phân quyền
+    ↳ aligns_with STD-SESSION
   - STD-BE-CONCUR — Xử lý đồng thời & Tính idempotent
     ↳ uses STD-DATA-TX; uses STD-RES
   - STD-BE-FILE — Xử lý tệp & Object Storage
+    ↳ aligns_with STD-FILE-LIFECYCLE
   - STD-BE-HEALTH — Readiness, Liveness & Health Check
   - STD-BE-JOB — Tác vụ nền & Lập lịch
   - STD-BE-PERF — Hiệu năng & Khả năng mở rộng
@@ -145,13 +169,13 @@ Nguồn sự thật: các file STD-*.json / CAP-*.json; không sửa file này t
     - STD-FL-BLOC — Flutter BLoC & Cubit
       ↳ requires STD-MOB-ARCH
     - STD-FL-DART — Quy ước Dart
-      ↳ requires STD-MOB-ARCH
+      ↳ requires STD-MOB-ARCH; uses STD-DATETIME; aligns_with STD-CLIENT-API; aligns_with STD-SESSION
     - STD-FL-ROUTE — Điều hướng Flutter & go_router
       ↳ requires STD-MOB-ARCH
     - STD-FL-TEST — flutter_test, bloc_test & Kiểm thử tích hợp
-      ↳ requires STD-MOB-ARCH; implements STD-TEST
+      ↳ requires STD-MOB-ARCH; implements STD-TEST; uses STD-API; uses STD-ENV; uses STD-MOB-LIFE; uses STD-MOB-PERF; aligns_with STD-CLIENT-API
     - STD-FL-WIDGET — Tổ hợp Widget & Theming
-      ↳ requires STD-MOB-ARCH
+      ↳ requires STD-MOB-ARCH; uses STD-MOB-PERF; uses STD-MOB-LIFE; uses STD-FEEDBACK
   08.4-backend-technology-dotnet
     - STD-DOTNET — Kiến trúc ASP.NET Core
       ↳ requires STD-SEC
@@ -246,4 +270,4 @@ Nguồn sự thật: các file STD-*.json / CAP-*.json; không sửa file này t
   - STD-QC-UI — Kiểm thử giao diện & Trải nghiệm người dùng
     ↳ uses STD-DESIGN; uses STD-UI-STATE; uses STD-FEEDBACK; uses STD-A11Y
   - STD-TEST — Chiến lược kiểm thử & Quality Gate
-    ↳ requires STD-REQ
+    ↳ requires STD-REQ; uses STD-DATETIME

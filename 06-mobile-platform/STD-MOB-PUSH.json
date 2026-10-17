@@ -4,7 +4,7 @@
   "name": "Push Notification & Routing",
   "category": "06_mobile_platform",
   "description": "Chuẩn phân phối push notification từ hệ điều hành và routing khi người dùng tương tác.",
-  "version": "1.1.0",
+  "version": "1.3.0",
   "status": "active",
   "rules": [
     {
@@ -54,6 +54,18 @@
       "concerns": [
         "security"
       ]
+    },
+    {
+      "id": "R005",
+      "title": "Đồng bộ token thiết bị và message dedup",
+      "detail": "Refresh/register/unregister device token theo user session, xử lý notification duplicate, background/open intent, permission denial; tham chiếu STD-NOTIFICATION.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "Logout gỡ liên kết push token user cũ",
+      "example_bad": "App mới login vẫn nhận push user trước",
+      "concerns": [
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [
@@ -85,7 +97,12 @@
       "solution": "Kết hợp lint/test tự động với review thủ công và bằng chứng chấp nhận được ghi nhận."
     }
   ],
-  "depends_on": [],
+  "depends_on": [
+    {
+      "code": "STD-NOTIFICATION",
+      "dependency_type": "aligns_with"
+    }
+  ],
   "diagrams": [],
   "applicability": {
     "scope": "conditional",

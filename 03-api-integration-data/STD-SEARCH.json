@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 2,
+  "code": "STD-SEARCH",
+  "name": "Search & Filtering Contract",
+  "category": "03_api_integration_data",
+  "description": "Tìm kiếm Unicode và phân trang nhất quán",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "id": "R001",
+      "title": "Định nghĩa chuẩn normalize Unicode có chủ đích",
+      "detail": "Document NFC/NFKC, case/accent folding, tiếng Việt có dấu hoặc không dấu tùy nghiệp vụ; không thay đổi giá trị gốc. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Search \"Điện thoại\" và \"dien thoai\" theo policy",
+      "example_bad": "Search kết quả phụ thuộc Unicode composition",
+      "concerns": [
+        "performance",
+        "usability",
+        "data-integrity"
+      ]
+    },
+    {
+      "id": "R002",
+      "title": "Tách searching khỏi exact matching nghiệp vụ",
+      "detail": "ID, mã đơn, email, tên người có quy tắc so khớp khác nhau; document tokenization và sort locale. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Exact order code, fuzzy product name",
+      "example_bad": "Normalize mất dấu với password",
+      "concerns": [
+        "performance",
+        "usability",
+        "data-integrity"
+      ]
+    },
+    {
+      "id": "R003",
+      "title": "Giới hạn query và bảo vệ performance",
+      "detail": "Query length, debouncing client, index/FTS hoặc search service, timeout và rate limit phù hợp. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "FTS index, giới hạn term length",
+      "example_bad": "LIKE %query% trên hàng triệu row không index",
+      "concerns": [
+        "performance",
+        "usability",
+        "data-integrity"
+      ]
+    },
+    {
+      "id": "R004",
+      "title": "Contract ranking, highlight và paging",
+      "detail": "Stable sort, cursor/offset policy, escaping highlight, đồng nhất filters và facets. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "should",
+      "example_good": "Highlight từ safe spans đã escaped",
+      "example_bad": "Render markup highlight trực tiếp từ input",
+      "concerns": [
+        "performance",
+        "usability",
+        "data-integrity"
+      ]
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Xác định phạm vi",
+      "description": "Xác định entity/feature, threat model, boundary và contract phải áp dụng."
+    },
+    {
+      "step": 2,
+      "title": "Triển khai có test",
+      "description": "Code, test cả lỗi và concurrency, cung cấp bằng chứng review trước khi merge."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Triển khai rule chỉ qua checklist",
+      "cause": "Không có contract hoặc test xác minh",
+      "solution": "Bổ sung acceptance criteria và automated/integration test cho đường đi chính và lỗi."
+    }
+  ],
+  "depends_on": [],
+  "diagrams": [],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
+}

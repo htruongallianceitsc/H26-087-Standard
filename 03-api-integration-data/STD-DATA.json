@@ -104,6 +104,10 @@
     {
       "code": "STD-DATETIME",
       "dependency_type": "uses"
+    },
+    {
+      "code": "STD-DATA-OWNERSHIP",
+      "dependency_type": "aligns_with"
     }
   ],
   "diagrams": [],

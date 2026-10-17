@@ -4,7 +4,7 @@
   "name": "Logging & Observability",
   "category": "02_engineering_foundation",
   "description": "Chuẩn correlation sự kiện, logging và chẩn đoán runtime.",
-  "version": "1.1.0",
+  "version": "1.3.0",
   "status": "active",
   "rules": [
     {
@@ -61,6 +61,18 @@
       "concerns": [
         "observability"
       ]
+    },
+    {
+      "id": "R005",
+      "title": "Trace context được propagate xuyên service",
+      "detail": "Mỗi request/log có trace_id/span_id khi tracing bật; propagate an toàn qua HTTP/queue và liên kết với STD-TRACE.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "W3C traceparent qua gateway và worker",
+      "example_bad": "Request ID đổi qua mỗi microservice",
+      "concerns": [
+        "observability"
+      ]
     }
   ],
   "integration_guide": [
@@ -92,7 +104,12 @@
       "solution": "Kết hợp lint/test tự động với review thủ công và bằng chứng chấp nhận được ghi nhận."
     }
   ],
-  "depends_on": [],
+  "depends_on": [
+    {
+      "code": "STD-TRACE",
+      "dependency_type": "aligns_with"
+    }
+  ],
   "diagrams": [],
   "applicability": {
     "scope": "all"

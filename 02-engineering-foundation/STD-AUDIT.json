@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 2,
+  "code": "STD-AUDIT",
+  "name": "Business Audit Trail",
+  "category": "02_engineering_foundation",
+  "description": "Ghi dấu thay đổi nghiệp vụ độc lập technical log",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "id": "R001",
+      "title": "Ghi actor, action, resource, result và UTC instant",
+      "detail": "Ghi ai/what/when/where, request/correlation ID và kết quả; với operation được audit phải lưu sự kiện đủ truy vết. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "audit: actorId/action/entityId/occurredAt/outcome",
+      "example_bad": "Chỉ ghi console \"Updated\"",
+      "concerns": [
+        "security",
+        "data-integrity",
+        "compliance"
+      ]
+    },
+    {
+      "id": "R002",
+      "title": "Audit transaction phải nhất quán dữ liệu nghiệp vụ",
+      "detail": "Thiết kế atomic commit/outbox cho thay đổi và audit quan trọng; tránh mất audit khi publish thất bại. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "Transaction lưu order và audit/outbox cùng commit",
+      "example_bad": "Update order thành công nhưng audit bất đồng bộ bị mất",
+      "concerns": [
+        "security",
+        "data-integrity",
+        "compliance"
+      ]
+    },
+    {
+      "id": "R003",
+      "title": "Mask PII và giới hạn truy cập audit",
+      "detail": "Không lưu secret/token, giới hạn field before/after theo allowlist, RBAC và chính sách retention. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "Lưu changedFields được redact và quyền auditor",
+      "example_bad": "Dump toàn bộ user profile cùng access token",
+      "concerns": [
+        "security",
+        "data-integrity",
+        "compliance"
+      ]
+    },
+    {
+      "id": "R004",
+      "title": "Phát hiện sửa hoặc xóa trái phép",
+      "detail": "Dùng append-only hoặc tamper-evident phù hợp threat model; có kiểm thử truy vết sửa dữ liệu. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "architecture",
+      "severity": "should",
+      "example_good": "Audit immutable storage và cảnh báo thao tác xóa",
+      "example_bad": "Admin sửa audit entry không để lại dấu",
+      "concerns": [
+        "security",
+        "data-integrity",
+        "compliance"
+      ]
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Xác định phạm vi",
+      "description": "Xác định entity/feature, threat model, boundary và contract phải áp dụng."
+    },
+    {
+      "step": 2,
+      "title": "Triển khai có test",
+      "description": "Code, test cả lỗi và concurrency, cung cấp bằng chứng review trước khi merge."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Triển khai rule chỉ qua checklist",
+      "cause": "Không có contract hoặc test xác minh",
+      "solution": "Bổ sung acceptance criteria và automated/integration test cho đường đi chính và lỗi."
+    }
+  ],
+  "depends_on": [],
+  "diagrams": [],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
+}

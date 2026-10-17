@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 2,
+  "code": "STD-ID",
+  "name": "Identifier & Key Strategy",
+  "category": "03_api_integration_data",
+  "description": "Định danh ổn định qua API và database",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "id": "R001",
+      "title": "Phân biệt internal PK và public identifier",
+      "detail": "Quy định loại ID, ổn định và phạm vi uniqueness; đừng coi ID khó đoán là authorization. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Public opaque orderId và ACL ở backend",
+      "example_bad": "Dựa vào UUID để bỏ kiểm tra quyền",
+      "concerns": [
+        "data-integrity",
+        "security",
+        "compatibility"
+      ]
+    },
+    {
+      "id": "R002",
+      "title": "Chọn UUID/ULID/int theo access pattern",
+      "detail": "Quy định ordering, index fragmentation, collision và generation location; đảm bảo ID nhất quán qua service. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "UUIDv7 có giải thích index tradeoff",
+      "example_bad": "Trộn string/int cho cùng khóa",
+      "concerns": [
+        "data-integrity",
+        "security",
+        "compatibility"
+      ]
+    },
+    {
+      "id": "R003",
+      "title": "Serialize ID không mất chính xác",
+      "detail": "ID 64-bit khi truyền JS phải dùng string nếu ngoài safe integer; giữ leading zero và case rule. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "accountId: \"9007199254740993\"",
+      "example_bad": "JS Number làm tròn ID",
+      "concerns": [
+        "data-integrity",
+        "security",
+        "compatibility"
+      ]
+    },
+    {
+      "id": "R004",
+      "title": "Không tái sử dụng ID và giữ referential integrity",
+      "detail": "Có unique constraints, foreign keys khi phù hợp; migration/backfill định danh với mapping. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "should",
+      "example_good": "Unique index + immutable entity id",
+      "example_bad": "Xóa rồi dùng lại ID cho người khác",
+      "concerns": [
+        "data-integrity",
+        "security",
+        "compatibility"
+      ]
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Xác định phạm vi",
+      "description": "Xác định entity/feature, threat model, boundary và contract phải áp dụng."
+    },
+    {
+      "step": 2,
+      "title": "Triển khai có test",
+      "description": "Code, test cả lỗi và concurrency, cung cấp bằng chứng review trước khi merge."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Triển khai rule chỉ qua checklist",
+      "cause": "Không có contract hoặc test xác minh",
+      "solution": "Bổ sung acceptance criteria và automated/integration test cho đường đi chính và lỗi."
+    }
+  ],
+  "depends_on": [],
+  "diagrams": [],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
+}

@@ -4,7 +4,7 @@
   "name": "Tiến hóa Schema & Migration cơ sở dữ liệu",
   "category": "03_api_integration_data",
   "description": "Tiêu chuẩn chuẩn hóa cho Tiến hóa Schema & Migration cơ sở dữ liệu. Xác định các quy tắc nền tảng, kỳ vọng review và hướng dẫn áp dụng cho các project thuộc phạm vi tiêu chuẩn này. Nội dung được cụ thể hóa bằng quy tắc kiểm chứng được, negative test và ví dụ triển khai.",
-  "version": "1.1.0",
+  "version": "1.3.0",
   "status": "active",
   "rules": [
     {
@@ -109,6 +109,18 @@
       "concerns": [
         "performance",
         "release"
+      ]
+    },
+    {
+      "id": "R009",
+      "title": "Migration tương thích phiên bản rolling deploy",
+      "detail": "Expand schema -> backfill kiểm chứng -> dual read/write khi cần -> contract chỉ sau khi không còn consumer cũ; rollback và kiểm tra lock/lag.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "Cột mới nullable, backfill rồi enforce constraint",
+      "example_bad": "Rename column và deploy backend cùng thời điểm",
+      "concerns": [
+        "compatibility"
       ]
     }
   ],

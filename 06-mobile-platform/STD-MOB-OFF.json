@@ -4,7 +4,7 @@
   "name": "Offline, Kết nối & Đồng bộ",
   "category": "06_mobile_platform",
   "description": "Chuẩn networking Mobile có khả năng phục hồi khi offline/kết nối không ổn định.",
-  "version": "1.1.0",
+  "version": "1.3.0",
   "status": "active",
   "rules": [
     {
@@ -56,6 +56,18 @@
         "resilience",
         "testing"
       ]
+    },
+    {
+      "id": "R005",
+      "title": "Offline sync conflict resolution và replay an toàn",
+      "detail": "Operation queue có stable ID, revision/baseVersion, idempotent replay, conflict policy server-wins/client-wins/manual merge theo field; báo lỗi và giữ unsynced draft.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "Offline edit conflict được phân giải theo policy đã test",
+      "example_bad": "Last write wins không có quy tắc và mất dữ liệu",
+      "concerns": [
+        "data-integrity"
+      ]
     }
   ],
   "integration_guide": [
@@ -95,6 +107,10 @@
     {
       "code": "STD-CACHE",
       "dependency_type": "uses"
+    },
+    {
+      "code": "STD-DATA-OWNERSHIP",
+      "dependency_type": "aligns_with"
     }
   ],
   "diagrams": [],

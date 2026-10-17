@@ -4,7 +4,7 @@
   "name": "Tác vụ nền & Lập lịch",
   "category": "07_backend_platform",
   "description": "Tác vụ nền & Lập lịch: quy định các yêu cầu triển khai và bằng chứng kiểm tra cụ thể; chỉ áp dụng khi phạm vi project liên quan.",
-  "version": "1.1.0",
+  "version": "1.3.0",
   "status": "active",
   "rules": [
     {
@@ -53,6 +53,18 @@
       "id": "R004",
       "concerns": [
         "performance"
+      ]
+    },
+    {
+      "id": "R005",
+      "title": "Idempotent delivery và trace của background job",
+      "detail": "Consumer dedup bằng event/operation ID, backoff + DLQ, tiếp nhận trace context đã kiểm tra, không assume exactly-once execution.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "Retry job không tạo hóa đơn lần hai",
+      "example_bad": "Queue redelivery nhân đôi payment event",
+      "concerns": [
+        "reliability"
       ]
     }
   ],

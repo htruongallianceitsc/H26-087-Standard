@@ -160,6 +160,10 @@
     {
       "code": "STD-WEB-SEC",
       "dependency_type": "uses"
+    },
+    {
+      "code": "STD-SESSION",
+      "dependency_type": "aligns_with"
     }
   ],
   "diagrams": [],

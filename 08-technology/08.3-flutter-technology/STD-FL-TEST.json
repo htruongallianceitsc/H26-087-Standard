@@ -4,7 +4,7 @@
   "name": "flutter_test, bloc_test & Kiểm thử tích hợp",
   "category": "08_technology",
   "description": "Chuẩn chiến lược kiểm thử nhiều tầng cho Flutter.",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "status": "active",
   "rules": [
     {
@@ -91,6 +91,18 @@
         "performance",
         "reliability"
       ]
+    },
+    {
+      "id": "R007",
+      "title": "Kiểm thử reconnect, offline replay và token refresh race",
+      "detail": "Integration test mô phỏng DNS failure, airplane/reconnect, background resume, concurrent 401, expired session và conflict offline.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "Hai 401 đồng thời chỉ refresh một lần",
+      "example_bad": "Chỉ test HTTP 200 trên Wi-Fi ổn định",
+      "concerns": [
+        "testing"
+      ]
     }
   ],
   "integration_guide": [
@@ -146,6 +158,10 @@
     {
       "code": "STD-MOB-PERF",
       "dependency_type": "uses"
+    },
+    {
+      "code": "STD-CLIENT-API",
+      "dependency_type": "aligns_with"
     }
   ],
   "diagrams": [],

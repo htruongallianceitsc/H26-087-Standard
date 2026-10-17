@@ -4,7 +4,7 @@
   "name": "Quản lý phiên bản, Tương thích & Ngừng hỗ trợ",
   "category": "01_governance_delivery",
   "description": "Quản lý phiên bản, Tương thích & Ngừng hỗ trợ: yêu cầu triển khai và kiểm chứng cụ thể cho STD-VERSIONING, bao gồm hợp đồng hành vi, failure mode, quality gate và ví dụ đúng/sai.",
-  "version": "1.1.0",
+  "version": "1.3.0",
   "status": "active",
   "rules": [
     {
@@ -70,6 +70,18 @@
       "concerns": [
         "compatibility",
         "usability"
+      ]
+    },
+    {
+      "id": "R006",
+      "title": "Ma trận hỗ trợ client/server/contract",
+      "detail": "Duy trì matrix app version x API contract x backend; policy deprecation có telemetry và thời hạn nâng cấp.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "Old mobile app vẫn gọi API hiện tại",
+      "example_bad": "Assume tất cả user nâng app ngay",
+      "concerns": [
+        "compatibility"
       ]
     }
   ],

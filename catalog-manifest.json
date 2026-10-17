@@ -3,13 +3,14 @@
   "sourceOfTruth": "standard JSON files",
   "schema": "standard-import-v2.schema.json",
   "schemaVersion": 2,
-  "count": 138,
+  "count": 151,
   "groups": [
     {
       "folder": "01-governance-delivery",
       "name": "Governance & Delivery",
       "files": [
         "STD-AI-DEV.json",
+        "STD-AI-SEC.json",
         "STD-ARCH.json",
         "STD-BIZ.json",
         "STD-CI.json",
@@ -29,6 +30,8 @@
       "name": "Engineering Foundation",
       "files": [
         "STD-ANALYTICS.json",
+        "STD-AUDIT.json",
+        "STD-CONFIG-RUNTIME.json",
         "STD-DEP.json",
         "STD-ENV.json",
         "STD-ERR.json",
@@ -38,7 +41,9 @@
         "STD-PERF.json",
         "STD-PRIV.json",
         "STD-RES.json",
-        "STD-SEC.json"
+        "STD-SEC.json",
+        "STD-SESSION.json",
+        "STD-TRACE.json"
       ]
     },
     {
@@ -50,13 +55,21 @@
         "STD-API-RT.json",
         "STD-API.json",
         "STD-CACHE.json",
+        "STD-CLIENT-API.json",
         "STD-DATA-MIG.json",
+        "STD-DATA-OWNERSHIP.json",
         "STD-DATA-TX.json",
         "STD-DATA.json",
         "STD-DATETIME.json",
         "STD-DEEP-LINK.json",
+        "STD-FILE-LIFECYCLE.json",
+        "STD-ID.json",
         "STD-INTEGRATION.json",
-        "STD-WEBHOOK.json"
+        "STD-NOTIFICATION.json",
+        "STD-PAGINATION.json",
+        "STD-SEARCH.json",
+        "STD-WEBHOOK.json",
+        "STD-WORKFLOW.json"
       ]
     },
     {

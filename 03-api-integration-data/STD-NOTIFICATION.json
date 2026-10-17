@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 2,
+  "code": "STD-NOTIFICATION",
+  "name": "Unified Notification Delivery",
+  "category": "03_api_integration_data",
+  "description": "Push/email/SMS/in-app thống nhất",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "id": "R001",
+      "title": "Hợp đồng notification domain event và channel",
+      "detail": "Tách business event/template khỏi delivery, có eventId/userId/channel/locale và metadata được validate. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "OrderShipped fan-out theo preference",
+      "example_bad": "Mỗi feature hardcode email và push riêng",
+      "concerns": [
+        "reliability",
+        "privacy",
+        "localization"
+      ]
+    },
+    {
+      "id": "R002",
+      "title": "Kiểm tra consent và preference trước gửi",
+      "detail": "Cho phép opt-out marketing, transactional policy, quiet hours timezone theo user; không gửi secrets vào push body. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Marketing push tôn trọng preference",
+      "example_bad": "Gửi OTP/token vào notification preview",
+      "concerns": [
+        "reliability",
+        "privacy",
+        "localization"
+      ]
+    },
+    {
+      "id": "R003",
+      "title": "At-least-once có dedup và backoff",
+      "detail": "Dùng queue, dedup key, retry theo provider policy, DLQ và trạng thái delivery; không cam kết exactly-once end-to-end. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Provider failure retry và không nhân đôi in-app record",
+      "example_bad": "Provider retry gửi 5 thông báo trùng",
+      "concerns": [
+        "reliability",
+        "privacy",
+        "localization"
+      ]
+    },
+    {
+      "id": "R004",
+      "title": "Vòng đời device token và permission",
+      "detail": "Refresh/expire token, unregister khi logout, xử lý permission denied và nhiều thiết bị. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "should",
+      "example_good": "Invalid token bị đánh dấu và gỡ",
+      "example_bad": "Token cũ tiếp tục nhận push tài khoản cũ",
+      "concerns": [
+        "reliability",
+        "privacy",
+        "localization"
+      ]
+    },
+    {
+      "id": "R005",
+      "title": "Tracking và observability đảm bảo privacy",
+      "detail": "Metrics sent/accepted/delivered/opened khi provider hỗ trợ; không giả định accepted=received; redact PII. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "should",
+      "example_good": "DeliveryStatus phân biệt accepted và delivered",
+      "example_bad": "Báo 100% delivered từ HTTP 202",
+      "concerns": [
+        "reliability",
+        "privacy",
+        "localization"
+      ]
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Xác định phạm vi",
+      "description": "Xác định entity/feature, threat model, boundary và contract phải áp dụng."
+    },
+    {
+      "step": 2,
+      "title": "Triển khai có test",
+      "description": "Code, test cả lỗi và concurrency, cung cấp bằng chứng review trước khi merge."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Triển khai rule chỉ qua checklist",
+      "cause": "Không có contract hoặc test xác minh",
+      "solution": "Bổ sung acceptance criteria và automated/integration test cho đường đi chính và lỗi."
+    }
+  ],
+  "depends_on": [],
+  "diagrams": [],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
+}

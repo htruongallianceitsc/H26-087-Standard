@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 2,
+  "code": "STD-TRACE",
+  "name": "Distributed Tracing & Correlation",
+  "category": "02_engineering_foundation",
+  "description": "Liên kết telemetry client-to-server và async job",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "id": "R001",
+      "title": "Truyền trace context theo chuẩn hợp đồng",
+      "detail": "Dùng traceparent/tracestate W3C qua HTTP; qua queue mang context hợp lệ; reject/sanitize input sai. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "Frontend span -> API span -> queue consumer",
+      "example_bad": "Mỗi service tự tạo trace mới cho cùng request",
+      "concerns": [
+        "observability",
+        "reliability",
+        "performance"
+      ]
+    },
+    {
+      "id": "R002",
+      "title": "Phân biệt trace ID, span ID và request ID",
+      "detail": "Correlation ID không thay thế trace context; gắn requestId/log/span theo cùng giao dịch và propagate an toàn. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "Log record có trace_id/span_id/request_id",
+      "example_bad": "Chỉ có log text khó nối dữ liệu",
+      "concerns": [
+        "observability",
+        "reliability",
+        "performance"
+      ]
+    },
+    {
+      "id": "R003",
+      "title": "Redact và sampling tránh lộ dữ liệu",
+      "detail": "Không gắn token/PII vào span, quy định sampling, retention và baggage allowlist. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "Attribute route template thay raw URL có token",
+      "example_bad": "Span ghi nguyên Authorization header",
+      "concerns": [
+        "observability",
+        "reliability",
+        "performance"
+      ]
+    },
+    {
+      "id": "R004",
+      "title": "Quan sát latency và lỗi xuyên service",
+      "detail": "Có client/server/DB/queue spans, error status và duration; dashboard theo p95/p99 khi phù hợp. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "architecture",
+      "severity": "should",
+      "example_good": "Một trace chỉ ra 800ms chờ DB",
+      "example_bad": "Chỉ đo tổng HTTP 2s không biết bottleneck",
+      "concerns": [
+        "observability",
+        "reliability",
+        "performance"
+      ]
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Xác định phạm vi",
+      "description": "Xác định entity/feature, threat model, boundary và contract phải áp dụng."
+    },
+    {
+      "step": 2,
+      "title": "Triển khai có test",
+      "description": "Code, test cả lỗi và concurrency, cung cấp bằng chứng review trước khi merge."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Triển khai rule chỉ qua checklist",
+      "cause": "Không có contract hoặc test xác minh",
+      "solution": "Bổ sung acceptance criteria và automated/integration test cho đường đi chính và lỗi."
+    }
+  ],
+  "depends_on": [],
+  "diagrams": [],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
+}

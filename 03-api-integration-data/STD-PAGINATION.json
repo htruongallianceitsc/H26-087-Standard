@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 2,
+  "code": "STD-PAGINATION",
+  "name": "Pagination, Sorting & Query Contract",
+  "category": "03_api_integration_data",
+  "description": "Contract tải danh sách lớn ổn định",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "id": "R001",
+      "title": "Chọn offset hoặc cursor dựa vào use case",
+      "detail": "Cursor cho feed biến động lớn; offset cho danh sách admin ổn định; document max page size. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "GET /items?cursor=...&limit=30",
+      "example_bad": "Client gửi size=100000",
+      "concerns": [
+        "performance",
+        "compatibility",
+        "data-integrity"
+      ]
+    },
+    {
+      "id": "R002",
+      "title": "Đảm bảo total ordering và cursor ổn định",
+      "detail": "Sắp xếp có tie-breaker unique, cursor chứa position/sort/filter binding; kiểm tra cursor invalid. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "ORDER BY createdAt DESC, id DESC",
+      "example_bad": "Chỉ order createdAt gây trùng/mất item",
+      "concerns": [
+        "performance",
+        "compatibility",
+        "data-integrity"
+      ]
+    },
+    {
+      "id": "R003",
+      "title": "Chuẩn hóa response paging metadata",
+      "detail": "Có items, nextCursor/hasMore hoặc page,total tương ứng; xác định total có chính xác hay ước lượng. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "hasMore=false kết thúc feed",
+      "example_bad": "Dựa vào số item bằng page size để đoán vô hạn",
+      "concerns": [
+        "performance",
+        "compatibility",
+        "data-integrity"
+      ]
+    },
+    {
+      "id": "R004",
+      "title": "Reset pagination khi filter/sort thay đổi",
+      "detail": "Contract filter/search có validate, giới hạn query, client bỏ request stale, dedup item by ID. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "should",
+      "example_good": "Thay keyword reset cursor và hủy request cũ",
+      "example_bad": "Ghép item từ hai bộ filter khác nhau",
+      "concerns": [
+        "performance",
+        "compatibility",
+        "data-integrity"
+      ]
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Xác định phạm vi",
+      "description": "Xác định entity/feature, threat model, boundary và contract phải áp dụng."
+    },
+    {
+      "step": 2,
+      "title": "Triển khai có test",
+      "description": "Code, test cả lỗi và concurrency, cung cấp bằng chứng review trước khi merge."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Triển khai rule chỉ qua checklist",
+      "cause": "Không có contract hoặc test xác minh",
+      "solution": "Bổ sung acceptance criteria và automated/integration test cho đường đi chính và lỗi."
+    }
+  ],
+  "depends_on": [],
+  "diagrams": [],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 2,
+  "code": "STD-CLIENT-API",
+  "name": "Client API Lifecycle & Network Recovery",
+  "category": "03_api_integration_data",
+  "description": "Chuẩn vòng đời HTTP client Web/Mobile",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "id": "R001",
+      "title": "Phân loại lỗi networking và HTTP",
+      "detail": "Phân biệt DNS, connect, TLS, timeout, cancel, offline với HTTP status; không đánh đồng 401 và connection error. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Typed NetworkFailure/HttpFailure/Cancelled",
+      "example_bad": "Bất kỳ lỗi nào cũng báo mất Internet",
+      "concerns": [
+        "networking",
+        "reliability",
+        "resilience"
+      ]
+    },
+    {
+      "id": "R002",
+      "title": "Timeout, retry và backoff có giới hạn",
+      "detail": "Đặt timeout theo endpoint; retry transient có exponential backoff+jitter và Retry-After; không retry mutation thiếu idempotency. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "GET retry 2 lần có jitter, POST dùng idempotency key",
+      "example_bad": "Retry mọi POST vô hạn",
+      "concerns": [
+        "networking",
+        "reliability",
+        "resilience"
+      ]
+    },
+    {
+      "id": "R003",
+      "title": "Hủy request và tránh stale response",
+      "detail": "Cancel lúc route/widget dispose hoặc key thay đổi; chỉ apply response của request còn hợp lệ. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Request generation id kiểm tra trước setState",
+      "example_bad": "Kết quả search cũ ghi đè search mới",
+      "concerns": [
+        "networking",
+        "reliability",
+        "resilience"
+      ]
+    },
+    {
+      "id": "R004",
+      "title": "Single-flight token refresh và phân biệt 401/403",
+      "detail": "Chỉ một refresh đang chạy, queue/wait request song song; retry một lần theo policy; logout khi refresh thất bại thực sự. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "should",
+      "example_good": "Concurrent 401 => 1 refresh và replay hợp lệ",
+      "example_bad": "10 request đồng thời refresh 10 lần",
+      "concerns": [
+        "networking",
+        "reliability",
+        "resilience"
+      ]
+    },
+    {
+      "id": "R005",
+      "title": "Theo dõi phục hồi connectivity khi resume",
+      "detail": "Dùng connectivity làm tín hiệu gợi ý, kiểm tra backend reachability khi cần; có reconnect policy và không loop request. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "should",
+      "example_good": "App resume tái kiểm tra session trước refresh dữ liệu",
+      "example_bad": "Kết luận API hoạt động chỉ vì có WiFi",
+      "concerns": [
+        "networking",
+        "reliability",
+        "resilience"
+      ]
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Xác định phạm vi",
+      "description": "Xác định entity/feature, threat model, boundary và contract phải áp dụng."
+    },
+    {
+      "step": 2,
+      "title": "Triển khai có test",
+      "description": "Code, test cả lỗi và concurrency, cung cấp bằng chứng review trước khi merge."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Triển khai rule chỉ qua checklist",
+      "cause": "Không có contract hoặc test xác minh",
+      "solution": "Bổ sung acceptance criteria và automated/integration test cho đường đi chính và lỗi."
+    }
+  ],
+  "depends_on": [],
+  "diagrams": [],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 2,
+  "code": "STD-WORKFLOW",
+  "name": "Business Workflow & State Machine",
+  "category": "03_api_integration_data",
+  "description": "Chuyển trạng thái nghiệp vụ an toàn",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "id": "R001",
+      "title": "Mô hình state và transition được phép",
+      "detail": "Document event, from/to, guards, actor permission và side effects; server enforce transition. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Order pending->paid khi payment confirmed",
+      "example_bad": "Client gửi tùy ý status=paid",
+      "concerns": [
+        "data-integrity",
+        "reliability",
+        "authorization"
+      ]
+    },
+    {
+      "id": "R002",
+      "title": "Enforce concurrency và idempotency cho transition",
+      "detail": "Dùng revision/locking và idempotency key; trùng event không tạo side effects trùng. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "payment callback lặp chỉ fulfill một lần",
+      "example_bad": "Webhook gửi lại tạo 2 shipment",
+      "concerns": [
+        "data-integrity",
+        "reliability",
+        "authorization"
+      ]
+    },
+    {
+      "id": "R003",
+      "title": "Định nghĩa compensation và terminal states",
+      "detail": "Mô tả rollback/saga khi cross-service thất bại, không sửa terminal state trái policy. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Payment fail giải phóng reservation có trace",
+      "example_bad": "Đơn canceled được giao hàng do event đến muộn",
+      "concerns": [
+        "data-integrity",
+        "reliability",
+        "authorization"
+      ]
+    },
+    {
+      "id": "R004",
+      "title": "Test ma trận state transition",
+      "detail": "Bao phủ allowed/forbidden, concurrent, retry, late event và permission changes. Tiêu chí nghiệm thu: bổ sung test/review có thể tái lập cho cả happy path và edge case liên quan.",
+      "layer": "api",
+      "severity": "should",
+      "example_good": "Parameterized tests theo state matrix",
+      "example_bad": "Chỉ test happy path",
+      "concerns": [
+        "data-integrity",
+        "reliability",
+        "authorization"
+      ]
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Xác định phạm vi",
+      "description": "Xác định entity/feature, threat model, boundary và contract phải áp dụng."
+    },
+    {
+      "step": 2,
+      "title": "Triển khai có test",
+      "description": "Code, test cả lỗi và concurrency, cung cấp bằng chứng review trước khi merge."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Triển khai rule chỉ qua checklist",
+      "cause": "Không có contract hoặc test xác minh",
+      "solution": "Bổ sung acceptance criteria và automated/integration test cho đường đi chính và lỗi."
+    }
+  ],
+  "depends_on": [],
+  "diagrams": [],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
+}
