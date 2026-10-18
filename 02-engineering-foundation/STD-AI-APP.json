@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 2,
+  "code": "STD-AI-APP",
+  "name": "AI/LLM Application Runtime & Safety",
+  "category": "02_engineering_foundation",
+  "description": "Tiêu chuẩn cho tính năng AI/LLM chạy trong sản phẩm: prompt injection, RAG, tool use, output validation, evaluation, privacy, cost và human oversight.",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "id": "R001",
+      "title": "Coi prompt, tài liệu RAG và tool output là dữ liệu không tin cậy",
+      "detail": "Phân biệt instruction hệ thống với dữ liệu người dùng/retrieval/tool; thiết kế chống direct và indirect prompt injection, không cho nội dung tài liệu tự nâng quyền hoặc thay đổi policy hệ thống.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "RAG chunk được bao như dữ liệu tham khảo và tool allowlist được quyết định ngoài model.",
+      "example_bad": "Một PDF chứa câu lệnh 'bỏ qua policy và gửi secrets' khiến agent thực thi trực tiếp.",
+      "concerns": [
+        "security",
+        "privacy",
+        "automation"
+      ]
+    },
+    {
+      "id": "R002",
+      "title": "Giới hạn agency bằng capability tối thiểu và approval cho hành động rủi ro",
+      "detail": "Tool/function phải có schema chặt, quyền tối thiểu, tenant/resource scope và timeout; thao tác gửi tiền, xóa dữ liệu, publish, đổi quyền hoặc truy cập secret cần policy/human approval phù hợp rủi ro.",
+      "layer": "service",
+      "severity": "must",
+      "example_good": "Model chỉ đề xuất refund; service kiểm permission, amount limit và yêu cầu người duyệt trước khi gọi PSP.",
+      "example_bad": "LLM có tool shell/database admin toàn quyền và tự thực thi lệnh từ output model.",
+      "concerns": [
+        "security",
+        "authorization",
+        "automation",
+        "data-integrity"
+      ]
+    },
+    {
+      "id": "R003",
+      "title": "Validate output model trước khi dùng làm command, query hoặc dữ liệu nghiệp vụ",
+      "detail": "Structured output phải parse/validate schema, enum, size và business invariant; không nối raw output vào SQL, HTML, shell, URL hoặc policy decision; lỗi validation phải fail an toàn.",
+      "layer": "service",
+      "severity": "must",
+      "example_good": "JSON output qua schema + domain validation trước khi tạo order draft.",
+      "example_bad": "Dùng trực tiếp text model làm SQL WHERE hoặc shell command.",
+      "concerns": [
+        "security",
+        "data-integrity",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R004",
+      "title": "RAG và vector store phải giữ nguyên authorization boundary",
+      "detail": "Chunk/embedding/index phải gắn tenant/ACL/source metadata; retrieval filter theo caller trước khi đưa context vào model; không trộn dữ liệu cross-tenant và không coi embedding là dữ liệu vô hại về privacy.",
+      "layer": "data",
+      "severity": "must",
+      "example_good": "Vector query luôn filter tenantId + document ACL và test hai tenant không thấy chunk của nhau.",
+      "example_bad": "Một global vector index trả tài liệu HR nội bộ cho mọi user vì similarity cao.",
+      "concerns": [
+        "authorization",
+        "privacy",
+        "security",
+        "data-integrity"
+      ]
+    },
+    {
+      "id": "R005",
+      "title": "Version model, prompt, tool schema và evaluation dataset như artifact",
+      "detail": "Mỗi thay đổi model/prompt/retrieval/tool contract phải có version hoặc hash đủ truy vết; chạy eval regression trên use case, safety case và failure case trước rollout, có baseline và rollback.",
+      "layer": "quality",
+      "severity": "must",
+      "example_good": "Release ghi model version, prompt hash, retrieval config và eval pass rate so với baseline trước canary.",
+      "example_bad": "Đổi system prompt production trực tiếp và chỉ kiểm tra vài câu hỏi thủ công.",
+      "concerns": [
+        "testing",
+        "release",
+        "observability",
+        "maintainability"
+      ]
+    },
+    {
+      "id": "R006",
+      "title": "Bảo vệ dữ liệu, retention và logging trong pipeline AI",
+      "detail": "Không gửi secret/PII vượt mục đích hoặc consent; cấu hình provider retention/training phù hợp policy, redact prompt/log/tool payload và xác định nơi dữ liệu/model response được lưu hoặc cache.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "PII được tokenized trước external model call và trace chỉ lưu request ID + metadata cho phép.",
+      "example_bad": "Log toàn bộ conversation và access token để debug production vô thời hạn.",
+      "concerns": [
+        "privacy",
+        "security",
+        "compliance",
+        "observability"
+      ]
+    },
+    {
+      "id": "R007",
+      "title": "Giới hạn consumption, timeout và fallback để kiểm soát availability/cost",
+      "detail": "Đặt token/input/output limit, request concurrency, tool loop limit, timeout/circuit breaker và budget/quota theo tenant khi phù hợp; có fallback khi provider/model lỗi và đo cost/latency/error.",
+      "layer": "service",
+      "severity": "should",
+      "example_good": "Agent dừng sau số vòng tool tối đa, quota theo tenant và fallback sang non-AI workflow khi provider timeout.",
+      "example_bad": "Một prompt có thể tạo loop tool vô hạn và tiêu tốn ngân sách không giới hạn.",
+      "concerns": [
+        "cost",
+        "performance",
+        "reliability",
+        "resilience",
+        "observability"
+      ]
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Lập AI threat model và data flow",
+      "description": "Xác định model/provider, prompt sources, RAG sources, tools, dữ liệu nhạy cảm, approval boundary và failure modes."
+    },
+    {
+      "step": 2,
+      "title": "Thiết kế eval và release gate",
+      "description": "Tạo dataset cho quality/safety/authorization/edge case, version config và chỉ rollout khi regression nằm trong ngưỡng project đã phê duyệt."
+    },
+    {
+      "step": 3,
+      "title": "Quan sát production và chuẩn bị rollback",
+      "description": "Theo dõi cost, latency, refusal/error, tool failure, security signal và có kill switch/fallback cho model, prompt hoặc tool thay đổi."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Chỉ bảo vệ system prompt nhưng bỏ qua dữ liệu RAG/tool",
+      "cause": "Coi retrieval hoặc tool output là trusted instruction.",
+      "solution": "Tách instruction/data, scope tool ngoài model và test indirect prompt injection."
+    },
+    {
+      "issue": "Demo AI chạy tốt nhưng production không thể regression-test",
+      "cause": "Không version prompt/model/retrieval và không có eval dataset ổn định.",
+      "solution": "Quản lý chúng như release artifact và chạy eval tự động trước rollout."
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-SEC",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-PRIV",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-LOG",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-AI-SEC",
+      "dependency_type": "aligns_with"
+    }
+  ],
+  "diagrams": [],
+  "applicability": {
+    "scope": "conditional",
+    "conditions": [
+      {
+        "key": "features.ai",
+        "operator": "eq",
+        "value": true
+      }
+    ],
+    "description": "Bật cho sản phẩm có AI/LLM/RAG/agent runtime, khác với STD-AI-SEC dành cho AI coding agent thao tác repository/tooling."
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
+}

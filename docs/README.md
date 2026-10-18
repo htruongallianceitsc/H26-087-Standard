@@ -20,6 +20,7 @@ Thư mục này chứa toàn bộ tài liệu hướng dẫn, lịch sử thay �
 - [`VIETNAMESE-TRANSLATION-REVIEW.md`](history/VIETNAMESE-TRANSLATION-REVIEW.md): Đánh giá chuẩn hóa ngôn ngữ tiếng Việt.
 
 ### 3. `reviews/` — Báo cáo Review nội dung theo Wave & Chuyên đề
+- [`COMPREHENSIVE-AUDIT-2026-10-17.md`](reviews/COMPREHENSIVE-AUDIT-2026-10-17.md): Audit toàn diện catalog v2.2, lỗi đã sửa, standard bổ sung và backlog v3.
 - [`CONTENT-HARDENING-WAVE1.md`](reviews/CONTENT-HARDENING-WAVE1.md): Wave 1 — Security, Auth, Critical Operations.
 - [`CONTENT-WAVE2-REVIEW.md`](reviews/CONTENT-WAVE2-REVIEW.md): Wave 2 — Backend, Operations, UX.
 - [`CONTENT-WAVE3-REVIEW.md`](reviews/CONTENT-WAVE3-REVIEW.md): Wave 3 — Web & Mobile platform standards.

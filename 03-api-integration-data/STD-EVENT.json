@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 2,
+  "code": "STD-EVENT",
+  "name": "Event Contract & Event-Driven Integration",
+  "category": "03_api_integration_data",
+  "description": "Chuẩn hóa envelope, versioning, delivery semantics, ordering, idempotency, replay và observability cho event bất đồng bộ giữa producer/consumer.",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "id": "R001",
+      "title": "Dùng event envelope ổn định và đủ truy vết",
+      "detail": "Event phải có eventId, type, version, occurredAt, producer/source và correlation/trace context khi phù hợp; business payload tách khỏi transport metadata và timestamp tuân STD-DATETIME.",
+      "layer": "integration",
+      "severity": "must",
+      "example_good": "order.created v2 có eventId UUID, occurredAt UTC, producer orders-service và trace context.",
+      "example_bad": "Queue chỉ gửi một JSON payload không type/version/id nên consumer không thể dedup hay audit.",
+      "concerns": [
+        "compatibility",
+        "observability",
+        "data-integrity"
+      ]
+    },
+    {
+      "id": "R002",
+      "title": "Tiến hóa schema theo hướng tương thích và công bố contract",
+      "detail": "Ưu tiên additive change; field mới optional/default rõ, không đổi nghĩa hoặc kiểu field cũ âm thầm; consumer phải xử lý unknown field/version theo policy và có contract fixtures/tests cho phiên bản đang hỗ trợ.",
+      "layer": "integration",
+      "severity": "must",
+      "example_good": "v2 thêm optional currency; consumer v1 bỏ qua field mới và contract test old/new cùng pass.",
+      "example_bad": "Đổi amount từ minor-unit integer sang decimal string dưới cùng version.",
+      "concerns": [
+        "compatibility",
+        "testing",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R003",
+      "title": "Định nghĩa delivery semantics, idempotency và duplicate handling",
+      "detail": "Không giả định exactly-once nếu hạ tầng không bảo đảm end-to-end; producer/consumer phải biết at-least-once/at-most-once, dedup theo event/operation ID và bảo vệ side effect bằng idempotency/unique constraint.",
+      "layer": "integration",
+      "severity": "must",
+      "example_good": "Consumer payment.succeeded lưu processed_event_id trước khi cộng ledger, duplicate không tạo giao dịch mới.",
+      "example_bad": "Mỗi retry broker đều gửi email/charge lại vì handler không idempotent.",
+      "concerns": [
+        "reliability",
+        "data-integrity",
+        "testing"
+      ]
+    },
+    {
+      "id": "R004",
+      "title": "Xử lý ordering bằng sequence/version thay vì dựa thời điểm nhận",
+      "detail": "Khi nghiệp vụ phụ thuộc thứ tự, dùng aggregate version/sequence/partition key và policy cho out-of-order; không dùng thời gian nhận hoặc wall-clock của producer như bằng chứng duy nhất về thứ tự toàn cục.",
+      "layer": "integration",
+      "severity": "must",
+      "example_good": "Order event version 11 bị từ chối/reconcile nếu consumer đang ở version 12.",
+      "example_bad": "status=Paid bị ghi đè bởi event Pending đến muộn chỉ vì message được nhận sau.",
+      "concerns": [
+        "data-integrity",
+        "reliability",
+        "compatibility"
+      ]
+    },
+    {
+      "id": "R005",
+      "title": "Có DLQ/quarantine, replay và retention với guard chống side effect lặp",
+      "detail": "Poison/unknown event không làm crash toàn consumer; lưu đủ metadata để điều tra, replay theo phạm vi có audit và kiểm idempotency; retention của event/DLQ theo nghiệp vụ, privacy và khả năng recovery.",
+      "layer": "operations",
+      "severity": "should",
+      "example_good": "Unknown schema version vào quarantine; sau deploy parser mới, ops replay theo event IDs và theo dõi kết quả.",
+      "example_bad": "Consumer skip message lỗi vĩnh viễn hoặc replay cả topic khiến gửi lại hàng nghìn notification.",
+      "concerns": [
+        "resilience",
+        "observability",
+        "privacy",
+        "data-integrity"
+      ]
+    },
+    {
+      "id": "R006",
+      "title": "Quan sát lag, retry, throughput và failure theo producer/consumer contract",
+      "detail": "Theo dõi publish failure, consumer lag/oldest age, retry/DLQ, schema rejection và processing latency; gắn owner/runbook và correlation đủ để truy từ business operation sang event path.",
+      "layer": "operations",
+      "severity": "should",
+      "example_good": "Dashboard cho order.created lag p95, DLQ count và trace từ API commit tới consumer.",
+      "example_bad": "Broker vẫn healthy nhưng event nghiệp vụ trễ 40 phút mà không có alert.",
+      "concerns": [
+        "observability",
+        "reliability",
+        "performance",
+        "resilience"
+      ]
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Định nghĩa contract producer-consumer",
+      "description": "Ghi envelope, schema/version, delivery semantics, partition/order, ownership và compatibility window trước khi tích hợp."
+    },
+    {
+      "step": 2,
+      "title": "Kiểm thử duplicate, out-of-order và schema evolution",
+      "description": "Tạo fixtures nhiều phiên bản, gửi duplicate/out-of-order/poison event và xác minh side effect, DLQ, replay đúng kỳ vọng."
+    },
+    {
+      "step": 3,
+      "title": "Bổ sung telemetry và runbook",
+      "description": "Đo lag, retry, DLQ, schema rejection; xác định ngưỡng SLO và thao tác replay an toàn."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Producer và consumer hiểu khác nhau về exactly-once",
+      "cause": "Delivery semantics không được ghi rõ và side effect không idempotent.",
+      "solution": "Công bố semantics thực tế, dùng event ID/idempotency và test duplicate."
+    },
+    {
+      "issue": "Event schema thay đổi phá consumer cũ",
+      "cause": "Thay đổi kiểu/ý nghĩa field dưới cùng version và thiếu contract test.",
+      "solution": "Additive-first, version contract khi breaking và giữ compatibility window."
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-DATETIME",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-TRACE",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-WEBHOOK",
+      "dependency_type": "aligns_with"
+    },
+    {
+      "code": "STD-BE-QUEUE",
+      "dependency_type": "aligns_with"
+    }
+  ],
+  "diagrams": [],
+  "applicability": {
+    "scope": "conditional",
+    "conditions": [
+      {
+        "key": "features.event_driven",
+        "operator": "eq",
+        "value": true
+      }
+    ],
+    "description": "Bật khi project có broker/topic/domain event/integration event hoặc workflow bất đồng bộ dựa trên event."
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
+}

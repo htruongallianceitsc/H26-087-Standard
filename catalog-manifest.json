@@ -1,9 +1,10 @@
 {
-  "catalogVersion": "2.1.0",
+  "catalogVersion": "2.2.0",
   "sourceOfTruth": "standard JSON files",
   "schema": "standard-import-v2.schema.json",
   "schemaVersion": 2,
-  "count": 151,
+  "count": 156,
+  "ruleCount": 761,
   "groups": [
     {
       "folder": "01-governance-delivery",
@@ -29,9 +30,11 @@
       "folder": "02-engineering-foundation",
       "name": "Engineering Foundation",
       "files": [
+        "STD-AI-APP.json",
         "STD-ANALYTICS.json",
         "STD-AUDIT.json",
         "STD-CONFIG-RUNTIME.json",
+        "STD-CRYPTO.json",
         "STD-DEP.json",
         "STD-ENV.json",
         "STD-ERR.json",
@@ -43,7 +46,8 @@
         "STD-RES.json",
         "STD-SEC.json",
         "STD-SESSION.json",
-        "STD-TRACE.json"
+        "STD-TRACE.json",
+        "STD-VULN.json"
       ]
     },
     {
@@ -62,12 +66,14 @@
         "STD-DATA.json",
         "STD-DATETIME.json",
         "STD-DEEP-LINK.json",
+        "STD-EVENT.json",
         "STD-FILE-LIFECYCLE.json",
         "STD-ID.json",
         "STD-INTEGRATION.json",
         "STD-NOTIFICATION.json",
         "STD-PAGINATION.json",
         "STD-SEARCH.json",
+        "STD-TENANCY.json",
         "STD-WEBHOOK.json",
         "STD-WORKFLOW.json"
       ]

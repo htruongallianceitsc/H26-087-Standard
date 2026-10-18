@@ -8,7 +8,10 @@
   "technologies": [
     "flutter",
     "aspnet-core",
-    "postgresql"
+    "postgresql",
+    "flutter-bloc",
+    "go-router",
+    "ef-core"
   ],
   "features": {
     "deep_link": true,

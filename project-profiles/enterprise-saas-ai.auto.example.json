@@ -1,0 +1,30 @@
+{
+  "project": "Enterprise SaaS AI reference profile",
+  "project_type": "hybrid",
+  "platforms": [
+    "web"
+  ],
+  "technologies": [
+    "react",
+    "typescript",
+    "aspnet-core",
+    "ef-core",
+    "postgresql"
+  ],
+  "features": {
+    "auth": true,
+    "crud": true,
+    "search": true,
+    "audit": true,
+    "analytics": true,
+    "multi_tenant": true,
+    "event_driven": true,
+    "background_jobs": true,
+    "cache": true,
+    "workflow": true,
+    "webhook": true,
+    "third_party_integration": true,
+    "ai": true,
+    "cryptography": true
+  }
+}

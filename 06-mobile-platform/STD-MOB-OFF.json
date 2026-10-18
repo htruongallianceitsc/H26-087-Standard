@@ -124,7 +124,14 @@
       "android",
       "ios"
     ],
-    "technologies": []
+    "technologies": [],
+    "conditions": [
+      {
+        "key": "features.offline_mode",
+        "operator": "eq",
+        "value": true
+      }
+    ]
   },
   "dependency_policy": {
     "inheritance": "explicit_extends_only",

@@ -7,7 +7,9 @@
   "technologies": [
     "react",
     "aspnet-core",
-    "postgresql"
+    "postgresql",
+    "typescript",
+    "ef-core"
   ],
   "features": {
     "deep_link": false,

@@ -4,7 +4,7 @@
   "name": "Client API Lifecycle & Network Recovery",
   "category": "03_api_integration_data",
   "description": "Chuẩn vòng đời HTTP client Web/Mobile",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "status": "active",
   "rules": [
     {
@@ -28,7 +28,7 @@
       "layer": "api",
       "severity": "must",
       "example_good": "GET retry 2 lần có jitter, POST dùng idempotency key",
-      "example_bad": "Retry mọi POST vô hạn",
+      "example_bad": "Client retry mọi POST vô hạn khi timeout, tạo duplicate mutation và thundering-herd.",
       "concerns": [
         "networking",
         "reliability",
@@ -100,7 +100,13 @@
   "depends_on": [],
   "diagrams": [],
   "applicability": {
-    "scope": "all"
+    "scope": "conditional",
+    "project_types": [
+      "web",
+      "mobile",
+      "hybrid",
+      "desktop"
+    ]
   },
   "dependency_policy": {
     "inheritance": "explicit_extends_only",

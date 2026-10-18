@@ -163,6 +163,30 @@ const STANDARD_CATALOG = [
     "type": "category",
     "children": [
       {
+        "code": "STD-AI-APP",
+        "name": "AI/LLM Application Runtime & Safety",
+        "type": "standard",
+        "folder": "02-engineering-foundation",
+        "depends_on": [
+          {
+            "code": "STD-SEC",
+            "dependency_type": "requires"
+          },
+          {
+            "code": "STD-PRIV",
+            "dependency_type": "uses"
+          },
+          {
+            "code": "STD-LOG",
+            "dependency_type": "uses"
+          },
+          {
+            "code": "STD-AI-SEC",
+            "dependency_type": "aligns_with"
+          }
+        ]
+      },
+      {
         "code": "STD-ANALYTICS",
         "name": "Phân tích sản phẩm & Theo dõi sự kiện",
         "type": "standard",
@@ -182,6 +206,26 @@ const STANDARD_CATALOG = [
         "type": "standard",
         "folder": "02-engineering-foundation",
         "depends_on": []
+      },
+      {
+        "code": "STD-CRYPTO",
+        "name": "Cryptography & Key Lifecycle",
+        "type": "standard",
+        "folder": "02-engineering-foundation",
+        "depends_on": [
+          {
+            "code": "STD-SEC",
+            "dependency_type": "requires"
+          },
+          {
+            "code": "STD-ENV",
+            "dependency_type": "uses"
+          },
+          {
+            "code": "STD-SESSION",
+            "dependency_type": "uses"
+          }
+        ]
       },
       {
         "code": "STD-DEP",
@@ -281,6 +325,26 @@ const STANDARD_CATALOG = [
         "type": "standard",
         "folder": "02-engineering-foundation",
         "depends_on": []
+      },
+      {
+        "code": "STD-VULN",
+        "name": "Quản lý lỗ hổng & Remediation Lifecycle",
+        "type": "standard",
+        "folder": "02-engineering-foundation",
+        "depends_on": [
+          {
+            "code": "STD-SEC",
+            "dependency_type": "requires"
+          },
+          {
+            "code": "STD-DEP",
+            "dependency_type": "uses"
+          },
+          {
+            "code": "STD-INCIDENT",
+            "dependency_type": "uses"
+          }
+        ]
       }
     ]
   },
@@ -475,6 +539,30 @@ const STANDARD_CATALOG = [
         ]
       },
       {
+        "code": "STD-EVENT",
+        "name": "Event Contract & Event-Driven Integration",
+        "type": "standard",
+        "folder": "03-api-integration-data",
+        "depends_on": [
+          {
+            "code": "STD-DATETIME",
+            "dependency_type": "uses"
+          },
+          {
+            "code": "STD-TRACE",
+            "dependency_type": "uses"
+          },
+          {
+            "code": "STD-WEBHOOK",
+            "dependency_type": "aligns_with"
+          },
+          {
+            "code": "STD-BE-QUEUE",
+            "dependency_type": "aligns_with"
+          }
+        ]
+      },
+      {
         "code": "STD-FILE-LIFECYCLE",
         "name": "File & Media Lifecycle",
         "type": "standard",
@@ -515,6 +603,30 @@ const STANDARD_CATALOG = [
         "type": "standard",
         "folder": "03-api-integration-data",
         "depends_on": []
+      },
+      {
+        "code": "STD-TENANCY",
+        "name": "Multi-Tenancy & Tenant Isolation",
+        "type": "standard",
+        "folder": "03-api-integration-data",
+        "depends_on": [
+          {
+            "code": "STD-SEC",
+            "dependency_type": "requires"
+          },
+          {
+            "code": "STD-DATA-OWNERSHIP",
+            "dependency_type": "uses"
+          },
+          {
+            "code": "STD-AUDIT",
+            "dependency_type": "uses"
+          },
+          {
+            "code": "STD-BE-AUTH",
+            "dependency_type": "aligns_with"
+          }
+        ]
       },
       {
         "code": "STD-WEBHOOK",

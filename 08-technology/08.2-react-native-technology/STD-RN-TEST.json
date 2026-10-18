@@ -101,7 +101,8 @@
   "applicability": {
     "scope": "conditional",
     "project_types": [
-      "mobile"
+      "mobile",
+      "hybrid"
     ],
     "platforms": [
       "android",

@@ -102,7 +102,7 @@
       "web"
     ],
     "technologies": [
-      "react"
+      "typescript"
     ]
   },
   "dependency_policy": {

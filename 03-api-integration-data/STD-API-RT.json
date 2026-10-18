@@ -105,7 +105,14 @@
   ],
   "diagrams": [],
   "applicability": {
-    "scope": "all"
+    "scope": "conditional",
+    "conditions": [
+      {
+        "key": "features.realtime",
+        "operator": "eq",
+        "value": true
+      }
+    ]
   },
   "dependency_policy": {
     "inheritance": "explicit_extends_only",

@@ -2,7 +2,7 @@
 
 ## Phạm vi nâng cấp
 
-Bộ dữ liệu gồm **137 standard/capability** và **503 rule**, vẫn giữ nguyên `code`, `category`, `status`, `version`, nội dung rule, thứ tự rule và các dependency hiện hữu. Ba năng lực bổ sung:
+Tại thời điểm **migration ban đầu sang schema v2**, bộ dữ liệu có **137 standard/capability** và **503 rule**. Các con số này là mốc lịch sử của đợt migration, không phải số lượng catalog hiện hành. Số lượng hiện tại phải đọc từ `catalog-manifest.json` hoặc chạy `python3 tools/standard_tool.py validate`. Đợt migration giữ nguyên `code`, `category`, `status`, `version`, nội dung rule, thứ tự rule và các dependency hiện hữu. Ba năng lực được bổ sung khi đó:
 
 1. **Rule ID & Traceability:** Mỗi rule có trường `id` ổn định dạng `R001`, `R002`... trong phạm vi một standard. Mã tham chiếu đầy đủ là `STD-API-HTTP#R001`. Để theo dõi đổi tên, tệp `rule-id-registry.json` ghi nhận `id` và title khi bắt đầu áp dụng v2. Trường `traceability.related_rules` / `requirement_tags` là tùy chọn để bổ sung liên kết về sau; không tự suy diễn liên kết từ tên rule.
 2. **Applicability & Project Profile:** Mỗi standard có `applicability`, xác định phạm vi theo loại project, nền tảng, công nghệ và cờ feature. Thư mục `project-profiles/` chứa schema profile và mẫu React/Flutter. Các trường `project_types`, `platforms`, `technologies` có quy tắc OR trong từng trường, AND giữa các trường khác nhau, AND với từng điều kiện `conditions`. Nếu danh sách rỗng hoặc không có trường, đó là **không giới hạn**; `scope=all` áp dụng mọi profile. Ví dụ điều kiện `features.deep_link == true` phải được khai báo rõ ràng. Các gán applicability theo nhóm công nghệ là **đề xuất khởi tạo**, cần kiểm duyệt nghiệp vụ trước khi ép buộc áp dụng trong dự án thực tế.
@@ -11,7 +11,7 @@ Bộ dữ liệu gồm **137 standard/capability** và **503 rule**, vẫn giữ
 ## Tương thích ngược — rất quan trọng
 
 - `standard-import.schema.json` được **giữ nguyên bản v1**; `standard-import-v2.schema.json` là schema mới có `schemaVersion=2`.
-- 137 JSON nguồn trong catalog đã dùng **schemaVersion 2**; không đưa trực tiếp vào API importer chỉ đọc v1, vì importer v1 có `additionalProperties:false` và chỉ chấp nhận schemaVersion 1.
+- Các JSON nguồn được migrate trong đợt ban đầu đã dùng **schemaVersion 2**; không đưa trực tiếp vào API importer chỉ đọc v1, vì importer v1 có `additionalProperties:false` và chỉ chấp nhận schemaVersion 1.
 - Nếu backend chưa cập nhật, xuất v1 qua lệnh dưới đây và import các JSON xuất ra. Khi xuất v1, công cụ chỉ bỏ các trường mới (`rule.id`, `traceability`, `applicability`, `dependency_policy`) và đặt `schemaVersion=1`; các giá trị cũ không thay đổi.
 - Nếu backend nâng cấp v2, phải bổ sung validate schemaVersion, lưu hoặc xử lý metadata mới, kiểm tra dependency, và xác định cách quản lý Rule ID/Project Profile. **Không được giả định backend đã hỗ trợ v2 chỉ vì các file validate thành công.**
 - Các liên kết traceability project cần tham chiếu `standard code + rule id` (không dựa title hoặc vị trí mảng). Rule thêm mới phải lấy ID kế tiếp; tuyệt đối không đánh số lại rule sau khi sắp xếp hoặc xóa.
@@ -36,7 +36,7 @@ Resolver là **bản triển khai tham khảo cục bộ**: `selected_standards`
 
 ## Các file cập nhật / bổ sung
 
-- 137 JSON standard/capability: thêm `rules[].id`, `applicability`, `dependency_policy`, `schemaVersion=2`.
+- Các JSON standard/capability của đợt migration ban đầu: thêm `rules[].id`, `applicability`, `dependency_policy`, `schemaVersion=2`.
 - `standard-import-v2.schema.json`: schema v2 mới.
 - `standard-import.schema.json`: giữ nguyên schema v1.
 - `rule-id-registry.json`: danh mục định danh rule.

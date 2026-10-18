@@ -96,6 +96,13 @@
       "api",
       "web",
       "hybrid"
+    ],
+    "conditions": [
+      {
+        "key": "features.event_driven",
+        "operator": "eq",
+        "value": true
+      }
     ]
   },
   "dependency_policy": {

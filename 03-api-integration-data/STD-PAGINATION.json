@@ -4,7 +4,7 @@
   "name": "Pagination, Sorting & Query Contract",
   "category": "03_api_integration_data",
   "description": "Contract tải danh sách lớn ổn định",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "status": "active",
   "rules": [
     {
@@ -14,7 +14,7 @@
       "layer": "api",
       "severity": "must",
       "example_good": "GET /items?cursor=...&limit=30",
-      "example_bad": "Client gửi size=100000",
+      "example_bad": "Client gửi size=100000 không có server-side cap, làm query và response tăng đột biến.",
       "concerns": [
         "performance",
         "compatibility",

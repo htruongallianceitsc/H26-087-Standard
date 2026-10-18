@@ -106,6 +106,13 @@
       "api",
       "web",
       "hybrid"
+    ],
+    "conditions": [
+      {
+        "key": "features.background_jobs",
+        "operator": "eq",
+        "value": true
+      }
     ]
   },
   "dependency_policy": {

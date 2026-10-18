@@ -10,6 +10,20 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]
 SEM={'requires','extends','uses','implements','aligns_with'}
 BASELINE_STANDARDS=('STD-REQ','STD-TEST')
 DERIVED_FILES=('catalog-manifest.json','STRUCTURE.txt','STRUCTURE_API_RESPONSE.js')
+CATALOG_VERSION='2.2.0'
+CATEGORY_BY_FOLDER={
+  '01-governance-delivery':'01_governance_delivery',
+  '02-engineering-foundation':'02_engineering_foundation',
+  '03-api-integration-data':'03_api_integration_data',
+  '04-experience-ui-ux':'04_experience_ui_ux',
+  '05-web-platform':'05_web_platform',
+  '06-mobile-platform':'06_mobile_platform',
+  '07-backend-platform':'07_backend_platform',
+  '08-technology':'08_technology',
+  '09-reusable-capabilities':'09_reusable_capabilities',
+  '10-operations-infrastructure':'10_operations_infrastructure',
+  '11-quality-assurance-testing':'11_quality_assurance_testing',
+}
 
 
 def standard_files():
@@ -70,6 +84,11 @@ def check(content_strict=False):
     refs=set(); edges=collections.defaultdict(list)
     for p,d in records:
         code=d.get('code',str(p))
+        rel=p.relative_to(ROOT)
+        if p.stem != code: errors.append(f'{code}: filename must match code ({rel})')
+        expected_category=CATEGORY_BY_FOLDER.get(rel.parts[0])
+        if expected_category and d.get('category') != expected_category:
+            errors.append(f'{code}: category {d.get("category")} does not match folder {rel.parts[0]}')
         for e in jsonschema.Draft202012Validator(schema).iter_errors(d):
             errors.append(f'{code}: {e.message} @ {list(e.path)}')
         ids=set()
@@ -83,6 +102,25 @@ def check(content_strict=False):
             if target==code: errors.append(f'{code}: self-dependency')
             if target not in docs and typ in ('requires','extends'): errors.append(f'{code}: missing {typ}: {target}')
             if typ in ('requires','extends') and target in docs: edges[code].append(target)
+    # Rule registry must include every active standard/rule ID; historical extra rows are allowed.
+    registry_path=ROOT/'rule-id-registry.json'
+    if not registry_path.exists():
+        errors.append('Missing rule-id-registry.json')
+    else:
+        registry=json.loads(registry_path.read_text(encoding='utf-8')).get('standards',{})
+        for code,d in docs.items():
+            rows=registry.get(code)
+            if rows is None:
+                errors.append(f'{code}: missing registry entry')
+                continue
+            reg_ids=[x.get('id') for x in rows]
+            if len(reg_ids) != len(set(reg_ids)):
+                errors.append(f'{code}: duplicate rule ID in registry')
+            reg_set=set(reg_ids)
+            for rule in d.get('rules',[]):
+                if rule.get('id') not in reg_set:
+                    errors.append(f'{code}#{rule.get("id")}: missing from rule-id-registry.json')
+
     for _,d in records:
         code=d.get('code')
         for rule in d.get('rules',[]):
@@ -103,6 +141,17 @@ def check(content_strict=False):
         profile=json.loads(p.read_text(encoding='utf-8'))
         for e in jsonschema.Draft202012Validator(pschema).iter_errors(profile):
             errors.append(f'{p.name}: {e.message} @ {list(e.path)}')
+    # Semantic QA inventory must cover every current rule so role checklists do not silently omit new rules.
+    audit_path=ROOT/'docs/quality/semantic-audit.json'
+    if audit_path.exists():
+        audit=json.loads(audit_path.read_text(encoding='utf-8'))
+        audit_refs={x.get('rule') for x in audit.get('rules',[])}
+        missing_audit=sorted(refs-audit_refs)
+        stale_audit=sorted(audit_refs-refs)
+        if missing_audit: errors.append(f'semantic audit missing {len(missing_audit)} rules; run tools/semantic_audit.py')
+        if stale_audit: errors.append(f'semantic audit has {len(stale_audit)} stale rules; run tools/semantic_audit.py')
+    else:
+        errors.append('Missing docs/quality/semantic-audit.json')
     if content_strict:
         m=content_metrics(records)
         for k,v in m.items():
@@ -234,7 +283,7 @@ def catalog_groups(records=None):
 def render_derived():
     records=load_records(); docs,_=build_docs(records)
     groups=catalog_groups(records)
-    manifest={'catalogVersion':'2.1.0','sourceOfTruth':'standard JSON files','schema':'standard-import-v2.schema.json','schemaVersion':2,'count':len(docs),'groups':[]}
+    manifest={'catalogVersion':CATALOG_VERSION,'sourceOfTruth':'standard JSON files','schema':'standard-import-v2.schema.json','schemaVersion':2,'count':len(docs),'ruleCount':sum(len(d.get('rules',[])) for d in docs.values()),'groups':[]}
     group_names={
       '01-governance-delivery':'Governance & Delivery','02-engineering-foundation':'Engineering Foundation',
       '03-api-integration-data':'API, Integration & Data','04-experience-ui-ux':'Experience / UI / UX',

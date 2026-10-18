@@ -114,7 +114,14 @@
       "android",
       "ios"
     ],
-    "technologies": []
+    "technologies": [],
+    "conditions": [
+      {
+        "key": "features.push_notification",
+        "operator": "eq",
+        "value": true
+      }
+    ]
   },
   "dependency_policy": {
     "inheritance": "explicit_extends_only",

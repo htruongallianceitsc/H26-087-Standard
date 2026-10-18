@@ -22,9 +22,13 @@ Nguồn sự thật: các file STD-*.json / CAP-*.json; không sửa file này t
   - STD-VERSIONING — Quản lý phiên bản, Tương thích & Ngừng hỗ trợ
 
 02-engineering-foundation — Engineering Foundation
+  - STD-AI-APP — AI/LLM Application Runtime & Safety
+    ↳ requires STD-SEC; uses STD-PRIV; uses STD-LOG; aligns_with STD-AI-SEC
   - STD-ANALYTICS — Phân tích sản phẩm & Theo dõi sự kiện
   - STD-AUDIT — Business Audit Trail
   - STD-CONFIG-RUNTIME — Runtime Configuration & Feature Control
+  - STD-CRYPTO — Cryptography & Key Lifecycle
+    ↳ requires STD-SEC; uses STD-ENV; uses STD-SESSION
   - STD-DEP — Quản lý dependency & Package
   - STD-ENV — Môi trường, Cấu hình & Secret
   - STD-ERR — Xử lý & Phân loại lỗi
@@ -40,6 +44,8 @@ Nguồn sự thật: các file STD-*.json / CAP-*.json; không sửa file này t
   - STD-SEC — Nguyên tắc bảo mật ứng dụng
   - STD-SESSION — Authentication Session Lifecycle
   - STD-TRACE — Distributed Tracing & Correlation
+  - STD-VULN — Quản lý lỗ hổng & Remediation Lifecycle
+    ↳ requires STD-SEC; uses STD-DEP; uses STD-INCIDENT
 
 03-api-integration-data — API, Integration & Data
   - STD-API — Hợp đồng API & Quản lý phiên bản
@@ -61,12 +67,16 @@ Nguồn sự thật: các file STD-*.json / CAP-*.json; không sửa file này t
     ↳ uses STD-DATA; uses STD-API
   - STD-DEEP-LINK — Deep Link, Universal Links & App Links
     ↳ uses STD-MOB-NAV; uses STD-WEB-ROUTE; uses STD-SEC; uses STD-PRIV; uses STD-INTEGRATION; uses STD-MOB-RELEASE
+  - STD-EVENT — Event Contract & Event-Driven Integration
+    ↳ uses STD-DATETIME; uses STD-TRACE; aligns_with STD-WEBHOOK; aligns_with STD-BE-QUEUE
   - STD-FILE-LIFECYCLE — File & Media Lifecycle
   - STD-ID — Identifier & Key Strategy
   - STD-INTEGRATION — Tích hợp bên thứ ba
   - STD-NOTIFICATION — Unified Notification Delivery
   - STD-PAGINATION — Pagination, Sorting & Query Contract
   - STD-SEARCH — Search & Filtering Contract
+  - STD-TENANCY — Multi-Tenancy & Tenant Isolation
+    ↳ requires STD-SEC; uses STD-DATA-OWNERSHIP; uses STD-AUDIT; aligns_with STD-BE-AUTH
   - STD-WEBHOOK — Webhook & Hợp đồng sự kiện
   - STD-WORKFLOW — Business Workflow & State Machine
 

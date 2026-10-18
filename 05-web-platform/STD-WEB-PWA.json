@@ -115,6 +115,13 @@
     ],
     "platforms": [
       "web"
+    ],
+    "conditions": [
+      {
+        "key": "features.pwa",
+        "operator": "eq",
+        "value": true
+      }
     ]
   },
   "dependency_policy": {

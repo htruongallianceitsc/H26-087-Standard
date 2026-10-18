@@ -4,7 +4,7 @@
   "name": "Identifier & Key Strategy",
   "category": "03_api_integration_data",
   "description": "Định danh ổn định qua API và database",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "status": "active",
   "rules": [
     {
@@ -42,7 +42,7 @@
       "layer": "api",
       "severity": "must",
       "example_good": "accountId: \"9007199254740993\"",
-      "example_bad": "JS Number làm tròn ID",
+      "example_bad": "Client parse ID 64-bit bằng JavaScript Number làm tròn và gọi nhầm resource.",
       "concerns": [
         "data-integrity",
         "security",

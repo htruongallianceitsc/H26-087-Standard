@@ -106,7 +106,14 @@
   "depends_on": [],
   "diagrams": [],
   "applicability": {
-    "scope": "all"
+    "scope": "conditional",
+    "conditions": [
+      {
+        "key": "features.webhook",
+        "operator": "eq",
+        "value": true
+      }
+    ]
   },
   "dependency_policy": {
     "inheritance": "explicit_extends_only",

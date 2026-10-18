@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 2,
+  "code": "STD-VULN",
+  "name": "Quản lý lỗ hổng & Remediation Lifecycle",
+  "category": "02_engineering_foundation",
+  "description": "Chuẩn hóa việc tiếp nhận, phân loại, xử lý, xác minh và theo dõi lỗ hổng từ code, dependency, hạ tầng và báo cáo bên ngoài.",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "id": "R001",
+      "title": "Hợp nhất phát hiện lỗ hổng vào một quy trình có owner",
+      "detail": "Kết quả SAST, DAST, SCA, pentest, bug bounty, cloud scan và báo cáo nội bộ phải được chuẩn hóa về asset/phiên bản bị ảnh hưởng, nguồn phát hiện, bằng chứng, owner và trạng thái; deduplicate nhưng không làm mất lịch sử.",
+      "layer": "governance",
+      "severity": "must",
+      "example_good": "Finding CVE/dependency và pentest cùng map tới service checkout v2.4, có owner AppSec và ticket remediation.",
+      "example_bad": "Mỗi scanner có dashboard riêng, finding critical không có người chịu trách nhiệm.",
+      "concerns": [
+        "security",
+        "compliance",
+        "documentation"
+      ]
+    },
+    {
+      "id": "R002",
+      "title": "Ưu tiên theo rủi ro thực tế thay vì chỉ dựa severity thô",
+      "detail": "Xếp ưu tiên phải xét severity, khả năng khai thác, internet exposure, quyền cần thiết, dữ liệu/asset bị ảnh hưởng và biện pháp bù; SLA xử lý theo policy và có escalation khi quá hạn.",
+      "layer": "governance",
+      "severity": "must",
+      "example_good": "CVE high trên admin tool nội bộ được đánh giá thấp hơn RCE medium đang public internet vì exploitability và blast radius.",
+      "example_bad": "Đóng mọi finding medium sau 90 ngày bất kể endpoint public hay exploit đang hoạt động.",
+      "concerns": [
+        "security",
+        "reliability",
+        "compliance"
+      ]
+    },
+    {
+      "id": "R003",
+      "title": "Waiver và risk acceptance phải có hạn và có người phê duyệt",
+      "detail": "Nếu chưa thể sửa, ghi mitigation, residual risk, approver, scope phiên bản và expiry; hết hạn phải re-evaluate, không dùng suppression vô thời hạn để làm sạch dashboard.",
+      "layer": "governance",
+      "severity": "must",
+      "example_good": "Waiver 14 ngày cho thư viện chưa có patch, giảm exposure bằng feature disable và có owner theo dõi upstream fix.",
+      "example_bad": "Ignore CVE critical vĩnh viễn vì test hiện tại vẫn pass.",
+      "concerns": [
+        "security",
+        "compliance",
+        "documentation"
+      ]
+    },
+    {
+      "id": "R004",
+      "title": "Xác minh remediation bằng retest và regression test",
+      "detail": "Sau khi sửa phải chạy lại cách phát hiện tương ứng hoặc test tái hiện exploit, bổ sung regression test khi khả thi và xác nhận không còn phiên bản/artifact vulnerable được deploy.",
+      "layer": "quality",
+      "severity": "must",
+      "example_good": "Sau fix IDOR, integration test cross-tenant fail như kỳ vọng và scanner retest không còn finding trên build mới.",
+      "example_bad": "Đóng ticket ngay khi merge PR mà không retest môi trường triển khai.",
+      "concerns": [
+        "security",
+        "testing",
+        "release"
+      ]
+    },
+    {
+      "id": "R005",
+      "title": "Theo dõi phiên bản bị ảnh hưởng và khả năng phản ứng khẩn cấp",
+      "detail": "Duy trì mapping release/artifact/dependency đủ để xác định nhanh phạm vi ảnh hưởng; với lỗ hổng nghiêm trọng phải có đường phát hành hotfix, rollback/disable feature và rotate credential/key khi có nguy cơ lộ.",
+      "layer": "delivery",
+      "severity": "must",
+      "example_good": "Từ SBOM xác định 3 image chứa package lỗi, chặn promotion và phát hotfix cùng ngày theo incident policy.",
+      "example_bad": "Không biết production đang chạy phiên bản dependency nào nên phải kiểm tra thủ công từng máy.",
+      "concerns": [
+        "security",
+        "release",
+        "resilience",
+        "observability"
+      ]
+    },
+    {
+      "id": "R006",
+      "title": "Có kênh tiếp nhận và quy trình disclosure phù hợp",
+      "detail": "Công bố hoặc chỉ định kênh báo cáo security, bảo vệ thông tin nhạy cảm, xác nhận receipt, phối hợp remediation và disclosure theo pháp lý/chính sách; không công khai exploit trước khi giảm thiểu rủi ro nếu không có lý do chính đáng.",
+      "layer": "governance",
+      "severity": "should",
+      "example_good": "security contact chuyển báo cáo hợp lệ vào private triage, theo dõi timeline fix và thông báo affected customers khi cần.",
+      "example_bad": "Reporter gửi lỗ hổng qua support công khai rồi nội dung exploit bị chép vào ticket public.",
+      "concerns": [
+        "security",
+        "compliance",
+        "privacy",
+        "documentation"
+      ]
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Thiết lập nguồn phát hiện và ownership",
+      "description": "Liệt kê scanner, pentest, kênh báo cáo, asset inventory, severity policy và người chịu trách nhiệm triage/remediation."
+    },
+    {
+      "step": 2,
+      "title": "Định nghĩa SLA, waiver và bằng chứng đóng finding",
+      "description": "Gắn SLA theo mức rủi ro, mẫu risk acceptance có expiry và yêu cầu retest/regression trước khi chuyển trạng thái resolved."
+    },
+    {
+      "step": 3,
+      "title": "Diễn tập finding nghiêm trọng",
+      "description": "Dùng một tình huống giả lập để kiểm tra mapping phiên bản bị ảnh hưởng, hotfix/rollback, rotation và communication."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Scanner tạo nhiều cảnh báo nhưng không giảm rủi ro",
+      "cause": "Không có dedup, ownership, SLA hoặc retest thống nhất.",
+      "solution": "Chuẩn hóa finding theo asset/version, gán owner và bắt buộc evidence khi đóng."
+    },
+    {
+      "issue": "Waiver trở thành ngoại lệ vĩnh viễn",
+      "cause": "Suppression không có expiry hoặc không re-evaluate khi môi trường thay đổi.",
+      "solution": "Bắt buộc expiry, residual risk, approver và review lại theo lịch."
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-SEC",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-DEP",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-INCIDENT",
+      "dependency_type": "uses"
+    }
+  ],
+  "diagrams": [],
+  "applicability": {
+    "scope": "all"
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
+}

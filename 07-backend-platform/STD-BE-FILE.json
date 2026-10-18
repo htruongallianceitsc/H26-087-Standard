@@ -99,6 +99,13 @@
       "api",
       "web",
       "hybrid"
+    ],
+    "conditions": [
+      {
+        "key": "features.upload",
+        "operator": "eq",
+        "value": true
+      }
     ]
   },
   "dependency_policy": {

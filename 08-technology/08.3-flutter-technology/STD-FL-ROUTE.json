@@ -104,7 +104,7 @@
       "ios"
     ],
     "technologies": [
-      "flutter"
+      "go-router"
     ]
   },
   "dependency_policy": {

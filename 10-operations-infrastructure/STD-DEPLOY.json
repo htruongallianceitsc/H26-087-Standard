@@ -4,7 +4,7 @@
   "name": "Triển khai, Rollout & Rollback",
   "category": "10_operations_infrastructure",
   "description": "Triển khai, Rollout & Rollback: quy định các yêu cầu triển khai và bằng chứng kiểm tra cụ thể; chỉ áp dụng khi phạm vi project liên quan.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "active",
   "rules": [
     {
@@ -57,6 +57,21 @@
       "concerns": [
         "compliance",
         "release"
+      ]
+    },
+    {
+      "id": "R005",
+      "title": "Xác minh chữ ký/provenance trước khi promote artifact nhạy cảm",
+      "detail": "Khi release policy yêu cầu, deployment phải verify digest, signature/attestation và trusted builder identity trước production; mismatch hoặc provenance không hợp lệ phải chặn deploy thay vì cảnh báo rồi tiếp tục.",
+      "layer": "delivery",
+      "severity": "should",
+      "example_good": "CD chỉ promote image digest đã ký và có provenance từ protected CI workflow.",
+      "example_bad": "Operator deploy image cùng tag nhưng digest khác build đã qua test.",
+      "concerns": [
+        "security",
+        "release",
+        "automation",
+        "compliance"
       ]
     }
   ],

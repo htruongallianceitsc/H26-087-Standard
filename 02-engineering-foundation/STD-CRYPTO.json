@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 2,
+  "code": "STD-CRYPTO",
+  "name": "Cryptography & Key Lifecycle",
+  "category": "02_engineering_foundation",
+  "description": "Quy định lựa chọn primitive mật mã, quản lý khóa, randomness, rotation và sử dụng encryption/signature an toàn; không khuyến khích tự thiết kế thuật toán.",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "id": "R001",
+      "title": "Không tự thiết kế crypto và chỉ dùng primitive/protocol được phê duyệt",
+      "detail": "Ưu tiên thư viện/platform crypto đã được duy trì; chọn thuật toán, mode và protocol theo policy hiện hành, tránh primitive lỗi thời hoặc tự kết hợp encrypt/hash/sign mà không có review chuyên môn.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "Dùng TLS của platform và thư viện AEAD chuẩn thay vì tự viết AES-CBC + MAC.",
+      "example_bad": "Tự tạo cơ chế mã hóa bằng XOR hoặc SHA256(password) rồi coi là bảo mật.",
+      "concerns": [
+        "security",
+        "maintainability",
+        "compatibility"
+      ]
+    },
+    {
+      "id": "R002",
+      "title": "Tách khóa khỏi dữ liệu và áp dụng least privilege cho key access",
+      "detail": "Private key/master key phải nằm trong KMS/HSM/secret store hoặc cơ chế OS phù hợp; phân quyền theo service/environment, không hardcode key trong source/image và không log material nhạy cảm.",
+      "layer": "infrastructure",
+      "severity": "must",
+      "example_good": "Service production chỉ có quyền decrypt key alias của chính nó qua KMS role riêng.",
+      "example_bad": "Private key nằm trong repository hoặc baked vào mobile bundle.",
+      "concerns": [
+        "security",
+        "privacy",
+        "compliance"
+      ]
+    },
+    {
+      "id": "R003",
+      "title": "Thiết kế rotation, versioning, revocation và re-encryption trước khi cần khẩn cấp",
+      "detail": "Ciphertext/token/signature phải gắn key version khi cần; rotation hỗ trợ overlap có kiểm soát, revoke key bị lộ và có kế hoạch re-encrypt/backfill dữ liệu mà không mất khả năng đọc hợp lệ.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "Dữ liệu ghi mới dùng key v3, worker re-encrypt v2 dần và key v2 chỉ bị disable sau khi đối soát hoàn tất.",
+      "example_bad": "Key duy nhất dùng 5 năm; đổi key làm toàn bộ dữ liệu cũ không giải mã được.",
+      "concerns": [
+        "security",
+        "reliability",
+        "data-integrity",
+        "release"
+      ]
+    },
+    {
+      "id": "R004",
+      "title": "Dùng nguồn ngẫu nhiên mật mã cho token, nonce và secret",
+      "detail": "Session secret, reset token, API key, nonce và salt phải dùng CSPRNG của platform; bảo đảm kích thước/uniqueness phù hợp và không tái sử dụng nonce ở mode yêu cầu uniqueness.",
+      "layer": "service",
+      "severity": "must",
+      "example_good": "Reset token sinh bằng secure random đủ entropy và chỉ lưu hash server-side.",
+      "example_bad": "Token sinh từ timestamp, incremental ID hoặc random không dành cho mục đích bảo mật.",
+      "concerns": [
+        "security",
+        "authentication",
+        "data-integrity"
+      ]
+    },
+    {
+      "id": "R005",
+      "title": "Hash mật khẩu bằng password KDF và hỗ trợ nâng cost an toàn",
+      "detail": "Nếu hệ thống tự quản lý mật khẩu, dùng password KDF được phê duyệt với salt riêng và tham số cost theo policy; lưu metadata để rehash khi login, không dùng fast hash đơn thuần.",
+      "layer": "service",
+      "severity": "must",
+      "example_good": "Argon2id/bcrypt/PBKDF theo policy, mỗi hash có salt và version/cost để rehash dần.",
+      "example_bad": "Lưu SHA256(password) hoặc encrypt password để có thể giải mã lại.",
+      "concerns": [
+        "security",
+        "authentication"
+      ]
+    },
+    {
+      "id": "R006",
+      "title": "Mã hóa dữ liệu theo phân loại và xác minh fail-closed khi cấu hình crypto lỗi",
+      "detail": "Chỉ mã hóa nơi threat model/phân loại dữ liệu yêu cầu; xác định boundary at-rest/in-transit, backup và export; cấu hình thiếu key/certificate phải fail an toàn thay vì rơi về plaintext.",
+      "layer": "architecture",
+      "severity": "should",
+      "example_good": "PII trong object storage dùng encryption key riêng; nếu KMS unavailable thì write bị từ chối và alert.",
+      "example_bad": "Khi certificate lỗi, client tự bỏ TLS verification để request tiếp tục chạy.",
+      "concerns": [
+        "security",
+        "privacy",
+        "resilience",
+        "compliance"
+      ]
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Lập crypto inventory",
+      "description": "Liệt kê nơi dùng TLS, encryption, signature, password hashing, token và khóa; xác định owner, library/provider và key location."
+    },
+    {
+      "step": 2,
+      "title": "Định nghĩa policy và rotation",
+      "description": "Ghi thuật toán/protocol được phép, key access, rotation/revocation, retention và cách migration ciphertext cũ."
+    },
+    {
+      "step": 3,
+      "title": "Kiểm thử failure và recovery",
+      "description": "Test key/certificate expired, KMS unavailable, key version cũ, rotation overlap và bảo đảm không fallback về cấu hình yếu."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Crypto tồn tại rải rác nhưng không ai biết key nào bảo vệ dữ liệu nào",
+      "cause": "Không có inventory hoặc ownership cho key/certificate.",
+      "solution": "Map key/certificate tới service/data, owner, environment, expiry và rotation runbook."
+    },
+    {
+      "issue": "Rotation chỉ được nghĩ tới sau khi key bị lộ",
+      "cause": "Ciphertext không lưu version và ứng dụng chỉ hỗ trợ một key.",
+      "solution": "Thiết kế key version + overlap + re-encryption từ đầu cho dữ liệu cần lifecycle dài."
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-SEC",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-ENV",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-SESSION",
+      "dependency_type": "uses"
+    }
+  ],
+  "diagrams": [],
+  "applicability": {
+    "scope": "conditional",
+    "conditions": [
+      {
+        "key": "features.cryptography",
+        "operator": "eq",
+        "value": true
+      }
+    ],
+    "description": "Bật khi project tự quản lý encryption/signature/key lifecycle ngoài baseline TLS/platform security."
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
+}

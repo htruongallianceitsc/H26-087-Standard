@@ -17,6 +17,7 @@ Schema chính hiện tại là `standard-import-v2.schema.json`. Khi hệ thốn
 ```bash
 python3 tools/standard_tool.py validate
 python3 tools/standard_tool.py lint-content
+python3 tools/semantic_audit.py --check
 python3 tools/standard_tool.py test-profiles
 python3 tools/standard_tool.py generate --check
 ```
@@ -43,17 +44,18 @@ python3 tools/standard_tool.py resolve --profile project-profiles/flutter-mobile
 ## Quy tắc applicability
 
 - `STD-WEB-*` thuộc tầng platform nên không khóa vào React.
-- `STD-REACT*`, `STD-RQ`, `STD-TS` chỉ áp dụng profile web/hybrid có `react`.
+- `STD-REACT*` áp dụng profile web/hybrid có `react`; các pack theo thư viện chỉ bật khi khai báo đúng technology, ví dụ `STD-RQ` cần `tanstack-query`, `STD-TS` cần `typescript`.
 - `STD-NEXT` chỉ áp dụng khi khai báo `nextjs`.
-- `STD-FL-*` chỉ áp dụng mobile/hybrid có `flutter`.
+- `STD-FL-*` áp dụng mobile/hybrid có `flutter`; các pack package-specific như `STD-FL-BLOC` và `STD-FL-ROUTE` lần lượt cần `flutter-bloc` và `go-router`.
+- Các standard tùy tính năng (realtime, webhook, search, upload, audit, analytics, workflow, PWA, AI, multi-tenancy...) chỉ tự động được chọn khi feature tương ứng bật.
 - `CAP-*` chỉ được bật khi feature tương ứng là `true`, ví dụ `features.payment=true`.
 - Project gồm nhiều phần như Flutter + ASP.NET Core nên dùng `project_type: "hybrid"` trong schema v2 hiện tại. Mô hình component-based được dành cho schema v3 để tránh breaking change ngay ở bước ổn định này.
 
 ## Chất lượng nội dung
 
-Hiện catalog vẫn còn technical debt về nội dung. `content-quality-baseline.json` ghi nhận mức nợ hiện tại để ngăn regression. Giai đoạn tiếp theo nên giảm baseline theo thứ tự: security/privacy/payment/auth/data migration → backend/ops → UX → phần còn lại.
+`content-quality-baseline.json` hiện ở **0** cho các nhóm skeleton/boilerplate mà công cụ kiểm tra; CI chặn mọi regression của các metric này. Song song, `tools/semantic_audit.py` giữ inventory semantic QA và checklist theo vai trò đồng bộ với toàn bộ rule hiện hành. Các `manual_review_flags` trong semantic audit là tín hiệu cần con người xem lại, không đồng nghĩa lỗi schema hay lỗi CI.
 
-Mỗi rule khi nâng cấp nên có nội dung kiểm chứng được, ví dụ good/bad thực tế, ngưỡng định lượng khi phù hợp và dẫn chiếu chuẩn ngoài đáng tin cậy.
+Mỗi rule khi nâng cấp tiếp tục phải có nội dung kiểm chứng được, ví dụ good/bad thực tế, ngưỡng định lượng khi phù hợp và dẫn chiếu chuẩn ngoài đáng tin cậy.
 
 ## Cấu trúc tài liệu
 
@@ -74,3 +76,11 @@ Trường `layer` nay mô tả **tầng chịu trách nhiệm thực thi**; trư
 ## Wave 6: Semantic QA & checklist theo vai trò
 
 Xem `docs/guides/WAVE6-SEMANTIC-QA.md` và các báo cáo dưới `docs/quality/`. Chúng là dữ liệu dẫn xuất, không thay đổi schema hoặc rule IDs.
+
+## Catalog v2.2 — audit toàn diện 2026-10-17
+
+Bản v2.2 sửa regression file legacy trùng `STD-TEST`/`STD-PERF-TEST`, harden schema/validator/CI, đồng bộ Semantic QA và cải thiện resolver để giảm over-selection. Catalog bổ sung các standard hệ thống còn thiếu: `STD-VULN`, `STD-CRYPTO`, `STD-AI-APP`, `STD-EVENT`, `STD-TENANCY`; đồng thời tăng yêu cầu provenance/attestation trong `STD-CI` và `STD-DEPLOY`.
+
+Catalog hiện hành có **156 standard/capability** và **761 rule**. Nguồn số liệu chuẩn là `catalog-manifest.json`; không dùng số lượng trong tài liệu lịch sử để suy ra trạng thái hiện tại.
+
+Xem báo cáo: [`docs/reviews/COMPREHENSIVE-AUDIT-2026-10-17.md`](docs/reviews/COMPREHENSIVE-AUDIT-2026-10-17.md).

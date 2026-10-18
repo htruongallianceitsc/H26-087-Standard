@@ -103,7 +103,7 @@
       "web"
     ],
     "technologies": [
-      "react"
+      "tanstack-query"
     ]
   },
   "dependency_policy": {

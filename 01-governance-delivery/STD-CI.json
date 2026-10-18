@@ -4,7 +4,7 @@
   "name": "Tích hợp liên tục & Pipeline Build",
   "category": "01_governance_delivery",
   "description": "Đảm bảo quy trình build và triển khai có thể tái lập.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "active",
   "rules": [
     {
@@ -60,6 +60,37 @@
         "automation",
         "observability",
         "release"
+      ]
+    },
+    {
+      "id": "R005",
+      "title": "Pin và kiểm soát third-party CI action, build image và toolchain",
+      "detail": "Workflow phải pin version/digest phù hợp cho action, plugin, container image và compiler/toolchain quan trọng; thay đổi nguồn build cần review, không chạy code từ branch/tag mutable không kiểm soát trong pipeline có quyền nhạy cảm.",
+      "layer": "delivery",
+      "severity": "must",
+      "example_good": "GitHub Action và build image pin theo commit SHA/digest; update qua PR có changelog và test.",
+      "example_bad": "Pipeline production dùng action@main hoặc image:latest có thể thay nội dung ngoài review.",
+      "concerns": [
+        "security",
+        "automation",
+        "compatibility",
+        "release"
+      ]
+    },
+    {
+      "id": "R006",
+      "title": "Sinh provenance/attestation gắn source, workflow và artifact digest",
+      "detail": "Release artifact quan trọng phải truy vết được về commit, builder/workflow, dependency context và digest; provenance/attestation được lưu cùng release và không thể bị thay bằng metadata tự khai sau build.",
+      "layer": "delivery",
+      "severity": "should",
+      "example_good": "Container release có digest và provenance chỉ tới commit + CI workflow đã tạo build đó.",
+      "example_bad": "Release note ghi commit thủ công nhưng artifact có thể được build lại trên laptop khác mà không ai phát hiện.",
+      "concerns": [
+        "security",
+        "compliance",
+        "release",
+        "automation",
+        "documentation"
       ]
     }
   ],

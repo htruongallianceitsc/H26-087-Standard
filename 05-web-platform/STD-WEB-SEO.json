@@ -95,6 +95,13 @@
     ],
     "platforms": [
       "web"
+    ],
+    "conditions": [
+      {
+        "key": "features.seo",
+        "operator": "eq",
+        "value": true
+      }
     ]
   },
   "dependency_policy": {

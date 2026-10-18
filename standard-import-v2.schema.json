@@ -22,7 +22,8 @@
       "type": "string",
       "minLength": 1,
       "maxLength": 100,
-      "description": "Mã định danh duy nhất, dễ đọc cho standard. Import sẽ bị từ chối nếu target system đã tồn tại standard cùng code."
+      "description": "Mã định danh duy nhất, dễ đọc cho standard. Import sẽ bị từ chối nếu target system đã tồn tại standard cùng code.",
+      "pattern": "^(STD|CAP)-[A-Z0-9-]+$"
     },
     "name": {
       "type": "string",
@@ -44,7 +45,8 @@
     },
     "version": {
       "type": "string",
-      "maxLength": 20
+      "maxLength": 20,
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$"
     },
     "status": {
       "$ref": "#/$defs/status"
@@ -516,7 +518,87 @@
         "description": {
           "type": "string"
         }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "scope": {
+                "const": "all"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "project_types": {
+                "maxItems": 0
+              },
+              "platforms": {
+                "maxItems": 0
+              },
+              "technologies": {
+                "maxItems": 0
+              },
+              "conditions": {
+                "maxItems": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "scope": {
+                "const": "conditional"
+              }
+            }
+          },
+          "then": {
+            "anyOf": [
+              {
+                "required": [
+                  "project_types"
+                ],
+                "properties": {
+                  "project_types": {
+                    "minItems": 1
+                  }
+                }
+              },
+              {
+                "required": [
+                  "platforms"
+                ],
+                "properties": {
+                  "platforms": {
+                    "minItems": 1
+                  }
+                }
+              },
+              {
+                "required": [
+                  "technologies"
+                ],
+                "properties": {
+                  "technologies": {
+                    "minItems": 1
+                  }
+                }
+              },
+              {
+                "required": [
+                  "conditions"
+                ],
+                "properties": {
+                  "conditions": {
+                    "minItems": 1
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     "dependencyPolicy": {
       "type": "object",

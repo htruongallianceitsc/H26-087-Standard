@@ -163,6 +163,13 @@
       "api",
       "web",
       "hybrid"
+    ],
+    "conditions": [
+      {
+        "key": "features.auth",
+        "operator": "eq",
+        "value": true
+      }
     ]
   },
   "dependency_policy": {

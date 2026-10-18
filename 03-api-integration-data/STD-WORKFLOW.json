@@ -4,7 +4,7 @@
   "name": "Business Workflow & State Machine",
   "category": "03_api_integration_data",
   "description": "Chuyển trạng thái nghiệp vụ an toàn",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "status": "active",
   "rules": [
     {
@@ -56,7 +56,7 @@
       "layer": "api",
       "severity": "should",
       "example_good": "Parameterized tests theo state matrix",
-      "example_bad": "Chỉ test happy path",
+      "example_bad": "Chỉ test happy path Approved, bỏ forbidden transition, retry và event đến muộn.",
       "concerns": [
         "data-integrity",
         "reliability",
@@ -86,7 +86,14 @@
   "depends_on": [],
   "diagrams": [],
   "applicability": {
-    "scope": "all"
+    "scope": "conditional",
+    "conditions": [
+      {
+        "key": "features.workflow",
+        "operator": "eq",
+        "value": true
+      }
+    ]
   },
   "dependency_policy": {
     "inheritance": "explicit_extends_only",

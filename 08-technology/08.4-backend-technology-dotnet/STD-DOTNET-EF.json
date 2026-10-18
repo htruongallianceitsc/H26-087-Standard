@@ -132,7 +132,7 @@
       "hybrid"
     ],
     "technologies": [
-      "aspnet-core"
+      "ef-core"
     ]
   },
   "dependency_policy": {

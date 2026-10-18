@@ -175,6 +175,13 @@
     ],
     "platforms": [
       "web"
+    ],
+    "conditions": [
+      {
+        "key": "features.auth",
+        "operator": "eq",
+        "value": true
+      }
     ]
   },
   "dependency_policy": {

@@ -89,7 +89,13 @@
   "depends_on": [],
   "diagrams": [],
   "applicability": {
-    "scope": "all"
+    "scope": "conditional",
+    "project_types": [
+      "web",
+      "mobile",
+      "hybrid",
+      "desktop"
+    ]
   },
   "dependency_policy": {
     "inheritance": "explicit_extends_only",

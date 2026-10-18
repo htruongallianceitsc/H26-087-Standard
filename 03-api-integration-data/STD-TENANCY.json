@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 2,
+  "code": "STD-TENANCY",
+  "name": "Multi-Tenancy & Tenant Isolation",
+  "category": "03_api_integration_data",
+  "description": "Chuẩn hóa cách xác định tenant context, cô lập dữ liệu/tài nguyên, quota, vận hành hỗ trợ và lifecycle tenant cho hệ thống multi-tenant.",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "id": "R001",
+      "title": "Tenant context phải đến từ identity đáng tin cậy và được kiểm tra phía server",
+      "detail": "Không tin tenantId từ body/query/header tùy ý; tenant context phải được suy ra hoặc xác minh từ principal/session/API credential và mọi authorization quyết định phải dùng context đáng tin cậy này.",
+      "layer": "service",
+      "severity": "must",
+      "example_good": "API lấy tenantId từ claim đã xác thực và từ chối resource không thuộc tenant đó.",
+      "example_bad": "Client gửi X-Tenant-Id=other-company và server dùng trực tiếp để query dữ liệu.",
+      "concerns": [
+        "authorization",
+        "security",
+        "data-integrity"
+      ]
+    },
+    {
+      "id": "R002",
+      "title": "Cô lập tenant xuyên DB, cache, object storage, search, queue và background job",
+      "detail": "Mọi key/path/index/query/message phải mang tenant boundary phù hợp; thiết kế phải ngăn cross-tenant read/write kể cả cache hit, async worker, export và admin batch.",
+      "layer": "architecture",
+      "severity": "must",
+      "example_good": "Cache key orders:{tenantId}:{id}, object prefix theo tenant và worker resolve tenant trước khi xử lý.",
+      "example_bad": "Cache chỉ key theo orderId nên tenant B nhận dữ liệu vừa được tenant A load.",
+      "concerns": [
+        "authorization",
+        "security",
+        "privacy",
+        "data-integrity"
+      ]
+    },
+    {
+      "id": "R003",
+      "title": "Đưa tenant vào invariant uniqueness, idempotency và rate/quota scope khi cần",
+      "detail": "Unique key, idempotency key, sequence, lock và quota phải xét tenant nếu cùng giá trị có thể hợp lệ ở nhiều tenant; tránh global lock/quota vô tình làm tenant này ảnh hưởng tenant khác.",
+      "layer": "data",
+      "severity": "must",
+      "example_good": "Unique(tenant_id, external_order_id) và idempotency fingerprint bao gồm tenant context.",
+      "example_bad": "external_order_id unique toàn hệ thống khiến tenant khác không tạo được mã hợp lệ giống nhau.",
+      "concerns": [
+        "data-integrity",
+        "reliability",
+        "performance"
+      ]
+    },
+    {
+      "id": "R004",
+      "title": "Admin/support access và impersonation phải có guardrail và audit mạnh hơn user thường",
+      "detail": "Cross-tenant support access cần permission riêng, mục đích/ticket, thời hạn và audit; UI phải hiển thị rõ tenant đang thao tác, tránh session lẫn lộn và không cho bypass policy bằng query trực tiếp.",
+      "layer": "governance",
+      "severity": "must",
+      "example_good": "Support role chọn tenant qua audited workflow, banner hiển thị tenant và mọi write ghi actor thật + impersonated tenant.",
+      "example_bad": "Admin đổi tenant bằng query string ẩn và thao tác không được audit.",
+      "concerns": [
+        "authorization",
+        "security",
+        "compliance",
+        "observability"
+      ]
+    },
+    {
+      "id": "R005",
+      "title": "Kiểm soát noisy-neighbor bằng quota, fairness và resource isolation",
+      "detail": "Định nghĩa limit/concurrency/storage/rate theo tenant hoặc tier khi tài nguyên dùng chung; quan sát saturation theo tenant và có degradation/throttling công bằng thay vì để một tenant làm cạn pool cho tất cả.",
+      "layer": "service",
+      "severity": "should",
+      "example_good": "Heavy export dùng per-tenant concurrency limit và queue fairness; alert cho tenant vượt quota.",
+      "example_bad": "Một tenant chạy 1000 report làm hết DB connections của toàn hệ thống.",
+      "concerns": [
+        "performance",
+        "reliability",
+        "cost",
+        "resilience"
+      ]
+    },
+    {
+      "id": "R006",
+      "title": "Tenant lifecycle phải bao phủ onboarding, transfer, export, deletion và offboarding",
+      "detail": "Provision/deprovision tài nguyên, key, webhook, queue, cache, data retention và backup phải theo lifecycle tenant; delete/export phải đối soát dữ liệu phụ và không để orphan resource còn truy cập được.",
+      "layer": "operations",
+      "severity": "should",
+      "example_good": "Offboarding revoke credentials, stop jobs, export theo policy, schedule deletion và verify object/cache/search index đã cleanup.",
+      "example_bad": "Xóa tenant row nhưng bucket, search documents và webhook secret vẫn còn hoạt động.",
+      "concerns": [
+        "privacy",
+        "security",
+        "data-integrity",
+        "cost",
+        "compliance"
+      ]
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Vẽ tenant boundary",
+      "description": "Liệt kê identity, DB, cache, file, search, queue, third-party integration và admin/support path có tenant context."
+    },
+    {
+      "step": 2,
+      "title": "Tạo negative test hai tenant",
+      "description": "Với mỗi đường đọc/ghi/export/job, kiểm tenant A không thể quan sát hoặc tác động tài nguyên của tenant B, kể cả qua cache và async processing."
+    },
+    {
+      "step": 3,
+      "title": "Kiểm tra lifecycle và noisy-neighbor",
+      "description": "Diễn tập tenant offboarding, quota exhaustion và support impersonation; xác nhận audit, cleanup và fairness."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "API có filter tenant nhưng cache hoặc background job không có",
+      "cause": "Tenant isolation chỉ được xem như vấn đề authorization ở controller.",
+      "solution": "Áp tenant boundary xuyên mọi storage/transport layer và test end-to-end cross-tenant."
+    },
+    {
+      "issue": "Super-admin trở thành backdoor không kiểm soát",
+      "cause": "Support access không có permission riêng, audit hoặc context hiển thị rõ.",
+      "solution": "Tách quyền support, bắt buộc purpose/ticket và ghi actor thật + tenant mục tiêu."
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-SEC",
+      "dependency_type": "requires"
+    },
+    {
+      "code": "STD-DATA-OWNERSHIP",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-AUDIT",
+      "dependency_type": "uses"
+    },
+    {
+      "code": "STD-BE-AUTH",
+      "dependency_type": "aligns_with"
+    }
+  ],
+  "diagrams": [],
+  "applicability": {
+    "scope": "conditional",
+    "conditions": [
+      {
+        "key": "features.multi_tenant",
+        "operator": "eq",
+        "value": true
+      }
+    ],
+    "description": "Bật cho SaaS hoặc hệ thống có nhiều tổ chức/khách hàng dùng chung application/service/data plane."
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
+}

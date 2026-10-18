@@ -107,7 +107,7 @@
       "ios"
     ],
     "technologies": [
-      "flutter"
+      "flutter-bloc"
     ]
   },
   "dependency_policy": {
