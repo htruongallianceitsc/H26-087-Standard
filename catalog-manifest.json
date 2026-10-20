@@ -3,8 +3,8 @@
   "sourceOfTruth": "standard JSON files",
   "schema": "standard-import-v2.schema.json",
   "schemaVersion": 2,
-  "count": 158,
-  "ruleCount": 797,
+  "count": 159,
+  "ruleCount": 819,
   "groups": [
     {
       "folder": "01-governance-delivery",
@@ -84,6 +84,7 @@
       "name": "Experience / UI / UX",
       "files": [
         "STD-A11Y.json",
+        "STD-DATA-TABLE.json",
         "STD-DESIGN.json",
         "STD-DS.json",
         "STD-FEEDBACK.json",

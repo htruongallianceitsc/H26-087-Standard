@@ -1,8 +1,8 @@
 {
   "summary": {
     "wave": "7",
-    "standards": 158,
-    "rules": 797,
+    "standards": 159,
+    "rules": 819,
     "corrected_layers": [
       {
         "rule": "STD-API-HTTP#R004",
@@ -24,8 +24,8 @@
     },
     "potential_overlaps": 1,
     "roles": {
-      "developer": 521,
-      "qc": 489,
+      "developer": 543,
+      "qc": 496,
       "devops_sre": 71,
       "architect_ba": 122,
       "ai_agent": 391
@@ -4621,6 +4621,383 @@
         "developer"
       ],
       "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-DATA-TABLE#R001",
+      "title": "Xác định khi nào dùng table hay layout thay thế",
+      "layer": [
+        "ui"
+      ],
+      "concerns": [
+        "usability",
+        "accessibility"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer",
+        "qc"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-DATA-TABLE#R002",
+      "title": "Khai báo cấu hình cột và metadata nhất quán",
+      "layer": [
+        "ui"
+      ],
+      "concerns": [
+        "maintainability",
+        "usability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-DATA-TABLE#R003",
+      "title": "Đảm bảo định danh hàng ổn định",
+      "layer": [
+        "ui"
+      ],
+      "concerns": [
+        "data-integrity"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-DATA-TABLE#R004",
+      "title": "Tách loading, empty, error, offline và forbidden",
+      "layer": [
+        "ui"
+      ],
+      "concerns": [
+        "resilience",
+        "usability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-DATA-TABLE#R005",
+      "title": "Loading không gây layout shift và có phản hồi đúng phạm vi",
+      "layer": [
+        "ui"
+      ],
+      "concerns": [
+        "performance",
+        "usability"
+      ],
+      "severity": "should",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-DATA-TABLE#R006",
+      "title": "Quy định sorting rõ ràng và ổn định",
+      "layer": [
+        "ui"
+      ],
+      "concerns": [
+        "data-integrity",
+        "usability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-DATA-TABLE#R007",
+      "title": "Filter, search và reset có thể dự đoán",
+      "layer": [
+        "ui"
+      ],
+      "concerns": [
+        "reliability",
+        "usability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-DATA-TABLE#R008",
+      "title": "Pagination hoặc infinite scrolling có giới hạn",
+      "layer": [
+        "ui"
+      ],
+      "concerns": [
+        "performance",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-DATA-TABLE#R009",
+      "title": "Thiết kế responsive và ưu tiên cột trên màn hình nhỏ",
+      "layer": [
+        "ui"
+      ],
+      "concerns": [
+        "usability",
+        "accessibility"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer",
+        "qc"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-DATA-TABLE#R010",
+      "title": "Định dạng dữ liệu theo locale/timezone và phân biệt null",
+      "layer": [
+        "ui"
+      ],
+      "concerns": [
+        "data-integrity",
+        "usability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-DATA-TABLE#R011",
+      "title": "Hiển thị overflow, tooltip và nội dung dài an toàn",
+      "layer": [
+        "ui"
+      ],
+      "concerns": [
+        "usability",
+        "accessibility"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer",
+        "qc"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-DATA-TABLE#R012",
+      "title": "Accessible semantic table và keyboard navigation",
+      "layer": [
+        "ui"
+      ],
+      "concerns": [
+        "accessibility"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer",
+        "qc"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-DATA-TABLE#R013",
+      "title": "Row action, bulk action và xác nhận thao tác nguy hiểm",
+      "layer": [
+        "ui"
+      ],
+      "concerns": [
+        "data-integrity",
+        "usability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-DATA-TABLE#R014",
+      "title": "Selection xuyên trang có phạm vi rõ ràng",
+      "layer": [
+        "ui"
+      ],
+      "concerns": [
+        "data-integrity",
+        "usability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-DATA-TABLE#R015",
+      "title": "Inline editing có validate, save, cancel và concurrency",
+      "layer": [
+        "ui"
+      ],
+      "concerns": [
+        "data-integrity",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-DATA-TABLE#R016",
+      "title": "Quy định xử lý quyền và dữ liệu nhạy cảm",
+      "layer": [
+        "ui"
+      ],
+      "concerns": [
+        "security",
+        "privacy"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer",
+        "qc"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-DATA-TABLE#R017",
+      "title": "Tối ưu render và không xử lý nặng trên UI thread",
+      "layer": [
+        "ui"
+      ],
+      "concerns": [
+        "performance"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-DATA-TABLE#R018",
+      "title": "Quy định sticky header, column width và layout stability",
+      "layer": [
+        "ui"
+      ],
+      "concerns": [
+        "usability",
+        "performance"
+      ],
+      "severity": "should",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-DATA-TABLE#R019",
+      "title": "Xuất dữ liệu phải nhất quán với quyền và phạm vi filter",
+      "layer": [
+        "ui"
+      ],
+      "concerns": [
+        "security",
+        "data-integrity"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer",
+        "qc"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-DATA-TABLE#R020",
+      "title": "Refresh/realtime update không làm mất ngữ cảnh thao tác",
+      "layer": [
+        "ui"
+      ],
+      "concerns": [
+        "reliability",
+        "usability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-DATA-TABLE#R021",
+      "title": "Empty row/placeholder và thao tác trạng thái có thể hành động",
+      "layer": [
+        "ui"
+      ],
+      "concerns": [
+        "usability"
+      ],
+      "severity": "should",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-DATA-TABLE#R022",
+      "title": "Kiểm thử matrix dữ liệu và tương tác",
+      "layer": [
+        "ui"
+      ],
+      "concerns": [
+        "testing",
+        "accessibility"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer",
+        "qc"
+      ],
+      "verification_suggestion": "test",
       "manual_review_flags": []
     },
     {

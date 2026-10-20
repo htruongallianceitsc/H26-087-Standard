@@ -1,6 +1,6 @@
 # Checklist - developer
 
-Rules: **521**
+Rules: **543**
 
 | Rule | Severity | Verification | Pass/Fail/Waived/NA | Evidence |
 |---|---|---|---|---|
@@ -191,6 +191,28 @@ Rules: **521**
 | `STD-DATA-OWNERSHIP#R002` - Định nghĩa cache freshness và invalidation | must | test_or_review | [ ] | |
 | `STD-DATA-OWNERSHIP#R003` - Chống response out-of-order | must | test_or_review | [ ] | |
 | `STD-DATA-OWNERSHIP#R004` - Quản lý optimistic mutation có đối soát | should | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R001` - Xác định khi nào dùng table hay layout thay thế | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R002` - Khai báo cấu hình cột và metadata nhất quán | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R003` - Đảm bảo định danh hàng ổn định | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R004` - Tách loading, empty, error, offline và forbidden | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R005` - Loading không gây layout shift và có phản hồi đúng phạm vi | should | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R006` - Quy định sorting rõ ràng và ổn định | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R007` - Filter, search và reset có thể dự đoán | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R008` - Pagination hoặc infinite scrolling có giới hạn | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R009` - Thiết kế responsive và ưu tiên cột trên màn hình nhỏ | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R010` - Định dạng dữ liệu theo locale/timezone và phân biệt null | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R011` - Hiển thị overflow, tooltip và nội dung dài an toàn | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R012` - Accessible semantic table và keyboard navigation | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R013` - Row action, bulk action và xác nhận thao tác nguy hiểm | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R014` - Selection xuyên trang có phạm vi rõ ràng | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R015` - Inline editing có validate, save, cancel và concurrency | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R016` - Quy định xử lý quyền và dữ liệu nhạy cảm | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R017` - Tối ưu render và không xử lý nặng trên UI thread | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R018` - Quy định sticky header, column width và layout stability | should | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R019` - Xuất dữ liệu phải nhất quán với quyền và phạm vi filter | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R020` - Refresh/realtime update không làm mất ngữ cảnh thao tác | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R021` - Empty row/placeholder và thao tác trạng thái có thể hành động | should | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R022` - Kiểm thử matrix dữ liệu và tương tác | must | test | [ ] | |
 | `STD-DATA-TX#R001` - Định ranh giới transaction theo invariant | must | test_or_review | [ ] | |
 | `STD-DATA-TX#R002` - Kiểm soát update đồng thời và lost update | must | test_or_review | [ ] | |
 | `STD-DATA-TX#R003` - Giảm deadlock và giao dịch kéo dài | must | test_or_review | [ ] | |

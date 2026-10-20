@@ -1,0 +1,338 @@
+{
+  "schemaVersion": 2,
+  "code": "STD-DATA-TABLE",
+  "name": "Data Table & List Presentation Behavior",
+  "category": "04_experience_ui_ux",
+  "description": "Chuẩn cross-platform cho trình bày và tương tác dữ liệu dạng table/grid/list trên web, mobile và hybrid; phân định với pagination API, UI state, privacy và platform performance.",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "id": "R001",
+      "title": "Xác định khi nào dùng table hay layout thay thế",
+      "detail": "MUST dùng table cho dữ liệu có nhiều bản ghi cần đối chiếu cùng tập cột; với mobile hoặc màn hình hẹp SHOULD chuyển sang card/list/detail nếu bảng ngang gây khó đọc; không ép bảng nhiều cột trong viewport nhỏ.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "UI desktop hiển thị grid, điện thoại hiển thị card với trường ưu tiên.",
+      "example_bad": "Ép bảng 12 cột thu nhỏ chữ trên điện thoại.",
+      "concerns": [
+        "usability",
+        "accessibility"
+      ]
+    },
+    {
+      "id": "R002",
+      "title": "Khai báo cấu hình cột và metadata nhất quán",
+      "detail": "MUST có định nghĩa cột gồm key ổn định, label, kiểu dữ liệu, align, formatter, min/max width, priority, sortable/filterable và quy tắc ẩn nếu áp dụng. Không suy đoán kiểu/label từ giá trị hàng đầu.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "Cột amount kiểu currency căn phải, cột status dùng label rõ.",
+      "example_bad": "Render object JSON theo thứ tự thuộc tính bất định.",
+      "concerns": [
+        "maintainability",
+        "usability"
+      ]
+    },
+    {
+      "id": "R003",
+      "title": "Đảm bảo định danh hàng ổn định",
+      "detail": "MUST dùng row key duy nhất, ổn định theo entity để selection, expand, edit, virtualization và cập nhật chính xác; không dùng index khi dữ liệu sắp xếp, lọc hoặc phân trang.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "Dùng orderId làm rowKey.",
+      "example_bad": "Dùng array index cho bảng có sorting.",
+      "concerns": [
+        "data-integrity"
+      ]
+    },
+    {
+      "id": "R004",
+      "title": "Tách loading, empty, error, offline và forbidden",
+      "detail": "MUST thể hiện đúng initial loading, refresh, empty-after-filter, empty-dataset, recoverable error, offline và forbidden theo STD-UI-STATE; không biến lỗi API thành danh sách rỗng. SHOULD giữ dữ liệu cũ khi refresh nếu không gây hiểu sai.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "Không có kết quả lọc có nút Xóa bộ lọc; lỗi mạng có Retry.",
+      "example_bad": "Hiển thị Không có dữ liệu khi server trả 500.",
+      "concerns": [
+        "resilience",
+        "usability"
+      ]
+    },
+    {
+      "id": "R005",
+      "title": "Loading không gây layout shift và có phản hồi đúng phạm vi",
+      "detail": "SHOULD dùng skeleton có kích thước gần dữ liệu thật cho tải đầu, tiến trình nhỏ khi refresh, loading riêng cho row action; tránh full-screen blocker với thao tác trên một dòng.",
+      "layer": "ui",
+      "severity": "should",
+      "example_good": "Nút xóa của row đang gửi request chỉ khóa row đó.",
+      "example_bad": "Spinner che toàn trang khi toggle một status.",
+      "concerns": [
+        "performance",
+        "usability"
+      ]
+    },
+    {
+      "id": "R006",
+      "title": "Quy định sorting rõ ràng và ổn định",
+      "detail": "MUST thể hiện cột và chiều đang sort, phân biệt client/server sort, dùng tie-breaker ổn định và đồng bộ state trong query; tuân theo STD-PAGINATION cho dữ liệu server-side. Không sort trang hiện tại giả làm sort toàn bộ tập.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "Sort createdAt DESC và id DESC tại server, biểu tượng thể hiện DESC.",
+      "example_bad": "Sort 20 hàng hiện tại trong tổng 10000 nhưng UI nói đã sort toàn bộ.",
+      "concerns": [
+        "data-integrity",
+        "usability"
+      ]
+    },
+    {
+      "id": "R007",
+      "title": "Filter, search và reset có thể dự đoán",
+      "detail": "MUST thể hiện filter đang áp dụng, hỗ trợ xóa/reset, phân biệt search và filter; thay đổi query reset cursor/page phù hợp, chống response cũ ghi đè response mới. SHOULD debounce truy vấn text.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "Chọn trạng thái Completed quay về page đầu, hiện chip lọc.",
+      "example_bad": "Giữ page=9 khi filter chỉ còn một trang.",
+      "concerns": [
+        "reliability",
+        "usability"
+      ]
+    },
+    {
+      "id": "R008",
+      "title": "Pagination hoặc infinite scrolling có giới hạn",
+      "detail": "MUST có cơ chế giới hạn kết quả và page size ở nguồn, tuân thủ STD-PAGINATION; lựa chọn phân trang, load-more hoặc infinite scroll theo ngữ cảnh, hiển thị vị trí/tổng số khi API hỗ trợ. Không fetch toàn bộ chỉ để client paginate.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "Admin table dùng server pagination, pageSize có cap.",
+      "example_bad": "Tải 200000 hàng về browser rồi chỉ render 20.",
+      "concerns": [
+        "performance",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R009",
+      "title": "Thiết kế responsive và ưu tiên cột trên màn hình nhỏ",
+      "detail": "MUST giữ thông tin quan trọng/CTA chính khi cột bị ẩn; SHOULD cho người dùng mở chi tiết để xem cột phụ, chỉ cho horizontal scrolling khi bảng thực sự cần so sánh nhiều cột, giữ header/cột định danh nếu phù hợp.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "Bảng hóa đơn mobile giữ mã, tiền, trạng thái và mở detail.",
+      "example_bad": "Ẩn hoàn toàn cột trạng thái quan trọng mà không có đường xem lại.",
+      "concerns": [
+        "usability",
+        "accessibility"
+      ]
+    },
+    {
+      "id": "R010",
+      "title": "Định dạng dữ liệu theo locale/timezone và phân biệt null",
+      "detail": "MUST nhất quán format số, tiền tệ, ngày/giờ, timezone, booleans, empty/null/zero theo chuẩn I18N và date-time; không biến null thành 0 hoặc cùng một ký hiệu gây mơ hồ.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "null hiển thị Chưa có, số 0 hiển thị 0 ₫.",
+      "example_bad": "Ô null hiển thị 0 ₫ như số không thực.",
+      "concerns": [
+        "data-integrity",
+        "usability"
+      ]
+    },
+    {
+      "id": "R011",
+      "title": "Hiển thị overflow, tooltip và nội dung dài an toàn",
+      "detail": "MUST tránh tràn layout; ellipsis/multiline không được làm mất đường xem nội dung đầy đủ (expand, tooltip truy cập keyboard hoặc detail). SHOULD giới hạn chiều cao hàng phù hợp.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "Tên tài liệu dài có tooltip và mở detail.",
+      "example_bad": "Cắt số tài khoản không thể xem đầy đủ ngay cả người có quyền.",
+      "concerns": [
+        "usability",
+        "accessibility"
+      ]
+    },
+    {
+      "id": "R012",
+      "title": "Accessible semantic table và keyboard navigation",
+      "detail": "MUST dùng semantic table/header/cell trên web hoặc semantic tương đương ở mobile, label cho sort/filter/action, focus order, screen reader announcements và kích thước chạm phù hợp; không truyền ý nghĩa chỉ bằng màu.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "Thẻ th có aria-sort; status có text và icon kèm label.",
+      "example_bad": "Dùng div không có role, cột status chỉ chấm màu.",
+      "concerns": [
+        "accessibility"
+      ]
+    },
+    {
+      "id": "R013",
+      "title": "Row action, bulk action và xác nhận thao tác nguy hiểm",
+      "detail": "MUST tách hành động trên một hàng và đa hàng, hiện số lượng selected, scope được chọn, quyền thực thi, trạng thái loading; bulk destructive action cần confirmation và hiển thị kết quả từng phần.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "Xóa 12 mục có confirm, báo 10 thành công/2 lỗi.",
+      "example_bad": "Một click xóa ngay các hàng selected không xác nhận.",
+      "concerns": [
+        "data-integrity",
+        "usability"
+      ]
+    },
+    {
+      "id": "R014",
+      "title": "Selection xuyên trang có phạm vi rõ ràng",
+      "detail": "MUST làm rõ Select page, Select all filtered results và selection persistence khi sort/filter/page thay đổi; không tự hiểu select-all là toàn bộ server dataset; bảo vệ chống thao tác trên IDs cũ/không được phép.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "Chọn 25 hàng trang này hiển thị Chọn tất cả 120 kết quả?",
+      "example_bad": "Checkbox header ngầm chọn tất cả kể cả các trang không nhìn thấy.",
+      "concerns": [
+        "data-integrity",
+        "usability"
+      ]
+    },
+    {
+      "id": "R015",
+      "title": "Inline editing có validate, save, cancel và concurrency",
+      "detail": "Khi hỗ trợ edit trong bảng MUST phân biệt draft và persisted value, validate, pending/error, cancel, optimistic rollback và xử lý conflict/version; không ghi đè dữ liệu người khác im lặng.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "Sửa số lượng có validate, lưu riêng và xử lý 409 conflict.",
+      "example_bad": "Đổi giá trị cell local và báo thành công trước khi server xác nhận.",
+      "concerns": [
+        "data-integrity",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R016",
+      "title": "Quy định xử lý quyền và dữ liệu nhạy cảm",
+      "detail": "MUST enforce row/action/column permission ở backend; UI ẩn hoặc mask PII phù hợp nhưng không coi việc ẩn cột là security boundary; export/download có cùng scope auth và audit khi cần.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "API không trả secret column cho user không có quyền.",
+      "example_bad": "Ẩn cột salary bằng CSS nhưng JSON vẫn chứa salary.",
+      "concerns": [
+        "security",
+        "privacy"
+      ]
+    },
+    {
+      "id": "R017",
+      "title": "Tối ưu render và không xử lý nặng trên UI thread",
+      "detail": "MUST chọn virtualization/windowing hoặc paging với bảng lớn, tránh render toàn bộ DOM/widget tree; memoize cell formatter khi thích hợp, có row height/measure strategy và test trên thiết bị yếu.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "50k item hiển thị bằng windowed list với row key ổn định.",
+      "example_bad": "Render 50k DOM rows lúc mount.",
+      "concerns": [
+        "performance"
+      ]
+    },
+    {
+      "id": "R018",
+      "title": "Quy định sticky header, column width và layout stability",
+      "detail": "SHOULD giữ header và cột định danh khi cần, tránh cột co giãn gây shift trong tải/resize; scroll container có chiều cao và hành vi xác định; sticky overlays không che controls.",
+      "layer": "ui",
+      "severity": "should",
+      "example_good": "Header sticky trong vùng scroll, action vẫn truy cập được.",
+      "example_bad": "Sticky header chồng lên dropdown filter hoặc footer hệ thống.",
+      "concerns": [
+        "usability",
+        "performance"
+      ]
+    },
+    {
+      "id": "R019",
+      "title": "Xuất dữ liệu phải nhất quán với quyền và phạm vi filter",
+      "detail": "Nếu có export MUST ghi rõ export current page / filtered dataset / selected records, tuân thủ sort/filter, xử lý async với dữ liệu lớn, encoding/CSV injection và tránh timeout client.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "Xuất 120 kết quả theo filter hiện tại với job backend.",
+      "example_bad": "Button Export chỉ xuất page đang xem nhưng tên Xuất tất cả.",
+      "concerns": [
+        "security",
+        "data-integrity"
+      ]
+    },
+    {
+      "id": "R020",
+      "title": "Refresh/realtime update không làm mất ngữ cảnh thao tác",
+      "detail": "MUST tránh làm mất focus, selection, scroll position và draft khi refresh/realtime updates; có chính sách xử lý row đã bị xóa hoặc status đổi; thông báo nếu dữ liệu đã stale.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "Đang sửa row 5 thì push cập nhật row 20 không reset form.",
+      "example_bad": "Refetch mỗi 3 giây làm mất selection/draft.",
+      "concerns": [
+        "reliability",
+        "usability"
+      ]
+    },
+    {
+      "id": "R021",
+      "title": "Empty row/placeholder và thao tác trạng thái có thể hành động",
+      "detail": "SHOULD cung cấp next action hợp ngữ cảnh ở empty/error/no-search-result và hỗ trợ retry, reset filter, tạo mới khi có quyền; không dùng chuỗi placeholder khó hiểu.",
+      "layer": "ui",
+      "severity": "should",
+      "example_good": "No results có Xóa bộ lọc; danh sách rỗng có Tạo mục mới nếu được phép.",
+      "example_bad": "Chỉ hiện một ô trắng, không biết lỗi hay trống.",
+      "concerns": [
+        "usability"
+      ]
+    },
+    {
+      "id": "R022",
+      "title": "Kiểm thử matrix dữ liệu và tương tác",
+      "detail": "MUST test 0/1/nhiều rows, null, dữ liệu dài, số lớn, locale RTL nếu hỗ trợ, multi sort/filter/page, slow/offline/error, permission, selection across pages, mobile width, screen reader, keyboard, stress performance.",
+      "layer": "ui",
+      "severity": "must",
+      "example_good": "E2E test filtering page reset, 10k rows, offline refresh và keyboard sort.",
+      "example_bad": "Chỉ test trang đầu với 3 dòng mẫu.",
+      "concerns": [
+        "testing",
+        "accessibility"
+      ]
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Xác định loại danh sách và interaction contract",
+      "description": "Phân loại analytical/admin grid, transactional table, mobile compact list, read-only/inline edit, nguồn client/server; map cột và hành động."
+    },
+    {
+      "step": 2,
+      "title": "Thiết lập trạng thái, dữ liệu và accessibility",
+      "description": "Ánh xạ STD-UI-STATE, STD-PAGINATION, STD-I18N, permission; định nghĩa selection, sort/filter, responsive, keyboard/screen reader."
+    },
+    {
+      "step": 3,
+      "title": "Kiểm tra ngưỡng và regression",
+      "description": "Test với data lớn, error/offline, thiết bị nhỏ, thao tác đồng thời, export, partial failures và lưu bằng chứng theo rule ID."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Client-side sort/pagination trên một phần dữ liệu",
+      "cause": "Không phân biệt dữ liệu toàn bộ và page từ server",
+      "solution": "Dùng server query contract từ STD-PAGINATION; thể hiện đúng scope."
+    },
+    {
+      "issue": "Mobile table quá rộng",
+      "cause": "Dùng nguyên bảng web",
+      "solution": "Dùng cột ưu tiên + card/list/detail; chỉ scroll ngang khi yêu cầu so sánh."
+    }
+  ],
+  "depends_on": [],
+  "diagrams": [],
+  "applicability": {
+    "scope": "conditional",
+    "project_types": [
+      "web",
+      "mobile",
+      "hybrid",
+      "desktop"
+    ]
+  },
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  }
+}

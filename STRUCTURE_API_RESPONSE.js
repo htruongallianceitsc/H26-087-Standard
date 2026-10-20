@@ -693,6 +693,13 @@ const STANDARD_CATALOG = [
         "depends_on": []
       },
       {
+        "code": "STD-DATA-TABLE",
+        "name": "Data Table & List Presentation Behavior",
+        "type": "standard",
+        "folder": "04-experience-ui-ux",
+        "depends_on": []
+      },
+      {
         "code": "STD-DESIGN",
         "name": "Bàn giao thiết kế & Độ trung thực",
         "type": "standard",

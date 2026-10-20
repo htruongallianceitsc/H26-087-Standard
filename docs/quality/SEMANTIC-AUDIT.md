@@ -2,8 +2,8 @@
 
 This report is generated from the current catalog. Heuristic flags require human review; they are not automatic failures.
 
-- Standards/capabilities: **158**
-- Rules: **797**
+- Standards/capabilities: **159**
+- Rules: **819**
 - Rules flagged for manual review: **63**
 - Potential overlap pairs retained from reviewed history: **1**
 
@@ -16,8 +16,8 @@ This report is generated from the current catalog. Heuristic flags require human
 
 ## Role coverage
 
-- `developer`: 521 rules
-- `qc`: 489 rules
+- `developer`: 543 rules
+- `qc`: 496 rules
 - `devops_sre`: 71 rules
 - `architect_ba`: 122 rules
 - `ai_agent`: 391 rules

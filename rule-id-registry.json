@@ -3504,6 +3504,96 @@
         "id": "R016",
         "original_title": "Kênh phân phối và thiết bị không được hỗ trợ"
       }
+    ],
+    "STD-DATA-TABLE": [
+      {
+        "id": "R001",
+        "original_title": "Xác định khi nào dùng table hay layout thay thế"
+      },
+      {
+        "id": "R002",
+        "original_title": "Khai báo cấu hình cột và metadata nhất quán"
+      },
+      {
+        "id": "R003",
+        "original_title": "Đảm bảo định danh hàng ổn định"
+      },
+      {
+        "id": "R004",
+        "original_title": "Tách loading, empty, error, offline và forbidden"
+      },
+      {
+        "id": "R005",
+        "original_title": "Loading không gây layout shift và có phản hồi đúng phạm vi"
+      },
+      {
+        "id": "R006",
+        "original_title": "Quy định sorting rõ ràng và ổn định"
+      },
+      {
+        "id": "R007",
+        "original_title": "Filter, search và reset có thể dự đoán"
+      },
+      {
+        "id": "R008",
+        "original_title": "Pagination hoặc infinite scrolling có giới hạn"
+      },
+      {
+        "id": "R009",
+        "original_title": "Thiết kế responsive và ưu tiên cột trên màn hình nhỏ"
+      },
+      {
+        "id": "R010",
+        "original_title": "Định dạng dữ liệu theo locale/timezone và phân biệt null"
+      },
+      {
+        "id": "R011",
+        "original_title": "Hiển thị overflow, tooltip và nội dung dài an toàn"
+      },
+      {
+        "id": "R012",
+        "original_title": "Accessible semantic table và keyboard navigation"
+      },
+      {
+        "id": "R013",
+        "original_title": "Row action, bulk action và xác nhận thao tác nguy hiểm"
+      },
+      {
+        "id": "R014",
+        "original_title": "Selection xuyên trang có phạm vi rõ ràng"
+      },
+      {
+        "id": "R015",
+        "original_title": "Inline editing có validate, save, cancel và concurrency"
+      },
+      {
+        "id": "R016",
+        "original_title": "Quy định xử lý quyền và dữ liệu nhạy cảm"
+      },
+      {
+        "id": "R017",
+        "original_title": "Tối ưu render và không xử lý nặng trên UI thread"
+      },
+      {
+        "id": "R018",
+        "original_title": "Quy định sticky header, column width và layout stability"
+      },
+      {
+        "id": "R019",
+        "original_title": "Xuất dữ liệu phải nhất quán với quyền và phạm vi filter"
+      },
+      {
+        "id": "R020",
+        "original_title": "Refresh/realtime update không làm mất ngữ cảnh thao tác"
+      },
+      {
+        "id": "R021",
+        "original_title": "Empty row/placeholder và thao tác trạng thái có thể hành động"
+      },
+      {
+        "id": "R022",
+        "original_title": "Kiểm thử matrix dữ liệu và tương tác"
+      }
     ]
   }
 }

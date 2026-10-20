@@ -1,6 +1,6 @@
 # Checklist - qc
 
-Rules: **489**
+Rules: **496**
 
 | Rule | Severity | Verification | Pass/Fail/Waived/NA | Evidence |
 |---|---|---|---|---|
@@ -150,6 +150,13 @@ Rules: **489**
 | `STD-DATA-MIG#R001` - Áp dụng expand-migrate-contract không làm gián đoạn | must | test_or_review | [ ] | |
 | `STD-DATA-MIG#R004` - Mọi thay đổi nguy hiểm có kế hoạch rollback/forward-fix | must | test_or_review | [ ] | |
 | `STD-DATA-MIG#R005` - Kiểm soát lock và giao dịch DDL | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R001` - Xác định khi nào dùng table hay layout thay thế | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R009` - Thiết kế responsive và ưu tiên cột trên màn hình nhỏ | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R011` - Hiển thị overflow, tooltip và nội dung dài an toàn | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R012` - Accessible semantic table và keyboard navigation | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R016` - Quy định xử lý quyền và dữ liệu nhạy cảm | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R019` - Xuất dữ liệu phải nhất quán với quyền và phạm vi filter | must | test_or_review | [ ] | |
+| `STD-DATA-TABLE#R022` - Kiểm thử matrix dữ liệu và tương tác | must | test | [ ] | |
 | `STD-DATA-TX#R001` - Định ranh giới transaction theo invariant | must | test_or_review | [ ] | |
 | `STD-DATA-TX#R002` - Kiểm soát update đồng thời và lost update | must | test_or_review | [ ] | |
 | `STD-DATA-TX#R003` - Giảm deadlock và giao dịch kéo dài | must | test_or_review | [ ] | |

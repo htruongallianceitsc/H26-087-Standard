@@ -86,6 +86,7 @@ Nguồn sự thật: các file STD-*.json / CAP-*.json; không sửa file này t
 
 04-experience-ui-ux — Experience / UI / UX
   - STD-A11Y — Khả năng tiếp cận & Thiết kế hòa nhập
+  - STD-DATA-TABLE — Data Table & List Presentation Behavior
   - STD-DESIGN — Bàn giao thiết kế & Độ trung thực
   - STD-DS — Design System & Component dùng chung
   - STD-FEEDBACK — Phản hồi, Thông báo & Messaging

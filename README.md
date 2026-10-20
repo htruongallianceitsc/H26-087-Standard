@@ -93,3 +93,8 @@ Xem báo cáo: [`docs/reviews/COMPREHENSIVE-AUDIT-2026-10-17.md`](docs/reviews/C
 
 - `06-mobile-platform/STD-MOB-UPDATE.json`: quản lý update policy, optional/recommended/required, compatibility API, availability trên store, offline fallback, rollout/rollback.
 - Xem `docs/STD-MOB-UPDATE-IMPLEMENTATION-GUIDE.md` để áp dụng hợp đồng API và test matrix.
+
+## Data Table & List UI Standard
+
+- `04-experience-ui-ux/STD-DATA-TABLE.json`: chuẩn cross-platform cho table/grid/list, gồm 22 rules về cấu trúc cột, sort/filter/pagination UX, responsive, loading/empty/error, accessibility, permissions, selection, editing, export và performance.
+- Xem `docs/STD-DATA-TABLE-IMPLEMENTATION-GUIDE.md` để áp dụng cho Web, React Native, Flutter và mobile.
