@@ -70,8 +70,11 @@ Nguồn sự thật: các file STD-*.json / CAP-*.json; không sửa file này t
   - STD-EVENT — Event Contract & Event-Driven Integration
     ↳ uses STD-DATETIME; uses STD-TRACE; aligns_with STD-WEBHOOK; aligns_with STD-BE-QUEUE
   - STD-FILE-LIFECYCLE — File & Media Lifecycle
+    ↳ aligns_with STD-MEDIA
   - STD-ID — Identifier & Key Strategy
   - STD-INTEGRATION — Tích hợp bên thứ ba
+  - STD-MEDIA — Image & Media Delivery, Optimization & Caching
+    ↳ aligns_with STD-FILE-LIFECYCLE; aligns_with STD-CACHE; aligns_with STD-PRIV; aligns_with STD-PERF
   - STD-NOTIFICATION — Unified Notification Delivery
   - STD-PAGINATION — Pagination, Sorting & Query Contract
   - STD-SEARCH — Search & Filtering Contract
@@ -97,7 +100,7 @@ Nguồn sự thật: các file STD-*.json / CAP-*.json; không sửa file này t
   - STD-WEB-FORM — Form trình duyệt & Validation
     ↳ extends STD-FORM
   - STD-WEB-PERF — Hiệu năng Render Web & Bộ nhớ
-    ↳ extends STD-PERF
+    ↳ extends STD-PERF; aligns_with STD-MEDIA
   - STD-WEB-PWA — Progressive Web App (PWA)
     ↳ aligns_with STD-CONFIG-RUNTIME
   - STD-WEB-RESP — Layout Responsive
@@ -120,7 +123,7 @@ Nguồn sự thật: các file STD-*.json / CAP-*.json; không sửa file này t
   - STD-MOB-OFF — Offline, Kết nối & Đồng bộ
     ↳ uses STD-RES; uses STD-CACHE; aligns_with STD-DATA-OWNERSHIP
   - STD-MOB-PERF — Hiệu năng khởi động, Bộ nhớ & Pin
-    ↳ extends STD-PERF
+    ↳ extends STD-PERF; aligns_with STD-MEDIA
   - STD-MOB-PUSH — Push Notification & Routing
     ↳ aligns_with STD-NOTIFICATION
   - STD-MOB-RELEASE — Build Mobile, Ký ứng dụng & Phát hành Store
@@ -140,7 +143,7 @@ Nguồn sự thật: các file STD-*.json / CAP-*.json; không sửa file này t
   - STD-BE-CONCUR — Xử lý đồng thời & Tính idempotent
     ↳ uses STD-DATA-TX; uses STD-RES
   - STD-BE-FILE — Xử lý tệp & Object Storage
-    ↳ aligns_with STD-FILE-LIFECYCLE
+    ↳ aligns_with STD-FILE-LIFECYCLE; aligns_with STD-MEDIA
   - STD-BE-HEALTH — Readiness, Liveness & Health Check
   - STD-BE-JOB — Tác vụ nền & Lập lịch
   - STD-BE-PERF — Hiệu năng & Khả năng mở rộng

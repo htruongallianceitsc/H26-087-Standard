@@ -4,7 +4,7 @@
   "name": "Hiệu năng Render Web & Bộ nhớ",
   "category": "05_web_platform",
   "description": "Chuẩn độ phản hồi trình duyệt, bộ nhớ và kỷ luật về payload.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "status": "active",
   "rules": [
     {
@@ -55,6 +55,32 @@
       "concerns": [
         "performance"
       ]
+    },
+    {
+      "id": "R005",
+      "title": "Responsive image và định kích thước render",
+      "detail": "Web MUST dùng srcset/sizes hoặc image optimization component tương đương cho ảnh responsive, khai báo width/height hoặc aspect-ratio để ngăn CLS; chọn variant theo STD-MEDIA thay vì tải original.",
+      "layer": "client",
+      "severity": "must",
+      "example_good": "<img srcset=\"small.webp 480w, large.webp 1280w\" sizes=\"(max-width: 600px) 100vw, 600px\" width=\"600\" height=\"400\">",
+      "example_bad": "img src=original.jpg 6000px cho card 300px.",
+      "concerns": [
+        "performance",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R006",
+      "title": "Ưu tiên ảnh LCP thay vì lazy load tất cả",
+      "detail": "Web MUST tránh lazy load ảnh LCP/hero above-the-fold; SHOULD dùng fetchpriority=high hoặc preload có chọn lọc cho critical image. Ảnh dưới viewport SHOULD dùng loading=lazy và placeholder; không preload toàn bộ gallery.",
+      "layer": "client",
+      "severity": "must",
+      "example_good": "Hero dùng loading=eager fetchpriority=high, grid dưới fold lazy.",
+      "example_bad": "Hero LCP dùng loading=lazy và mọi thumbnail đều preload.",
+      "concerns": [
+        "performance",
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [
@@ -90,6 +116,10 @@
     {
       "code": "STD-PERF",
       "dependency_type": "extends"
+    },
+    {
+      "code": "STD-MEDIA",
+      "dependency_type": "aligns_with"
     }
   ],
   "diagrams": [],

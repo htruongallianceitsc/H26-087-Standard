@@ -567,7 +567,12 @@ const STANDARD_CATALOG = [
         "name": "File & Media Lifecycle",
         "type": "standard",
         "folder": "03-api-integration-data",
-        "depends_on": []
+        "depends_on": [
+          {
+            "code": "STD-MEDIA",
+            "dependency_type": "aligns_with"
+          }
+        ]
       },
       {
         "code": "STD-ID",
@@ -582,6 +587,30 @@ const STANDARD_CATALOG = [
         "type": "standard",
         "folder": "03-api-integration-data",
         "depends_on": []
+      },
+      {
+        "code": "STD-MEDIA",
+        "name": "Image & Media Delivery, Optimization & Caching",
+        "type": "standard",
+        "folder": "03-api-integration-data",
+        "depends_on": [
+          {
+            "code": "STD-FILE-LIFECYCLE",
+            "dependency_type": "aligns_with"
+          },
+          {
+            "code": "STD-CACHE",
+            "dependency_type": "aligns_with"
+          },
+          {
+            "code": "STD-PRIV",
+            "dependency_type": "aligns_with"
+          },
+          {
+            "code": "STD-PERF",
+            "dependency_type": "aligns_with"
+          }
+        ]
       },
       {
         "code": "STD-NOTIFICATION",
@@ -762,6 +791,10 @@ const STANDARD_CATALOG = [
           {
             "code": "STD-PERF",
             "dependency_type": "extends"
+          },
+          {
+            "code": "STD-MEDIA",
+            "dependency_type": "aligns_with"
           }
         ]
       },
@@ -916,6 +949,10 @@ const STANDARD_CATALOG = [
           {
             "code": "STD-PERF",
             "dependency_type": "extends"
+          },
+          {
+            "code": "STD-MEDIA",
+            "dependency_type": "aligns_with"
           }
         ]
       },
@@ -1060,6 +1097,10 @@ const STANDARD_CATALOG = [
         "depends_on": [
           {
             "code": "STD-FILE-LIFECYCLE",
+            "dependency_type": "aligns_with"
+          },
+          {
+            "code": "STD-MEDIA",
             "dependency_type": "aligns_with"
           }
         ]

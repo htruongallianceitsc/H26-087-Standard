@@ -1,8 +1,8 @@
 {
   "summary": {
     "wave": "7",
-    "standards": 156,
-    "rules": 761,
+    "standards": 157,
+    "rules": 778,
     "corrected_layers": [
       {
         "rule": "STD-API-HTTP#R004",
@@ -24,8 +24,8 @@
     },
     "potential_overlaps": 1,
     "roles": {
-      "developer": 485,
-      "qc": 484,
+      "developer": 502,
+      "qc": 487,
       "devops_sre": 71,
       "architect_ba": 122,
       "ai_agent": 391
@@ -2835,6 +2835,23 @@
         "reliability"
       ],
       "severity": "should",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-BE-FILE#R005",
+      "title": "Pipeline derivative và media caching phía backend",
+      "layer": [
+        "api"
+      ],
+      "concerns": [
+        "performance",
+        "reliability"
+      ],
+      "severity": "must",
       "roles": [
         "developer"
       ],
@@ -6459,6 +6476,23 @@
       "manual_review_flags": []
     },
     {
+      "rule": "STD-FILE-LIFECYCLE#R006",
+      "title": "Bàn giao media lifecycle sang delivery contract",
+      "layer": [
+        "api"
+      ],
+      "concerns": [
+        "performance",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
       "rule": "STD-FL-BLOC#R001",
       "title": "Sử dụng BLoC/Cubit cho feature state và các state transition rõ ràng",
       "layer": [
@@ -7711,6 +7745,214 @@
       "manual_review_flags": []
     },
     {
+      "rule": "STD-MEDIA#R001",
+      "title": "Phân loại media và contract variant",
+      "layer": [
+        "api"
+      ],
+      "concerns": [
+        "performance",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MEDIA#R002",
+      "title": "Thumbnail bắt buộc cho danh sách và preview nhỏ",
+      "layer": [
+        "client"
+      ],
+      "concerns": [
+        "performance",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MEDIA#R003",
+      "title": "Chính sách variant và giữ tỷ lệ",
+      "layer": [
+        "api"
+      ],
+      "concerns": [
+        "performance",
+        "reliability"
+      ],
+      "severity": "should",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MEDIA#R004",
+      "title": "Chọn format và compression tương thích",
+      "layer": [
+        "api"
+      ],
+      "concerns": [
+        "performance",
+        "reliability"
+      ],
+      "severity": "should",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MEDIA#R005",
+      "title": "Media URL versioned và cache immutable",
+      "layer": [
+        "api"
+      ],
+      "concerns": [
+        "performance",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MEDIA#R006",
+      "title": "Tách chính sách cache theo độ nhạy cảm",
+      "layer": [
+        "api"
+      ],
+      "concerns": [
+        "security",
+        "privacy"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer",
+        "qc"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MEDIA#R007",
+      "title": "Chính sách cache đa tầng có giới hạn",
+      "layer": [
+        "client"
+      ],
+      "concerns": [
+        "performance",
+        "privacy"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer",
+        "qc"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MEDIA#R008",
+      "title": "Xử lý original có kiểm soát",
+      "layer": [
+        "client"
+      ],
+      "concerns": [
+        "performance",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MEDIA#R009",
+      "title": "Đường sinh derivative an toàn và hiệu quả",
+      "layer": [
+        "api"
+      ],
+      "concerns": [
+        "security",
+        "reliability",
+        "performance"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer",
+        "qc"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MEDIA#R010",
+      "title": "Fallback, loading và hiển thị ổn định",
+      "layer": [
+        "client"
+      ],
+      "concerns": [
+        "performance",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MEDIA#R011",
+      "title": "Prefetch và huỷ tác vụ theo ngữ cảnh",
+      "layer": [
+        "client"
+      ],
+      "concerns": [
+        "performance",
+        "reliability"
+      ],
+      "severity": "should",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MEDIA#R012",
+      "title": "Observability và acceptance tests cho media",
+      "layer": [
+        "api"
+      ],
+      "concerns": [
+        "performance",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
       "rule": "STD-MOB-ARCH#R001",
       "title": "Đặt tích hợp nền tảng phía sau interface/adapter",
       "layer": [
@@ -8204,6 +8446,23 @@
     {
       "rule": "STD-MOB-PERF#R006",
       "title": "Virtualize danh sách dài và tránh dựng trước toàn bộ item",
+      "layer": [
+        "mobile"
+      ],
+      "concerns": [
+        "performance",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MOB-PERF#R007",
+      "title": "Giới hạn decoded image cache theo viewport và DPR",
       "layer": [
         "mobile"
       ],
@@ -13281,6 +13540,40 @@
         "performance"
       ],
       "severity": "should",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-WEB-PERF#R005",
+      "title": "Responsive image và định kích thước render",
+      "layer": [
+        "client"
+      ],
+      "concerns": [
+        "performance",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-WEB-PERF#R006",
+      "title": "Ưu tiên ảnh LCP thay vì lazy load tất cả",
+      "layer": [
+        "client"
+      ],
+      "concerns": [
+        "performance",
+        "reliability"
+      ],
+      "severity": "must",
       "roles": [
         "developer"
       ],

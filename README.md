@@ -84,3 +84,7 @@ Bản v2.2 sửa regression file legacy trùng `STD-TEST`/`STD-PERF-TEST`, harde
 Catalog hiện hành có **156 standard/capability** và **761 rule**. Nguồn số liệu chuẩn là `catalog-manifest.json`; không dùng số lượng trong tài liệu lịch sử để suy ra trạng thái hiện tại.
 
 Xem báo cáo: [`docs/reviews/COMPREHENSIVE-AUDIT-2026-10-17.md`](docs/reviews/COMPREHENSIVE-AUDIT-2026-10-17.md).
+
+## Image & Media Delivery
+
+`STD-MEDIA` trong `03-api-integration-data/` là chuẩn chung về thumbnail, responsive variants, format, media URL versioning, cache nhiều tầng và media privacy. Có thể bật `features.media: true` khi resolver chọn standard tự động. Các chuẩn `STD-WEB-PERF`, `STD-MOB-PERF`, `STD-BE-FILE`, `STD-FILE-LIFECYCLE` có rule bổ trợ tương ứng. Xem [hướng dẫn triển khai](docs/STD-MEDIA-IMPLEMENTATION-GUIDE.md).

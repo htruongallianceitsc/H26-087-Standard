@@ -4,7 +4,7 @@
   "name": "Hiệu năng khởi động, Bộ nhớ & Pin",
   "category": "06_mobile_platform",
   "description": "Chuẩn kỹ thuật hiệu năng trực tiếp trên thiết bị.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "status": "active",
   "rules": [
     {
@@ -81,6 +81,19 @@
         "performance",
         "reliability"
       ]
+    },
+    {
+      "id": "R007",
+      "title": "Giới hạn decoded image cache theo viewport và DPR",
+      "detail": "Mobile MUST chọn variant gần render size × devicePixelRatio, dùng resize decode phù hợp với framework, giới hạn decoded memory cache/disk cache và xử lý low-memory. MUST tránh giữ original decoded trong danh sách dài; tuân thủ STD-MEDIA.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "Cell 96dp DPR3 tải khoảng 288px, bitmap cache giới hạn LRU.",
+      "example_bad": "List 1000 ảnh decode mỗi ảnh 4000x3000.",
+      "concerns": [
+        "performance",
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [
@@ -116,6 +129,10 @@
     {
       "code": "STD-PERF",
       "dependency_type": "extends"
+    },
+    {
+      "code": "STD-MEDIA",
+      "dependency_type": "aligns_with"
     }
   ],
   "diagrams": [],

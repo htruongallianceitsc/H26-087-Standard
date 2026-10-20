@@ -663,6 +663,10 @@
       {
         "id": "R004",
         "original_title": "Kiểm soát tải xuống và vòng đời"
+      },
+      {
+        "id": "R005",
+        "original_title": "Pipeline derivative và media caching phía backend"
       }
     ],
     "STD-BE-HEALTH": [
@@ -1523,6 +1527,10 @@
       {
         "id": "R005",
         "original_title": "Xử lý metadata, thumbnail và EXIF"
+      },
+      {
+        "id": "R006",
+        "original_title": "Bàn giao media lifecycle sang delivery contract"
       }
     ],
     "STD-FL-BLOC": [
@@ -1951,6 +1959,10 @@
       {
         "id": "R006",
         "original_title": "Virtualize danh sách dài và tránh dựng trước toàn bộ item"
+      },
+      {
+        "id": "R007",
+        "original_title": "Giới hạn decoded image cache theo viewport và DPR"
       }
     ],
     "STD-MOB-PUSH": [
@@ -3187,6 +3199,14 @@
       {
         "id": "R004",
         "original_title": "Trì hoãn công việc không quan trọng và cung cấp các trạng thái loading/empty/error"
+      },
+      {
+        "id": "R005",
+        "original_title": "Responsive image và định kích thước render"
+      },
+      {
+        "id": "R006",
+        "original_title": "Ưu tiên ảnh LCP thay vì lazy load tất cả"
       }
     ],
     "STD-WEB-PWA": [
@@ -3355,6 +3375,56 @@
       {
         "id": "R004",
         "original_title": "Test ma trận state transition"
+      }
+    ],
+    "STD-MEDIA": [
+      {
+        "id": "R001",
+        "original_title": "Phân loại media và contract variant"
+      },
+      {
+        "id": "R002",
+        "original_title": "Thumbnail bắt buộc cho danh sách và preview nhỏ"
+      },
+      {
+        "id": "R003",
+        "original_title": "Chính sách variant và giữ tỷ lệ"
+      },
+      {
+        "id": "R004",
+        "original_title": "Chọn format và compression tương thích"
+      },
+      {
+        "id": "R005",
+        "original_title": "Media URL versioned và cache immutable"
+      },
+      {
+        "id": "R006",
+        "original_title": "Tách chính sách cache theo độ nhạy cảm"
+      },
+      {
+        "id": "R007",
+        "original_title": "Chính sách cache đa tầng có giới hạn"
+      },
+      {
+        "id": "R008",
+        "original_title": "Xử lý original có kiểm soát"
+      },
+      {
+        "id": "R009",
+        "original_title": "Đường sinh derivative an toàn và hiệu quả"
+      },
+      {
+        "id": "R010",
+        "original_title": "Fallback, loading và hiển thị ổn định"
+      },
+      {
+        "id": "R011",
+        "original_title": "Prefetch và huỷ tác vụ theo ngữ cảnh"
+      },
+      {
+        "id": "R012",
+        "original_title": "Observability và acceptance tests cho media"
       }
     ]
   }

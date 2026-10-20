@@ -4,7 +4,7 @@
   "name": "File & Media Lifecycle",
   "category": "03_api_integration_data",
   "description": "Upload download và xử lý file an toàn",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "status": "active",
   "rules": [
     {
@@ -76,6 +76,19 @@
         "reliability",
         "data-integrity"
       ]
+    },
+    {
+      "id": "R006",
+      "title": "Bàn giao media lifecycle sang delivery contract",
+      "detail": "Khi file có mục đích hiển thị image/preview, MUST định nghĩa trạng thái derivative, xóa derivative cùng original theo retention, và chuyển quy tắc lựa chọn variant/cache sang STD-MEDIA.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Xóa ảnh gốc đồng thời revoke/xóa variants và cập nhật URL version sau thay đổi.",
+      "example_bad": "Xóa original nhưng thumbnail public vẫn tồn tại vô hạn.",
+      "concerns": [
+        "performance",
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [
@@ -97,7 +110,12 @@
       "solution": "Bổ sung acceptance criteria và automated/integration test cho đường đi chính và lỗi."
     }
   ],
-  "depends_on": [],
+  "depends_on": [
+    {
+      "code": "STD-MEDIA",
+      "dependency_type": "aligns_with"
+    }
+  ],
   "diagrams": [],
   "applicability": {
     "scope": "conditional",

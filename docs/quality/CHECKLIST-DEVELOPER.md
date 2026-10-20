@@ -1,6 +1,6 @@
 # Checklist - developer
 
-Rules: **485**
+Rules: **502**
 
 | Rule | Severity | Verification | Pass/Fail/Waived/NA | Evidence |
 |---|---|---|---|---|
@@ -125,6 +125,7 @@ Rules: **485**
 | `STD-BE-FILE#R002` - Tên tệp và đường dẫn không do client điều khiển | must | test_or_review | [ ] | |
 | `STD-BE-FILE#R003` - Quét và cách ly nội dung nguy hiểm | should | test_or_review | [ ] | |
 | `STD-BE-FILE#R004` - Kiểm soát tải xuống và vòng đời | should | test_or_review | [ ] | |
+| `STD-BE-FILE#R005` - Pipeline derivative và media caching phía backend | must | test_or_review | [ ] | |
 | `STD-BE-HEALTH#R001` - Liveness không kiểm tra phụ thuộc xa | must | test_or_review | [ ] | |
 | `STD-BE-HEALTH#R002` - Readiness kiểm tra khả năng nhận traffic | must | test_or_review | [ ] | |
 | `STD-BE-HEALTH#R003` - Endpoint health ít lộ thông tin | should | test+review | [ ] | |
@@ -258,6 +259,7 @@ Rules: **485**
 | `STD-FILE-LIFECYCLE#R003` - Quản lý lifecycle và orphan cleanup | must | test_or_review | [ ] | |
 | `STD-FILE-LIFECYCLE#R004` - Bảo vệ download và nội dung nhạy cảm | should | test_or_review | [ ] | |
 | `STD-FILE-LIFECYCLE#R005` - Xử lý metadata, thumbnail và EXIF | should | test_or_review | [ ] | |
+| `STD-FILE-LIFECYCLE#R006` - Bàn giao media lifecycle sang delivery contract | must | test_or_review | [ ] | |
 | `STD-FL-BLOC#R001` - Sử dụng BLoC/Cubit cho feature state và các state transition rõ ràng | must | test_or_review | [ ] | |
 | `STD-FL-BLOC#R002` - Widget chỉ render state và dispatch intention; không gọi Dio trực tiếp | must | test_or_review | [ ] | |
 | `STD-FL-BLOC#R003` - Kiểm thử các trạng thái success, loading, empty, validation và failure | should | test | [ ] | |
@@ -298,6 +300,18 @@ Rules: **485**
 | `STD-INTEGRATION#R003` - Retry chỉ cho lỗi tạm thời và idempotent | must | test_or_review | [ ] | |
 | `STD-INTEGRATION#R004` - Giới hạn tài nguyên và cô lập sự cố | should | test_or_review | [ ] | |
 | `STD-INTEGRATION#R005` - Đối soát và test contract nâng cấp | should | test | [ ] | |
+| `STD-MEDIA#R001` - Phân loại media và contract variant | must | test_or_review | [ ] | |
+| `STD-MEDIA#R002` - Thumbnail bắt buộc cho danh sách và preview nhỏ | must | test_or_review | [ ] | |
+| `STD-MEDIA#R003` - Chính sách variant và giữ tỷ lệ | should | test_or_review | [ ] | |
+| `STD-MEDIA#R004` - Chọn format và compression tương thích | should | test_or_review | [ ] | |
+| `STD-MEDIA#R005` - Media URL versioned và cache immutable | must | test_or_review | [ ] | |
+| `STD-MEDIA#R006` - Tách chính sách cache theo độ nhạy cảm | must | test_or_review | [ ] | |
+| `STD-MEDIA#R007` - Chính sách cache đa tầng có giới hạn | must | test_or_review | [ ] | |
+| `STD-MEDIA#R008` - Xử lý original có kiểm soát | must | test_or_review | [ ] | |
+| `STD-MEDIA#R009` - Đường sinh derivative an toàn và hiệu quả | must | test_or_review | [ ] | |
+| `STD-MEDIA#R010` - Fallback, loading và hiển thị ổn định | must | test_or_review | [ ] | |
+| `STD-MEDIA#R011` - Prefetch và huỷ tác vụ theo ngữ cảnh | should | test_or_review | [ ] | |
+| `STD-MEDIA#R012` - Observability và acceptance tests cho media | must | test_or_review | [ ] | |
 | `STD-MOB-ARCH#R001` - Đặt tích hợp nền tảng phía sau interface/adapter | must | test_or_review | [ ] | |
 | `STD-MOB-ARCH#R002` - Tách trách nhiệm presentation, application state và domain/data | must | test_or_review | [ ] | |
 | `STD-MOB-ARCH#R003` - Thiết kế hành vi suy giảm chức năng khi mất mạng hoặc tiến trình ứng dụng bị kết thúc | should | test_or_review | [ ] | |
@@ -326,6 +340,7 @@ Rules: **485**
 | `STD-MOB-PERF#R004` - Giải phóng subscription, controller, timer và listener theo đúng vòng đời | must | test_or_review | [ ] | |
 | `STD-MOB-PERF#R005` - Giới hạn kích thước decode và bộ nhớ đệm của ảnh theo kích thước hiển thị | must | test_or_review | [ ] | |
 | `STD-MOB-PERF#R006` - Virtualize danh sách dài và tránh dựng trước toàn bộ item | must | test_or_review | [ ] | |
+| `STD-MOB-PERF#R007` - Giới hạn decoded image cache theo viewport và DPR | must | test_or_review | [ ] | |
 | `STD-MOB-PUSH#R001` - Xử lý riêng message ở trạng thái foreground, background và terminated | must | test_or_review | [ ] | |
 | `STD-MOB-PUSH#R002` - Yêu cầu quyền thông báo tại thời điểm phù hợp với ngữ cảnh và xử lý được trường hợp người dùng từ chối | must | test+review | [ ] | |
 | `STD-MOB-PUSH#R003` - Khử trùng lặp action từ notification và xác thực route payload | should | test_or_review | [ ] | |
@@ -452,6 +467,8 @@ Rules: **485**
 | `STD-WEB-PERF#R002` - Phân trang hoặc virtualize danh sách dài và tránh API payload không giới hạn | must | test_or_review | [ ] | |
 | `STD-WEB-PERF#R003` - Profile rerender, event listener và bộ nhớ trước khi bổ sung tối ưu hóa | should | test_or_review | [ ] | |
 | `STD-WEB-PERF#R004` - Trì hoãn công việc không quan trọng và cung cấp các trạng thái loading/empty/error | should | test_or_review | [ ] | |
+| `STD-WEB-PERF#R005` - Responsive image và định kích thước render | must | test_or_review | [ ] | |
+| `STD-WEB-PERF#R006` - Ưu tiên ảnh LCP thay vì lazy load tất cả | must | test_or_review | [ ] | |
 | `STD-WEB-PWA#R001` - Chỉ sử dụng service worker cho các kịch bản cache/offline được xác định rõ | must | test_or_review | [ ] | |
 | `STD-WEB-PWA#R002` - Đánh version cho cache entry và tránh cache response riêng tư một cách tùy tiện | must | test+review | [ ] | |
 | `STD-WEB-PWA#R003` - Cung cấp fallback hợp lý khi push, install prompt hoặc offline API không được hỗ trợ | should | test_or_review | [ ] | |

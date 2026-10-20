@@ -3,8 +3,8 @@
   "sourceOfTruth": "standard JSON files",
   "schema": "standard-import-v2.schema.json",
   "schemaVersion": 2,
-  "count": 156,
-  "ruleCount": 761,
+  "count": 157,
+  "ruleCount": 778,
   "groups": [
     {
       "folder": "01-governance-delivery",
@@ -70,6 +70,7 @@
         "STD-FILE-LIFECYCLE.json",
         "STD-ID.json",
         "STD-INTEGRATION.json",
+        "STD-MEDIA.json",
         "STD-NOTIFICATION.json",
         "STD-PAGINATION.json",
         "STD-SEARCH.json",

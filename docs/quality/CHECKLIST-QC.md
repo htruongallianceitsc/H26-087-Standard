@@ -1,6 +1,6 @@
 # Checklist - qc
 
-Rules: **484**
+Rules: **487**
 
 | Rule | Severity | Verification | Pass/Fail/Waived/NA | Evidence |
 |---|---|---|---|---|
@@ -256,6 +256,9 @@ Rules: **484**
 | `STD-INTEGRATION#R005` - Đối soát và test contract nâng cấp | should | test | [ ] | |
 | `STD-LOG#R001` - Sử dụng structured log với timestamp, severity, operation và correlation ID | must | review | [ ] | |
 | `STD-LOG#R002` - Không log mật khẩu, access token hoặc payload nhạy cảm | must | review | [ ] | |
+| `STD-MEDIA#R006` - Tách chính sách cache theo độ nhạy cảm | must | test_or_review | [ ] | |
+| `STD-MEDIA#R007` - Chính sách cache đa tầng có giới hạn | must | test_or_review | [ ] | |
+| `STD-MEDIA#R009` - Đường sinh derivative an toàn và hiệu quả | must | test_or_review | [ ] | |
 | `STD-MOB-ARCH#R001` - Đặt tích hợp nền tảng phía sau interface/adapter | must | test_or_review | [ ] | |
 | `STD-MOB-ARCH#R002` - Tách trách nhiệm presentation, application state và domain/data | must | test_or_review | [ ] | |
 | `STD-MOB-DEVICE#R001` - Chỉ yêu cầu runtime permission tối thiểu cần thiết và giải thích mục đích sử dụng | must | test+review | [ ] | |

@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 2,
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  },
+  "code": "STD-MEDIA",
+  "name": "Image & Media Delivery, Optimization & Caching",
+  "category": "03_api_integration_data",
+  "description": "Quy chuẩn phân phối, lựa chọn image variant/thumbnail, định dạng, cache đa tầng và an toàn truy cập media cho Web/Mobile/Backend/CDN.",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "id": "R001",
+      "title": "Phân loại media và contract variant",
+      "detail": "MUST xác định loại media (avatar, image list, hero, gallery, document preview, private attachment), kích thước hiển thị, quyền truy cập và variant tương ứng. API SHOULD trả width/height, format, variant URL, version và trạng thái processing; client không tự đoán kích thước hoặc coi original là thumbnail.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Ảnh sản phẩm trả thumbnail/small/large cùng width/height và version; UI chọn theo use case.",
+      "example_bad": "API chỉ trả original 10 MB cho avatar 64 px.",
+      "concerns": [
+        "performance",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R002",
+      "title": "Thumbnail bắt buộc cho danh sách và preview nhỏ",
+      "detail": "MUST dùng derivative phù hợp cho avatar, list, table, search, chat, grid và document preview; không được tải original để thu nhỏ bằng CSS/widget. Chọn intrinsic pixel size gần kích thước render × DPR, có mức dự phòng hợp lý.",
+      "layer": "client",
+      "severity": "must",
+      "example_good": "Avatar 64dp trên DPR=3 dùng thumbnail cỡ 192px đến 256px.",
+      "example_bad": "Tải ảnh 4032px để hiển thị row 64px.",
+      "concerns": [
+        "performance",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R003",
+      "title": "Chính sách variant và giữ tỷ lệ",
+      "detail": "SHOULD cung cấp preset thumbnail/small/medium/large theo nhu cầu thực tế và aspect ratio; không bắt buộc mọi image sinh đủ preset. MUST xác định crop/fit/focal point, tránh distortion; giữ orientation chính xác và loại bỏ metadata nhạy cảm theo STD-FILE-LIFECYCLE.",
+      "layer": "api",
+      "severity": "should",
+      "example_good": "Preset cover 320/640/1280px theo nhu cầu và crop mode được khai báo.",
+      "example_bad": "Resize ép méo tỉ lệ và tạo hàng chục kích cỡ không sử dụng.",
+      "concerns": [
+        "performance",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R004",
+      "title": "Chọn format và compression tương thích",
+      "detail": "SHOULD ưu tiên AVIF/WebP khi client hỗ trợ; fallback JPEG/PNG theo alpha, ảnh động và độ tương thích. MUST giữ chất lượng đọc được đối với text/document preview và kiểm thử codec thực tế; không bắt buộc AVIF cho mọi file.",
+      "layer": "api",
+      "severity": "should",
+      "example_good": "CDN thương lượng AVIF/WebP và fallback JPEG khi thiết bị không hỗ trợ.",
+      "example_bad": "Trả AVIF không fallback làm ảnh biến mất trên client cũ.",
+      "concerns": [
+        "performance",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R005",
+      "title": "Media URL versioned và cache immutable",
+      "detail": "MUST dùng content hash hoặc version trên URL khi cache public dài hạn và tài nguyên đã bất biến; thay nội dung phải sinh URL mới. SHOULD cấu hình Cache-Control public, max-age=31536000, immutable cho derivative public có URL versioned; tài nguyên mutable dùng TTL ngắn và ETag/Last-Modified tùy trường hợp.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "/images/abc/v18/thumb.webp với max-age=31536000, immutable.",
+      "example_bad": "Ghi đè cùng URL nhưng cache 1 năm không có version.",
+      "concerns": [
+        "performance",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R006",
+      "title": "Tách chính sách cache theo độ nhạy cảm",
+      "detail": "MUST phân biệt media public, private, sensitive; mặc định không cho shared-cache lưu nội dung nhạy cảm. Phải kiểm tra authorization trước khi trả media, giới hạn signed URL/cookie, cấu hình Cache-Control private/no-store khi thích hợp; không ghi token vào URL telemetry/log. Không dùng public immutable cho tài liệu định danh.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Passport preview dùng authenticated endpoint, no-store và log đã redact.",
+      "example_bad": "CDN public-cache ảnh định danh theo URL đoán được.",
+      "concerns": [
+        "security",
+        "privacy"
+      ]
+    },
+    {
+      "id": "R007",
+      "title": "Chính sách cache đa tầng có giới hạn",
+      "detail": "MUST xác định owner và eviction/TTL cho origin, CDN, browser HTTP cache, app disk cache, decoded memory cache; cache key bao gồm media ID + version + variant + transformation + quyền truy cập khi cần. Memory/disk cache phải có giới hạn, không giữ bitmap vô hạn; xóa dữ liệu local nhạy cảm khi logout nếu đã cho phép lưu.",
+      "layer": "client",
+      "severity": "must",
+      "example_good": "Cache key img42:v3:thumb:200x200, giới hạn LRU và purge private disk cache khi logout.",
+      "example_bad": "Memory cache không giới hạn, key chỉ là userId và rò ảnh giữa account.",
+      "concerns": [
+        "performance",
+        "privacy"
+      ]
+    },
+    {
+      "id": "R008",
+      "title": "Xử lý original có kiểm soát",
+      "detail": "MUST chỉ lấy original cho download, edit, export hoặc zoom thật sự cần chất lượng gốc; gallery toàn màn hình ưu tiên large trước và nâng chất lượng có chủ đích. SHOULD giới hạn original download bằng quyền, quota và telemetry.",
+      "layer": "client",
+      "severity": "must",
+      "example_good": "Gallery mở large 1600px; khi zoom cao mới tải original có phân quyền.",
+      "example_bad": "Mỗi thumbnail trong feed đều request original 8 MB.",
+      "concerns": [
+        "performance",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R009",
+      "title": "Đường sinh derivative an toàn và hiệu quả",
+      "detail": "MUST validate signature/MIME, pixel dimensions, file size, frame count, decompression limit và resource quotas trước khi xử lý. SHOULD sinh derivative bất đồng bộ bằng worker/queue hoặc image CDN on-demand có cache; phải idempotent, concurrency-safe, có status/error/retry và không resize tốn CPU trên mỗi request đọc.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Upload -> scan -> queue -> READY; worker giới hạn megapixel, time và memory.",
+      "example_bad": "GET /products resize original 12 MB ở mọi request và không có giới hạn pixel.",
+      "concerns": [
+        "security",
+        "reliability",
+        "performance"
+      ]
+    },
+    {
+      "id": "R010",
+      "title": "Fallback, loading và hiển thị ổn định",
+      "detail": "MUST có placeholder/error fallback phù hợp, giữ aspect ratio để tránh layout shift và không phát retry storm. SHOULD có progressive quality hoặc thumbnail-to-large cho UX quan trọng; bảo đảm image fail không crash màn hình.",
+      "layer": "client",
+      "severity": "must",
+      "example_good": "Thumbnail được giữ khi large fail; có fallback và fixed aspect ratio.",
+      "example_bad": "Ảnh load lỗi gây màn hình trắng hoặc vòng retry vô tận.",
+      "concerns": [
+        "performance",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R011",
+      "title": "Prefetch và huỷ tác vụ theo ngữ cảnh",
+      "detail": "SHOULD chỉ prefetch ảnh có khả năng xem tiếp, theo giới hạn network/battery/memory và tắt khi data-saver hoặc network yếu. SHOULD cancel/ignore stale responses khi item rời viewport hoặc user đổi filter; không prefetch tất cả original.",
+      "layer": "client",
+      "severity": "should",
+      "example_good": "Prefetch vài ảnh kế cận trong gallery trên Wi-Fi, giới hạn đồng thời.",
+      "example_bad": "Prefetch 500 original cho danh sách dài.",
+      "concerns": [
+        "performance",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R012",
+      "title": "Observability và acceptance tests cho media",
+      "detail": "MUST có test cho variant selection, public/private headers, cache invalidation sau khi đổi avatar, authorization, thiếu derivative, file độc hại và fallback codec. SHOULD giám sát bytes/image, cache hit ratio, image request error, decode memory, LCP ảnh web và p95 transform latency với budget theo project.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Integration test đổi avatar v3->v4 và không reuse v3; đo bytes tải theo viewport.",
+      "example_bad": "Không có test kiểm tra cached passport hoặc thumbnail load original.",
+      "concerns": [
+        "performance",
+        "reliability"
+      ]
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Phân loại nhu cầu hiển thị",
+      "description": "Lập bảng use case, độ nhạy cảm, pixel size/DPR và media variants của từng màn hình."
+    },
+    {
+      "step": 2,
+      "title": "Thiết kế delivery và cache",
+      "description": "Thống nhất API contract, derivative workflow, versioned URL, CDN/client cache headers và authorization."
+    },
+    {
+      "step": 3,
+      "title": "Kiểm thử theo nền tảng",
+      "description": "Đo bytes thực tải, cache hit, decode size, image error và thử invalidation, security, thiết bị mạng yếu."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Load original trong feed/list",
+      "solution": "Request thumbnail/small từ server hoặc image CDN và decode đúng DPR.",
+      "cause": "Thiếu áp dụng image delivery policy thống nhất giữa backend/CDN/client."
+    },
+    {
+      "issue": "Đổi avatar nhưng vẫn hiện ảnh cũ",
+      "solution": "Dùng version hoặc hash bất biến trong URL; không overwrite một URL long-cache.",
+      "cause": "Thiếu áp dụng image delivery policy thống nhất giữa backend/CDN/client."
+    },
+    {
+      "issue": "Rò rỉ ảnh riêng tư qua cache chung",
+      "solution": "Phân loại media, kiểm soát quyền và Cache-Control phù hợp; không public-cache dữ liệu nhạy cảm.",
+      "cause": "Thiếu áp dụng image delivery policy thống nhất giữa backend/CDN/client."
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-FILE-LIFECYCLE",
+      "dependency_type": "aligns_with"
+    },
+    {
+      "code": "STD-CACHE",
+      "dependency_type": "aligns_with"
+    },
+    {
+      "code": "STD-PRIV",
+      "dependency_type": "aligns_with"
+    },
+    {
+      "code": "STD-PERF",
+      "dependency_type": "aligns_with"
+    }
+  ],
+  "diagrams": [],
+  "applicability": {
+    "scope": "conditional",
+    "conditions": [
+      {
+        "key": "features.media",
+        "operator": "eq",
+        "value": true
+      }
+    ]
+  }
+}

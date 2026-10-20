@@ -4,7 +4,7 @@
   "name": "Xử lý tệp & Object Storage",
   "category": "07_backend_platform",
   "description": "Xử lý tệp & Object Storage: quy định các yêu cầu triển khai và bằng chứng kiểm tra cụ thể; chỉ áp dụng khi phạm vi project liên quan.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "status": "active",
   "rules": [
     {
@@ -54,6 +54,19 @@
       "concerns": [
         "reliability"
       ]
+    },
+    {
+      "id": "R005",
+      "title": "Pipeline derivative và media caching phía backend",
+      "detail": "Backend MUST đảm bảo transform image an toàn, có giới hạn megapixel/time/memory và không resize mỗi GET; SHOULD dùng worker/queue hoặc CDN on-demand cache, bảo đảm idempotency/status/retry. MUST xuất versioned derivative URLs, cache header và authorization đúng phân loại STD-MEDIA.",
+      "layer": "api",
+      "severity": "must",
+      "example_good": "Upload original -> worker sinh thumbnail -> CDN URL hash, private image qua authorized delivery.",
+      "example_bad": "Mỗi GET thực hiện resize ảnh không limit và đặt public cache cho mọi ảnh.",
+      "concerns": [
+        "performance",
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [
@@ -88,6 +101,10 @@
   "depends_on": [
     {
       "code": "STD-FILE-LIFECYCLE",
+      "dependency_type": "aligns_with"
+    },
+    {
+      "code": "STD-MEDIA",
       "dependency_type": "aligns_with"
     }
   ],
