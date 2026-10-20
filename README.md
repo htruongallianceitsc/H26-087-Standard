@@ -88,3 +88,8 @@ Xem báo cáo: [`docs/reviews/COMPREHENSIVE-AUDIT-2026-10-17.md`](docs/reviews/C
 ## Image & Media Delivery
 
 `STD-MEDIA` trong `03-api-integration-data/` là chuẩn chung về thumbnail, responsive variants, format, media URL versioning, cache nhiều tầng và media privacy. Có thể bật `features.media: true` khi resolver chọn standard tự động. Các chuẩn `STD-WEB-PERF`, `STD-MOB-PERF`, `STD-BE-FILE`, `STD-FILE-LIFECYCLE` có rule bổ trợ tương ứng. Xem [hướng dẫn triển khai](docs/STD-MEDIA-IMPLEMENTATION-GUIDE.md).
+
+## Mobile App Update & Version Enforcement
+
+- `06-mobile-platform/STD-MOB-UPDATE.json`: quản lý update policy, optional/recommended/required, compatibility API, availability trên store, offline fallback, rollout/rollback.
+- Xem `docs/STD-MOB-UPDATE-IMPLEMENTATION-GUIDE.md` để áp dụng hợp đồng API và test matrix.

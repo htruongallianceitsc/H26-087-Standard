@@ -1,8 +1,8 @@
 {
   "summary": {
     "wave": "7",
-    "standards": 157,
-    "rules": 778,
+    "standards": 158,
+    "rules": 797,
     "corrected_layers": [
       {
         "rule": "STD-API-HTTP#R004",
@@ -24,8 +24,8 @@
     },
     "potential_overlaps": 1,
     "roles": {
-      "developer": 502,
-      "qc": 487,
+      "developer": 521,
+      "qc": 489,
       "devops_sre": 71,
       "architect_ba": 122,
       "ai_agent": 391
@@ -3825,6 +3825,23 @@
         "resilience"
       ],
       "severity": "should",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-CLIENT-API#R006",
+      "title": "Phân biệt app version unsupported và lỗi API thông thường",
+      "layer": [
+        "client"
+      ],
+      "concerns": [
+        "release",
+        "reliability"
+      ],
+      "severity": "must",
       "roles": [
         "developer"
       ],
@@ -8200,6 +8217,23 @@
       "manual_review_flags": []
     },
     {
+      "rule": "STD-MOB-LIFE#R007",
+      "title": "Kiểm tra update policy khi khởi động và quay lại foreground",
+      "layer": [
+        "mobile"
+      ],
+      "concerns": [
+        "release",
+        "reliability"
+      ],
+      "severity": "should",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
       "rule": "STD-MOB-NAV#R001",
       "title": "Xác định route argument có kiểu dữ liệu và guard cho xác thực/điều hướng",
       "layer": [
@@ -8641,6 +8675,23 @@
       "manual_review_flags": []
     },
     {
+      "rule": "STD-MOB-RELEASE#R005",
+      "title": "Thiết lập checklist phát hành trước khi cưỡng chế nâng cấp",
+      "layer": [
+        "mobile"
+      ],
+      "concerns": [
+        "release",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
       "rule": "STD-MOB-SEC#R001",
       "title": "Lưu token nhạy cảm vào kho bảo mật của OS",
       "layer": [
@@ -8940,6 +8991,281 @@
       "manual_review_flags": [
         "can_xem_concern_testing"
       ]
+    },
+    {
+      "rule": "STD-MOB-UPDATE#R001",
+      "title": "Phân biệt update silent, optional, recommended và required",
+      "layer": [
+        "mobile"
+      ],
+      "concerns": [
+        "release",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MOB-UPDATE#R002",
+      "title": "Backend sở hữu policy phiên bản và contract kiểm tra",
+      "layer": [
+        "mobile"
+      ],
+      "concerns": [
+        "release",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MOB-UPDATE#R003",
+      "title": "So sánh build/version chính xác và không rollback nhầm",
+      "layer": [
+        "mobile"
+      ],
+      "concerns": [
+        "release",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MOB-UPDATE#R004",
+      "title": "Chỉ bắt buộc cập nhật khi cần tương thích hoặc an toàn",
+      "layer": [
+        "mobile"
+      ],
+      "concerns": [
+        "release",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MOB-UPDATE#R005",
+      "title": "Không khoá người dùng trước khi phiên bản cập nhật có thể tải",
+      "layer": [
+        "mobile"
+      ],
+      "concerns": [
+        "release",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MOB-UPDATE#R006",
+      "title": "Startup check không chặn khởi động vô hạn",
+      "layer": [
+        "mobile"
+      ],
+      "concerns": [
+        "release",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MOB-UPDATE#R007",
+      "title": "Failure policy khi offline và policy service lỗi",
+      "layer": [
+        "mobile"
+      ],
+      "concerns": [
+        "release",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MOB-UPDATE#R008",
+      "title": "UI/UX optional và required đúng ngữ cảnh",
+      "layer": [
+        "mobile"
+      ],
+      "concerns": [
+        "release",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MOB-UPDATE#R009",
+      "title": "Deep link tới nguồn cập nhật đáng tin cậy",
+      "layer": [
+        "mobile"
+      ],
+      "concerns": [
+        "release",
+        "security"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer",
+        "qc"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MOB-UPDATE#R010",
+      "title": "Phân biệt runtime compatibility và store update availability",
+      "layer": [
+        "mobile"
+      ],
+      "concerns": [
+        "release",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MOB-UPDATE#R011",
+      "title": "Điều phối rollout và thay đổi policy an toàn",
+      "layer": [
+        "mobile"
+      ],
+      "concerns": [
+        "release",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MOB-UPDATE#R012",
+      "title": "Khả năng tương thích API theo giai đoạn nâng cấp",
+      "layer": [
+        "mobile"
+      ],
+      "concerns": [
+        "release",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MOB-UPDATE#R013",
+      "title": "Dữ liệu local, phiên đăng nhập và quy trình sau update",
+      "layer": [
+        "mobile"
+      ],
+      "concerns": [
+        "release",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MOB-UPDATE#R014",
+      "title": "Telemetry, tests và checklist release",
+      "layer": [
+        "mobile"
+      ],
+      "concerns": [
+        "release",
+        "reliability",
+        "testing"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer",
+        "qc"
+      ],
+      "verification_suggestion": "test",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MOB-UPDATE#R015",
+      "title": "Thông tin UX về deadline và grace period",
+      "layer": [
+        "mobile"
+      ],
+      "concerns": [
+        "release",
+        "reliability"
+      ],
+      "severity": "should",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
+    },
+    {
+      "rule": "STD-MOB-UPDATE#R016",
+      "title": "Kênh phân phối và thiết bị không được hỗ trợ",
+      "layer": [
+        "mobile"
+      ],
+      "concerns": [
+        "release",
+        "reliability"
+      ],
+      "severity": "must",
+      "roles": [
+        "developer"
+      ],
+      "verification_suggestion": "test_or_review",
+      "manual_review_flags": []
     },
     {
       "rule": "STD-MONOREPO#R001",

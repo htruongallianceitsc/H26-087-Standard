@@ -57,6 +57,7 @@ Nguồn sự thật: các file STD-*.json / CAP-*.json; không sửa file này t
     ↳ aligns_with STD-NOTIFICATION
   - STD-CACHE — Bộ nhớ đệm & Vô hiệu hóa Cache
   - STD-CLIENT-API — Client API Lifecycle & Network Recovery
+    ↳ aligns_with STD-MOB-UPDATE
   - STD-DATA — Mô hình dữ liệu & Thiết kế Schema
     ↳ uses STD-DATETIME; aligns_with STD-DATA-OWNERSHIP
   - STD-DATA-MIG — Tiến hóa Schema & Migration cơ sở dữ liệu
@@ -118,6 +119,7 @@ Nguồn sự thật: các file STD-*.json / CAP-*.json; không sửa file này t
     ↳ extends STD-ARCH
   - STD-MOB-DEVICE — Quyền thiết bị & Khả năng nền tảng
   - STD-MOB-LIFE — Vòng đời & Thực thi nền
+    ↳ aligns_with STD-MOB-UPDATE
   - STD-MOB-NAV — Điều hướng, Routing & Deep Linking
     ↳ aligns_with STD-UX
   - STD-MOB-OFF — Offline, Kết nối & Đồng bộ
@@ -127,13 +129,15 @@ Nguồn sự thật: các file STD-*.json / CAP-*.json; không sửa file này t
   - STD-MOB-PUSH — Push Notification & Routing
     ↳ aligns_with STD-NOTIFICATION
   - STD-MOB-RELEASE — Build Mobile, Ký ứng dụng & Phát hành Store
-    ↳ uses STD-VERSIONING
+    ↳ uses STD-VERSIONING; aligns_with STD-MOB-UPDATE
   - STD-MOB-SEC — Bảo mật ứng dụng Mobile
     ↳ extends STD-SEC
   - STD-MOB-STORE — Lưu trữ cục bộ & Lưu trữ an toàn
     ↳ uses STD-CACHE; uses STD-MOB-SEC
   - STD-MOB-UI — Layout Mobile, Safe Area & Bàn phím
     ↳ uses STD-UX; uses STD-DS; uses STD-A11Y; uses STD-FORM; uses STD-UI-STATE
+  - STD-MOB-UPDATE — Mobile App Update Policy & Version Enforcement
+    ↳ aligns_with STD-MOB-RELEASE; aligns_with STD-VERSIONING; aligns_with STD-CLIENT-API; aligns_with STD-CONFIG-RUNTIME; aligns_with STD-UI-STATE; aligns_with STD-SESSION
 
 07-backend-platform — Backend Platform
   - STD-BE-ARCH — Kiến trúc ứng dụng Backend

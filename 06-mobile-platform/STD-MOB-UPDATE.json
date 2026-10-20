@@ -1,0 +1,298 @@
+{
+  "schemaVersion": 2,
+  "dependency_policy": {
+    "inheritance": "explicit_extends_only",
+    "missing_required": "error",
+    "conflict_resolution": "fail_on_duplicate_rule_ref"
+  },
+  "code": "STD-MOB-UPDATE",
+  "name": "Mobile App Update Policy & Version Enforcement",
+  "category": "06_mobile_platform",
+  "description": "Chuẩn kiểm tra version ứng dụng, soft/hard update, compatibility với backend, an toàn rollout, store availability, UX và failure policy Android/iOS.",
+  "version": "1.0.0",
+  "status": "active",
+  "rules": [
+    {
+      "id": "R001",
+      "title": "Phân biệt update silent, optional, recommended và required",
+      "detail": "MUST có state machine rõ: NONE (không hiển thị), INFO (thông báo), OPTIONAL (có thể bỏ qua), RECOMMENDED (nhắc có snooze), REQUIRED (không được dùng luồng không tương thích). Hành vi/CTA của mỗi trạng thái phải được định nghĩa; không biến latestVersion > currentVersion thành forced update.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "Update 3.5 optional có Để sau; update 3.6 required chỉ khi current < minSupported.",
+      "example_bad": "Mỗi lần phát hành version mới đều khóa app ngay.",
+      "concerns": [
+        "release",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R002",
+      "title": "Backend sở hữu policy phiên bản và contract kiểm tra",
+      "detail": "MUST cung cấp policy riêng theo platform, appId, channel, environment, version/build và capability; hợp đồng SHOULD chứa policyVersion, evaluatedAt, minSupportedBuild, latestBuild, mode, localized message, store destination và điều kiện hiệu lực. Server quyết định compatibility; client render state và xử lý điều hướng.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "GET /app-update-policy?platform=android&build=134 trả minSupportedBuild 120, latestBuild 145, mode=optional.",
+      "example_bad": "Hardcode một version minimum giống nhau trên cả iOS và Android.",
+      "concerns": [
+        "release",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R003",
+      "title": "So sánh build/version chính xác và không rollback nhầm",
+      "detail": "MUST so sánh build number/versionCode theo cùng platform/channel; versionName marketing không được so sánh lexical (1.10 > 1.9). Cần cấu hình riêng Android versionCode, iOS CFBundleVersion và app version; kiểm tra downgrade, hotfix, build của nhiều track và platform eligibility.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "Dùng buildCode 110 > 109 trong channel production, có mapping release.",
+      "example_bad": "So chuỗi \"1.10\" < \"1.9\" hay trộn TestFlight với production.",
+      "concerns": [
+        "release",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R004",
+      "title": "Chỉ bắt buộc cập nhật khi cần tương thích hoặc an toàn",
+      "detail": "REQUIRED MUST gắn với nguyên nhân được ghi nhận: breaking API/schema, critical security, compliance hoặc data corruption; ưu tiên khả năng backward compatibility phía server và rollout có giai đoạn. MUST có owner, phê duyệt, threshold và kế hoạch rollback/unblock; không forced update chỉ để tăng tỷ lệ sử dụng version mới.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "API bỏ protocol cũ sau khi app mới thực sự khả dụng; owner nâng minSupportedBuild đúng thời điểm.",
+      "example_bad": "Nâng minSupportedBuild ngay khi submit store review.",
+      "concerns": [
+        "release",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R005",
+      "title": "Không khoá người dùng trước khi phiên bản cập nhật có thể tải",
+      "detail": "MUST xác minh phiên bản mục tiêu thực sự available/installable cho quốc gia, account, channel, device/OS và store trước khi cưỡng chế; xét thời gian store review, propagation, phased rollout, staged rollout và thiết bị không hỗ trợ OS mới. Nếu không khả dụng, MUST có rollback policy hoặc hỗ trợ luồng tương thích thay thế; không tạo vòng lặp không thể thoát.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "Chỉ enable required sau verification store availability theo nhóm thiết bị bị ảnh hưởng.",
+      "example_bad": "Bật required v105 khi App Store chưa duyệt hoặc Play đang rollout hạn chế.",
+      "concerns": [
+        "release",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R006",
+      "title": "Startup check không chặn khởi động vô hạn",
+      "detail": "MUST check lúc startup/resume ở điểm thích hợp, đồng thời có timeout, retry/backoff+jitter, debounce và tránh nhiều dialog cạnh tranh. Không chặn main thread/splash vô hạn; critical policy có thể recheck ở server khi gọi API cần thiết. MUST tránh lặp UI khi quay lại app từ store.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "Check config có deadline 3 giây theo budget dự án, retry giới hạn rồi áp dụng chính sách fallback.",
+      "example_bad": "Splash chờ policy endpoint mãi và mở dialog lại mỗi lần resume.",
+      "concerns": [
+        "release",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R007",
+      "title": "Failure policy khi offline và policy service lỗi",
+      "detail": "MUST phân biệt lỗi kiểm tra policy với xác định app không tương thích. Nếu không có policy tin cậy, SHOULD fail-open cho luồng local/offline an toàn và fail-closed chỉ cho thao tác thật sự có nguy cơ theo server-authoritative compatibility; lưu policy đã xác minh kèm TTL, không để cache cũ lock vĩnh viễn. MUST có thông báo retry và hỗ trợ đường thoát khi cần.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "Không có mạng: đọc bản cache có hạn, cho xem dữ liệu offline; API cũ bị ngừng thì backend trả lỗi typed riêng.",
+      "example_bad": "Policy endpoint lỗi 500 thì hiển thị Bắt buộc cập nhật dù store không có version.",
+      "concerns": [
+        "release",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R008",
+      "title": "UI/UX optional và required đúng ngữ cảnh",
+      "detail": "OPTIONAL/RECOMMENDED MUST có CTA cập nhật và Để sau, hỗ trợ dismiss/snooze/cooldown không spam. REQUIRED MUST giải thích lý do, hiển thị version/hỗ trợ và CTA đến store, Retry/Check again khi quay về; không hiển thị nút Skip giả. UI đáp ứng localization, accessibility, safe area, dark mode và không lộ technical error.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "Soft prompt không hiện lại trong 24h; hard gate thông báo cần nâng cấp để tiếp tục sử dụng.",
+      "example_bad": "Dialog force update có nút Để sau nhưng ấn xong không làm gì.",
+      "concerns": [
+        "release",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R009",
+      "title": "Deep link tới nguồn cập nhật đáng tin cậy",
+      "detail": "MUST dùng destination đã whitelist theo platform/package/bundle, channel và distributor; store URL HTTPS và fallback hợp lệ khi ứng dụng store unavailable. Không download APK từ server không tin cậy; Android Play In-App Updates sử dụng flexible/immediate khi khả dụng, iOS chuyển đến App Store theo cách được nền tảng hỗ trợ.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "Android Play managed: immediate cho critical; iOS CTA Open App Store.",
+      "example_bad": "Dẫn user đến URL APK tùy ý được trả từ payload chưa kiểm chứng.",
+      "concerns": [
+        "release",
+        "security"
+      ]
+    },
+    {
+      "id": "R010",
+      "title": "Phân biệt runtime compatibility và store update availability",
+      "detail": "MUST xác minh server-side compatibility độc lập với dấu hiệu update-available ở store; mode REQUIRED do policy đã phê duyệt, nhưng hành vi cài đặt chỉ kích hoạt khi store báo có update hợp lệ. Client và backend SHOULD dùng typed error/version requirement riêng cho request bất tương thích, không coi mọi HTTP 4xx/5xx là yêu cầu cập nhật.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "Backend trả APP_VERSION_UNSUPPORTED với minSupportedBuild chính xác; app hiển thị gate tương ứng.",
+      "example_bad": "Đọc Play updatePriority=5 và mặc định coi mọi client đã lỗi API.",
+      "concerns": [
+        "release",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R011",
+      "title": "Điều phối rollout và thay đổi policy an toàn",
+      "detail": "MUST rollout minSupportedBuild sau release approval và smoke test theo cohort/platform; cấu hình policy phải có audit, role/approval, effectiveAt, canary, rollback/kill switch và guardrails ngăn minSupportedBuild > available compatible build. SHOULD alert khi blocked sessions tăng bất thường.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "Policy staged rollout 5% -> 50% -> 100%; có nút hạ threshold và audit người sửa.",
+      "example_bad": "Sửa trực tiếp minVersion trong config không có lịch sử, không thể rollback.",
+      "concerns": [
+        "release",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R012",
+      "title": "Khả năng tương thích API theo giai đoạn nâng cấp",
+      "detail": "MUST xác định cửa sổ hỗ trợ N-1/N-2 hoặc policy tương đương theo contract và thực tế người dùng; breaking schema/API chỉ bật enforcement sau khi traffic và rollout chứng minh sẵn sàng. SHOULD dùng feature flags, capability negotiation và API schema compatibility để giảm forced update.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "API duy trì contract cũ đến khi đại đa số clients lên build tương thích.",
+      "example_bad": "Backend deploy breaking endpoint rồi mới bắt user update.",
+      "concerns": [
+        "release",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R013",
+      "title": "Dữ liệu local, phiên đăng nhập và quy trình sau update",
+      "detail": "MUST bảo đảm migrate dữ liệu local, database và session sau update; không mặc định logout/xóa dữ liệu. Khi required, tránh mất draft/transaction đang thực hiện; trên return/resume verify lại installed build, cache policy và dữ liệu tương thích.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "Người dùng lưu draft trước gate; update xong resume state và migration được test.",
+      "example_bad": "Force update giữa thao tác thanh toán rồi mất state, hoặc xóa SQLite cũ.",
+      "concerns": [
+        "release",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R014",
+      "title": "Telemetry, tests và checklist release",
+      "detail": "MUST test NONE/INFO/OPTIONAL/RECOMMENDED/REQUIRED, offline/timeout, store unavailable, app resumes, target build not eligible, rollout, downgrade, account region, URL, policy rollback và API incompatible. SHOULD đo update prompt impression, accept, dismiss, store open, completion proxy và blocked sessions theo build/platform; bảo vệ PII.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "Test policy matrix trên iOS/Android và cảnh báo forced update spike sau thay đổi config.",
+      "example_bad": "Chỉ test happy path trên 1 thiết bị và không đo số user bị khóa.",
+      "concerns": [
+        "release",
+        "reliability",
+        "testing"
+      ]
+    },
+    {
+      "id": "R015",
+      "title": "Thông tin UX về deadline và grace period",
+      "detail": "SHOULD hỗ trợ deadline/reminder/grace period cho upgrade theo kế hoạch, dùng giờ server UTC và chống lỗi clock skew; bỏ qua grace period với rủi ro bảo mật nghiêm trọng được duyệt. Nếu hiển thị thời hạn, dùng wording trung thực và có timezone rõ ràng.",
+      "layer": "mobile",
+      "severity": "should",
+      "example_good": "Thông báo nâng cấp trước ngày 2026-11-01, nhắc lần cuối trước khi bật gate; emergency có policy riêng.",
+      "example_bad": "Hiển thị Còn 1 ngày bằng đồng hồ client không tin cậy rồi khóa bất ngờ.",
+      "concerns": [
+        "release",
+        "reliability"
+      ]
+    },
+    {
+      "id": "R016",
+      "title": "Kênh phân phối và thiết bị không được hỗ trợ",
+      "detail": "MUST phân biệt Play/App Store, enterprise/MDM, sideload hợp lệ, TestFlight và internal builds; thiết bị không thể cài bản mới vì minOS, architecture, account/region phải có supported sunset/alternative pathway. Không giả định mọi máy đều có Google Play services.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "Device Android không Play chuyển đến kênh phân phối được cấu hình và tin cậy.",
+      "example_bad": "Required update dùng Play Core trên điện thoại không có Play Store và khóa vĩnh viễn.",
+      "concerns": [
+        "release",
+        "reliability"
+      ]
+    }
+  ],
+  "integration_guide": [
+    {
+      "step": 1,
+      "title": "Thiết kế version policy",
+      "description": "Định nghĩa state machine, contract backend theo platform/channel, compatibility gate và minSupportedBuild."
+    },
+    {
+      "step": 2,
+      "title": "Điều phối client, backend và store",
+      "description": "Triển khai soft prompt, hard gate, fallback, kiểm tra store availability và rollout audit/rollback."
+    },
+    {
+      "step": 3,
+      "title": "Kiểm thử và giám sát",
+      "description": "Chạy test matrix đa phiên bản/nền tảng, giám sát blocked sessions, kiểm thử rollback và network failure."
+    }
+  ],
+  "common_issues": [
+    {
+      "issue": "Force update dù bản mới chưa có trên store",
+      "solution": "Chỉ nâng minimum sau khi verify availability cho đúng cohort/device và có rollback.",
+      "cause": "Thiếu policy/checklist cho tình huống cập nhật và tương thích."
+    },
+    {
+      "issue": "Policy endpoint lỗi dẫn đến khóa toàn bộ app",
+      "solution": "Phân biệt check-failed với unsupported; fallback được thiết kế, policy cache có TTL.",
+      "cause": "Thiếu policy/checklist cho tình huống cập nhật và tương thích."
+    },
+    {
+      "issue": "Hiển thị thông báo cập nhật liên tục",
+      "solution": "Dùng snooze/cooldown, deduplicate startup/resume prompts.",
+      "cause": "Thiếu policy/checklist cho tình huống cập nhật và tương thích."
+    }
+  ],
+  "depends_on": [
+    {
+      "code": "STD-MOB-RELEASE",
+      "dependency_type": "aligns_with"
+    },
+    {
+      "code": "STD-VERSIONING",
+      "dependency_type": "aligns_with"
+    },
+    {
+      "code": "STD-CLIENT-API",
+      "dependency_type": "aligns_with"
+    },
+    {
+      "code": "STD-CONFIG-RUNTIME",
+      "dependency_type": "aligns_with"
+    },
+    {
+      "code": "STD-UI-STATE",
+      "dependency_type": "aligns_with"
+    },
+    {
+      "code": "STD-SESSION",
+      "dependency_type": "aligns_with"
+    }
+  ],
+  "diagrams": [],
+  "applicability": {
+    "scope": "conditional",
+    "project_types": [
+      "mobile",
+      "hybrid"
+    ],
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "technologies": []
+  }
+}

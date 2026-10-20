@@ -4,7 +4,7 @@
   "name": "Build Mobile, Ký ứng dụng & Phát hành Store",
   "category": "06_mobile_platform",
   "description": "Chuẩn quản trị build, ký ứng dụng và phát hành Mobile.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "status": "active",
   "rules": [
     {
@@ -63,6 +63,19 @@
         "security",
         "testing"
       ]
+    },
+    {
+      "id": "R005",
+      "title": "Thiết lập checklist phát hành trước khi cưỡng chế nâng cấp",
+      "detail": "MUST kiểm tra phiên bản đã được duyệt, availability trên từng store/track, minimum OS, rollback và thông tin liên hệ support trước khi nâng minSupportedBuild theo STD-MOB-UPDATE.",
+      "layer": "mobile",
+      "severity": "must",
+      "example_good": "Release checklist verified trên store trước khi bật required.",
+      "example_bad": "Bật force update ngay khi upload build vào store.",
+      "concerns": [
+        "release",
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [
@@ -98,6 +111,10 @@
     {
       "code": "STD-VERSIONING",
       "dependency_type": "uses"
+    },
+    {
+      "code": "STD-MOB-UPDATE",
+      "dependency_type": "aligns_with"
     }
   ],
   "diagrams": [],

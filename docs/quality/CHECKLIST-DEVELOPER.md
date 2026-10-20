@@ -1,6 +1,6 @@
 # Checklist - developer
 
-Rules: **502**
+Rules: **521**
 
 | Rule | Severity | Verification | Pass/Fail/Waived/NA | Evidence |
 |---|---|---|---|---|
@@ -170,6 +170,7 @@ Rules: **502**
 | `STD-CLIENT-API#R003` - Hủy request và tránh stale response | must | test_or_review | [ ] | |
 | `STD-CLIENT-API#R004` - Single-flight token refresh và phân biệt 401/403 | should | test_or_review | [ ] | |
 | `STD-CLIENT-API#R005` - Theo dõi phục hồi connectivity khi resume | should | test_or_review | [ ] | |
+| `STD-CLIENT-API#R006` - Phân biệt app version unsupported và lỗi API thông thường | must | test_or_review | [ ] | |
 | `STD-CRYPTO#R002` - Tách khóa khỏi dữ liệu và áp dụng least privilege cho key access | must | test_or_review | [ ] | |
 | `STD-CRYPTO#R004` - Dùng nguồn ngẫu nhiên mật mã cho token, nonce và secret | must | test_or_review | [ ] | |
 | `STD-CRYPTO#R005` - Hash mật khẩu bằng password KDF và hỗ trợ nâng cost an toàn | must | test_or_review | [ ] | |
@@ -326,6 +327,7 @@ Rules: **502**
 | `STD-MOB-LIFE#R004` - Kiểm thử việc app bị gián đoạn trong quá trình login, upload, notification và realtime session | should | test | [ ] | |
 | `STD-MOB-LIFE#R005` - Khôi phục trạng thái người dùng quan trọng sau process recreation | must | test_or_review | [ ] | |
 | `STD-MOB-LIFE#R006` - Lưu draft cục bộ cho form quan trọng với TTL và chính sách dữ liệu rõ ràng | should | test_or_review | [ ] | |
+| `STD-MOB-LIFE#R007` - Kiểm tra update policy khi khởi động và quay lại foreground | should | test_or_review | [ ] | |
 | `STD-MOB-NAV#R001` - Xác định route argument có kiểu dữ liệu và guard cho xác thực/điều hướng | must | test_or_review | [ ] | |
 | `STD-MOB-NAV#R002` - Hỗ trợ initial link, link khi app resume và destination không hợp lệ/hết hạn | must | test_or_review | [ ] | |
 | `STD-MOB-NAV#R003` - Xác minh Android App Links và iOS Universal Links bằng file association của domain | should | test_or_review | [ ] | |
@@ -349,6 +351,7 @@ Rules: **502**
 | `STD-MOB-RELEASE#R002` - Tách application ID, môi trường và build flavor khi cần | must | test_or_review | [ ] | |
 | `STD-MOB-RELEASE#R003` - Duy trì version/build number, khai báo quyền riêng tư và credential phục vụ review | should | test+review | [ ] | |
 | `STD-MOB-RELEASE#R004` - Kiểm thử release build trên thiết bị iOS/Android thật | should | test | [ ] | |
+| `STD-MOB-RELEASE#R005` - Thiết lập checklist phát hành trước khi cưỡng chế nâng cấp | must | test_or_review | [ ] | |
 | `STD-MOB-SEC#R001` - Lưu token nhạy cảm vào kho bảo mật của OS | must | test+review | [ ] | |
 | `STD-MOB-SEC#R002` - Xác minh TLS và endpoint | should | test+review | [ ] | |
 | `STD-MOB-SEC#R003` - Không hardcode bí mật máy chủ vào ứng dụng | should | test+review | [ ] | |
@@ -365,6 +368,22 @@ Rules: **502**
 | `STD-MOB-UI#R002` - Giữ input đang focus luôn nhìn thấy khi bàn phím hiển thị | must | test | [ ] | |
 | `STD-MOB-UI#R003` - Cung cấp các trạng thái loading, empty, error và tương tác bị gián đoạn | should | test | [ ] | |
 | `STD-MOB-UI#R004` - Xác minh portrait/landscape và các mật độ màn hình khác nhau khi được hỗ trợ | should | test | [ ] | |
+| `STD-MOB-UPDATE#R001` - Phân biệt update silent, optional, recommended và required | must | test_or_review | [ ] | |
+| `STD-MOB-UPDATE#R002` - Backend sở hữu policy phiên bản và contract kiểm tra | must | test_or_review | [ ] | |
+| `STD-MOB-UPDATE#R003` - So sánh build/version chính xác và không rollback nhầm | must | test_or_review | [ ] | |
+| `STD-MOB-UPDATE#R004` - Chỉ bắt buộc cập nhật khi cần tương thích hoặc an toàn | must | test_or_review | [ ] | |
+| `STD-MOB-UPDATE#R005` - Không khoá người dùng trước khi phiên bản cập nhật có thể tải | must | test_or_review | [ ] | |
+| `STD-MOB-UPDATE#R006` - Startup check không chặn khởi động vô hạn | must | test_or_review | [ ] | |
+| `STD-MOB-UPDATE#R007` - Failure policy khi offline và policy service lỗi | must | test_or_review | [ ] | |
+| `STD-MOB-UPDATE#R008` - UI/UX optional và required đúng ngữ cảnh | must | test_or_review | [ ] | |
+| `STD-MOB-UPDATE#R009` - Deep link tới nguồn cập nhật đáng tin cậy | must | test_or_review | [ ] | |
+| `STD-MOB-UPDATE#R010` - Phân biệt runtime compatibility và store update availability | must | test_or_review | [ ] | |
+| `STD-MOB-UPDATE#R011` - Điều phối rollout và thay đổi policy an toàn | must | test_or_review | [ ] | |
+| `STD-MOB-UPDATE#R012` - Khả năng tương thích API theo giai đoạn nâng cấp | must | test_or_review | [ ] | |
+| `STD-MOB-UPDATE#R013` - Dữ liệu local, phiên đăng nhập và quy trình sau update | must | test_or_review | [ ] | |
+| `STD-MOB-UPDATE#R014` - Telemetry, tests và checklist release | must | test | [ ] | |
+| `STD-MOB-UPDATE#R015` - Thông tin UX về deadline và grace period | should | test_or_review | [ ] | |
+| `STD-MOB-UPDATE#R016` - Kênh phân phối và thiết bị không được hỗ trợ | must | test_or_review | [ ] | |
 | `STD-NEXT#R001` - Ưu tiên server component mặc định cho các trường hợp hiển thị dữ liệu phù hợp | must | test_or_review | [ ] | |
 | `STD-NEXT#R002` - Chỉ khai báo ranh giới client ở nơi thực sự cần tương tác trình duyệt | must | test_or_review | [ ] | |
 | `STD-NEXT#R003` - Bảo vệ server action và route handler bằng authorization và validation | should | test+review | [ ] | |

@@ -446,7 +446,12 @@ const STANDARD_CATALOG = [
         "name": "Client API Lifecycle & Network Recovery",
         "type": "standard",
         "folder": "03-api-integration-data",
-        "depends_on": []
+        "depends_on": [
+          {
+            "code": "STD-MOB-UPDATE",
+            "dependency_type": "aligns_with"
+          }
+        ]
       },
       {
         "code": "STD-DATA",
@@ -906,7 +911,12 @@ const STANDARD_CATALOG = [
         "name": "Vòng đời & Thực thi nền",
         "type": "standard",
         "folder": "06-mobile-platform",
-        "depends_on": []
+        "depends_on": [
+          {
+            "code": "STD-MOB-UPDATE",
+            "dependency_type": "aligns_with"
+          }
+        ]
       },
       {
         "code": "STD-MOB-NAV",
@@ -977,6 +987,10 @@ const STANDARD_CATALOG = [
           {
             "code": "STD-VERSIONING",
             "dependency_type": "uses"
+          },
+          {
+            "code": "STD-MOB-UPDATE",
+            "dependency_type": "aligns_with"
           }
         ]
       },
@@ -1033,6 +1047,38 @@ const STANDARD_CATALOG = [
           {
             "code": "STD-UI-STATE",
             "dependency_type": "uses"
+          }
+        ]
+      },
+      {
+        "code": "STD-MOB-UPDATE",
+        "name": "Mobile App Update Policy & Version Enforcement",
+        "type": "standard",
+        "folder": "06-mobile-platform",
+        "depends_on": [
+          {
+            "code": "STD-MOB-RELEASE",
+            "dependency_type": "aligns_with"
+          },
+          {
+            "code": "STD-VERSIONING",
+            "dependency_type": "aligns_with"
+          },
+          {
+            "code": "STD-CLIENT-API",
+            "dependency_type": "aligns_with"
+          },
+          {
+            "code": "STD-CONFIG-RUNTIME",
+            "dependency_type": "aligns_with"
+          },
+          {
+            "code": "STD-UI-STATE",
+            "dependency_type": "aligns_with"
+          },
+          {
+            "code": "STD-SESSION",
+            "dependency_type": "aligns_with"
           }
         ]
       }

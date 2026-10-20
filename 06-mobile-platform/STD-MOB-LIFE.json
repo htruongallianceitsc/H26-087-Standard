@@ -4,7 +4,7 @@
   "name": "Vòng đời & Thực thi nền",
   "category": "06_mobile_platform",
   "description": "Chuẩn xử lý lifecycle và phục hồi tài nguyên ứng dụng.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "status": "active",
   "rules": [
     {
@@ -86,6 +86,19 @@
         "security",
         "usability"
       ]
+    },
+    {
+      "id": "R007",
+      "title": "Kiểm tra update policy khi khởi động và quay lại foreground",
+      "detail": "SHOULD đánh giá policy theo lifecycle và TTL, deduplicate sự kiện resume, không chặn app vô thời hạn và re-check sau khi quay về từ store theo STD-MOB-UPDATE.",
+      "layer": "mobile",
+      "severity": "should",
+      "example_good": "Resume từ store chỉ refresh policy một lần.",
+      "example_bad": "Mỗi onResume tạo một dialog cập nhật.",
+      "concerns": [
+        "release",
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [
@@ -117,7 +130,12 @@
       "solution": "Kết hợp lint/test tự động với review thủ công và bằng chứng chấp nhận được ghi nhận."
     }
   ],
-  "depends_on": [],
+  "depends_on": [
+    {
+      "code": "STD-MOB-UPDATE",
+      "dependency_type": "aligns_with"
+    }
+  ],
   "diagrams": [],
   "applicability": {
     "scope": "conditional",

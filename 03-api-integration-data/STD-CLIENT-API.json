@@ -4,7 +4,7 @@
   "name": "Client API Lifecycle & Network Recovery",
   "category": "03_api_integration_data",
   "description": "Chuẩn vòng đời HTTP client Web/Mobile",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "status": "active",
   "rules": [
     {
@@ -76,6 +76,19 @@
         "reliability",
         "resilience"
       ]
+    },
+    {
+      "id": "R006",
+      "title": "Phân biệt app version unsupported và lỗi API thông thường",
+      "detail": "API client MUST nhận diện typed incompatibility error được tài liệu hóa và chuyển sang version enforcement theo STD-MOB-UPDATE; không map mọi lỗi mạng, timeout, HTTP 4xx/5xx thành yêu cầu cập nhật.",
+      "layer": "client",
+      "severity": "must",
+      "example_good": "HTTP 426 hoặc business error APP_VERSION_UNSUPPORTED có payload chuẩn.",
+      "example_bad": "HTTP 500 làm app tự bật hard update.",
+      "concerns": [
+        "release",
+        "reliability"
+      ]
     }
   ],
   "integration_guide": [
@@ -97,7 +110,12 @@
       "solution": "Bổ sung acceptance criteria và automated/integration test cho đường đi chính và lỗi."
     }
   ],
-  "depends_on": [],
+  "depends_on": [
+    {
+      "code": "STD-MOB-UPDATE",
+      "dependency_type": "aligns_with"
+    }
+  ],
   "diagrams": [],
   "applicability": {
     "scope": "conditional",

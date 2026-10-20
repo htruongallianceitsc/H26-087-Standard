@@ -1,6 +1,6 @@
 # Checklist - qc
 
-Rules: **487**
+Rules: **489**
 
 | Rule | Severity | Verification | Pass/Fail/Waived/NA | Evidence |
 |---|---|---|---|---|
@@ -287,6 +287,8 @@ Rules: **487**
 | `STD-MOB-STORE#R002` - Đặt chính sách lưu giữ, cleanup khi logout và cô lập khi chuyển tài khoản | must | test_or_review | [ ] | |
 | `STD-MOB-UI#R001` - Tuân thủ safe area, text scaling và system navigation inset | must | test | [ ] | |
 | `STD-MOB-UI#R002` - Giữ input đang focus luôn nhìn thấy khi bàn phím hiển thị | must | test | [ ] | |
+| `STD-MOB-UPDATE#R009` - Deep link tới nguồn cập nhật đáng tin cậy | must | test_or_review | [ ] | |
+| `STD-MOB-UPDATE#R014` - Telemetry, tests và checklist release | must | test | [ ] | |
 | `STD-MONOREPO#R001` - Khai báo ranh giới package và dependency | must | review | [ ] | |
 | `STD-MONOREPO#R002` - Chạy kiểm tra theo phạm vi ảnh hưởng | must | review | [ ] | |
 | `STD-MONOREPO#R003` - Khóa phiên bản công cụ và dependency | must | review | [ ] | |

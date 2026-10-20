@@ -3,8 +3,8 @@
   "sourceOfTruth": "standard JSON files",
   "schema": "standard-import-v2.schema.json",
   "schemaVersion": 2,
-  "count": 157,
-  "ruleCount": 778,
+  "count": 158,
+  "ruleCount": 797,
   "groups": [
     {
       "folder": "01-governance-delivery",
@@ -122,7 +122,8 @@
         "STD-MOB-RELEASE.json",
         "STD-MOB-SEC.json",
         "STD-MOB-STORE.json",
-        "STD-MOB-UI.json"
+        "STD-MOB-UI.json",
+        "STD-MOB-UPDATE.json"
       ]
     },
     {

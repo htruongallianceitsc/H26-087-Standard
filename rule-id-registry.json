@@ -901,6 +901,10 @@
       {
         "id": "R005",
         "original_title": "Theo dõi phục hồi connectivity khi resume"
+      },
+      {
+        "id": "R006",
+        "original_title": "Phân biệt app version unsupported và lỗi API thông thường"
       }
     ],
     "STD-CODE-REVIEW": [
@@ -1893,6 +1897,10 @@
       {
         "id": "R006",
         "original_title": "Lưu draft cục bộ cho form quan trọng với TTL và chính sách dữ liệu rõ ràng"
+      },
+      {
+        "id": "R007",
+        "original_title": "Kiểm tra update policy khi khởi động và quay lại foreground"
       }
     ],
     "STD-MOB-NAV": [
@@ -2003,6 +2011,10 @@
       {
         "id": "R004",
         "original_title": "Kiểm thử release build trên thiết bị iOS/Android thật"
+      },
+      {
+        "id": "R005",
+        "original_title": "Thiết lập checklist phát hành trước khi cưỡng chế nâng cấp"
       }
     ],
     "STD-MOB-SEC": [
@@ -3425,6 +3437,72 @@
       {
         "id": "R012",
         "original_title": "Observability và acceptance tests cho media"
+      }
+    ],
+    "STD-MOB-UPDATE": [
+      {
+        "id": "R001",
+        "original_title": "Phân biệt update silent, optional, recommended và required"
+      },
+      {
+        "id": "R002",
+        "original_title": "Backend sở hữu policy phiên bản và contract kiểm tra"
+      },
+      {
+        "id": "R003",
+        "original_title": "So sánh build/version chính xác và không rollback nhầm"
+      },
+      {
+        "id": "R004",
+        "original_title": "Chỉ bắt buộc cập nhật khi cần tương thích hoặc an toàn"
+      },
+      {
+        "id": "R005",
+        "original_title": "Không khoá người dùng trước khi phiên bản cập nhật có thể tải"
+      },
+      {
+        "id": "R006",
+        "original_title": "Startup check không chặn khởi động vô hạn"
+      },
+      {
+        "id": "R007",
+        "original_title": "Failure policy khi offline và policy service lỗi"
+      },
+      {
+        "id": "R008",
+        "original_title": "UI/UX optional và required đúng ngữ cảnh"
+      },
+      {
+        "id": "R009",
+        "original_title": "Deep link tới nguồn cập nhật đáng tin cậy"
+      },
+      {
+        "id": "R010",
+        "original_title": "Phân biệt runtime compatibility và store update availability"
+      },
+      {
+        "id": "R011",
+        "original_title": "Điều phối rollout và thay đổi policy an toàn"
+      },
+      {
+        "id": "R012",
+        "original_title": "Khả năng tương thích API theo giai đoạn nâng cấp"
+      },
+      {
+        "id": "R013",
+        "original_title": "Dữ liệu local, phiên đăng nhập và quy trình sau update"
+      },
+      {
+        "id": "R014",
+        "original_title": "Telemetry, tests và checklist release"
+      },
+      {
+        "id": "R015",
+        "original_title": "Thông tin UX về deadline và grace period"
+      },
+      {
+        "id": "R016",
+        "original_title": "Kênh phân phối và thiết bị không được hỗ trợ"
       }
     ]
   }
